@@ -3,3 +3,7 @@
 
 # Environment
 **/DAENV/
+
+# Notebook model outputs and downloaded backbone weights
+artifacts/dinov2_knn/
+.ipynb_checkpoints/

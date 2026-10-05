@@ -1,0 +1,42 @@
+{
+  "backends": {
+    "cpu": true,
+    "mps": true,
+    "cuda": false
+  },
+  "measurements": [
+    {
+      "device": "cpu",
+      "status": "ok",
+      "image": "datasets/mvtec_ad_processed/bottle/test/good/000.png",
+      "category_for_bank": "bottle",
+      "dino_seconds": 0.07213429099647328,
+      "classification_seconds": 5.562498699873686e-05,
+      "routing_distance_seconds": 0.0006256249616853893,
+      "bank_loading_seconds": 0.024756917031481862,
+      "knn_seconds": 0.06461683299858123,
+      "total_inference_seconds": 0.2434018339845352,
+      "ram_high_water_mb": 2047.140625,
+      "feature_bank_size_mb": 221.0504264831543
+    },
+    {
+      "device": "mps",
+      "status": "ok",
+      "image": "datasets/mvtec_ad_processed/bottle/test/good/000.png",
+      "category_for_bank": "bottle",
+      "dino_seconds": 0.15794295800151303,
+      "classification_seconds": 0.00022991601144894958,
+      "routing_distance_seconds": 0.0010397909791208804,
+      "bank_loading_seconds": 0.024972665996756405,
+      "knn_seconds": 0.0626043330412358,
+      "total_inference_seconds": 0.1612702080165036,
+      "ram_high_water_mb": 2054.390625,
+      "feature_bank_size_mb": 221.0504264831543
+    },
+    {
+      "device": "cuda",
+      "status": "unavailable"
+    }
+  ],
+  "note": "Single-image wall-clock measurements; no optimization or threshold tuning performed."
+}

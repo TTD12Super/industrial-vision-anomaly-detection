@@ -1594,6 +1594,13 @@ binary anomaly mask
 
 without tuning against final test data.
 
+Task 014 uses the same normal-only quantile protocol as image decisions, but
+calibrates one pixel threshold per category from the flattened continuous
+anomaly maps of held-out normal validation images. The persisted metadata marks
+the artifact as `pixel_level`; applying `score >= threshold` returns a boolean
+mask with the original `[images, height, width]` shape. Final test masks and
+defect labels are used only for later evaluation.
+
 ---
 
 ## Task 015 — Expand Evaluation Metrics

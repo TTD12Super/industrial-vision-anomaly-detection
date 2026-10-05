@@ -7,6 +7,12 @@ from .classifier import (
     predict_linear_classifier,
     save_linear_classifier,
 )
+from .calibration import (
+    UNKNOWN_PRODUCT_CATEGORY,
+    calibrate_open_set_thresholds,
+    nearest_global_distances,
+    save_calibration,
+)
 from .embeddings import (
     build_global_embedding_artifact,
     category_mapping,
@@ -31,6 +37,10 @@ __all__ = [
     "fit_linear_classifier",
     "predict_linear_classifier",
     "save_linear_classifier",
+    "UNKNOWN_PRODUCT_CATEGORY",
+    "calibrate_open_set_thresholds",
+    "nearest_global_distances",
+    "save_calibration",
     "build_global_embedding_artifact",
     "category_mapping",
     "load_compatible_embedding_artifacts",

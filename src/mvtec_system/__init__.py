@@ -47,6 +47,7 @@ from .embeddings import (
     save_embedding_artifacts,
 )
 from .evaluation import (
+    compare_routing_modes,
     evaluate_anomaly_detection,
     evaluate_product_classifier,
     save_classification_report,
@@ -101,6 +102,7 @@ __all__ = [
     "save_embedding_artifacts",
     "evaluate_product_classifier",
     "evaluate_anomaly_detection",
+    "compare_routing_modes",
     "save_classification_report",
     "select_linear_classifier",
 ]

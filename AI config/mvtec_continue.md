@@ -1732,6 +1732,11 @@ Report the difference.
 
 This measures the cost of classification mistakes.
 
+`compare_routing_modes` reports both metric sets and an
+`automatic_minus_oracle` delta. It does not tune either route or any anomaly
+threshold; callers must provide scores and, when available, binary decisions
+from the already-fixed threshold artifacts.
+
 ---
 
 ## Task 019 — Reproduce Existing Baseline After Refactor

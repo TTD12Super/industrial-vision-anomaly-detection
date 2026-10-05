@@ -24,6 +24,7 @@ from .feature_bank import (
     save_feature_bank,
 )
 from .knn import distances_for_chunk, nearest_neighbor_scores
+from .maps import make_anomaly_maps, plot_anomaly_examples
 from .embeddings import (
     build_global_embedding_artifact,
     category_mapping,
@@ -65,6 +66,8 @@ __all__ = [
     "save_feature_bank",
     "distances_for_chunk",
     "nearest_neighbor_scores",
+    "make_anomaly_maps",
+    "plot_anomaly_examples",
     "build_global_embedding_artifact",
     "category_mapping",
     "load_compatible_embedding_artifacts",

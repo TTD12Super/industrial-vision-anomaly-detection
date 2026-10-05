@@ -7,5 +7,6 @@
 # Notebook model outputs and downloaded backbone weights
 artifacts/dinov2_knn/
 artifacts/product_classifier/
+artifacts/mvtec_system/
 .ipynb_checkpoints/
 **/__pycache__/

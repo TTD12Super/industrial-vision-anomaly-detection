@@ -13,6 +13,7 @@ from .calibration import (
     nearest_global_distances,
     save_calibration,
 )
+from .artifacts import ArtifactLayout, make_artifact_layout
 from .router import BankResolution, RouteResult, resolve_category_bank, route_product
 from .feature_bank import (
     FeatureBankResult,
@@ -70,6 +71,8 @@ __all__ = [
     "predict_linear_classifier",
     "save_linear_classifier",
     "UNKNOWN_PRODUCT_CATEGORY",
+    "ArtifactLayout",
+    "make_artifact_layout",
     "calibrate_open_set_thresholds",
     "nearest_global_distances",
     "save_calibration",

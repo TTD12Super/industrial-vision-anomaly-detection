@@ -25,6 +25,11 @@ from .feature_bank import (
 )
 from .knn import distances_for_chunk, nearest_neighbor_scores
 from .maps import make_anomaly_maps, plot_anomaly_examples
+from .thresholds import (
+    calibrate_anomaly_thresholds,
+    calibrate_quantile_threshold,
+    save_anomaly_thresholds,
+)
 from .embeddings import (
     build_global_embedding_artifact,
     category_mapping,
@@ -68,6 +73,9 @@ __all__ = [
     "nearest_neighbor_scores",
     "make_anomaly_maps",
     "plot_anomaly_examples",
+    "calibrate_anomaly_thresholds",
+    "calibrate_quantile_threshold",
+    "save_anomaly_thresholds",
     "build_global_embedding_artifact",
     "category_mapping",
     "load_compatible_embedding_artifacts",

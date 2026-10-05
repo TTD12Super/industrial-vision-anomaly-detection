@@ -1670,6 +1670,12 @@ global embedding
 
 DINOv2 should run only once for the input image.
 
+The reusable entry point is `src/mvtec_system/pipeline.py`. It returns the
+route fields plus continuous patch/image scores, an anomaly map, and optional
+`GOOD`/`DEFECT` and binary-mask outputs when calibrated threshold artifacts
+are supplied. A rejected product returns
+`unknown_product_category` and does not load or query a category bank.
+
 ---
 
 ## Task 017 — CLI Inference

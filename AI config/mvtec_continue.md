@@ -1891,6 +1891,10 @@ reproduction steps
 limitations
 ```
 
+Task 024 is documented in `README.md` and `reports/final_report.md`. The
+report distinguishes reproduced saved-score results from measurements that
+still require a future official-test embedding run.
+
 ---
 
 # 39. FIRST ACTION FOR AN AI CODING AGENT

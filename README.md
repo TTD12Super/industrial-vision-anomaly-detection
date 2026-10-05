@@ -1,50 +1,121 @@
 # Industrial Vision Anomaly Detection
 
-An industrial computer vision project for detecting and localizing defects
-in manufacturing products using deep learning and anomaly detection techniques.
+Frozen DINOv2 + category-specific exact kNN for MVTec AD, with a shared
+product classifier, open-set routing, anomaly maps, calibrated decisions, and
+a CLI for one-image inference.
 
-## Overview
+## What is implemented
 
-This project focuses on automated visual inspection in industrial environments.
-The system analyzes product images to identify abnormal regions, detect defects,
-and provide visual localization of the detected anomalies.
+1. A shared frozen `dinov2_vitb14` encoder produces one global embedding and
+   normalized patch embeddings from one forward pass.
+2. A multinomial logistic-regression classifier predicts one of the 15 MVTec
+   product categories from global embeddings.
+3. Validation-only confidence and nearest-global-distance thresholds reject
+   inputs outside the known product distribution as
+   `unknown_product_category` before a bank is loaded.
+4. Each category uses its compatible normal patch feature bank and exact
+   chunked Euclidean kNN. The image score is the maximum patch score.
+5. Patch scores are interpolated to a `256×256` anomaly map. Image and pixel
+   thresholds use category-specific 99th-percentile normal-only calibration.
+6. Evaluation reports image/pixel AUROC and AP, plus thresholded precision,
+   recall, F1, specificity, confusion matrix, Dice, and IoU when fixed binary
+   decisions are supplied.
 
-The project is designed as a practical application of:
+## Dataset and local artifacts
 
-- Computer Vision
-- Deep Learning
-- Anomaly Detection
-- Image Segmentation
-- Industrial Visual Inspection
+The repository reuses these local paths; the dataset and large artifacts are
+ignored by Git:
 
-## Objectives
+```text
+datasets/mvtec_ad/                 # raw MVTec AD, read-only
+datasets/mvtec_ad_processed/       # validated RGB 256×256 images/masks
+artifacts/dinov2_knn/              # cached DINOv2 and historical banks
+artifacts/product_classifier/v1/   # classifier/embedding artifacts
+artifacts/mvtec_system/v1/         # new versioned output layout
+```
 
-- Detect defective products automatically.
-- Identify and localize abnormal regions in images.
-- Reduce the dependency on manual visual inspection.
-- Evaluate different anomaly detection approaches.
-- Build a reusable pipeline for industrial image inspection.
+The local audit found all 15 categories, 3,629 train images, 1,725 test
+images, and 1,258 masks in the raw dataset. Processed data contains the same
+categories and the fixed `256×256` preprocessing contract.
 
-## Dataset
+## Environment
 
-The project uses industrial visual inspection datasets containing normal
-and defective product images.
+Use the existing environment and expose the source package:
 
-Potential datasets:
+```bash
+PYTHONPATH=src DAenv/bin/python -m unittest discover -s tests -v
+```
 
-- MVTec AD
-- BTAD
-- VisA
+The suite currently contains 67 tests. xFormers warnings are expected when
+the cached DINOv2 model runs without xFormers.
 
-Each dataset may contain different object categories and defect types,
-allowing the system to be evaluated under different industrial scenarios.
+## CLI inference
 
-## Technologies
+The CLI does not require a manually supplied category:
 
-- Python
-- PyTorch
-- OpenCV
-- Anomalib
-- NumPy
-- Matplotlib
-- Scikit-learn
+```bash
+PYTHONPATH=src DAenv/bin/python predict.py \
+  --image datasets/mvtec_ad_processed/bottle/test/good/000.png \
+  --device cpu
+```
+
+It prints JSON containing the predicted/accepted category, confidence,
+nearest-global distance, reject thresholds, continuous anomaly score, image
+decision (when threshold artifacts are provided), and heatmap path. Optional
+calibrated artifacts can be supplied with `--image-thresholds` and
+`--pixel-thresholds`. If they are absent, the CLI does not invent a threshold
+or a `GOOD/DEFECT` label.
+
+## Reproduction and reports
+
+Recompute the saved 15-category baseline without rebuilding DINOv2 or banks:
+
+```bash
+PYTHONPATH=src DAenv/bin/python \
+  reports/baseline_reproduction/reproduce_baseline.py
+```
+
+The observed macro metrics match the saved reference exactly:
+
+| Metric | Macro |
+| --- | ---: |
+| Image AUROC | 0.980325 |
+| Image AP | 0.987077 |
+| Pixel AUROC | 0.961282 |
+| Pixel AP | 0.516239 |
+
+Measure CPU/MPS/CUDA availability and stage latency with:
+
+```bash
+PYTHONPATH=src DAenv/bin/python \
+  reports/performance/measure_performance.py --devices cpu,mps,cuda
+```
+
+See [reports/final_report.md](reports/final_report.md) for the complete
+architecture, protocol, results, reproduction commands, and limitations.
+
+## Repository map
+
+```text
+src/mvtec_system/              reusable tested modules
+predict.py                     one-image CLI
+manifests/                     classification split manifest
+reports/baseline_reproduction/ saved-score reproduction
+reports/performance/           measured timings and backend status
+notebooks/                     preserved research history + module bridge cells
+tests/                         contract and integration tests
+AI config/mvtec_continue.md    task requirements and decisions
+```
+
+## Important limitations
+
+- The 99th-percentile thresholds control known-normal acceptance; they are
+  not tuned for defect recall and must not use official test labels.
+- A known defective product can be rejected as unknown if its global feature
+  leaves the normal product distribution. The current routing policy is
+  intentionally applied before category-bank inference.
+- Full automatic-routing versus oracle-routing numbers require global test
+  embeddings; the comparison helper is implemented, but no fabricated numbers
+  are reported.
+- Large datasets, DINOv2 weights, banks, and generated local outputs are not
+  pushed to Git.

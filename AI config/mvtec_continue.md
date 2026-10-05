@@ -1632,6 +1632,14 @@ IoU
 
 AUPRO is optional after the core metrics are correct.
 
+The reusable evaluator reports continuous ranking metrics separately from
+thresholded metrics. Ranking uses image/pixel scores with fixed evaluation
+labels. Thresholded metrics are accepted only when the caller supplies binary
+predictions produced by the already-calibrated thresholds; the evaluator does
+not search for a threshold. Pixel reports include precision, recall, F1, Dice,
+and IoU, while image reports also include specificity and a 2x2 confusion
+matrix.
+
 ---
 
 ## Task 016 — Unified Automatic Inference Pipeline

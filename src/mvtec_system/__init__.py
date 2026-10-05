@@ -46,6 +46,7 @@ from .embeddings import (
     save_embedding_artifacts,
 )
 from .evaluation import (
+    evaluate_anomaly_detection,
     evaluate_product_classifier,
     save_classification_report,
     select_linear_classifier,
@@ -97,6 +98,7 @@ __all__ = [
     "read_classification_manifest",
     "save_embedding_artifacts",
     "evaluate_product_classifier",
+    "evaluate_anomaly_detection",
     "save_classification_report",
     "select_linear_classifier",
 ]

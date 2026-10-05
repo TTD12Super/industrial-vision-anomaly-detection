@@ -1817,6 +1817,10 @@ artifacts/
         └── config.json
 ```
 
+`make_artifact_layout()` creates this new versioned layout only when requested.
+It never copies or deletes the historical `artifacts/dinov2_knn` and
+`artifacts/product_classifier` runs; those remain reusable legacy references.
+
 Where possible, reference compatible old banks instead of copying huge artifacts.
 
 ---

@@ -23,6 +23,7 @@ from .feature_bank import (
     make_bank_metadata,
     save_feature_bank,
 )
+from .knn import distances_for_chunk, nearest_neighbor_scores
 from .embeddings import (
     build_global_embedding_artifact,
     category_mapping,
@@ -62,6 +63,8 @@ __all__ = [
     "load_or_build_feature_bank",
     "make_bank_metadata",
     "save_feature_bank",
+    "distances_for_chunk",
+    "nearest_neighbor_scores",
     "build_global_embedding_artifact",
     "category_mapping",
     "load_compatible_embedding_artifacts",

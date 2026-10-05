@@ -14,7 +14,9 @@ from mvtec_system import (
     GOOD_LABEL,
     calibrate_anomaly_thresholds,
     calibrate_category_image_thresholds,
+    calibrate_category_pixel_thresholds,
     calibrate_quantile_threshold,
+    binary_anomaly_masks,
     classify_image_score,
     image_scores_from_patch_scores,
     save_anomaly_thresholds,
@@ -83,6 +85,24 @@ class ThresholdTests(unittest.TestCase):
         thresholds = calibrate_category_image_thresholds({"bottle": [0.1, 0.2]})
         with self.assertRaises(ValueError):
             classify_image_score("cable", 0.2, thresholds)
+
+    def test_pixel_threshold_returns_boolean_masks(self) -> None:
+        thresholds = calibrate_category_pixel_thresholds(
+            {"bottle": [[0.1, 0.2], [0.3, 0.4]]},
+            target_acceptance_rate=0.5,
+        )
+        maps = torch.tensor([[[0.1, 0.3], [0.4, 0.2]]])
+        masks = binary_anomaly_masks("bottle", maps, thresholds)
+
+        self.assertEqual(thresholds["threshold_type"], "pixel_level")
+        self.assertEqual(tuple(masks.shape), (1, 2, 2))
+        self.assertEqual(masks.dtype, torch.bool)
+        self.assertTrue(torch.equal(masks, torch.tensor([[[False, True], [True, False]]])))
+
+    def test_pixel_mask_rejects_invalid_maps(self) -> None:
+        thresholds = calibrate_category_pixel_thresholds({"bottle": [0.1, 0.2]})
+        with self.assertRaises(ValueError):
+            binary_anomaly_masks("bottle", [[0.1, 0.2]], thresholds)
 
 
 if __name__ == "__main__":

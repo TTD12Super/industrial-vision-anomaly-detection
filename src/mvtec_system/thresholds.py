@@ -92,6 +92,22 @@ def calibrate_category_image_thresholds(
 ) -> dict[str, Any]:
     """Calibrate one image threshold per category from normal validation scores."""
 
+    return _calibrate_category_thresholds(
+        category_scores,
+        target_acceptance_rate,
+        threshold_type="image_level",
+        score_aggregation="maximum_patch_score",
+    )
+
+
+def _calibrate_category_thresholds(
+    category_scores: dict[str, Any],
+    target_acceptance_rate: float,
+    threshold_type: str,
+    score_aggregation: str,
+) -> dict[str, Any]:
+    """Build shared metadata for category-specific normal-only thresholds."""
+
     if not isinstance(category_scores, dict) or not category_scores:
         raise ValueError("category_scores must be a non-empty mapping.")
     categories = {}
@@ -101,17 +117,31 @@ def calibrate_category_image_thresholds(
         categories[category] = calibrate_quantile_threshold(scores, target_acceptance_rate)
     return {
         "artifact_version": "v1",
-        "threshold_type": "image_level",
+        "threshold_type": threshold_type,
         "calibration_split": "known_normal_validation",
         "target_acceptance_rate": target_acceptance_rate,
         "categories": categories,
         "protocol": {
             "strategy": "normal_only_quantile",
-            "score_aggregation": "maximum_patch_score",
+            "score_aggregation": score_aggregation,
             "test_labels_used": False,
             "threshold_rule": "score >= threshold -> DEFECT; otherwise GOOD",
         },
     }
+
+
+def calibrate_category_pixel_thresholds(
+    category_scores: dict[str, Any],
+    target_acceptance_rate: float = 0.99,
+) -> dict[str, Any]:
+    """Calibrate one pixel threshold per category from normal validation maps."""
+
+    return _calibrate_category_thresholds(
+        category_scores,
+        target_acceptance_rate,
+        threshold_type="pixel_level",
+        score_aggregation="all_pixels_in_normal_validation_maps",
+    )
 
 
 def classify_image_score(
@@ -121,6 +151,8 @@ def classify_image_score(
 ) -> dict[str, Any]:
     """Apply a persisted category threshold to one continuous image score."""
 
+    if thresholds.get("threshold_type") != "image_level":
+        raise ValueError("Image decisions require image_level threshold metadata.")
     categories = thresholds.get("categories")
     if not isinstance(categories, dict) or category not in categories:
         raise ValueError(f"No image threshold is available for category: {category}")
@@ -139,6 +171,32 @@ def classify_image_score(
         "label": DEFECT_LABEL if is_defect else GOOD_LABEL,
         "is_defect": is_defect,
     }
+
+
+def binary_anomaly_masks(
+    category: str,
+    anomaly_maps: Any,
+    thresholds: dict[str, Any],
+) -> torch.Tensor:
+    """Threshold continuous anomaly maps into boolean masks for one category."""
+
+    if thresholds.get("threshold_type") != "pixel_level":
+        raise ValueError("Binary masks require pixel_level threshold metadata.")
+    categories = thresholds.get("categories")
+    if not isinstance(categories, dict) or category not in categories:
+        raise ValueError(f"No pixel threshold is available for category: {category}")
+    category_threshold = categories[category]
+    if not isinstance(category_threshold, dict) or "threshold" not in category_threshold:
+        raise ValueError(f"Invalid threshold metadata for category: {category}")
+    threshold = float(category_threshold["threshold"])
+    if not bool(torch.isfinite(torch.tensor(threshold))):
+        raise ValueError("Threshold metadata must contain a finite threshold.")
+    maps = torch.as_tensor(anomaly_maps, dtype=torch.float32)
+    if maps.ndim != 3 or maps.shape[0] == 0 or maps.shape[1] == 0 or maps.shape[2] == 0:
+        raise ValueError("anomaly_maps must have shape [images, height, width].")
+    if not bool(torch.isfinite(maps).all()):
+        raise ValueError("anomaly_maps must contain only finite values.")
+    return maps >= threshold
 
 
 def save_anomaly_thresholds(path: str | Path, thresholds: dict[str, Any]) -> None:

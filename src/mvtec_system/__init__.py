@@ -25,6 +25,7 @@ from .feature_bank import (
 )
 from .knn import distances_for_chunk, nearest_neighbor_scores
 from .maps import make_anomaly_maps, plot_anomaly_examples
+from .pipeline import infer_image
 from .thresholds import (
     DEFECT_LABEL,
     GOOD_LABEL,
@@ -81,6 +82,7 @@ __all__ = [
     "nearest_neighbor_scores",
     "make_anomaly_maps",
     "plot_anomaly_examples",
+    "infer_image",
     "DEFECT_LABEL",
     "GOOD_LABEL",
     "calibrate_anomaly_thresholds",

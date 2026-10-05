@@ -15,6 +15,11 @@ from .embeddings import (
     read_classification_manifest,
     save_embedding_artifacts,
 )
+from .evaluation import (
+    evaluate_product_classifier,
+    save_classification_report,
+    select_linear_classifier,
+)
 
 __all__ = [
     "DINOv2Config",
@@ -32,4 +37,7 @@ __all__ = [
     "make_embedding_metadata",
     "read_classification_manifest",
     "save_embedding_artifacts",
+    "evaluate_product_classifier",
+    "save_classification_report",
+    "select_linear_classifier",
 ]

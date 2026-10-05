@@ -1842,6 +1842,11 @@ MPS / CPU / CUDA behavior
 
 Do not optimize without profiling.
 
+`reports/performance/measure_performance.py` records a single-image profile
+for each requested available backend and writes JSON. It measures wall-clock
+stage latency, high-water RSS, and the selected feature-bank size; unavailable
+backends are recorded explicitly rather than silently skipped.
+
 ---
 
 ## Task 023 — Update Notebooks

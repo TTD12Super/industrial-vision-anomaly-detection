@@ -27,6 +27,7 @@ from .feature_bank import (
 from .knn import distances_for_chunk, nearest_neighbor_scores
 from .maps import make_anomaly_maps, plot_anomaly_examples
 from .pipeline import infer_image
+from .performance import available_backends, file_size_mb, measure_callable, memory_usage_mb
 from .reproduction import (
     REFERENCE_MACRO,
     reproduce_saved_baseline,
@@ -92,6 +93,10 @@ __all__ = [
     "make_anomaly_maps",
     "plot_anomaly_examples",
     "infer_image",
+    "available_backends",
+    "file_size_mb",
+    "measure_callable",
+    "memory_usage_mb",
     "REFERENCE_MACRO",
     "reproduce_saved_baseline",
     "save_reproduction_report",

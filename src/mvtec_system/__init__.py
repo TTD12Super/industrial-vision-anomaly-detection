@@ -26,8 +26,13 @@ from .feature_bank import (
 from .knn import distances_for_chunk, nearest_neighbor_scores
 from .maps import make_anomaly_maps, plot_anomaly_examples
 from .thresholds import (
+    DEFECT_LABEL,
+    GOOD_LABEL,
     calibrate_anomaly_thresholds,
+    calibrate_category_image_thresholds,
     calibrate_quantile_threshold,
+    classify_image_score,
+    image_scores_from_patch_scores,
     save_anomaly_thresholds,
 )
 from .embeddings import (
@@ -73,8 +78,13 @@ __all__ = [
     "nearest_neighbor_scores",
     "make_anomaly_maps",
     "plot_anomaly_examples",
+    "DEFECT_LABEL",
+    "GOOD_LABEL",
     "calibrate_anomaly_thresholds",
+    "calibrate_category_image_thresholds",
     "calibrate_quantile_threshold",
+    "classify_image_score",
+    "image_scores_from_patch_scores",
     "save_anomaly_thresholds",
     "build_global_embedding_artifact",
     "category_mapping",

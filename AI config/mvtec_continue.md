@@ -1002,7 +1002,7 @@ The implementation uses a normal-only quantile protocol:
    validation image,
 3. set each threshold to the 99th percentile of its validation score
    distribution, using linear quantile interpolation,
-4. classify `score > threshold` as `DEFECT`; otherwise classify it as `GOOD`,
+4. classify `score >= threshold` as `DEFECT`; otherwise classify it as `GOOD`,
 5. persist the threshold, target acceptance rate, observed acceptance rate,
    sample count, quantile method, and source split.
 
@@ -1573,6 +1573,12 @@ continuous score
 ```
 
 Persist threshold metadata.
+
+The image score is the maximum patch score, matching the baseline definition
+in `AI config/model.md`. Task 013 stores one normal-only calibrated threshold
+per category and applies `score >= threshold` for `DEFECT`; lower scores are
+`GOOD`. The decision output includes the category, continuous score, applied
+threshold, label, and boolean decision.
 
 ---
 

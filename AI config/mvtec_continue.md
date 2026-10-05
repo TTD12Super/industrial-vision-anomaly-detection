@@ -1861,6 +1861,11 @@ Preserve the existing research history.
 
 Do not delete existing visualization evidence.
 
+Task 023 adds only an unexecuted import bridge at the end of each research
+notebook. Existing cells, outputs, and visual evidence remain in place; new
+experiments can import the tested `src/mvtec_system` modules without copying
+their implementation into notebook cells.
+
 ---
 
 ## Task 024 — Final README and Report

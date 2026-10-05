@@ -126,6 +126,54 @@ def evaluate_anomaly_detection(
     return {"image": image_report, "pixel": pixel_report}
 
 
+def compare_routing_modes(
+    oracle_image_scores: Any,
+    automatic_image_scores: Any,
+    image_labels: Any,
+    oracle_pixel_scores: Any,
+    automatic_pixel_scores: Any,
+    pixel_labels: Any,
+    oracle_image_predictions: Any | None = None,
+    automatic_image_predictions: Any | None = None,
+    oracle_pixel_predictions: Any | None = None,
+    automatic_pixel_predictions: Any | None = None,
+) -> dict[str, Any]:
+    """Compare correct-category (oracle) and predicted-category (automatic) routing."""
+
+    oracle = evaluate_anomaly_detection(
+        oracle_image_scores,
+        image_labels,
+        oracle_pixel_scores,
+        pixel_labels,
+        oracle_image_predictions,
+        oracle_pixel_predictions,
+    )
+    automatic = evaluate_anomaly_detection(
+        automatic_image_scores,
+        image_labels,
+        automatic_pixel_scores,
+        pixel_labels,
+        automatic_image_predictions,
+        automatic_pixel_predictions,
+    )
+    difference: dict[str, Any] = {}
+    for level in ("image", "pixel"):
+        level_difference: dict[str, Any] = {}
+        for metric in ("auroc", "average_precision"):
+            level_difference[f"{metric}_delta"] = (
+                automatic[level]["ranking"][metric] - oracle[level]["ranking"][metric]
+            )
+        oracle_thresholded = oracle[level].get("thresholded")
+        automatic_thresholded = automatic[level].get("thresholded")
+        if oracle_thresholded is not None and automatic_thresholded is not None:
+            for metric in ("precision", "recall", "f1", "specificity", "dice", "iou"):
+                level_difference[f"{metric}_delta"] = (
+                    automatic_thresholded[metric] - oracle_thresholded[metric]
+                )
+        difference[level] = level_difference
+    return {"oracle": oracle, "automatic": automatic, "automatic_minus_oracle": difference}
+
+
 def evaluate_product_classifier(
     classifier: dict[str, Any],
     artifact: dict[str, Any],

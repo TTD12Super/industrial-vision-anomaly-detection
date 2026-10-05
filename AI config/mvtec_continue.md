@@ -993,6 +993,37 @@ Do not fake a threshold such as `0.5`.
 
 A proper calibration protocol must be designed first.
 
+## 28.1 SELECTED ANOMALY CALIBRATION PROTOCOL
+
+The implementation uses a normal-only quantile protocol:
+
+1. keep a held-out validation split containing only known `train/good` images,
+2. compute the continuous image score and continuous pixel score for every
+   validation image,
+3. set each threshold to the 99th percentile of its validation score
+   distribution, using linear quantile interpolation,
+4. classify `score > threshold` as `DEFECT`; otherwise classify it as `GOOD`,
+5. persist the threshold, target acceptance rate, observed acceptance rate,
+   sample count, quantile method, and source split.
+
+The 99% target is chosen because no legitimate defect calibration set is
+available and the official MVTec test labels must remain final evaluation data.
+This protocol is simple, reproducible, and controls the known-normal
+false-reject rate. It cannot claim defect recall, AUROC, AP, or F1 during
+threshold selection; those metrics are reported only after the thresholds are
+fixed and evaluated on the final test split.
+
+Other possible strategies were considered:
+
+- supervised GOOD/DEFECT tuning would use defect labels and risk leaking final
+  evaluation information;
+- fitting a parametric tail distribution adds assumptions that are not needed
+  for this baseline;
+- a fixed value such as `0.5` is not meaningful because anomaly scores are
+  distances whose scale depends on the category feature bank.
+
+The reusable implementation is in `src/mvtec_system/thresholds.py`.
+
 ---
 
 # 29. TEST DATA RULE

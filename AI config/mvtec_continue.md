@@ -1788,6 +1788,9 @@ metrics
 unified inference
 ```
 
+The suite now also checks local raw/processed category discovery and samples
+processed RGB images plus defect masks for the fixed `256×256` contract.
+
 ---
 
 ## Task 021 — Artifact Versioning

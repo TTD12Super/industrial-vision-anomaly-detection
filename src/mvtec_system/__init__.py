@@ -14,6 +14,15 @@ from .calibration import (
     save_calibration,
 )
 from .router import BankResolution, RouteResult, resolve_category_bank, route_product
+from .feature_bank import (
+    FeatureBankResult,
+    build_feature_bank,
+    feature_bank_path,
+    load_feature_bank,
+    load_or_build_feature_bank,
+    make_bank_metadata,
+    save_feature_bank,
+)
 from .embeddings import (
     build_global_embedding_artifact,
     category_mapping,
@@ -46,6 +55,13 @@ __all__ = [
     "RouteResult",
     "resolve_category_bank",
     "route_product",
+    "FeatureBankResult",
+    "build_feature_bank",
+    "feature_bank_path",
+    "load_feature_bank",
+    "load_or_build_feature_bank",
+    "make_bank_metadata",
+    "save_feature_bank",
     "build_global_embedding_artifact",
     "category_mapping",
     "load_compatible_embedding_artifacts",

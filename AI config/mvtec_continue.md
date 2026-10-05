@@ -1701,6 +1701,10 @@ GOOD / DEFECT
 heatmap path
 ```
 
+`predict.py` implements this interface. It loads versioned local artifacts,
+does not require a manually supplied category, and never invents an anomaly
+threshold when calibrated image/pixel threshold artifacts are absent.
+
 ---
 
 ## Task 018 — Oracle Routing vs Automatic Routing

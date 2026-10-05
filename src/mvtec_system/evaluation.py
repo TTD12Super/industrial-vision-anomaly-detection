@@ -6,12 +6,15 @@ import json
 from pathlib import Path
 from typing import Any
 
+import numpy as np
 from sklearn.metrics import (
     accuracy_score,
+    average_precision_score,
     confusion_matrix,
     f1_score,
     precision_score,
     recall_score,
+    roc_auc_score,
 )
 import torch
 
@@ -20,6 +23,107 @@ from .classifier import (
     fit_linear_classifier,
     predict_linear_classifier,
 )
+
+
+def _binary_values(values: Any, name: str) -> np.ndarray:
+    """Convert binary labels or predictions to a one-dimensional array."""
+
+    array = np.asarray(values).reshape(-1)
+    if array.size == 0 or not np.isfinite(array.astype(float)).all():
+        raise ValueError(f"{name} must contain finite values.")
+    if not np.isin(array, [0, 1, False, True]).all():
+        raise ValueError(f"{name} must contain only 0/1 values.")
+    return array.astype(np.int64)
+
+
+def _continuous_values(values: Any, name: str) -> np.ndarray:
+    """Convert continuous scores to a finite one-dimensional array."""
+
+    array = np.asarray(values, dtype=np.float64).reshape(-1)
+    if array.size == 0 or not np.isfinite(array).all():
+        raise ValueError(f"{name} must contain at least one finite value.")
+    return array
+
+
+def _threshold_metrics(labels: np.ndarray, predictions: np.ndarray) -> dict[str, Any]:
+    """Return binary metrics using a fixed prediction already made by a threshold."""
+
+    matrix = confusion_matrix(labels, predictions, labels=[0, 1])
+    true_negative, false_positive, false_negative, true_positive = matrix.ravel()
+    specificity_denominator = true_negative + false_positive
+    dice_denominator = 2 * true_positive + false_positive + false_negative
+    iou_denominator = true_positive + false_positive + false_negative
+    return {
+        "precision": float(precision_score(labels, predictions, zero_division=0)),
+        "recall": float(recall_score(labels, predictions, zero_division=0)),
+        "f1": float(f1_score(labels, predictions, zero_division=0)),
+        "specificity": float(
+            true_negative / specificity_denominator if specificity_denominator else 0.0
+        ),
+        "dice": float(
+            2 * true_positive / dice_denominator if dice_denominator else 0.0
+        ),
+        "iou": float(true_positive / iou_denominator if iou_denominator else 0.0),
+        "confusion_matrix": matrix.tolist(),
+    }
+
+
+def _ranking_metrics(scores: np.ndarray, labels: np.ndarray) -> dict[str, float]:
+    """Return continuous-score metrics, requiring both binary classes."""
+
+    if np.unique(labels).size < 2:
+        raise ValueError("Ranking metrics require both GOOD and DEFECT labels.")
+    return {
+        "auroc": float(roc_auc_score(labels, scores)),
+        "average_precision": float(average_precision_score(labels, scores)),
+    }
+
+
+def evaluate_anomaly_detection(
+    image_scores: Any,
+    image_labels: Any,
+    pixel_scores: Any,
+    pixel_labels: Any,
+    image_predictions: Any | None = None,
+    pixel_predictions: Any | None = None,
+) -> dict[str, Any]:
+    """Evaluate image and pixel anomaly scores and optional fixed decisions.
+
+    Ranking metrics use continuous scores. Thresholded metrics are calculated
+    only from predictions produced after calibration, so this function never
+    selects a threshold from evaluation labels.
+    """
+
+    image_values = _continuous_values(image_scores, "image_scores")
+    image_truth = _binary_values(image_labels, "image_labels")
+    if image_values.shape != image_truth.shape:
+        raise ValueError("image_scores and image_labels must have the same length.")
+    pixel_values = _continuous_values(pixel_scores, "pixel_scores")
+    pixel_truth = _binary_values(pixel_labels, "pixel_labels")
+    if pixel_values.shape != pixel_truth.shape:
+        raise ValueError("pixel_scores and pixel_labels must have the same length.")
+
+    image_report: dict[str, Any] = {
+        "sample_count": int(image_values.size),
+        "ranking": _ranking_metrics(image_values, image_truth),
+    }
+    if image_predictions is not None:
+        image_pred = _binary_values(image_predictions, "image_predictions")
+        if image_pred.shape != image_truth.shape:
+            raise ValueError("image_predictions and image_labels must have the same length.")
+        image_report["thresholded"] = _threshold_metrics(image_truth, image_pred)
+
+    pixel_report: dict[str, Any] = {
+        "sample_count": int(pixel_values.size),
+        "ranking": _ranking_metrics(pixel_values, pixel_truth),
+    }
+    if pixel_predictions is not None:
+        pixel_pred = _binary_values(pixel_predictions, "pixel_predictions")
+        if pixel_pred.shape != pixel_truth.shape:
+            raise ValueError("pixel_predictions and pixel_labels must have the same length.")
+        pixel_report["thresholded"] = _threshold_metrics(pixel_truth, pixel_pred)
+
+    return {"image": image_report, "pixel": pixel_report}
 
 
 def evaluate_product_classifier(

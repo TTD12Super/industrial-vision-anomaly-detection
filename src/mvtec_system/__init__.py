@@ -26,6 +26,11 @@ from .feature_bank import (
 from .knn import distances_for_chunk, nearest_neighbor_scores
 from .maps import make_anomaly_maps, plot_anomaly_examples
 from .pipeline import infer_image
+from .reproduction import (
+    REFERENCE_MACRO,
+    reproduce_saved_baseline,
+    save_reproduction_report,
+)
 from .thresholds import (
     DEFECT_LABEL,
     GOOD_LABEL,
@@ -84,6 +89,9 @@ __all__ = [
     "make_anomaly_maps",
     "plot_anomaly_examples",
     "infer_image",
+    "REFERENCE_MACRO",
+    "reproduce_saved_baseline",
+    "save_reproduction_report",
     "DEFECT_LABEL",
     "GOOD_LABEL",
     "calibrate_anomaly_thresholds",

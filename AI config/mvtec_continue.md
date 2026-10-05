@@ -1756,6 +1756,14 @@ Investigate meaningful deviation.
 
 Do not simply overwrite the old reference.
 
+The reproduction command and report are in
+`reports/baseline_reproduction/`. It reuses the existing processed MVTec
+images/masks, saved category banks' score artifacts, shared DINOv2 contract,
+category-specific kNN outputs, anomaly maps, and refactored evaluation code.
+Threshold calibration remains separate and is not selected from the final
+test labels. The CLI entry point is `predict.py`; it requires no manual
+category and reports an explicit unknown result when routing rejects an input.
+
 ---
 
 ## Task 020 — Automated Tests

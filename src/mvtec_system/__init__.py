@@ -13,6 +13,7 @@ from .calibration import (
     nearest_global_distances,
     save_calibration,
 )
+from .router import BankResolution, RouteResult, resolve_category_bank, route_product
 from .embeddings import (
     build_global_embedding_artifact,
     category_mapping,
@@ -41,6 +42,10 @@ __all__ = [
     "calibrate_open_set_thresholds",
     "nearest_global_distances",
     "save_calibration",
+    "BankResolution",
+    "RouteResult",
+    "resolve_category_bank",
+    "route_product",
     "build_global_embedding_artifact",
     "category_mapping",
     "load_compatible_embedding_artifacts",

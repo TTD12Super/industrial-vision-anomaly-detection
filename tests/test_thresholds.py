@@ -10,8 +10,13 @@ import unittest
 import torch
 
 from mvtec_system import (
+    DEFECT_LABEL,
+    GOOD_LABEL,
     calibrate_anomaly_thresholds,
+    calibrate_category_image_thresholds,
     calibrate_quantile_threshold,
+    classify_image_score,
+    image_scores_from_patch_scores,
     save_anomaly_thresholds,
 )
 
@@ -53,6 +58,31 @@ class ThresholdTests(unittest.TestCase):
 
         self.assertEqual(saved["artifact_version"], "v1")
         self.assertEqual(saved["pixel"]["threshold"], result["pixel"]["threshold"])
+
+    def test_image_score_uses_the_maximum_patch_score(self) -> None:
+        scores = image_scores_from_patch_scores(
+            torch.tensor([[0.1, 0.4, 0.2], [0.8, 0.3, 0.7]])
+        )
+
+        self.assertTrue(torch.equal(scores, torch.tensor([0.4, 0.8])))
+
+    def test_category_thresholds_and_image_decision(self) -> None:
+        thresholds = calibrate_category_image_thresholds(
+            {"bottle": [0.1, 0.2, 0.3], "cable": [0.2, 0.4, 0.6]},
+            target_acceptance_rate=0.5,
+        )
+
+        good = classify_image_score("bottle", 0.19, thresholds)
+        defect = classify_image_score("bottle", 0.2, thresholds)
+        self.assertEqual(thresholds["threshold_type"], "image_level")
+        self.assertEqual(good["label"], GOOD_LABEL)
+        self.assertEqual(defect["label"], DEFECT_LABEL)
+        self.assertTrue(defect["is_defect"])
+
+    def test_image_decision_rejects_missing_category(self) -> None:
+        thresholds = calibrate_category_image_thresholds({"bottle": [0.1, 0.2]})
+        with self.assertRaises(ValueError):
+            classify_image_score("cable", 0.2, thresholds)
 
 
 if __name__ == "__main__":

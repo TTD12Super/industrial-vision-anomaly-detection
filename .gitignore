@@ -8,5 +8,6 @@
 artifacts/dinov2_knn/
 artifacts/product_classifier/
 artifacts/mvtec_system/
+artifacts/production/
 .ipynb_checkpoints/
 **/__pycache__/

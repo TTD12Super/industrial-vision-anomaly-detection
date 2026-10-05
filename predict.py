@@ -9,7 +9,11 @@ from typing import Any
 
 import torch
 
-from mvtec_system import SharedDINOv2, infer_image
+from mvtec_system import (
+    DEFAULT_CLASSIFICATION_CONFIDENCE_THRESHOLD,
+    SharedDINOv2,
+    infer_image,
+)
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -34,6 +38,12 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--image-thresholds", type=Path, default=None)
     parser.add_argument("--pixel-thresholds", type=Path, default=None)
+    parser.add_argument(
+        "--classification-confidence-threshold",
+        type=float,
+        default=None,
+        help="minimum product confidence before routing (default: 0.50)",
+    )
     parser.add_argument("--output-dir", type=Path, default=Path("output/inference"))
     parser.add_argument("--device", default=None, help="cpu, cuda, mps, or leave empty for auto")
     return parser
@@ -48,20 +58,32 @@ def _read_json(path: Path) -> dict[str, Any]:
 
 def _load_inputs(args: argparse.Namespace) -> tuple[Any, ...]:
     root = args.classifier_root
-    classifier = torch.load(root / "classifier.pt", map_location="cpu", weights_only=True)
-    if not isinstance(classifier, dict):
-        raise ValueError("classifier.pt must contain a dictionary.")
     mapping_record = _read_json(root / "class_mapping.json")
     class_mapping = mapping_record.get("category_to_index")
     if not isinstance(class_mapping, dict):
         raise ValueError("class_mapping.json is missing category_to_index.")
     class_mapping = {str(category): int(index) for category, index in class_mapping.items()}
-    reference_artifact = torch.load(
-        root / "train_embeddings.pt", map_location="cpu", weights_only=True
-    )
-    if not isinstance(reference_artifact, dict):
-        raise ValueError("train_embeddings.pt must contain a dictionary.")
-    calibration = _read_json(root / "classification_calibration.json")
+    single_category = len(class_mapping) == 1
+    classifier = None
+    classifier_path = root / "classifier.pt"
+    if not single_category:
+        if not classifier_path.is_file():
+            raise FileNotFoundError(f"Classifier artifact is missing: {classifier_path}")
+        classifier = torch.load(classifier_path, map_location="cpu", weights_only=True)
+        if not isinstance(classifier, dict):
+            raise ValueError("classifier.pt must contain a dictionary.")
+
+    reference_artifact = None
+    reference_path = root / "train_embeddings.pt"
+    if reference_path.is_file():
+        reference_artifact = torch.load(reference_path, map_location="cpu", weights_only=True)
+        if not isinstance(reference_artifact, dict):
+            raise ValueError("train_embeddings.pt must contain a dictionary.")
+    elif not single_category:
+        raise FileNotFoundError(f"Reference embedding artifact is missing: {reference_path}")
+
+    calibration_path = root / "classification_calibration.json"
+    calibration = _read_json(calibration_path) if calibration_path.is_file() else {}
     image_thresholds = (
         _read_json(args.image_thresholds) if args.image_thresholds is not None else None
     )
@@ -110,8 +132,19 @@ def make_output_payload(
     payload["classification_confidence"] = result.get("confidence")
     payload["nearest_global_distance"] = result.get("nearest_global_distance")
     payload["reject_thresholds"] = {
+        "minimum_product_confidence": calibration.get(
+            "classification_confidence_threshold", DEFAULT_CLASSIFICATION_CONFIDENCE_THRESHOLD
+        ),
         "confidence": calibration.get("confidence_threshold"),
-        "nearest_global_distance": calibration.get("nearest_global_distance_threshold"),
+        "calibrated_confidence_rejection_enabled": False,
+        "global_distance_defect_threshold": calibration.get(
+            "global_distance_defect_threshold",
+            calibration.get("nearest_global_distance_threshold"),
+        ),
+        "global_distance_percentile": calibration.get(
+            "global_distance_defect_percentile", 0.90
+        ),
+        "global_distance_rejection_enabled": False,
     }
     payload["heatmap_path"] = str(heatmap_path) if heatmap_path is not None else None
     anomaly_map = result.get("anomaly_map")
@@ -144,6 +177,7 @@ def main(argv: list[str] | None = None) -> int:
         args.bank_root,
         image_thresholds,
         pixel_thresholds,
+        classification_confidence_threshold=args.classification_confidence_threshold,
     )
     heatmap_path = None
     if result.get("anomaly_map") is not None:

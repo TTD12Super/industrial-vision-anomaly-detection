@@ -163,7 +163,7 @@ def main(argv: list[str] | None = None) -> int:
                 f"- False-positive rate: **{false_positive_rate:.6f}**",
                 f"- Image-score AUROC / AP: **{summary['image_ranking']['auroc']:.6f} / {summary['image_ranking']['average_precision']:.6f}**",
                 f"- Mean / median / p95 latency: **{summary['latency']['mean_seconds']:.4f} / {summary['latency']['median_seconds']:.4f} / {summary['latency']['p95_seconds']:.4f} s/image**",
-                "- PaDiM and binary-mask evaluation: **not run**",
+                "- PaDiM evaluation: **not run**; PatchCore thresholded mask: **evaluated**",
                 "",
             ]
         ),

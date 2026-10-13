@@ -39,7 +39,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--output-root", type=Path, default=Path("reports/production/heatmap"))
     parser.add_argument("--image-size", type=int, default=256)
     parser.add_argument("--test-stride", type=int, default=5)
-    parser.add_argument("--heatmap-threshold", type=float, default=0.7)
+    parser.add_argument("--heatmap-threshold", type=float, default=0.5)
     parser.add_argument("--device", default="cpu")
     return parser
 

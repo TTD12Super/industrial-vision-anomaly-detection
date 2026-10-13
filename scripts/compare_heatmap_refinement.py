@@ -1,4 +1,4 @@
-"""Compare fixed and validation-calibrated cached PatchCore masks."""
+"""Evaluate ten cached PatchCore heatmap mask methods and keep the best."""
 
 from __future__ import annotations
 
@@ -89,10 +89,6 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--output-root", type=Path, default=Path("reports/production/heatmap"))
     parser.add_argument("--image-size", type=int, default=256)
     parser.add_argument("--test-stride", type=int, default=5)
-    parser.add_argument("--fixed-threshold", type=float, default=0.7)
-    parser.add_argument("--small-threshold", type=float, default=0.4)
-    parser.add_argument("--large-threshold", type=float, default=0.8)
-    parser.add_argument("--large-area", type=int, default=256)
     parser.add_argument("--good-quantile", type=float, default=0.995)
     parser.add_argument("--device", default="cpu")
     return parser
@@ -167,32 +163,51 @@ def main(argv: list[str] | None = None) -> int:
     synchronize(device)
     test_seconds = time.perf_counter() - started
 
-    fixed_counts = {key: 0 for key in ("true_positive", "false_positive", "true_negative", "false_negative")}
-    adaptive_counts = dict(fixed_counts)
-    calibrated_counts = dict(fixed_counts)
+    count_keys = ("true_positive", "false_positive", "true_negative", "false_negative")
+    method_names = (
+        "fixed_0.50",
+        "fixed_0.60",
+        "fixed_0.70",
+        "fixed_0.80",
+        "fixed_0.70_open3_area9",
+        "fixed_0.70_area25",
+        "category_q995",
+        "category_q995_open3_area9",
+        "adaptive_0.40_0.80_area256",
+        "top1pct_open3_area9",
+    )
+    method_counts = {name: {key: 0 for key in count_keys} for name in method_names}
     raw_scores: list[float] = []
     labels: list[int] = []
     raw_pixel_scores: list[float] = []
     pixel_labels: list[int] = []
     for item, heatmap in test_maps:
         truth = _mask(item, args.image_size)
-        fixed = _count(heatmap > args.fixed_threshold, truth)
-        calibrated = _count(
-            refine_binary_mask(heatmap > thresholds[item["true_category"]]), truth
-        )
-        adaptive = _count(
-            _adaptive_mask(
-                heatmap,
-                args.small_threshold,
-                args.large_threshold,
-                args.large_area,
+        masks = {
+            "fixed_0.50": heatmap > 0.5,
+            "fixed_0.60": heatmap > 0.6,
+            "fixed_0.70": heatmap > 0.7,
+            "fixed_0.80": heatmap > 0.8,
+            "fixed_0.70_open3_area9": refine_binary_mask(heatmap > 0.7, 9, 3),
+            "fixed_0.70_area25": refine_binary_mask(heatmap > 0.7, 25, 1),
+            "category_q995": heatmap > thresholds[item["true_category"]],
+            "category_q995_open3_area9": refine_binary_mask(
+                heatmap > thresholds[item["true_category"]], 9, 3
             ),
-            truth,
-        )
-        for key in fixed_counts:
-            fixed_counts[key] += fixed[key]
-            adaptive_counts[key] += adaptive[key]
-            calibrated_counts[key] += calibrated[key]
+            "adaptive_0.40_0.80_area256": _adaptive_mask(
+                heatmap,
+                0.4,
+                0.8,
+                256,
+            ),
+            "top1pct_open3_area9": refine_binary_mask(
+                heatmap > np.quantile(heatmap, 0.99), 9, 3
+            ),
+        }
+        for name in method_names:
+            counts = _count(masks[name], truth)
+            for key in count_keys:
+                method_counts[name][key] += counts[key]
         raw_scores.append(float(heatmap.max()))
         labels.append(int(item["is_defect"]))
         raw_pixel_scores.extend(heatmap.reshape(-1).tolist())
@@ -204,21 +219,7 @@ def main(argv: list[str] | None = None) -> int:
         "test_stride": args.test_stride,
         "validation_images": len(validation_records),
         "device": str(device),
-        "fixed": {
-            "threshold": args.fixed_threshold,
-            "mask": _metrics(fixed_counts),
-        },
-        "adaptive": {
-            "small_threshold": args.small_threshold,
-            "large_threshold": args.large_threshold,
-            "large_area": args.large_area,
-            "mask": _metrics(adaptive_counts),
-        },
-        "calibrated": {
-            "good_quantile": args.good_quantile,
-            "thresholds_by_category": thresholds,
-            "mask": _metrics(calibrated_counts),
-        },
+        "methods": {name: _metrics(method_counts[name]) for name in method_names},
         "raw_heatmap": {
             "pixel_auroc": float(roc_auc_score(pixel_labels, raw_pixel_scores)),
             "pixel_average_precision": float(average_precision_score(pixel_labels, raw_pixel_scores)),
@@ -229,15 +230,27 @@ def main(argv: list[str] | None = None) -> int:
             "total_seconds": test_seconds,
             "mean_seconds": test_seconds / len(test_records),
         },
-        "protocol": "Both masks use cached PatchCore n=3; calibrated thresholds use GOOD validation pixels only; calibrated mask applies 3x3 opening and min component area 9.",
+        "thresholds_by_category": thresholds,
+        "selection": {
+            "primary_metric": "f1",
+            "tie_breaker": "iou",
+            "best_method": max(
+                method_names,
+                key=lambda name: (
+                    _metrics(method_counts[name])["f1"],
+                    _metrics(method_counts[name])["iou"],
+                ),
+            ),
+            "warning": "Best method is selected on the 1/5 test subset for exploration; validate on a held-out split before production.",
+        },
+        "protocol": "All methods reuse cached PatchCore n=3 maps; category thresholds use GOOD validation pixels only; morphology uses 3x3 opening and connected-component filtering.",
     }
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     report_dir = args.output_root.resolve() / "refinement" / timestamp
     report_dir.mkdir(parents=True, exist_ok=True)
     (report_dir / "comparison.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
-    fixed = result["fixed"]["mask"]
-    adaptive = result["adaptive"]["mask"]
-    calibrated = result["calibrated"]["mask"]
+    methods = result["methods"]
+    best_name = result["selection"]["best_method"]
     (report_dir / "comparison.md").write_text(
         "\n".join(
             [
@@ -245,17 +258,16 @@ def main(argv: list[str] | None = None) -> int:
                 "",
                 f"- Test images: **{len(test_records)}**; validation GOOD images: **{len(validation_records)}**",
                 "",
-                "| Mask | Precision | Recall | F1 | IoU | FPR |",
+                "| Method | Precision | Recall | F1 | IoU | FPR |",
                 "|---|---:|---:|---:|---:|---:|",
-                f"| Fixed > {args.fixed_threshold:.2f} | {fixed['precision']:.6f} | {fixed['recall']:.6f} | {fixed['f1']:.6f} | {fixed['iou']:.6f} | {fixed['false_positive_rate']:.6f} |",
-                f"| Adaptive small > {args.small_threshold:.2f}, large > {args.large_threshold:.2f} | {adaptive['precision']:.6f} | {adaptive['recall']:.6f} | {adaptive['f1']:.6f} | {adaptive['iou']:.6f} | {adaptive['false_positive_rate']:.6f} |",
-                f"| Calibrated q={args.good_quantile:.3f} + refine | {calibrated['precision']:.6f} | {calibrated['recall']:.6f} | {calibrated['f1']:.6f} | {calibrated['iou']:.6f} | {calibrated['false_positive_rate']:.6f} |",
+                *[
+                    f"| {name} | {metrics['precision']:.6f} | {metrics['recall']:.6f} | {metrics['f1']:.6f} | {metrics['iou']:.6f} | {metrics['false_positive_rate']:.6f} |"
+                    for name, metrics in methods.items()
+                ],
                 "",
-                f"- Adaptive F1 delta vs fixed: **{adaptive['f1'] - fixed['f1']:+.6f}**",
-                f"- Adaptive IoU delta vs fixed: **{adaptive['iou'] - fixed['iou']:+.6f}**",
-                f"- F1 delta: **{calibrated['f1'] - fixed['f1']:+.6f}**",
-                f"- IoU delta: **{calibrated['iou'] - fixed['iou']:+.6f}**",
+                f"- Best method by F1/IoU: **{best_name}**",
                 f"- Threshold range: **{min(thresholds.values()):.6f} – {max(thresholds.values()):.6f}**",
+                "- Best method selection is exploratory because it uses this 1/5 test subset.",
                 "- PaDiM: **not run**",
                 "",
             ]

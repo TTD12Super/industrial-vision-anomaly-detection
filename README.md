@@ -133,6 +133,14 @@ multi-layer fusion, dimension reduction, and per-position regularized Gaussian
 statistics. Full implementation details are in
 [MULTI_DETECTOR_IMPLEMENTATION.md](<AI config/MULTI_DETECTOR_IMPLEMENTATION.md>).
 
+Production localization also writes two separate localization measurements:
+the `heatmap` block evaluates the raw PatchCore heatmap against ground truth
+with pixel AUROC/AP, while the `mask` block evaluates the refined PaDiM binary
+mask with precision/recall/F1/IoU. The displayed heatmap is the raw PatchCore
+map gated by the refined PaDiM mask. Small mask components are removed with a
+3x3 opening by default; tune `--mask-min-component-area` and
+`--mask-opening-kernel-size` when the defect scale changes.
+
 ## Reproduction and reports
 
 Recompute the saved 15-category baseline without rebuilding DINOv2 or banks:

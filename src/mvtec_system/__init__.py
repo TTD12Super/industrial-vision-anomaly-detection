@@ -62,6 +62,7 @@ from .anomaly.feature_bank import (
 )
 from .anomaly.knn import distances_for_chunk, nearest_neighbor_scores
 from .anomaly.maps import make_anomaly_maps, plot_anomaly_examples
+from .anomaly.refinement import gate_heatmap, refine_binary_mask
 from .anomaly.pipeline import infer_image
 from .evaluation.performance import available_backends, file_size_mb, measure_callable, memory_usage_mb
 from .evaluation.reproduction import (
@@ -169,6 +170,8 @@ __all__ = [
     "nearest_neighbor_scores",
     "make_anomaly_maps",
     "plot_anomaly_examples",
+    "gate_heatmap",
+    "refine_binary_mask",
     "infer_image",
     "available_backends",
     "file_size_mb",

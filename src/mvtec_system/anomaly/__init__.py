@@ -10,6 +10,7 @@ from .detectors import (
     create_detector,
     detector_names,
 )
+from .refinement import gate_heatmap, refine_binary_mask
 
 __all__ = [
     "AnomalyDetector",
@@ -20,4 +21,6 @@ __all__ = [
     "PaDiMDetector",
     "create_detector",
     "detector_names",
+    "gate_heatmap",
+    "refine_binary_mask",
 ]

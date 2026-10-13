@@ -20,6 +20,7 @@ from sklearn.metrics import (
     accuracy_score,
     confusion_matrix,
     f1_score,
+    jaccard_score,
     precision_score,
     recall_score,
     roc_auc_score,
@@ -32,6 +33,7 @@ from ..anomaly.feature_bank import FeatureBankResult, load_or_build_feature_bank
 from ..anomaly.knn import nearest_neighbor_scores
 from ..anomaly.maps import make_anomaly_maps, plot_anomaly_examples
 from ..anomaly.multi_layer import MultiLayerConfig
+from ..anomaly.refinement import gate_heatmap, refine_binary_mask
 from ..anomaly.thresholds import (
     binary_anomaly_masks,
     calibrate_category_image_thresholds,
@@ -88,6 +90,8 @@ class ProductionConfig:
     coreset_max_points: int = 50_000
     padim_reduced_dim: int = 100
     covariance_regularization: float = 0.01
+    mask_min_component_area: int = 9
+    mask_opening_kernel_size: int = 3
     target_acceptance_rate: float = 0.99
     classification_confidence_threshold: float = 0.50
     device: str | None = None
@@ -446,6 +450,12 @@ def _infer_with_detector(
             )[0].numpy(),
         }
     )
+    if config.detector == "padim":
+        result["binary_mask"] = refine_binary_mask(
+            result["binary_mask"],
+            config.mask_min_component_area,
+            config.mask_opening_kernel_size,
+        )
     return result
 
 
@@ -504,7 +514,28 @@ def _anomaly_report(rows: list[dict[str, Any]]) -> dict[str, Any]:
             "recall": float(recall_score(labels, predictions, zero_division=0)),
             "f1": float(f1_score(labels, predictions, zero_division=0)),
         }
-    pixel_scores: list[float] = []
+    heatmap_scores: list[float] = []
+    heatmap_labels: list[int] = []
+    heatmap_rows = []
+    for row in evaluated:
+        truth = np.asarray(row["mask"], dtype=np.uint8)
+        score_map = (
+            np.zeros_like(truth, dtype=np.float32)
+            if row.get("heatmap") is None
+            else np.asarray(row["heatmap"], dtype=np.float32)
+        )
+        if score_map.shape != truth.shape:
+            raise ValueError("Heatmap and ground-truth mask shapes must match")
+        heatmap_rows.append(row)
+        heatmap_scores.extend(score_map.reshape(-1).tolist())
+        heatmap_labels.extend((truth > 0).astype(np.int64).reshape(-1).tolist())
+    heatmap_ranking = _safe_ranking(heatmap_scores, heatmap_labels)
+    report["heatmap"] = {
+        "evaluated_images": len(heatmap_rows),
+        "ranking": heatmap_ranking,
+        "protocol": "raw PatchCore heatmap; missing GOOD-image maps are scored as zero",
+    }
+
     pixel_labels: list[int] = []
     pixel_predictions: list[int] = []
     pixel_rows = [
@@ -513,18 +544,26 @@ def _anomaly_report(rows: list[dict[str, Any]]) -> dict[str, Any]:
     ]
     for row in pixel_rows:
         truth = np.asarray(row["mask"], dtype=np.uint8).reshape(-1)
-        score_map = np.asarray(row["heatmap"], dtype=np.float32).reshape(-1)
         prediction = np.asarray(row["binary_mask"], dtype=np.uint8).reshape(-1)
-        pixel_scores.extend(score_map.tolist())
         pixel_labels.extend((truth > 0).astype(np.int64).tolist())
         pixel_predictions.extend(prediction.astype(np.int64).tolist())
-    report["pixel"] = {"ranking": _safe_ranking(pixel_scores, pixel_labels)}
+    mask_metrics: dict[str, float] = {}
     if pixel_predictions:
-        report["pixel"]["thresholded"] = {
+        mask_metrics = {
             "precision": float(precision_score(pixel_labels, pixel_predictions, zero_division=0)),
             "recall": float(recall_score(pixel_labels, pixel_predictions, zero_division=0)),
             "f1": float(f1_score(pixel_labels, pixel_predictions, zero_division=0)),
+            "iou": float(jaccard_score(pixel_labels, pixel_predictions, zero_division=0)),
         }
+    report["mask"] = {
+        "evaluated_images": len(pixel_rows),
+        "thresholded": mask_metrics,
+        "protocol": "refined PaDiM binary mask",
+    }
+    # Keep the historical pixel key while making the two production outputs explicit.
+    report["pixel"] = {"ranking": heatmap_ranking}
+    if mask_metrics:
+        report["pixel"]["thresholded"] = mask_metrics
     return report
 
 
@@ -631,6 +670,8 @@ def _load_mask(item: dict[str, Any], image_size: int) -> np.ndarray:
 def _markdown_report(summary: dict[str, Any], report_dir: Path) -> str:
     classification = summary["classification"]
     anomaly = summary["anomaly"]
+    heatmap = anomaly["heatmap"]
+    mask = anomaly["mask"]["thresholded"]
     lines = [
         f"# Production run report: `{summary['dataset_name']}`",
         "",
@@ -663,7 +704,8 @@ def _markdown_report(summary: dict[str, Any], report_dir: Path) -> str:
         f"- Images with anomaly inference: **{anomaly['anomaly_evaluated_images']}**",
         f"- Images without completed anomaly inference: **{anomaly['anomaly_skipped_images']}**",
         f"- Image AUROC / AP: **{anomaly['image']['ranking']['auroc']} / {anomaly['image']['ranking']['average_precision']}**",
-        f"- Pixel AUROC / AP: **{anomaly['pixel']['ranking']['auroc']} / {anomaly['pixel']['ranking']['average_precision']}**",
+        f"- PatchCore heatmap pixel AUROC / AP: **{heatmap['ranking']['auroc']} / {heatmap['ranking']['average_precision']}**",
+        f"- Refined PaDiM mask precision / recall / F1 / IoU: **{mask.get('precision')} / {mask.get('recall')} / {mask.get('f1')} / {mask.get('iou')}**",
         "",
         "## Inference latency",
         "",
@@ -914,11 +956,16 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
                 if detector is None:
                     raise RuntimeError(f"PaDiM artifact is unavailable for category: {category}")
                 detector_result = detector.predict(localization_features())
-                return binary_anomaly_masks(
+                mask = binary_anomaly_masks(
                     category,
                     detector_result.anomaly_map[None, ...],
                     pixel_thresholds,
                 )[0].numpy()
+                return refine_binary_mask(
+                    mask,
+                    config.mask_min_component_area,
+                    config.mask_opening_kernel_size,
+                )
 
             result = infer_exact_first(exact_runner, patchcore_runner, padim_runner)
         elif config.detector == "exact_knn":
@@ -957,6 +1004,15 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
             result["decision"] = "DEFECT" if result["is_defect"] else "GOOD"
         if result.get("heatmap") is None and result.get("anomaly_map") is not None:
             result["heatmap"] = result["anomaly_map"]
+        result["display_heatmap"] = result.get("heatmap")
+        if (
+            result.get("heatmap") is not None
+            and result.get("binary_mask") is not None
+            and np.asarray(result["binary_mask"], dtype=bool).any()
+        ):
+            result["display_heatmap"] = gate_heatmap(
+                result["heatmap"], result["binary_mask"]
+            )
         result.update({key: value for key, value in item.items() if key != "is_defect"})
         result["ground_truth_is_defect"] = bool(item["is_defect"])
         result["mask"] = _load_mask(result, config.image_size)
@@ -1042,7 +1098,23 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
         selected = (good_examples[:2] + defect_examples[:2])[:4]
         images = [np.asarray(Image.open(item["image_path"]).convert("RGB")) for item in selected]
         masks = [item["mask"] for item in selected]
-        maps = np.stack([item["heatmap"] for item in selected])
+        maps = np.stack(
+            [
+                item["display_heatmap"]
+                if item.get("display_heatmap") is not None
+                else item["heatmap"]
+                for item in selected
+            ]
+        )
+        map_title = (
+            "PatchCore heatmap × refined PaDiM mask"
+            if any(
+                item.get("binary_mask") is not None
+                and np.asarray(item["binary_mask"], dtype=bool).any()
+                for item in selected
+            )
+            else "Continuous anomaly map"
+        )
         figure = plot_anomaly_examples(
             category,
             images,
@@ -1052,6 +1124,7 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
             [bool(item["ground_truth_is_defect"]) for item in selected],
             config.k,
             examples_per_class=max(1, min(2, len(selected))),
+            map_title=map_title,
         )
         save_figure(figure, report_dir / "heatmaps" / f"{category}.png")
 
@@ -1078,6 +1151,8 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
             "coreset_max_points": config.coreset_max_points,
             "padim_reduced_dim": config.padim_reduced_dim,
             "covariance_regularization": config.covariance_regularization,
+            "mask_min_component_area": config.mask_min_component_area,
+            "mask_opening_kernel_size": config.mask_opening_kernel_size,
             "classification_confidence_threshold": config.classification_confidence_threshold,
             "target_acceptance_rate": config.target_acceptance_rate,
             "artifact_namespace": config.artifact_namespace,

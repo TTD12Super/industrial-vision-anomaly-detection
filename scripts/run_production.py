@@ -34,6 +34,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--coreset-max-points", type=int, default=50000)
     parser.add_argument("--padim-reduced-dim", type=int, default=100)
     parser.add_argument("--covariance-regularization", type=float, default=0.01)
+    parser.add_argument("--mask-min-component-area", type=int, default=9)
+    parser.add_argument("--mask-opening-kernel-size", type=int, default=3)
     parser.add_argument("--device", default=None, help="cpu, mps, or cuda; auto-detect when omitted")
     parser.add_argument("--force", action="store_true", help="rebuild processed images and compatible artifacts")
     return parser
@@ -59,6 +61,8 @@ def main(argv: list[str] | None = None) -> int:
             coreset_max_points=args.coreset_max_points,
             padim_reduced_dim=args.padim_reduced_dim,
             covariance_regularization=args.covariance_regularization,
+            mask_min_component_area=args.mask_min_component_area,
+            mask_opening_kernel_size=args.mask_opening_kernel_size,
             device=args.device,
             force=args.force,
         )

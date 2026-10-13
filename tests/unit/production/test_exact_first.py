@@ -147,6 +147,34 @@ class ExactFirstTests(TestCase):
         self.assertEqual(report["image"]["thresholded"]["accuracy"], 0.0)
         self.assertEqual(report["image"]["thresholded"]["f1"], 0.0)
 
+    def test_heatmap_metric_is_separate_from_refined_mask_metric(self) -> None:
+        report = _anomaly_report(
+            [
+                {
+                    "anomaly_evaluated": True,
+                    "anomaly_score": 0.1,
+                    "ground_truth_is_defect": False,
+                    "decision_is_defect": False,
+                    "heatmap": None,
+                    "binary_mask": None,
+                    "mask": np.zeros((2, 2), dtype=bool),
+                },
+                {
+                    "anomaly_evaluated": True,
+                    "anomaly_score": 0.9,
+                    "ground_truth_is_defect": True,
+                    "decision_is_defect": True,
+                    "heatmap": np.ones((2, 2), dtype=np.float32),
+                    "binary_mask": np.ones((2, 2), dtype=bool),
+                    "mask": np.ones((2, 2), dtype=bool),
+                },
+            ]
+        )
+
+        self.assertEqual(report["heatmap"]["ranking"]["auroc"], 1.0)
+        self.assertEqual(report["heatmap"]["ranking"]["average_precision"], 1.0)
+        self.assertEqual(report["mask"]["thresholded"]["iou"], 1.0)
+
     def test_unavailable_decision_does_not_break_category_report(self) -> None:
         report, _ = _classification_report(
             [

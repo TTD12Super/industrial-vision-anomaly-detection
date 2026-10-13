@@ -55,6 +55,7 @@ def plot_anomaly_examples(
     is_anomaly: Sequence[bool],
     k_neighbors: int = 1,
     examples_per_class: int = 1,
+    map_title: str = "Continuous anomaly map",
 ) -> plt.Figure:
     """Create the same image/mask/heatmap/overlay comparison as the notebook."""
 
@@ -90,7 +91,7 @@ def plot_anomaly_examples(
         heatmap = axes[row, 2].imshow(
             anomaly_maps[index], cmap="inferno", vmin=0, vmax=maximum
         )
-        axes[row, 2].set_title("Continuous anomaly map")
+        axes[row, 2].set_title(map_title)
         axes[row, 3].imshow(images[index])
         axes[row, 3].imshow(
             anomaly_maps[index], cmap="inferno", alpha=0.5, vmin=0, vmax=maximum

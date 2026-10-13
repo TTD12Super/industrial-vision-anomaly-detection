@@ -1,4 +1,4 @@
-"""Evaluate ten cached PatchCore heatmap mask methods and keep the best."""
+"""Evaluate cached PatchCore heatmap mask methods and keep the best."""
 
 from __future__ import annotations
 
@@ -157,6 +157,23 @@ def main(argv: list[str] | None = None) -> int:
         )
         for category in categories
     }
+    validation_pixels_by_category = {
+        category: np.concatenate(
+            [
+                heatmap.reshape(-1)
+                for item, heatmap in validation_maps
+                if item["true_category"] == category
+            ]
+        )
+        for category in categories
+    }
+    category_quantile_thresholds = {
+        quantile: {
+            category: float(np.quantile(pixels, quantile))
+            for category, pixels in validation_pixels_by_category.items()
+        }
+        for quantile in (0.990, 0.995, 0.999)
+    }
     synchronize(device)
     started = time.perf_counter()
     test_maps = infer(test_records)
@@ -164,17 +181,35 @@ def main(argv: list[str] | None = None) -> int:
     test_seconds = time.perf_counter() - started
 
     count_keys = ("true_positive", "false_positive", "true_negative", "false_negative")
-    method_names = (
-        "fixed_0.50",
-        "fixed_0.60",
-        "fixed_0.70",
-        "fixed_0.80",
-        "fixed_0.70_open3_area9",
-        "fixed_0.70_area25",
-        "category_q995",
-        "category_q995_open3_area9",
-        "adaptive_0.40_0.80_area256",
-        "top1pct_open3_area9",
+    fixed_thresholds = (0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90)
+    method_names = [f"fixed_{threshold:.2f}" for threshold in fixed_thresholds]
+    method_names.extend(
+        [
+            "fixed_0.50_open3_area9",
+            "fixed_0.50_open3_area25",
+            "fixed_0.50_open3_area64",
+            "fixed_0.50_open5_area25",
+            "fixed_0.50_open5_area64",
+            "fixed_0.70_open3_area9",
+            "fixed_0.70_area25",
+            "fixed_0.70_area64",
+            "fixed_0.70_open5_area25",
+            "fixed_0.70_open5_area64",
+            "smooth_sigma1_0.50",
+            "smooth_sigma1_0.60",
+            "smooth_sigma2_0.50",
+            "smooth_sigma2_0.60",
+            "category_q990",
+            "category_q995",
+            "category_q999",
+            "category_q995_open3_area9",
+            "category_q995_open5_area25",
+            "top0.5pct_open3_area9",
+            "top1pct_open3_area9",
+            "top2pct_open3_area9",
+            "top5pct_open3_area9",
+            "adaptive_0.40_0.80_area256",
+        ]
     )
     method_counts = {name: {key: 0 for key in count_keys} for name in method_names}
     raw_scores: list[float] = []
@@ -183,27 +218,49 @@ def main(argv: list[str] | None = None) -> int:
     pixel_labels: list[int] = []
     for item, heatmap in test_maps:
         truth = _mask(item, args.image_size)
-        masks = {
-            "fixed_0.50": heatmap > 0.5,
-            "fixed_0.60": heatmap > 0.6,
-            "fixed_0.70": heatmap > 0.7,
-            "fixed_0.80": heatmap > 0.8,
-            "fixed_0.70_open3_area9": refine_binary_mask(heatmap > 0.7, 9, 3),
-            "fixed_0.70_area25": refine_binary_mask(heatmap > 0.7, 25, 1),
-            "category_q995": heatmap > thresholds[item["true_category"]],
-            "category_q995_open3_area9": refine_binary_mask(
-                heatmap > thresholds[item["true_category"]], 9, 3
-            ),
-            "adaptive_0.40_0.80_area256": _adaptive_mask(
-                heatmap,
-                0.4,
-                0.8,
-                256,
-            ),
-            "top1pct_open3_area9": refine_binary_mask(
-                heatmap > np.quantile(heatmap, 0.99), 9, 3
-            ),
-        }
+        masks = {f"fixed_{threshold:.2f}": heatmap > threshold for threshold in fixed_thresholds}
+        masks.update(
+            {
+                "fixed_0.50_open3_area9": refine_binary_mask(heatmap > 0.5, 9, 3),
+                "fixed_0.50_open3_area25": refine_binary_mask(heatmap > 0.5, 25, 3),
+                "fixed_0.50_open3_area64": refine_binary_mask(heatmap > 0.5, 64, 3),
+                "fixed_0.50_open5_area25": refine_binary_mask(heatmap > 0.5, 25, 5),
+                "fixed_0.50_open5_area64": refine_binary_mask(heatmap > 0.5, 64, 5),
+                "fixed_0.70_open3_area9": refine_binary_mask(heatmap > 0.7, 9, 3),
+                "fixed_0.70_area25": refine_binary_mask(heatmap > 0.7, 25, 1),
+                "fixed_0.70_area64": refine_binary_mask(heatmap > 0.7, 64, 1),
+                "fixed_0.70_open5_area25": refine_binary_mask(heatmap > 0.7, 25, 5),
+                "fixed_0.70_open5_area64": refine_binary_mask(heatmap > 0.7, 64, 5),
+                "smooth_sigma1_0.50": cv2.GaussianBlur(heatmap, (0, 0), 1.0) > 0.5,
+                "smooth_sigma1_0.60": cv2.GaussianBlur(heatmap, (0, 0), 1.0) > 0.6,
+                "smooth_sigma2_0.50": cv2.GaussianBlur(heatmap, (0, 0), 2.0) > 0.5,
+                "smooth_sigma2_0.60": cv2.GaussianBlur(heatmap, (0, 0), 2.0) > 0.6,
+                "category_q990": heatmap
+                > category_quantile_thresholds[0.990][item["true_category"]],
+                "category_q995": heatmap > thresholds[item["true_category"]],
+                "category_q999": heatmap
+                > category_quantile_thresholds[0.999][item["true_category"]],
+                "category_q995_open3_area9": refine_binary_mask(
+                    heatmap > thresholds[item["true_category"]], 9, 3
+                ),
+                "category_q995_open5_area25": refine_binary_mask(
+                    heatmap > thresholds[item["true_category"]], 25, 5
+                ),
+                "top0.5pct_open3_area9": refine_binary_mask(
+                    heatmap > np.quantile(heatmap, 0.995), 9, 3
+                ),
+                "top1pct_open3_area9": refine_binary_mask(
+                    heatmap > np.quantile(heatmap, 0.99), 9, 3
+                ),
+                "top2pct_open3_area9": refine_binary_mask(
+                    heatmap > np.quantile(heatmap, 0.98), 9, 3
+                ),
+                "top5pct_open3_area9": refine_binary_mask(
+                    heatmap > np.quantile(heatmap, 0.95), 9, 3
+                ),
+                "adaptive_0.40_0.80_area256": _adaptive_mask(heatmap, 0.4, 0.8, 256),
+            }
+        )
         for name in method_names:
             counts = _count(masks[name], truth)
             for key in count_keys:
@@ -214,7 +271,7 @@ def main(argv: list[str] | None = None) -> int:
         pixel_labels.extend((truth > 0).astype(np.int64).reshape(-1).tolist())
 
     result = {
-        "report_version": "heatmap-refinement-comparison-v1",
+        "report_version": "heatmap-refinement-comparison-v2",
         "test_images": len(test_records),
         "test_stride": args.test_stride,
         "validation_images": len(validation_records),
@@ -231,6 +288,9 @@ def main(argv: list[str] | None = None) -> int:
             "mean_seconds": test_seconds / len(test_records),
         },
         "thresholds_by_category": thresholds,
+        "thresholds_by_category_quantile": {
+            str(quantile): values for quantile, values in category_quantile_thresholds.items()
+        },
         "selection": {
             "primary_metric": "f1",
             "tie_breaker": "iou",
@@ -243,7 +303,7 @@ def main(argv: list[str] | None = None) -> int:
             ),
             "warning": "Best method is selected on the 1/5 test subset for exploration; validate on a held-out split before production.",
         },
-        "protocol": "All methods reuse cached PatchCore n=3 maps; category thresholds use GOOD validation pixels only; morphology uses 3x3 opening and connected-component filtering.",
+        "protocol": "All methods reuse cached PatchCore n=3 maps; category thresholds use GOOD validation pixels only; morphology and Gaussian smoothing are evaluated as post-processing variants.",
     }
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     report_dir = args.output_root.resolve() / "refinement" / timestamp

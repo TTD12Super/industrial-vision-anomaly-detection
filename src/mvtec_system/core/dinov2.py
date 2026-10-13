@@ -24,6 +24,7 @@ class DINOv2Config:
     mean: tuple[float, float, float] = (0.485, 0.456, 0.406)
     std: tuple[float, float, float] = (0.229, 0.224, 0.225)
     l2_normalize_patches: bool = True
+    feature_layers: tuple[int, ...] = ()
 
     @property
     def repository(self) -> str:
@@ -36,6 +37,7 @@ class DINOv2Features:
 
     global_embedding: torch.Tensor
     patch_embeddings: torch.Tensor
+    layer_patch_embeddings: dict[int, torch.Tensor] | None = None
 
 
 def select_device() -> torch.device:
@@ -140,9 +142,14 @@ class SharedDINOv2:
         """Return both representations from one frozen DINOv2 forward pass."""
 
         padded_images = self._prepare_images(images)
-        outputs = self.backbone.forward_features(padded_images)
-        patch_embeddings = self._feature(outputs, self.config.patch_feature_key)
-        global_embedding = self._feature(outputs, self.config.global_feature_key)
+        layer_patch_embeddings: dict[int, torch.Tensor] | None = None
+        if self.config.feature_layers:
+            layer_patch_embeddings, global_embedding = self._intermediate_features(padded_images)
+            patch_embeddings = layer_patch_embeddings[self.config.feature_layers[-1]]
+        else:
+            outputs = self.backbone.forward_features(padded_images)
+            patch_embeddings = self._feature(outputs, self.config.patch_feature_key)
+            global_embedding = self._feature(outputs, self.config.global_feature_key)
 
         if patch_embeddings.ndim != 3 or patch_embeddings.shape[1] != self.patch_count:
             raise ValueError(f"Unexpected patch feature shape: {tuple(patch_embeddings.shape)}")
@@ -157,7 +164,57 @@ class SharedDINOv2:
         global_embedding = global_embedding.float()
         if self.config.l2_normalize_patches:
             patch_embeddings = F.normalize(patch_embeddings, dim=-1)
-        return DINOv2Features(global_embedding, patch_embeddings)
+        return DINOv2Features(global_embedding, patch_embeddings, layer_patch_embeddings)
+
+    def _intermediate_features(
+        self,
+        padded_images: torch.Tensor,
+    ) -> tuple[dict[int, torch.Tensor], torch.Tensor]:
+        """Read selected transformer blocks in one frozen backbone call."""
+
+        method = getattr(self.backbone, "get_intermediate_layers", None)
+        if method is None:
+            raise AttributeError(
+                "The selected backbone does not expose get_intermediate_layers; "
+                "multi-layer detectors require a DINOv2 backbone with this API."
+            )
+        requested = tuple(int(layer) for layer in self.config.feature_layers)
+        if any(layer < 1 for layer in requested) or tuple(sorted(set(requested))) != requested:
+            raise ValueError("feature_layers must be sorted, unique, positive block numbers")
+        outputs = method(
+            padded_images,
+            n=list(requested),
+            reshape=False,
+            return_class_token=True,
+            norm=True,
+        )
+        if len(outputs) != len(requested):
+            raise ValueError(
+                f"Backbone returned {len(outputs)} layers; expected {len(requested)}."
+            )
+        layer_features: dict[int, torch.Tensor] = {}
+        final_global: torch.Tensor | None = None
+        for layer, output in zip(requested, outputs):
+            if isinstance(output, (tuple, list)) and len(output) == 2:
+                patches, class_token = output
+                final_global = class_token
+            else:
+                patches = output
+            if not isinstance(patches, torch.Tensor):
+                raise TypeError("Intermediate layer output must contain a tensor.")
+            if patches.ndim == 3 and patches.shape[1] == self.patch_count + 1:
+                patches = patches[:, 1:]
+            if patches.ndim != 3 or patches.shape[1] != self.patch_count:
+                raise ValueError(
+                    f"Unexpected intermediate patch shape for layer {layer}: {tuple(patches.shape)}"
+                )
+            patches = patches.float()
+            if self.config.l2_normalize_patches:
+                patches = F.normalize(patches, dim=-1)
+            layer_features[layer] = patches
+        if final_global is None:
+            raise ValueError("Intermediate outputs did not include class tokens.")
+        return layer_features, final_global.float()
 
     @staticmethod
     def _feature(outputs: dict[str, torch.Tensor], key: str) -> torch.Tensor:
@@ -177,6 +234,7 @@ class SharedDINOv2:
             "mean": list(self.config.mean),
             "std": list(self.config.std),
             "l2_normalize_patches": self.config.l2_normalize_patches,
+            "feature_layers": list(self.config.feature_layers),
             "patch_size": list(self.patch_size),
             "padding": list(self.padding),
             "padded_size": list(self.padded_size),

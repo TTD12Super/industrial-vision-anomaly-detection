@@ -9,6 +9,13 @@ from pathlib import Path
 from mvtec_system.production import ProductionConfig, run_production
 
 
+def _layers(value: str) -> tuple[int, ...]:
+    layers = tuple(int(item.strip()) for item in value.split(",") if item.strip())
+    if not layers:
+        raise argparse.ArgumentTypeError("layers must contain at least one block number")
+    return layers
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--datasets-root", type=Path, default=Path("datasets"))
@@ -21,6 +28,12 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--batch-size", type=int, default=8)
     parser.add_argument("--k", type=int, default=1)
+    parser.add_argument("--layers", type=_layers, default=(5, 8, 11))
+    parser.add_argument("--neighborhood-size", type=int, default=3)
+    parser.add_argument("--coreset-ratio", type=float, default=0.10)
+    parser.add_argument("--coreset-max-points", type=int, default=50000)
+    parser.add_argument("--padim-reduced-dim", type=int, default=100)
+    parser.add_argument("--covariance-regularization", type=float, default=0.01)
     parser.add_argument("--device", default=None, help="cpu, mps, or cuda; auto-detect when omitted")
     parser.add_argument("--force", action="store_true", help="rebuild processed images and compatible artifacts")
     return parser
@@ -40,6 +53,12 @@ def main(argv: list[str] | None = None) -> int:
             seed=args.seed,
             batch_size=args.batch_size,
             k=args.k,
+            detector_layers=args.layers,
+            neighborhood_size=args.neighborhood_size,
+            coreset_ratio=args.coreset_ratio,
+            coreset_max_points=args.coreset_max_points,
+            padim_reduced_dim=args.padim_reduced_dim,
+            covariance_regularization=args.covariance_regularization,
             device=args.device,
             force=args.force,
         )

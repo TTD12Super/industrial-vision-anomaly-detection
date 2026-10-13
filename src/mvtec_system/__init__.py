@@ -1,6 +1,25 @@
 """Reusable components for the continued MVTec AD system."""
 
 from .anomaly import pipeline as pipeline
+from .anomaly.detectors import (
+    AnomalyDetector,
+    AnomalyResult,
+    DETECTOR_REGISTRY,
+    ExactKNNDetector,
+    PaDiMDetector,
+    PatchCoreDetector,
+    create_detector,
+    detector_names,
+)
+from .anomaly.multi_layer import (
+    MultiLayerConfig,
+    extract_fused_descriptors,
+    fit_padim_statistics,
+    fused_patch_features,
+    local_neighborhood_aggregate,
+    padim_scores,
+    select_coreset,
+)
 from .classification import router as router
 from .core.dinov2 import DINOv2Config, DINOv2Features, SharedDINOv2, image_tensor, select_device
 from .classification.classifier import (
@@ -88,7 +107,13 @@ from .data.preprocessing import (
     validate_raw_dataset,
 )
 from .evaluation.visualization import plot_dataset_distribution
-from .production.pipeline import ProductionConfig, run_production
+from .production import (
+    ProductionConfig,
+    infer_exact_first,
+    run_detector_comparison,
+    run_production,
+    summarize_comparison,
+)
 
 __all__ = [
     "DINOv2Config",
@@ -96,6 +121,21 @@ __all__ = [
     "SharedDINOv2",
     "image_tensor",
     "select_device",
+    "AnomalyDetector",
+    "AnomalyResult",
+    "DETECTOR_REGISTRY",
+    "ExactKNNDetector",
+    "PatchCoreDetector",
+    "PaDiMDetector",
+    "create_detector",
+    "detector_names",
+    "MultiLayerConfig",
+    "extract_fused_descriptors",
+    "fit_padim_statistics",
+    "fused_patch_features",
+    "local_neighborhood_aggregate",
+    "padim_scores",
+    "select_coreset",
     "LinearClassifierConfig",
     "fit_linear_classifier",
     "predict_linear_classifier",
@@ -168,5 +208,8 @@ __all__ = [
     "validate_raw_dataset",
     "plot_dataset_distribution",
     "ProductionConfig",
+    "infer_exact_first",
     "run_production",
+    "run_detector_comparison",
+    "summarize_comparison",
 ]

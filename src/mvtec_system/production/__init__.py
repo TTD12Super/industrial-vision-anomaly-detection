@@ -1,5 +1,12 @@
 """Dataset-driven production automation."""
 
-from .pipeline import ProductionConfig, run_production
+from .comparison import run_detector_comparison, summarize_comparison
+from .pipeline import ProductionConfig, infer_exact_first, run_production
 
-__all__ = ["ProductionConfig", "run_production"]
+__all__ = [
+    "ProductionConfig",
+    "infer_exact_first",
+    "run_production",
+    "run_detector_comparison",
+    "summarize_comparison",
+]

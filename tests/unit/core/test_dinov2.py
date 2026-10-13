@@ -46,6 +46,24 @@ class FakeBackbone(torch.nn.Module):
             outputs.pop(self.missing_key, None)
         return outputs
 
+    def get_intermediate_layers(
+        self,
+        images: torch.Tensor,
+        n: list[int],
+        reshape: bool,
+        return_class_token: bool,
+        norm: bool,
+    ) -> list[tuple[torch.Tensor, torch.Tensor]]:
+        del reshape, norm
+        outputs = self.forward_features(images)
+        return [
+            (
+                outputs["x_norm_patchtokens"] + layer,
+                outputs["x_norm_clstoken"] + layer,
+            )
+            for layer in n
+        ]
+
 
 class SharedDINOv2ContractTests(unittest.TestCase):
     def make_encoder(self, **backbone_options) -> tuple[SharedDINOv2, FakeBackbone]:
@@ -65,6 +83,16 @@ class SharedDINOv2ContractTests(unittest.TestCase):
         self.assertEqual(backbone.forward_calls, 1)
         self.assertTrue(torch.isfinite(features.global_embedding).all().item())
         self.assertTrue(torch.isfinite(features.patch_embeddings).all().item())
+
+    def test_multi_layer_forward_returns_selected_layers_from_one_call(self):
+        backbone = FakeBackbone()
+        config = DINOv2Config(feature_layers=(1, 2, 3))
+        encoder = SharedDINOv2(config=config, backbone=backbone, device="cpu")
+        features = encoder.forward(self.make_batch(1))
+
+        self.assertEqual(sorted(features.layer_patch_embeddings), [1, 2, 3])
+        self.assertEqual(tuple(features.layer_patch_embeddings[1].shape), (1, 361, 768))
+        self.assertEqual(backbone.forward_calls, 1)
 
     def test_patch_features_are_l2_normalized(self):
         encoder, _ = self.make_encoder()

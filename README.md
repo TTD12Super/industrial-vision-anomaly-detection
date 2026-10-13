@@ -97,9 +97,11 @@ PYTHONPATH=src DAenv/bin/python scripts/run_production.py
 
 The command automatically validates and preprocesses the raw data, creates a
 deterministic 70/30 train/validation split from `train/good`, builds compatible
-normal feature banks, enables classification only when there are multiple
-categories, runs category routing and exact kNN defect detection, writes
-heatmaps, and evaluates the official test split. The final report is written
+normal feature memory/statistics, enables classification only when there are multiple
+categories, runs category routing and Exact kNN as the image-level decision
+authority, then runs separate PatchCore and PaDiM localization branches only
+for DEFECT images.
+The final report is written
 automatically to:
 
 ```text
@@ -110,6 +112,26 @@ The same folder contains `final_summary.json`, classification/anomaly metrics,
 CSV error analysis, confusion matrices, dataset distribution, and per-category
 heatmaps. Use `--dataset-root` only when more than one valid dataset exists
 under `datasets/`.
+
+### Production orchestration and offline comparison
+
+The production command always uses Exact kNN as the sole image-level decision
+authority. PatchCore produces the production heatmap and PaDiM produces the
+production binary mask only after Exact kNN returns `DEFECT`. Neither
+localization model changes the GOOD/DEFECT decision:
+
+```bash
+PYTHONPATH=src DAenv/bin/python scripts/run_production.py
+
+# Run all three independently on the same split and compare metrics/latency.
+PYTHONPATH=src DAenv/bin/python scripts/compare_detectors.py --device cpu
+```
+
+The comparison command remains offline-only. PatchCore uses multi-layer DINOv2
+fusion, local aggregation, and a seeded representative coreset. PaDiM uses
+multi-layer fusion, dimension reduction, and per-position regularized Gaussian
+statistics. Full implementation details are in
+[MULTI_DETECTOR_IMPLEMENTATION.md](<AI config/MULTI_DETECTOR_IMPLEMENTATION.md>).
 
 ## Reproduction and reports
 

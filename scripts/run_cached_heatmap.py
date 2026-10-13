@@ -39,6 +39,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--output-root", type=Path, default=Path("reports/production/heatmap"))
     parser.add_argument("--image-size", type=int, default=256)
     parser.add_argument("--test-stride", type=int, default=5)
+    parser.add_argument("--heatmap-threshold", type=float, default=0.7)
     parser.add_argument("--device", default="cpu")
     return parser
 
@@ -79,6 +80,7 @@ def main(argv: list[str] | None = None) -> int:
     heatmap_scores: list[float] = []
     pixel_labels: list[int] = []
     latencies: list[float] = []
+    true_positive = false_positive = true_negative = false_negative = 0
     for index, item in enumerate(records, start=1):
         synchronize(device)
         started = time.perf_counter()
@@ -90,6 +92,11 @@ def main(argv: list[str] | None = None) -> int:
         synchronize(device)
         latencies.append(time.perf_counter() - started)
         truth = _ground_truth_mask(item, args.image_size)
+        predicted = result.anomaly_map > args.heatmap_threshold
+        true_positive += int(np.logical_and(predicted, truth).sum())
+        false_positive += int(np.logical_and(predicted, ~truth.astype(bool)).sum())
+        true_negative += int(np.logical_and(~predicted, ~truth.astype(bool)).sum())
+        false_negative += int(np.logical_and(~predicted, truth).sum())
         labels.append(int(item["is_defect"]))
         image_scores.append(float(result.image_score))
         heatmap_scores.extend(result.anomaly_map.reshape(-1).tolist())
@@ -100,6 +107,11 @@ def main(argv: list[str] | None = None) -> int:
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     report_dir = args.output_root.resolve() / "cached" / timestamp
     report_dir.mkdir(parents=True, exist_ok=True)
+    precision = true_positive / (true_positive + false_positive) if true_positive + false_positive else 0.0
+    recall = true_positive / (true_positive + false_negative) if true_positive + false_negative else 0.0
+    f1 = 2 * precision * recall / (precision + recall) if precision + recall else 0.0
+    iou = true_positive / (true_positive + false_positive + false_negative) if true_positive + false_positive + false_negative else 0.0
+    false_positive_rate = false_positive / (false_positive + true_negative) if false_positive + true_negative else 0.0
     summary = {
         "report_version": "cached-patchcore-heatmap-v1",
         "mode": "patchcore_heatmap_only",
@@ -108,6 +120,7 @@ def main(argv: list[str] | None = None) -> int:
         "artifact_root": str(artifact_root),
         "test_stride": args.test_stride,
         "test_images": len(records),
+        "heatmap_threshold": args.heatmap_threshold,
         "device": str(device),
         "image_ranking": {
             "auroc": float(roc_auc_score(labels, image_scores)),
@@ -116,6 +129,18 @@ def main(argv: list[str] | None = None) -> int:
         "heatmap_ranking": {
             "auroc": float(roc_auc_score(pixel_labels, heatmap_scores)),
             "average_precision": float(average_precision_score(pixel_labels, heatmap_scores)),
+        },
+        "thresholded_mask": {
+            "true_positive": true_positive,
+            "false_positive": false_positive,
+            "true_negative": true_negative,
+            "false_negative": false_negative,
+            "precision": precision,
+            "recall": recall,
+            "f1": f1,
+            "iou": iou,
+            "false_positive_rate": false_positive_rate,
+            "protocol": "binary mask is heatmap > threshold",
         },
         "latency": {
             "mean_seconds": float(np.mean(latencies)),
@@ -133,6 +158,9 @@ def main(argv: list[str] | None = None) -> int:
                 "",
                 f"- Test images: **{summary['test_images']}** (every {args.test_stride}th sorted image)",
                 f"- Heatmap pixel AUROC / AP: **{summary['heatmap_ranking']['auroc']:.6f} / {summary['heatmap_ranking']['average_precision']:.6f}**",
+                f"- Threshold: **heatmap > {args.heatmap_threshold:.2f}**",
+                f"- Thresholded mask precision / recall / F1 / IoU: **{precision:.6f} / {recall:.6f} / {f1:.6f} / {iou:.6f}**",
+                f"- False-positive rate: **{false_positive_rate:.6f}**",
                 f"- Image-score AUROC / AP: **{summary['image_ranking']['auroc']:.6f} / {summary['image_ranking']['average_precision']:.6f}**",
                 f"- Mean / median / p95 latency: **{summary['latency']['mean_seconds']:.4f} / {summary['latency']['median_seconds']:.4f} / {summary['latency']['p95_seconds']:.4f} s/image**",
                 "- PaDiM and binary-mask evaluation: **not run**",

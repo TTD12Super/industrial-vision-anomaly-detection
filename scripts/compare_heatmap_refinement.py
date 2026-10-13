@@ -10,6 +10,7 @@ from pathlib import Path
 import time
 
 import numpy as np
+import cv2
 import torch
 from sklearn.metrics import average_precision_score, roc_auc_score
 
@@ -62,6 +63,24 @@ def _metrics(counts: dict[str, int]) -> dict[str, float | int]:
     }
 
 
+def _adaptive_mask(
+    heatmap: np.ndarray,
+    small_threshold: float,
+    large_threshold: float,
+    large_area: int,
+) -> np.ndarray:
+    candidates = np.asarray(heatmap > small_threshold, dtype=np.uint8)
+    component_count, labels, stats, _ = cv2.connectedComponentsWithStats(
+        candidates, connectivity=8
+    )
+    result = np.zeros_like(candidates, dtype=bool)
+    for component in range(1, component_count):
+        region = labels == component
+        threshold = large_threshold if stats[component, cv2.CC_STAT_AREA] >= large_area else small_threshold
+        result[region] = np.asarray(heatmap[region] > threshold, dtype=bool)
+    return result
+
+
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--processed-root", type=Path, default=Path("datasets/mvtec_ad_processed"))
@@ -71,6 +90,9 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--image-size", type=int, default=256)
     parser.add_argument("--test-stride", type=int, default=5)
     parser.add_argument("--fixed-threshold", type=float, default=0.7)
+    parser.add_argument("--small-threshold", type=float, default=0.4)
+    parser.add_argument("--large-threshold", type=float, default=0.8)
+    parser.add_argument("--large-area", type=int, default=256)
     parser.add_argument("--good-quantile", type=float, default=0.995)
     parser.add_argument("--device", default="cpu")
     return parser
@@ -146,6 +168,7 @@ def main(argv: list[str] | None = None) -> int:
     test_seconds = time.perf_counter() - started
 
     fixed_counts = {key: 0 for key in ("true_positive", "false_positive", "true_negative", "false_negative")}
+    adaptive_counts = dict(fixed_counts)
     calibrated_counts = dict(fixed_counts)
     raw_scores: list[float] = []
     labels: list[int] = []
@@ -157,8 +180,18 @@ def main(argv: list[str] | None = None) -> int:
         calibrated = _count(
             refine_binary_mask(heatmap > thresholds[item["true_category"]]), truth
         )
+        adaptive = _count(
+            _adaptive_mask(
+                heatmap,
+                args.small_threshold,
+                args.large_threshold,
+                args.large_area,
+            ),
+            truth,
+        )
         for key in fixed_counts:
             fixed_counts[key] += fixed[key]
+            adaptive_counts[key] += adaptive[key]
             calibrated_counts[key] += calibrated[key]
         raw_scores.append(float(heatmap.max()))
         labels.append(int(item["is_defect"]))
@@ -174,6 +207,12 @@ def main(argv: list[str] | None = None) -> int:
         "fixed": {
             "threshold": args.fixed_threshold,
             "mask": _metrics(fixed_counts),
+        },
+        "adaptive": {
+            "small_threshold": args.small_threshold,
+            "large_threshold": args.large_threshold,
+            "large_area": args.large_area,
+            "mask": _metrics(adaptive_counts),
         },
         "calibrated": {
             "good_quantile": args.good_quantile,
@@ -197,6 +236,7 @@ def main(argv: list[str] | None = None) -> int:
     report_dir.mkdir(parents=True, exist_ok=True)
     (report_dir / "comparison.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
     fixed = result["fixed"]["mask"]
+    adaptive = result["adaptive"]["mask"]
     calibrated = result["calibrated"]["mask"]
     (report_dir / "comparison.md").write_text(
         "\n".join(
@@ -208,8 +248,11 @@ def main(argv: list[str] | None = None) -> int:
                 "| Mask | Precision | Recall | F1 | IoU | FPR |",
                 "|---|---:|---:|---:|---:|---:|",
                 f"| Fixed > {args.fixed_threshold:.2f} | {fixed['precision']:.6f} | {fixed['recall']:.6f} | {fixed['f1']:.6f} | {fixed['iou']:.6f} | {fixed['false_positive_rate']:.6f} |",
+                f"| Adaptive small > {args.small_threshold:.2f}, large > {args.large_threshold:.2f} | {adaptive['precision']:.6f} | {adaptive['recall']:.6f} | {adaptive['f1']:.6f} | {adaptive['iou']:.6f} | {adaptive['false_positive_rate']:.6f} |",
                 f"| Calibrated q={args.good_quantile:.3f} + refine | {calibrated['precision']:.6f} | {calibrated['recall']:.6f} | {calibrated['f1']:.6f} | {calibrated['iou']:.6f} | {calibrated['false_positive_rate']:.6f} |",
                 "",
+                f"- Adaptive F1 delta vs fixed: **{adaptive['f1'] - fixed['f1']:+.6f}**",
+                f"- Adaptive IoU delta vs fixed: **{adaptive['iou'] - fixed['iou']:+.6f}**",
                 f"- F1 delta: **{calibrated['f1'] - fixed['f1']:+.6f}**",
                 f"- IoU delta: **{calibrated['iou'] - fixed['iou']:+.6f}**",
                 f"- Threshold range: **{min(thresholds.values()):.6f} – {max(thresholds.values()):.6f}**",

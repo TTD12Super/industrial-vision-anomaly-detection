@@ -26,7 +26,9 @@ copies across splits.
 
 The expanded training script deliberately collapses both source classes into a
 single `egg` class because the production detector only needs to locate eggs;
-it does not classify shell color.
+it does not classify shell color. It also preserves the supplementary
+archive's official `train` and `valid` split so validation images are not
+mixed into training.
 
 ### Dataset B: quality classification
 

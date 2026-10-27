@@ -226,9 +226,9 @@ PYTHONPATH=src DAenv/bin/python scripts/egg_demo.py train-yolo \
 
 For the expanded detector experiment, combine the original detector set with
 the labelled multi-egg archive, collapse both source egg colors into one
-`egg` class, and add empty background crops as hard negatives. The prepared
-set contains 224 train images and 46 validation images; use GPU device `0` on
-a CUDA machine:
+`egg` class, and add empty background crops as hard negatives. The script uses
+the archive's official train/validation split instead of mixing the two. Use
+GPU device `0` on a CUDA machine:
 
 ```bash
 PYTHONPATH=src python scripts/prepare_egg_yolo_expanded.py

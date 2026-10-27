@@ -114,13 +114,10 @@ def build(output: Path, raw_root: Path, kaggle_root: Path, seed: int) -> dict:
         shutil.rmtree(output)
     raw_train = sorted((raw_root / "data/images/train").glob("*"))
     raw_val = sorted((raw_root / "data/images/val").glob("*"))
-    external = sorted((kaggle_root / "valid/images").glob("*"))
-    external = [path for path in external if path.suffix.lower() in IMAGE_SUFFIXES]
-    rng = random.Random(seed)
-    rng.shuffle(external)
-    val_count = max(1, round(len(external) * 0.20))
-    external_val = external[:val_count]
-    external_train = external[val_count:]
+    external_train = sorted((kaggle_root / "train/images").glob("*"))
+    external_val = sorted((kaggle_root / "valid/images").glob("*"))
+    external_train = [path for path in external_train if path.suffix.lower() in IMAGE_SUFFIXES]
+    external_val = [path for path in external_val if path.suffix.lower() in IMAGE_SUFFIXES]
 
     counts = {"train_images": 0, "val_images": 0, "train_boxes": 0, "val_boxes": 0}
     for split, images in (("train", raw_train), ("val", raw_val)):
@@ -129,9 +126,12 @@ def build(output: Path, raw_root: Path, kaggle_root: Path, seed: int) -> dict:
             _copy_pair(image, label, output, split, "raw")
             counts[f"{split}_images"] += 1
             counts[f"{split}_boxes"] += len(_read_labels(label))
-    for split, images in (("train", external_train), ("val", external_val)):
+    for split, source_split, images in (
+        ("train", "train", external_train),
+        ("val", "valid", external_val),
+    ):
         for image in images:
-            label = kaggle_root / "valid/labels" / f"{image.stem}.txt"
+            label = kaggle_root / source_split / "labels" / f"{image.stem}.txt"
             _copy_pair(image, label, output, split, "kaggle")
             counts[f"{split}_images"] += 1
             counts[f"{split}_boxes"] += len(_read_labels(label))
@@ -147,7 +147,12 @@ def build(output: Path, raw_root: Path, kaggle_root: Path, seed: int) -> dict:
     report = {
         "output": str(output.resolve()),
         "seed": seed,
-        "source_counts": {"raw_train": len(raw_train), "raw_val": len(raw_val), "kaggle_valid": len(external)},
+        "source_counts": {
+            "raw_train": len(raw_train),
+            "raw_val": len(raw_val),
+            "kaggle_train": len(external_train),
+            "kaggle_valid": len(external_val),
+        },
         "split_counts": counts,
         "class_policy": "collapse white-egg and brown-egg into one egg class",
         "min_box_area": MIN_BOX_AREA,

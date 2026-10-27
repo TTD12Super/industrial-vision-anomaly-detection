@@ -4,6 +4,14 @@
 # Environment
 **/DAENV/
 
+# Generated egg experiments and model files
+artifacts/egg_demo/
+reports/egg_demo/
+reports/egg_kaggle_experiment/
+reports/production/
+runs/
+yolo11n.pt
+
 # Notebook model outputs and downloaded backbone weights
 artifacts/dinov2_knn/
 artifacts/product_classifier/

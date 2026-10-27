@@ -64,9 +64,15 @@ def fit_linear_classifier(
     classes = torch.from_numpy(model.classes_.astype(np.int64))
     if classes.tolist() != sorted(class_mapping.values()):
         raise ValueError(f"Classifier classes do not match mapping: {classes.tolist()}")
+    weights = torch.from_numpy(model.coef_).float()
+    bias = torch.from_numpy(model.intercept_).float()
+    if len(classes) == 2 and weights.shape[0] == 1:
+        # sklearn stores binary logistic regression as one class-1 logit.
+        weights = torch.cat([torch.zeros_like(weights), weights], dim=0)
+        bias = torch.cat([torch.zeros(1), bias], dim=0)
     return {
-        "weights": torch.from_numpy(model.coef_).float(),
-        "bias": torch.from_numpy(model.intercept_).float(),
+        "weights": weights,
+        "bias": bias,
         "classes": classes,
         "feature_dimension": embeddings.shape[1],
         "class_count": len(class_mapping),

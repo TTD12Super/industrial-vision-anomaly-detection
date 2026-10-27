@@ -46,7 +46,9 @@ def make_bank_metadata(
         if not resolved.is_relative_to(processed_root):
             raise ValueError(f"Training path leaves processed root: {path}")
         relative = resolved.relative_to(processed_root)
-        if relative.parts[-4:-1] != (category, "train", "good"):
+        mvtec_layout = relative.parts[-4:-1] == (category, "train", "good")
+        egg_quality_layout = category == "egg" and relative.parts[:2] == ("good", "train")
+        if not (mvtec_layout or egg_quality_layout):
             raise ValueError(f"Training path is not category/train/good: {path}")
         relative_paths.append(relative.as_posix())
     encoder_metadata = encoder.metadata()

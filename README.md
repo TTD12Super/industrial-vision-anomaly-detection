@@ -183,6 +183,118 @@ tests/
 AI config/mvtec_continue.md    task requirements and decisions
 ```
 
+## Egg detection + anomaly demo
+
+The demo keeps complete-egg detection separate from quality anomaly scoring:
+YOLO finds each full egg, then the existing DINOv2/PaDiM implementation scores
+the cropped egg. The quality dataset is used only for image-level Good/Bad
+evaluation; it has no verified defect masks.
+
+The downloaded files are stored locally under `datasets/raw/` and ignored by
+Git. Inspect them and write a compatibility report with:
+
+```bash
+PYTHONPATH=src DAenv/bin/python scripts/egg_demo.py inspect \
+  --config configs/egg_demo.json \
+  --output reports/egg_demo/dataset_inspection.json
+```
+
+Prepare the original quality images. The command does not use the separate
+augmented archive, and creates a deterministic 70/15/15 normal split:
+
+```bash
+PYTHONPATH=src DAenv/bin/python scripts/egg_demo.py prepare-quality \
+  --config configs/egg_demo.json
+```
+
+Install the optional YOLO dependency only when training or inference is
+needed:
+
+```bash
+DAenv/bin/pip install -r requirements-egg-demo.txt
+```
+
+Train a small detector. The source dataset has only two validation images, so
+this is a smoke/demo setup, not a final benchmark:
+
+```bash
+PYTHONPATH=src DAenv/bin/python scripts/egg_demo.py train-yolo \
+  --dataset-root datasets/raw/egg_detection \
+  --weights yolo11n.pt --epochs 50 --imgsz 640 --batch 4 \
+  --output-root artifacts/egg_demo/yolo
+```
+
+For the expanded detector experiment, combine the original detector set with
+the labelled multi-egg archive and add empty background crops as hard
+negatives. The prepared set contains 224 train images and 46 validation
+images; use GPU device `0` on a CUDA machine:
+
+```bash
+PYTHONPATH=src python scripts/prepare_egg_yolo_expanded.py
+PYTHONPATH=src python scripts/egg_demo.py train-yolo \
+  --dataset-root datasets/processed/egg_yolo_expanded \
+  --weights yolo11n.pt --epochs 50 --imgsz 640 --batch 8 --device 0 \
+  --output-root artifacts/egg_demo/yolo/expanded
+```
+
+The expanded model still accepts only detections with confidence strictly
+above `0.50`; the empty background crops reduce false positives but do not
+replace a manually labelled negative hold-out set.
+
+Evaluate the detector independently; Ultralytics reports precision, recall,
+mAP50, and mAP50-95 for the two-image source validation split:
+
+```bash
+PYTHONPATH=src DAenv/bin/python scripts/egg_demo.py evaluate-yolo \
+  --dataset-root datasets/raw/egg_detection \
+  --weights artifacts/egg_demo/yolo/<trained-weight>.pt
+```
+
+Build the normal DINOv2/PaDiM reference from prepared good eggs. Bad eggs are
+not used for fitting or threshold calibration:
+
+```bash
+PYTHONPATH=src DAenv/bin/python scripts/egg_demo.py build-reference \
+  --processed-root datasets/processed/egg_quality \
+  --artifact-dir artifacts/egg_demo/padim \
+  --encoder-artifact-root artifacts/production/mvtec_ad
+```
+
+Build the combined production artifacts. This creates the `egg` feature bank,
+extends the product classifier from 15 to 16 classes, and writes egg-specific
+image/pixel thresholds without changing the existing MVTec artifacts:
+
+```bash
+PYTHONPATH=src DAenv/bin/python scripts/egg_demo.py build-production
+```
+
+Evaluate PaDiM independently on the held-out quality images. This reports
+image AUROC/AP only because the quality archive has no verified defect masks:
+
+```bash
+PYTHONPATH=src DAenv/bin/python scripts/egg_demo.py evaluate-anomaly \
+  --processed-root datasets/processed/egg_quality \
+  --artifact-dir artifacts/egg_demo/padim \
+  --encoder-artifact-root artifacts/production/mvtec_ad
+```
+
+Run one image or a directory. Each result contains the complete-egg box,
+detector confidence, PaDiM score, and `GOOD`/`DEFECT` label; annotated images
+and `predictions.json` are written under the output directory:
+
+```bash
+PYTHONPATH=src DAenv/bin/python scripts/egg_demo.py infer \
+  --image path/to/egg_scene.jpg \
+  --yolo-weights artifacts/egg_demo/yolo/<trained-weight>.pt \
+  --padim-artifact artifacts/egg_demo/padim \
+  --encoder-artifact-root artifacts/production/mvtec_ad \
+  --output-root reports/egg_demo/inference
+```
+
+For a different product, change the JSON paths, class names, data preparation,
+and model artifacts; the YOLO/crop/PaDiM pipeline does not contain egg-specific
+processing logic.
+
 ## Important limitations
 
 - The 99th-percentile thresholds control known-normal acceptance; they are

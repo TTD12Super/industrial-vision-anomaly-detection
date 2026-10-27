@@ -108,6 +108,19 @@ class FeatureBankTests(unittest.TestCase):
                 self.make_encoder(),
             )
 
+    def test_egg_quality_train_layout_is_accepted(self) -> None:
+        root = Path(tempfile.mkdtemp())
+        processed = root / "quality"
+        train_dir = processed / "good" / "train"
+        train_dir.mkdir(parents=True)
+        path = train_dir / "egg.png"
+        Image.fromarray(np.zeros((256, 256, 3), dtype=np.uint8), mode="RGB").save(path)
+
+        metadata = make_bank_metadata("egg", [path], processed, self.make_encoder())
+
+        self.assertEqual(metadata["category"], "egg")
+        self.assertEqual(metadata["train_paths"], ["good/train/egg.png"])
+
 
 if __name__ == "__main__":
     unittest.main()

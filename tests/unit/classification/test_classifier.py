@@ -51,6 +51,25 @@ class LinearClassifierTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             fit_linear_classifier(train_artifact, mapping)
 
+    def test_binary_classifier_keeps_two_class_logits(self) -> None:
+        embeddings = torch.tensor([
+            [-2.0, 0.0], [-1.5, 0.0],
+            [1.5, 0.0], [2.0, 0.0],
+        ])
+        artifact = {"embeddings": embeddings, "labels": torch.tensor([0, 0, 1, 1])}
+        classifier = fit_linear_classifier(
+            artifact,
+            {"egg": 0, "unknown": 1},
+            LinearClassifierConfig(max_iter=200),
+        )
+
+        logits, probabilities = predict_linear_classifier(classifier, embeddings)
+
+        self.assertEqual(tuple(classifier["weights"].shape), (2, 2))
+        self.assertEqual(tuple(classifier["bias"].shape), (2,))
+        self.assertEqual(probabilities.argmax(dim=1).tolist(), [0, 0, 1, 1])
+        self.assertTrue(torch.allclose(probabilities.sum(dim=1), torch.ones(4), atol=1e-6))
+
     def test_save_writes_weights_mapping_and_config(self) -> None:
         train_artifact, mapping = self.make_training_artifact()
         config = LinearClassifierConfig(max_iter=200)

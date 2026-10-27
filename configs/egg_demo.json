@@ -16,5 +16,5 @@
   "yolo_confidence": 0.5,
   "crop_margin": 0.05,
   "seed": 42,
-  "categories": ["white-egg", "brown-egg"]
+  "categories": ["egg"]
 }

@@ -29,7 +29,7 @@ def _read_labels(path: Path) -> list[str]:
             continue
         if values[2] * values[3] < MIN_BOX_AREA:
             continue
-        rows.append(" ".join([str(class_id), *[f"{value:.8f}" for value in values]]))
+        rows.append(" ".join(["0", *[f"{value:.8f}" for value in values]]))
     return rows
 
 
@@ -141,7 +141,7 @@ def build(output: Path, raw_root: Path, kaggle_root: Path, seed: int) -> dict:
     counts.update({"train_backgrounds": train_backgrounds, "val_backgrounds": val_backgrounds})
     (output / "data/data.yaml").parent.mkdir(parents=True, exist_ok=True)
     (output / "data/data.yaml").write_text(
-        f"path: {output.resolve()}\ntrain: data/images/train\nval: data/images/val\nnames:\n  0: white-egg\n  1: brown-egg\n",
+        f"path: {output.resolve()}\ntrain: data/images/train\nval: data/images/val\nnames:\n  0: egg\n",
         encoding="utf-8",
     )
     report = {
@@ -149,6 +149,7 @@ def build(output: Path, raw_root: Path, kaggle_root: Path, seed: int) -> dict:
         "seed": seed,
         "source_counts": {"raw_train": len(raw_train), "raw_val": len(raw_val), "kaggle_valid": len(external)},
         "split_counts": counts,
+        "class_policy": "collapse white-egg and brown-egg into one egg class",
         "min_box_area": MIN_BOX_AREA,
         "background_policy": "empty-label crops sampled outside annotated boxes",
     }

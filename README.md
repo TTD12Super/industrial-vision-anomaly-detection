@@ -225,9 +225,10 @@ PYTHONPATH=src DAenv/bin/python scripts/egg_demo.py train-yolo \
 ```
 
 For the expanded detector experiment, combine the original detector set with
-the labelled multi-egg archive and add empty background crops as hard
-negatives. The prepared set contains 224 train images and 46 validation
-images; use GPU device `0` on a CUDA machine:
+the labelled multi-egg archive, collapse both source egg colors into one
+`egg` class, and add empty background crops as hard negatives. The prepared
+set contains 224 train images and 46 validation images; use GPU device `0` on
+a CUDA machine:
 
 ```bash
 PYTHONPATH=src python scripts/prepare_egg_yolo_expanded.py
@@ -237,9 +238,9 @@ PYTHONPATH=src python scripts/egg_demo.py train-yolo \
   --output-root artifacts/egg_demo/yolo/expanded
 ```
 
-The expanded model still accepts only detections with confidence strictly
-above `0.50`; the empty background crops reduce false positives but do not
-replace a manually labelled negative hold-out set.
+The expanded model has one class (`egg`) and accepts only detections with
+confidence strictly above `0.50`; the empty background crops reduce false
+positives but do not replace a manually labelled negative hold-out set.
 
 Evaluate the detector independently; Ultralytics reports precision, recall,
 mAP50, and mAP50-95 for the two-image source validation split:

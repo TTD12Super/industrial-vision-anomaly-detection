@@ -9,6 +9,7 @@ from PIL import Image
 
 from egg_demo.data import inspect_quality_archive, prepare_quality_dataset, validate_yolo_dataset, write_local_yolo_yaml
 from egg_demo.detection import EggDetection, crop_detection
+from scripts.prepare_egg_yolo_expanded import _read_labels
 
 
 class EggDemoDataTests(unittest.TestCase):
@@ -49,6 +50,15 @@ class EggDemoDataTests(unittest.TestCase):
         image = Image.new("RGB", (100, 80), "white")
         crop = crop_detection(image, EggDetection((-10, -5, 50, 45), 0.9, 0, "egg"), margin=0)
         self.assertEqual(crop.size, (50, 45))
+
+    def test_expanded_labels_collapse_both_egg_colors(self) -> None:
+        with TemporaryDirectory() as directory:
+            label = Path(directory) / "egg.txt"
+            label.write_text("0 0.5 0.5 0.4 0.4\n1 0.2 0.2 0.3 0.3\n", encoding="utf-8")
+            self.assertEqual(
+                _read_labels(label),
+                ["0 0.50000000 0.50000000 0.40000000 0.40000000", "0 0.20000000 0.20000000 0.30000000 0.30000000"],
+            )
 
 
 if __name__ == "__main__":

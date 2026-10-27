@@ -24,6 +24,10 @@ copies across splits.
   YOLO rows and all coordinates are in `[0, 1]`.
 - Images contain multiple eggs, so box count is larger than image count.
 
+The expanded training script deliberately collapses both source classes into a
+single `egg` class because the production detector only needs to locate eggs;
+it does not classify shell color.
+
 ### Dataset B: quality classification
 
 - 1,000 original JPEGs: 500 under `Good Eggs` and 500 under `Bad Eggs`.

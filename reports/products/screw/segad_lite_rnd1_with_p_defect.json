@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "experiment": "masked_segad_lite",
+  "product_key": "screw",
+  "calibration": {
+    "fit_split": "validation",
+    "target_defect_recall": 0.9,
+    "threshold": 0.9350048303604126,
+    "feature_names": [
+      "masked_mean",
+      "masked_p90",
+      "masked_max",
+      "masked_std",
+      "p_defect"
+    ],
+    "classifier": "standard_scaler_logistic",
+    "pixel_threshold": null,
+    "pixel_target_recall": null
+  },
+  "mask_strategy": {
+    "name": "central_inset_rectangle",
+    "border_fraction": 0.1,
+    "purpose": "conservative support mask for heatmap statistics; not a defect annotation"
+  },
+  "validation": {
+    "classification": {
+      "sample_count": 18,
+      "threshold": 0.9350048303604126,
+      "auroc": 1.0,
+      "average_precision": 1.0,
+      "defect_recall_at_threshold": 0.9333333333333333,
+      "good_false_positive_count": 0,
+      "good_false_positive_rate": 0.0
+    },
+    "masked_heatmap_stats": {
+      "masked_mean": 0.08751771454181936,
+      "masked_std": 0.14891988701290554,
+      "masked_p90": 0.26213376141256756,
+      "masked_max": 0.8741290205054812,
+      "masked_area_fraction_at_p90": 0.10000170431904137,
+      "masked_compactness_at_p90": 0.12525631729897727
+    },
+    "sample_count": 18,
+    "pixel_metrics": null
+  },
+  "test": {
+    "classification": {
+      "sample_count": 12,
+      "threshold": 0.9350048303604126,
+      "auroc": 0.7,
+      "average_precision": 0.9263455988455987,
+      "defect_recall_at_threshold": 0.4,
+      "good_false_positive_count": 0,
+      "good_false_positive_rate": 0.0
+    },
+    "masked_heatmap_stats": {
+      "masked_mean": 0.07927704850832622,
+      "masked_std": 0.13099507118264833,
+      "masked_p90": 0.24247762188315392,
+      "masked_max": 0.8560185631116232,
+      "masked_area_fraction_at_p90": 0.10000089037302289,
+      "masked_compactness_at_p90": 0.11193524576701609
+    },
+    "sample_count": 12,
+    "pixel_metrics": null
+  },
+  "provenance": {
+    "config": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/configs/products/screw.yaml",
+    "image_manifest": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/products/screw/manifests/images.jsonl",
+    "object_manifest": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/products/screw/manifests/objects.jsonl",
+    "validation_split": "validation",
+    "test_split": "test",
+    "test_locked": true,
+    "detector_used": false,
+    "p_defect_included": true
+  },
+  "warnings": [
+    "Calibrator and all thresholds are fitted on validation only; test is historical and locked.",
+    "The central-inset mask is an analysis support mask, not a ground-truth defect mask.",
+    "Pixel metrics omitted because complete validation and test ground-truth masks are unavailable."
+  ]
+}

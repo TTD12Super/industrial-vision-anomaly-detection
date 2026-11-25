@@ -1,0 +1,44 @@
+{
+  "test_images": 160,
+  "anomaly_evaluated_images": 160,
+  "anomaly_skipped_images": 0,
+  "image": {
+    "ranking": {
+      "auroc": 0.6868210698913713,
+      "average_precision": 0.8471865604356454
+    },
+    "thresholded": {
+      "accuracy": 0.3,
+      "precision": 0.8181818181818182,
+      "recall": 0.07563025210084033,
+      "f1": 0.13846153846153847,
+      "counts": {
+        "true_positive": 9,
+        "false_positive": 2,
+        "false_negative": 110,
+        "true_negative": 39,
+        "positive_total": 119,
+        "negative_total": 41
+      }
+    }
+  },
+  "pixel": {
+    "ranking": {
+      "auroc": 0.8524938906119783,
+      "average_precision": 0.05167612850132668
+    },
+    "thresholded": {
+      "precision": 0.0390267630497249,
+      "recall": 0.4633064361925886,
+      "f1": 0.07198947046292527,
+      "counts": {
+        "true_positive": 12115,
+        "false_positive": 298313,
+        "false_negative": 14034,
+        "true_negative": 10161298,
+        "positive_total": 26149,
+        "negative_total": 10459611
+      }
+    }
+  }
+}

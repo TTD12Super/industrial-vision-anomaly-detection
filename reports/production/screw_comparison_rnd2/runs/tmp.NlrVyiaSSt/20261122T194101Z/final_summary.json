@@ -1,0 +1,221 @@
+{
+  "report_version": "production-v1",
+  "dataset_name": "tmp.NlrVyiaSSt",
+  "dataset_root": "/private/var/folders/x6/6k_h0_3j0m93sxlcrq42t4100000gn/T/tmp.NlrVyiaSSt",
+  "processed_root": "/private/var/folders/x6/6k_h0_3j0m93sxlcrq42t4100000gn/T/tmp.NlrVyiaSSt_processed",
+  "report_dir": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/production/screw_comparison_rnd2/runs/tmp.NlrVyiaSSt/20261122T194101Z",
+  "categories": [
+    "screw"
+  ],
+  "classification_enabled": false,
+  "configuration": {
+    "image_size": 256,
+    "validation_fraction": 0.3,
+    "seed": 42,
+    "batch_size": 16,
+    "k": 1,
+    "detector": "patchcore",
+    "orchestration": "independent",
+    "decision_authority": "patchcore",
+    "detector_layers": [
+      5,
+      8,
+      11
+    ],
+    "neighborhood_size": 3,
+    "coreset_ratio": 0.1,
+    "coreset_max_points": 50000,
+    "padim_reduced_dim": 100,
+    "covariance_regularization": 0.01,
+    "classification_confidence_threshold": 0.5,
+    "target_acceptance_rate": 0.99,
+    "artifact_namespace": "patchcore"
+  },
+  "preparation": {
+    "raw": {
+      "raw_root": "/private/var/folders/x6/6k_h0_3j0m93sxlcrq42t4100000gn/T/tmp.NlrVyiaSSt",
+      "categories": [
+        "screw"
+      ],
+      "category_count": 1,
+      "counts": {
+        "screw": {
+          "train": 320,
+          "test": 160,
+          "test_good": 41,
+          "test_defect": 119,
+          "ground_truth": 119,
+          "test_labels": [
+            "good",
+            "manipulated_front",
+            "scratch_head",
+            "scratch_neck",
+            "thread_side",
+            "thread_top"
+          ]
+        }
+      },
+      "splits": {
+        "train": {
+          "total": 320,
+          "readable": 320,
+          "failures": [],
+          "unexpected": []
+        },
+        "test": {
+          "total": 160,
+          "readable": 160,
+          "failures": [],
+          "unexpected": []
+        },
+        "ground_truth": {
+          "total": 119,
+          "readable": 119,
+          "failures": [],
+          "unexpected": []
+        }
+      },
+      "failures": {
+        "train": [],
+        "test": [],
+        "ground_truth": []
+      },
+      "valid": true
+    },
+    "processing": {
+      "created": 0,
+      "reused": 599,
+      "validation": {
+        "processed_root": "/private/var/folders/x6/6k_h0_3j0m93sxlcrq42t4100000gn/T/tmp.NlrVyiaSSt_processed",
+        "image_size": [
+          256,
+          256
+        ],
+        "splits": {
+          "train": {
+            "failures": [],
+            "count": 320
+          },
+          "test": {
+            "failures": [],
+            "count": 160
+          },
+          "ground_truth": {
+            "failures": [],
+            "count": 119
+          }
+        },
+        "valid": true
+      },
+      "raw_dataset_unchanged": true
+    }
+  },
+  "manifest": {
+    "manifest_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/production/screw_comparison_rnd2/tmp.NlrVyiaSSt/variants/patchcore/classification_split.csv",
+    "processed_root": "/private/var/folders/x6/6k_h0_3j0m93sxlcrq42t4100000gn/T/tmp.NlrVyiaSSt_processed",
+    "categories": [
+      "screw"
+    ],
+    "row_count": 320,
+    "counts": {
+      "screw": {
+        "train": 224,
+        "validation": 96
+      }
+    },
+    "validation_fraction": 0.3,
+    "seed": 42
+  },
+  "classification": {
+    "total_test_images": 160,
+    "accepted_known_predictions": 160,
+    "unknown_rejected_predictions": 0,
+    "rejection_rate": 0.0,
+    "top1_accuracy_all": 1.0,
+    "top1_accuracy_accepted": 1.0,
+    "macro_precision": 1.0,
+    "macro_recall": 1.0,
+    "macro_f1": 1.0,
+    "per_category": [
+      {
+        "category": "screw",
+        "support": 160,
+        "correct": 160,
+        "incorrect": 0,
+        "rejected": 0,
+        "accuracy": 1.0,
+        "rejection_rate": 0.0
+      }
+    ],
+    "good_test": {
+      "total_images": 41,
+      "accepted_known_predictions": 41,
+      "unknown_rejected_predictions": 0,
+      "accuracy": 1.0,
+      "accepted_accuracy": 1.0,
+      "rejection_rate": 0.0
+    },
+    "defect_test": {
+      "total_images": 119,
+      "accepted_known_predictions": 119,
+      "unknown_rejected_predictions": 0,
+      "accuracy": 1.0,
+      "accepted_accuracy": 1.0,
+      "rejection_rate": 0.0
+    }
+  },
+  "anomaly": {
+    "test_images": 160,
+    "anomaly_evaluated_images": 160,
+    "anomaly_skipped_images": 0,
+    "image": {
+      "ranking": {
+        "auroc": 0.6868210698913713,
+        "average_precision": 0.8471865604356454
+      },
+      "thresholded": {
+        "accuracy": 0.3,
+        "precision": 0.8181818181818182,
+        "recall": 0.07563025210084033,
+        "f1": 0.13846153846153847
+      }
+    },
+    "pixel": {
+      "ranking": {
+        "auroc": 0.8524938906119783,
+        "average_precision": 0.05167612850132668
+      },
+      "thresholded": {
+        "precision": 0.0390267630497249,
+        "recall": 0.4633064361925886,
+        "f1": 0.07198947046292527
+      }
+    }
+  },
+  "performance": {
+    "inference": {
+      "device": "mps",
+      "sample_count": 160,
+      "total_seconds": 8.614169623011549,
+      "mean_seconds": 0.05383856014382218,
+      "median_seconds": 0.05373647900069045,
+      "p95_seconds": 0.054582805949121384,
+      "images_per_second": 18.574047993271737,
+      "scope": "detector inference including shared DINOv2 forward and routing"
+    }
+  },
+  "output_files": {
+    "final_report": "final_report.md",
+    "summary": "final_summary.json",
+    "classification_summary": "classification_test_summary.json",
+    "anomaly_metrics": "anomaly_metrics.json",
+    "per_category": "per_category_metrics.csv",
+    "errors": "error_analysis.csv",
+    "confusion_matrix": "confusion_matrix.png",
+    "confusion_matrix_with_unknown": "confusion_matrix_with_unknown.png",
+    "dataset_distribution": "dataset_distribution.png",
+    "heatmaps": "heatmaps/",
+    "image_thresholds": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/production/screw_comparison_rnd2/tmp.NlrVyiaSSt/variants/patchcore/thresholds/patchcore/image_thresholds.json",
+    "pixel_thresholds": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/production/screw_comparison_rnd2/tmp.NlrVyiaSSt/variants/patchcore/thresholds/patchcore/pixel_thresholds.json"
+  }
+}

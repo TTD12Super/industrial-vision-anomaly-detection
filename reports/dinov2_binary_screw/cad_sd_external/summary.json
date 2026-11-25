@@ -1,0 +1,73 @@
+{
+  "dataset": "CAD-SD",
+  "source": "https://github.com/IshidaKengo/Co-occurrence-Anomaly-Detection-Screw-Dataset",
+  "split": "test only; threshold not refit",
+  "counts": {
+    "good": 210,
+    "defect": 166,
+    "total": 376
+  },
+  "device": "mps",
+  "threshold_from_mvtec": 0.09173355996608734,
+  "metrics": {
+    "accuracy": 0.44148936170212766,
+    "precision_defect": 0.44148936170212766,
+    "recall_defect": 1.0,
+    "f1_defect": 0.6125461254612546,
+    "good_recall": 0.0,
+    "image_auroc": 0.5592799770510614,
+    "image_average_precision": 0.5085753885432087,
+    "confusion_matrix_good_defect": [
+      [
+        0,
+        210
+      ],
+      [
+        0,
+        166
+      ]
+    ]
+  },
+  "latency": {
+    "total_seconds": 38.28736612499961,
+    "mean_seconds_per_image": 0.10182810139627556,
+    "images_per_second": 9.820471817581938
+  },
+  "per_class": {
+    "0_good": {
+      "images": 210,
+      "defect_recall": null,
+      "false_defect_rate": 1.0,
+      "mean_probability_defect": 0.9999325845922743,
+      "predicted_defect": 210
+    },
+    "1_scratch": {
+      "images": 41,
+      "defect_recall": 1.0,
+      "false_defect_rate": null,
+      "mean_probability_defect": 0.9999888495701116,
+      "predicted_defect": 41
+    },
+    "2_paint": {
+      "images": 41,
+      "defect_recall": 1.0,
+      "false_defect_rate": null,
+      "mean_probability_defect": 0.9997975797187991,
+      "predicted_defect": 41
+    },
+    "3_over-coupling": {
+      "images": 44,
+      "defect_recall": 1.0,
+      "false_defect_rate": null,
+      "mean_probability_defect": 1.0,
+      "predicted_defect": 44
+    },
+    "4_lacking": {
+      "images": 40,
+      "defect_recall": 1.0,
+      "false_defect_rate": null,
+      "mean_probability_defect": 0.9912744328379631,
+      "predicted_defect": 40
+    }
+  }
+}

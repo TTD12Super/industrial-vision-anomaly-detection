@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "product_key": "screw",
+  "checkpoint": "artifacts/products/screw/screw-supervised-dev-001/detector_dataset/training/run/weights/best.pt",
+  "selection_split": "validation",
+  "test_split": "canonical target test",
+  "images": 12,
+  "objects": 12,
+  "metrics": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "map50": 0.995,
+    "map50_95": 0.5457424242424244
+  },
+  "latency_ms_per_image": {
+    "preprocess": 0.7,
+    "inference": 58.3,
+    "postprocess": 3.9
+  },
+  "limitations": [
+    "The 12-image holdout is small.",
+    "All target images originate from MVTec AD official test data used for supervised development/adaptation.",
+    "This is not evidence of cross-domain or factory-camera generalization."
+  ]
+}

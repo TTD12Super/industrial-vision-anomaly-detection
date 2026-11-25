@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "product_key": "screw",
+  "split": "test",
+  "mask_threshold": 0.03379588834941387,
+  "metrics": {
+    "pixel_precision": 0.028994899939130212,
+    "pixel_recall": 0.8508338391282985,
+    "pixel_dice": 0.05607873654252244,
+    "pixel_iou": 0.028848255120570182,
+    "good_false_positive_rate": 0.317935017473068,
+    "pixel_average_precision": 0.12653831700492932
+  },
+  "sample_count": 12,
+  "warning": "This test split is supervised-development data and is not an independent production estimate."
+}

@@ -1,0 +1,28 @@
+{
+  "test_images": 160,
+  "anomaly_evaluated_images": 160,
+  "anomaly_skipped_images": 0,
+  "image": {
+    "ranking": {
+      "auroc": 0.9171961467513835,
+      "average_precision": 0.9695789952080885
+    },
+    "thresholded": {
+      "accuracy": 0.4625,
+      "precision": 1.0,
+      "recall": 0.2773109243697479,
+      "f1": 0.4342105263157895
+    }
+  },
+  "pixel": {
+    "ranking": {
+      "auroc": 0.8832070944715322,
+      "average_precision": 0.06399736769195137
+    },
+    "thresholded": {
+      "precision": 0.06838854194949769,
+      "recall": 0.24268336745754546,
+      "f1": 0.10670691344295284
+    }
+  }
+}

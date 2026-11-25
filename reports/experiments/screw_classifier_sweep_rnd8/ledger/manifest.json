@@ -1,0 +1,1241 @@
+{
+  "schema_version": "1.1",
+  "experiment": "dinov2_lastblock_patch_head_threshold_sweep",
+  "spec_sha256": "b23ebec43d6d48151cd6f9b2f8fa356e636c1ca8a9e98d6c12537a8a9f1d805a",
+  "lineage": {
+    "config_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/lineage_config.json",
+    "config_sha256": "00f048df7824d6f77446d717a68cfb5a8cd1ab4c8a820f21a710ee73678a59da",
+    "seed": 42,
+    "device": "mps",
+    "command": "scripts/record_classifier_sweep.py",
+    "diagnostic_alias_of": "test",
+    "source_metric_count_note": "Legacy source rates were converted to integer counts; raw confusion counts require a trainer rerun.",
+    "config_expected_sha256": "00f048df7824d6f77446d717a68cfb5a8cd1ab4c8a820f21a710ee73678a59da",
+    "spec_sha256": "b23ebec43d6d48151cd6f9b2f8fa356e636c1ca8a9e98d6c12537a8a9f1d805a"
+  },
+  "independent_holdout_locked": true,
+  "split_roles": {
+    "train": {
+      "manifest": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/train.csv",
+      "sha256": "ea5ebf80020a0a8223779013e8a5016043c0b05e944268866edce39117208c09",
+      "expected_sha256": "ea5ebf80020a0a8223779013e8a5016043c0b05e944268866edce39117208c09"
+    },
+    "validation": {
+      "manifest": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/validation.csv",
+      "sha256": "857f004fe4c7a39200e3272ce9d991e8e1daeca735658615b71c784f51224def",
+      "expected_sha256": "857f004fe4c7a39200e3272ce9d991e8e1daeca735658615b71c784f51224def"
+    },
+    "diagnostic": {
+      "manifest": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/test.csv",
+      "sha256": "8a4438dc1b10697966ce3810bb6da7a29314595ae10e6b20c922373546535c34",
+      "expected_sha256": "8a4438dc1b10697966ce3810bb6da7a29314595ae10e6b20c922373546535c34"
+    },
+    "independent_holdout": {
+      "manifest": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/external/mvtec_screws/extracted/mvtec_screws_test.json",
+      "sha256": "ae03cba64f0c35088cdfd716ce93975067392324de98d70f4f1b570ae78dab1c",
+      "expected_sha256": "ae03cba64f0c35088cdfd716ce93975067392324de98d70f4f1b570ae78dab1c"
+    }
+  },
+  "selection_rule": {
+    "target_defect_recall": 0.9,
+    "good_false_positive_cap": 0.2,
+    "candidate_names": null,
+    "selection_split_role": "validation",
+    "tie_break": [
+      "maximize_defect_recall",
+      "lower_good_false_positive_rate",
+      "higher_threshold"
+    ]
+  },
+  "candidate_count": 79,
+  "candidate_provenance": {
+    "threshold_000": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_001": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_002": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_003": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_004": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_005": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_006": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_007": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_008": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_009": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_010": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_011": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_012": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_013": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_014": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_015": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_016": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_017": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_018": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_019": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_020": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_021": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_022": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_023": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_024": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_025": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_026": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_027": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_028": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_029": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_030": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_031": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_032": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_033": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_034": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_035": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_036": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_037": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_038": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_039": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_040": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_041": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_042": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_043": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_044": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_045": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_046": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_047": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_048": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_049": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_050": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_051": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_052": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_053": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_054": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_055": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_056": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_057": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_058": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_059": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_060": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_061": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_062": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_063": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_064": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_065": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_066": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_067": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_068": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_069": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_070": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_071": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_072": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_073": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_074": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_075": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_076": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_077": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    },
+    "threshold_078": {
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd8/inputs/reconciled_threshold_sweep.json",
+      "source_report_sha256": {
+        "expected": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f",
+        "actual": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+      },
+      "artifact_hashes": {
+        "expected": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        },
+        "actual": {
+          "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+        }
+      }
+    }
+  },
+  "independent_holdout_used_for_selection": false,
+  "metric_provenance_independently_audited": false,
+  "protocol_guard": "Selector protocol guard only; metric provenance was not independently audited."
+}

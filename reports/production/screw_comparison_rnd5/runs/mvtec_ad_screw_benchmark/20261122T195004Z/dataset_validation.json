@@ -1,0 +1,79 @@
+{
+  "raw": {
+    "raw_root": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_benchmark",
+    "categories": [
+      "screw"
+    ],
+    "category_count": 1,
+    "counts": {
+      "screw": {
+        "train": 320,
+        "test": 160,
+        "test_good": 41,
+        "test_defect": 119,
+        "ground_truth": 119,
+        "test_labels": [
+          "good",
+          "manipulated_front",
+          "scratch_head",
+          "scratch_neck",
+          "thread_side",
+          "thread_top"
+        ]
+      }
+    },
+    "splits": {
+      "train": {
+        "total": 320,
+        "readable": 320,
+        "failures": [],
+        "unexpected": []
+      },
+      "test": {
+        "total": 160,
+        "readable": 160,
+        "failures": [],
+        "unexpected": []
+      },
+      "ground_truth": {
+        "total": 119,
+        "readable": 119,
+        "failures": [],
+        "unexpected": []
+      }
+    },
+    "failures": {
+      "train": [],
+      "test": [],
+      "ground_truth": []
+    },
+    "valid": true
+  },
+  "processing": {
+    "created": 599,
+    "reused": 0,
+    "validation": {
+      "processed_root": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_benchmark_processed",
+      "image_size": [
+        256,
+        256
+      ],
+      "splits": {
+        "train": {
+          "failures": [],
+          "count": 320
+        },
+        "test": {
+          "failures": [],
+          "count": 160
+        },
+        "ground_truth": {
+          "failures": [],
+          "count": 119
+        }
+      },
+      "valid": true
+    },
+    "raw_dataset_unchanged": true
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "source_split": "validation",
+  "iou_threshold": 0.5,
+  "target_recall": 0.99,
+  "target_reached": false,
+  "confidence": null,
+  "selected_metrics": null,
+  "candidates": [
+    {
+      "confidence": 0.01,
+      "precision": 0.9444444444444444,
+      "recall": 0.9444444444444444,
+      "true_positive": 17.0,
+      "false_positive": 1.0,
+      "false_negative": 1.0
+    },
+    {
+      "confidence": 0.05,
+      "precision": 0.9444444444444444,
+      "recall": 0.9444444444444444,
+      "true_positive": 17.0,
+      "false_positive": 1.0,
+      "false_negative": 1.0
+    },
+    {
+      "confidence": 0.1,
+      "precision": 0.9444444444444444,
+      "recall": 0.9444444444444444,
+      "true_positive": 17.0,
+      "false_positive": 1.0,
+      "false_negative": 1.0
+    },
+    {
+      "confidence": 0.2,
+      "precision": 0.9444444444444444,
+      "recall": 0.9444444444444444,
+      "true_positive": 17.0,
+      "false_positive": 1.0,
+      "false_negative": 1.0
+    },
+    {
+      "confidence": 0.3,
+      "precision": 0.9444444444444444,
+      "recall": 0.9444444444444444,
+      "true_positive": 17.0,
+      "false_positive": 1.0,
+      "false_negative": 1.0
+    },
+    {
+      "confidence": 0.4,
+      "precision": 0.9444444444444444,
+      "recall": 0.9444444444444444,
+      "true_positive": 17.0,
+      "false_positive": 1.0,
+      "false_negative": 1.0
+    },
+    {
+      "confidence": 0.5,
+      "precision": 0.9285714285714286,
+      "recall": 0.7222222222222222,
+      "true_positive": 13.0,
+      "false_positive": 1.0,
+      "false_negative": 5.0
+    }
+  ],
+  "checkpoint": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-supervised-dev-001/detector_dataset/training/run/weights/best.pt"
+}

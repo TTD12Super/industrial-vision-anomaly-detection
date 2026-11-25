@@ -1,0 +1,2332 @@
+{
+  "schema_version": 1,
+  "experiment": "dinov2_lastblock_patch_head_threshold_sweep",
+  "independent_holdout_locked": true,
+  "split_roles": {
+    "train": {
+      "manifest": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd2/inputs/train.csv",
+      "sha256": "ea5ebf80020a0a8223779013e8a5016043c0b05e944268866edce39117208c09"
+    },
+    "validation": {
+      "manifest": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd2/inputs/validation.csv",
+      "sha256": "857f004fe4c7a39200e3272ce9d991e8e1daeca735658615b71c784f51224def"
+    },
+    "diagnostic": {
+      "manifest": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd2/inputs/diagnostic.csv",
+      "sha256": "8a4438dc1b10697966ce3810bb6da7a29314595ae10e6b20c922373546535c34"
+    },
+    "independent_holdout": {
+      "manifest": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/external/mvtec_screws/extracted/mvtec_screws_test.json",
+      "sha256": "ae03cba64f0c35088cdfd716ce93975067392324de98d70f4f1b570ae78dab1c"
+    }
+  },
+  "selection": {
+    "target_defect_recall": 0.9,
+    "good_false_positive_cap": 0.2,
+    "selection_split_role": "validation",
+    "tie_break": [
+      "higher_threshold",
+      "lower_name"
+    ]
+  },
+  "lineage": {
+    "config_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd2/inputs/lineage_config.json",
+    "config_sha256": "73cd09961a23b998a1097c1964df978722fd54d7d701a88be28f4474d96c5385",
+    "seed": 42,
+    "device": "mps",
+    "command": "scripts/record_classifier_sweep.py"
+  },
+  "candidates": [
+    {
+      "name": "threshold_000",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 1.0,
+        "threshold": 0.0
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 50
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_001",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 1.0,
+        "threshold": 2.1783396732644178e-05
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 50
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_002",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.98,
+        "threshold": 5.310828782967292e-05
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 49
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_003",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.96,
+        "threshold": 0.00010944918903987855
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 48
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_004",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.94,
+        "threshold": 0.00011097100650658831
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 47
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_005",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.92,
+        "threshold": 0.000122359735541977
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 46
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_006",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.9,
+        "threshold": 0.000258458690950647
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 45
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_007",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.88,
+        "threshold": 0.0003249119617976248
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 44
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_008",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.86,
+        "threshold": 0.00043031704262830317
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 43
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_009",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.84,
+        "threshold": 0.0005144848837517202
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 42
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_010",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.82,
+        "threshold": 0.0005630804225802422
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 41
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_011",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.8,
+        "threshold": 0.0005990149802528322
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 40
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_012",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.78,
+        "threshold": 0.0006076405989006162
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 39
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_013",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.76,
+        "threshold": 0.0006818589172326028
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 38
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_014",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.74,
+        "threshold": 0.0007291391957551241
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 37
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_015",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.72,
+        "threshold": 0.0007441928028129041
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 36
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_016",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.7,
+        "threshold": 0.0007953982567414641
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 35
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_017",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.68,
+        "threshold": 0.0009196408791467547
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 34
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_018",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.66,
+        "threshold": 0.0009488992509432137
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 33
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_019",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.64,
+        "threshold": 0.0011958230752497911
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 32
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_020",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.62,
+        "threshold": 0.001536599826067686
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 31
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_021",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.6,
+        "threshold": 0.0017825321992859244
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 30
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_022",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.58,
+        "threshold": 0.00260344659909606
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 29
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_023",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.56,
+        "threshold": 0.0026805968955159187
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 28
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_024",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.54,
+        "threshold": 0.0032111641485244036
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 27
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_025",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.52,
+        "threshold": 0.0042213271372020245
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 26
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_026",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.5,
+        "threshold": 0.006000296212732792
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 25
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_027",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.48,
+        "threshold": 0.006528766360133886
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 24
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_028",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.46,
+        "threshold": 0.009696079418063164
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 23
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_029",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.44,
+        "threshold": 0.01066281832754612
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 22
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_030",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.42,
+        "threshold": 0.01201772503554821
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 21
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_031",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.4,
+        "threshold": 0.015664223581552505
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 20
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_032",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.38,
+        "threshold": 0.015699809417128563
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 19
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_033",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.36,
+        "threshold": 0.020294584333896637
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 18
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_034",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.34,
+        "threshold": 0.03264486417174339
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 17
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_035",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.32,
+        "threshold": 0.05
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 16
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_036",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.32,
+        "threshold": 0.05705153942108154
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 16
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_037",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.3,
+        "threshold": 0.07493586838245392
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 15
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_038",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.28,
+        "threshold": 0.07568493485450745
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 14
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_039",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.26,
+        "threshold": 0.08417792618274689
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 13
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_040",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.24,
+        "threshold": 0.09093928337097168
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 12
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_041",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.22,
+        "threshold": 0.09528010338544846
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 11
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_042",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.2,
+        "threshold": 0.1
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 10
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_043",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.2,
+        "threshold": 0.11580123752355576
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 10
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_044",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.18,
+        "threshold": 0.15
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 9
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_045",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.18,
+        "threshold": 0.15464046597480774
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 9
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_046",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.16,
+        "threshold": 0.2
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 8
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_047",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.16,
+        "threshold": 0.2213248759508133
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 8
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_048",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.14,
+        "threshold": 0.22295576333999634
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 7
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_049",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.12,
+        "threshold": 0.25
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 6
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_050",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.12,
+        "threshold": 0.25205230712890625
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 6
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_051",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.1,
+        "threshold": 0.2856566309928894
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 5
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_052",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.08,
+        "threshold": 0.29681631922721863
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 4
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_053",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.06,
+        "threshold": 0.3
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 3
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_054",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 1.0,
+        "good_false_positive_rate": 0.06,
+        "threshold": 0.3896714150905609
+      },
+      "metric_numerators": {
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 3
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_055",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 0.9333333333333333,
+        "good_false_positive_rate": 0.06,
+        "threshold": 0.4
+      },
+      "metric_numerators": {
+        "defect_true_positive": 14,
+        "good_false_alarm_count": 3
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_056",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 0.9333333333333333,
+        "good_false_positive_rate": 0.06,
+        "threshold": 0.4748420715332031
+      },
+      "metric_numerators": {
+        "defect_true_positive": 14,
+        "good_false_alarm_count": 3
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_057",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 0.9333333333333333,
+        "good_false_positive_rate": 0.04,
+        "threshold": 0.5
+      },
+      "metric_numerators": {
+        "defect_true_positive": 14,
+        "good_false_alarm_count": 2
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_058",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 0.9333333333333333,
+        "good_false_positive_rate": 0.04,
+        "threshold": 0.6
+      },
+      "metric_numerators": {
+        "defect_true_positive": 14,
+        "good_false_alarm_count": 2
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_059",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 0.9333333333333333,
+        "good_false_positive_rate": 0.04,
+        "threshold": 0.6266879439353943
+      },
+      "metric_numerators": {
+        "defect_true_positive": 14,
+        "good_false_alarm_count": 2
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_060",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 0.9333333333333333,
+        "good_false_positive_rate": 0.02,
+        "threshold": 0.7
+      },
+      "metric_numerators": {
+        "defect_true_positive": 14,
+        "good_false_alarm_count": 1
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_061",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 0.9333333333333333,
+        "good_false_positive_rate": 0.02,
+        "threshold": 0.8
+      },
+      "metric_numerators": {
+        "defect_true_positive": 14,
+        "good_false_alarm_count": 1
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_062",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 0.9333333333333333,
+        "good_false_positive_rate": 0.02,
+        "threshold": 0.8196384906768799
+      },
+      "metric_numerators": {
+        "defect_true_positive": 14,
+        "good_false_alarm_count": 1
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_063",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 0.8666666666666667,
+        "good_false_positive_rate": 0.02,
+        "threshold": 0.9
+      },
+      "metric_numerators": {
+        "defect_true_positive": 13,
+        "good_false_alarm_count": 1
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_064",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 0.8666666666666667,
+        "good_false_positive_rate": 0.02,
+        "threshold": 0.902828574180603
+      },
+      "metric_numerators": {
+        "defect_true_positive": 13,
+        "good_false_alarm_count": 1
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_065",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 0.8,
+        "good_false_positive_rate": 0.02,
+        "threshold": 0.9791688323020935
+      },
+      "metric_numerators": {
+        "defect_true_positive": 12,
+        "good_false_alarm_count": 1
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_066",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 0.8,
+        "good_false_positive_rate": 0.0,
+        "threshold": 0.993996262550354
+      },
+      "metric_numerators": {
+        "defect_true_positive": 12,
+        "good_false_alarm_count": 0
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_067",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 0.7333333333333333,
+        "good_false_positive_rate": 0.0,
+        "threshold": 0.9985263347625732
+      },
+      "metric_numerators": {
+        "defect_true_positive": 11,
+        "good_false_alarm_count": 0
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_068",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 0.6666666666666666,
+        "good_false_positive_rate": 0.0,
+        "threshold": 0.9993383288383484
+      },
+      "metric_numerators": {
+        "defect_true_positive": 10,
+        "good_false_alarm_count": 0
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_069",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 0.6,
+        "good_false_positive_rate": 0.0,
+        "threshold": 0.9996927976608276
+      },
+      "metric_numerators": {
+        "defect_true_positive": 9,
+        "good_false_alarm_count": 0
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_070",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 0.5333333333333333,
+        "good_false_positive_rate": 0.0,
+        "threshold": 0.999733030796051
+      },
+      "metric_numerators": {
+        "defect_true_positive": 8,
+        "good_false_alarm_count": 0
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_071",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 0.4666666666666667,
+        "good_false_positive_rate": 0.0,
+        "threshold": 0.9998270869255066
+      },
+      "metric_numerators": {
+        "defect_true_positive": 7,
+        "good_false_alarm_count": 0
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_072",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 0.4,
+        "good_false_positive_rate": 0.0,
+        "threshold": 0.9998780488967896
+      },
+      "metric_numerators": {
+        "defect_true_positive": 6,
+        "good_false_alarm_count": 0
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_073",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 0.3333333333333333,
+        "good_false_positive_rate": 0.0,
+        "threshold": 0.9998935461044312
+      },
+      "metric_numerators": {
+        "defect_true_positive": 5,
+        "good_false_alarm_count": 0
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_074",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 0.26666666666666666,
+        "good_false_positive_rate": 0.0,
+        "threshold": 0.999924898147583
+      },
+      "metric_numerators": {
+        "defect_true_positive": 4,
+        "good_false_alarm_count": 0
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_075",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 0.2,
+        "good_false_positive_rate": 0.0,
+        "threshold": 0.9999343156814575
+      },
+      "metric_numerators": {
+        "defect_true_positive": 3,
+        "good_false_alarm_count": 0
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_076",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 0.13333333333333333,
+        "good_false_positive_rate": 0.0,
+        "threshold": 0.9999369382858276
+      },
+      "metric_numerators": {
+        "defect_true_positive": 2,
+        "good_false_alarm_count": 0
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_077",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 0.06666666666666667,
+        "good_false_positive_rate": 0.0,
+        "threshold": 0.999963641166687
+      },
+      "metric_numerators": {
+        "defect_true_positive": 1,
+        "good_false_alarm_count": 0
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    },
+    {
+      "name": "threshold_078",
+      "method": "dinov2_lastblock_patch_head",
+      "metric_unit": "object",
+      "artifact_paths": [
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+      ],
+      "artifact_sha256": {
+        "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+      },
+      "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+      "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+      "metrics": {
+        "defect_recall": 0.0,
+        "good_false_positive_rate": 0.0,
+        "threshold": 1.0
+      },
+      "metric_numerators": {
+        "defect_true_positive": 0,
+        "good_false_alarm_count": 0
+      },
+      "metric_denominators": {
+        "defect_count": 15,
+        "good_count": 50
+      },
+      "split_role": "validation",
+      "holdout_used_for_selection": false,
+      "device": "mps"
+    }
+  ]
+}

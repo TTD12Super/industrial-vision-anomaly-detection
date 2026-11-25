@@ -1,0 +1,81 @@
+{
+  "dataset": "MVTec AD/screw",
+  "protocol": "DINOv2 last Transformer block + global/patch-aware GOOD/DEFECT head",
+  "device": "mps",
+  "counts": {
+    "train": {
+      "GOOD": 252,
+      "DEFECT": 81,
+      "total": 333
+    },
+    "validation": {
+      "GOOD": 54,
+      "DEFECT": 15,
+      "total": 69
+    },
+    "test": {
+      "GOOD": 55,
+      "DEFECT": 23,
+      "total": 78
+    }
+  },
+  "best_epoch": 1,
+  "epochs_trained": 1,
+  "threshold": 0.5340620875358582,
+  "threshold_rule": "highest threshold meeting defect recall >= 0.93",
+  "results": {
+    "validation": {
+      "images": 69,
+      "threshold": 0.5340620875358582,
+      "accuracy": 0.6086956521739131,
+      "balanced_accuracy": 0.7259259259259259,
+      "precision_defect": 0.35,
+      "recall_defect": 0.9333333333333333,
+      "f1_defect": 0.509090909090909,
+      "good_recall": 0.5185185185185185,
+      "image_auroc": 0.7555555555555555,
+      "image_average_precision": 0.4726379849845432,
+      "confusion_matrix_good_defect": [
+        [
+          28,
+          26
+        ],
+        [
+          1,
+          14
+        ]
+      ]
+    },
+    "test": {
+      "images": 78,
+      "threshold": 0.5340620875358582,
+      "accuracy": 0.6153846153846154,
+      "balanced_accuracy": 0.6387351778656126,
+      "precision_defect": 0.41025641025641024,
+      "recall_defect": 0.6956521739130435,
+      "f1_defect": 0.5161290322580645,
+      "good_recall": 0.5818181818181818,
+      "image_auroc": 0.7486166007905137,
+      "image_average_precision": 0.6394126973865402,
+      "confusion_matrix_good_defect": [
+        [
+          32,
+          23
+        ],
+        [
+          7,
+          16
+        ]
+      ]
+    }
+  },
+  "checkpoint": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-002/classifier_recall_first/model.pt",
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.6930092172221737,
+      "validation_auroc": 0.7555555555555555,
+      "validation_balanced_accuracy_at_0_5": 0.5
+    }
+  ]
+}

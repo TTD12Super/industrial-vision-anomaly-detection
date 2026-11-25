@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "status": "evaluated",
+  "split_role": "diagnostic",
+  "manifest": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd10/inputs/test.csv",
+  "manifest_sha256": "8a4438dc1b10697966ce3810bb6da7a29314595ae10e6b20c922373546535c34",
+  "model": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt",
+  "model_sha256": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c",
+  "threshold": 0.3896714150905609,
+  "selection_ledger": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_classifier_sweep_rnd10/ledger/manifest.json",
+  "selection_ledger_sha256": "96b07ad5ec6309870a9f976f8a9722650a188c288ce6ea982f522a2d37846a1b",
+  "selected_candidate_name": "threshold_054",
+  "selected_candidate_threshold": 0.3896714150905609,
+  "evaluated_threshold": 0.3896714150905609,
+  "threshold_match": true,
+  "model_hash_match": true,
+  "locked_manifest_hash_match": true,
+  "holdout_used_for_selection": false,
+  "device": "cpu",
+  "metrics": {
+    "metric_unit": "object_crop",
+    "images": 78,
+    "threshold": 0.3896714150905609,
+    "accuracy": 0.9102564102564102,
+    "balanced_accuracy": 0.9110671936758893,
+    "precision_defect": 0.8076923076923077,
+    "defect_recall": 0.9130434782608695,
+    "defect_f1": 0.8571428571428571,
+    "good_false_positive_rate": 0.09090909090909091,
+    "image_auroc": 0.9715415019762845,
+    "image_average_precision": 0.9377294492209232,
+    "metric_numerators": {
+      "defect_true_positive": 21,
+      "good_false_alarm_count": 5
+    },
+    "metric_denominators": {
+      "defect_count": 23,
+      "good_count": 55
+    },
+    "confusion_matrix_good_defect": [
+      [
+        50,
+        5
+      ],
+      [
+        2,
+        21
+      ]
+    ]
+  },
+  "warning": "Do not use this holdout to tune the threshold; this command only evaluates a preselected operating point."
+}

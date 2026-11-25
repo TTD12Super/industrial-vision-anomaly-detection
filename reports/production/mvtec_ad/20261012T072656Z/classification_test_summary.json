@@ -1,0 +1,164 @@
+{
+  "total_test_images": 1725,
+  "accepted_known_predictions": 1725,
+  "unknown_rejected_predictions": 0,
+  "rejection_rate": 0.0,
+  "top1_accuracy_all": 1.0,
+  "top1_accuracy_accepted": 1.0,
+  "macro_precision": 1.0,
+  "macro_recall": 1.0,
+  "macro_f1": 1.0,
+  "per_category": [
+    {
+      "category": "bottle",
+      "support": 83,
+      "correct": 83,
+      "incorrect": 0,
+      "rejected": 0,
+      "accuracy": 1.0,
+      "rejection_rate": 0.0
+    },
+    {
+      "category": "cable",
+      "support": 150,
+      "correct": 150,
+      "incorrect": 0,
+      "rejected": 0,
+      "accuracy": 1.0,
+      "rejection_rate": 0.0
+    },
+    {
+      "category": "capsule",
+      "support": 132,
+      "correct": 132,
+      "incorrect": 0,
+      "rejected": 0,
+      "accuracy": 1.0,
+      "rejection_rate": 0.0
+    },
+    {
+      "category": "carpet",
+      "support": 117,
+      "correct": 117,
+      "incorrect": 0,
+      "rejected": 0,
+      "accuracy": 1.0,
+      "rejection_rate": 0.0
+    },
+    {
+      "category": "grid",
+      "support": 78,
+      "correct": 78,
+      "incorrect": 0,
+      "rejected": 0,
+      "accuracy": 1.0,
+      "rejection_rate": 0.0
+    },
+    {
+      "category": "hazelnut",
+      "support": 110,
+      "correct": 110,
+      "incorrect": 0,
+      "rejected": 0,
+      "accuracy": 1.0,
+      "rejection_rate": 0.0
+    },
+    {
+      "category": "leather",
+      "support": 124,
+      "correct": 124,
+      "incorrect": 0,
+      "rejected": 0,
+      "accuracy": 1.0,
+      "rejection_rate": 0.0
+    },
+    {
+      "category": "metal_nut",
+      "support": 115,
+      "correct": 115,
+      "incorrect": 0,
+      "rejected": 0,
+      "accuracy": 1.0,
+      "rejection_rate": 0.0
+    },
+    {
+      "category": "pill",
+      "support": 167,
+      "correct": 167,
+      "incorrect": 0,
+      "rejected": 0,
+      "accuracy": 1.0,
+      "rejection_rate": 0.0
+    },
+    {
+      "category": "screw",
+      "support": 160,
+      "correct": 160,
+      "incorrect": 0,
+      "rejected": 0,
+      "accuracy": 1.0,
+      "rejection_rate": 0.0
+    },
+    {
+      "category": "tile",
+      "support": 117,
+      "correct": 117,
+      "incorrect": 0,
+      "rejected": 0,
+      "accuracy": 1.0,
+      "rejection_rate": 0.0
+    },
+    {
+      "category": "toothbrush",
+      "support": 42,
+      "correct": 42,
+      "incorrect": 0,
+      "rejected": 0,
+      "accuracy": 1.0,
+      "rejection_rate": 0.0
+    },
+    {
+      "category": "transistor",
+      "support": 100,
+      "correct": 100,
+      "incorrect": 0,
+      "rejected": 0,
+      "accuracy": 1.0,
+      "rejection_rate": 0.0
+    },
+    {
+      "category": "wood",
+      "support": 79,
+      "correct": 79,
+      "incorrect": 0,
+      "rejected": 0,
+      "accuracy": 1.0,
+      "rejection_rate": 0.0
+    },
+    {
+      "category": "zipper",
+      "support": 151,
+      "correct": 151,
+      "incorrect": 0,
+      "rejected": 0,
+      "accuracy": 1.0,
+      "rejection_rate": 0.0
+    }
+  ],
+  "good_test": {
+    "total_images": 467,
+    "accepted_known_predictions": 467,
+    "unknown_rejected_predictions": 0,
+    "accuracy": 1.0,
+    "accepted_accuracy": 1.0,
+    "rejection_rate": 0.0
+  },
+  "defect_test": {
+    "total_images": 1258,
+    "accepted_known_predictions": 1258,
+    "unknown_rejected_predictions": 0,
+    "accuracy": 1.0,
+    "accepted_accuracy": 1.0,
+    "rejection_rate": 0.0
+  }
+}

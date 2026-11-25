@@ -1,0 +1,48 @@
+{
+  "protocol": "detector-generated OBB crop -> frozen DINOv2 global embedding -> balanced logistic GOOD/DEFECT head",
+  "device": "mps",
+  "train_report": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_detector_crop_train_rnd1.json",
+  "validation_report": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_detector_crop_calibration_rnd2.json",
+  "balanced_train_count": 324,
+  "classifier_artifact": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-detector-crop-logreg-rnd2/classifier/classifier.pt",
+  "policy_calibration": {
+    "schema_version": "1.0",
+    "defect_threshold": 0.07482706755399704,
+    "review_low_threshold": 0.0,
+    "threshold_rule": "no validation threshold met the requested gate",
+    "target_defect_recall": 0.9,
+    "max_good_fp": 0.2,
+    "calibration_report": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_detector_crop_calibration_rnd2.json",
+    "calibration_report_sha256": "c1fc3d64738dbbddec3db030fd4435212f78ee06e5dfae80aa5940ab0130be2d"
+  },
+  "results": {
+    "train": {
+      "GOOD": 162,
+      "DEFECT": 31
+    },
+    "validation": {
+      "GOOD": 39,
+      "DEFECT": 8
+    },
+    "validation_metrics": {
+      "count": 47,
+      "threshold": 0.07482706755399704,
+      "accuracy": 0.6808510638297872,
+      "balanced_accuracy": 0.8076923076923077,
+      "defect_recall": 1.0,
+      "good_fp": 0.38461538461538464,
+      "image_auroc": 0.8717948717948718,
+      "image_average_precision": 0.7043238491048593,
+      "confusion_matrix_good_defect": [
+        [
+          24,
+          15
+        ],
+        [
+          0,
+          8
+        ]
+      ]
+    }
+  }
+}

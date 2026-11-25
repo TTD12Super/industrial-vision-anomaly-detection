@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "status": "superseded_before_acceptance",
+  "superseded_reason": "This run used the adapter's former 640-pixel inference default while the detector was trained and validated at 1024 pixels. It must not be used for model selection or reporting.",
+  "product_key": "screw",
+  "split": "test",
+  "iou_threshold": 0.5,
+  "integrated_metrics": {
+    "gt_defect": 10,
+    "detected_defect": 6,
+    "classified_defect": 5,
+    "review_aware_capture": 5,
+    "gt_good": 2,
+    "good_flagged": 1,
+    "missed_objects": 4,
+    "end_to_end_defect_recall": 0.5,
+    "review_aware_capture_rate": 0.5,
+    "good_false_alarm_rate": 0.5
+  },
+  "per_image": [
+    {
+      "image_id": "mvtec_ad_screw_good_015",
+      "inspection_id": "evaluation_0000",
+      "detected": 1
+    },
+    {
+      "image_id": "mvtec_ad_screw_good_008",
+      "inspection_id": "evaluation_0001",
+      "detected": 1
+    },
+    {
+      "image_id": "mvtec_ad_screw_manipulated_front_018",
+      "inspection_id": "evaluation_0002",
+      "detected": 0
+    },
+    {
+      "image_id": "mvtec_ad_screw_manipulated_front_008",
+      "inspection_id": "evaluation_0003",
+      "detected": 1
+    },
+    {
+      "image_id": "mvtec_ad_screw_scratch_head_000",
+      "inspection_id": "evaluation_0004",
+      "detected": 1
+    },
+    {
+      "image_id": "mvtec_ad_screw_scratch_head_010",
+      "inspection_id": "evaluation_0005",
+      "detected": 1
+    },
+    {
+      "image_id": "mvtec_ad_screw_scratch_neck_008",
+      "inspection_id": "evaluation_0006",
+      "detected": 0
+    },
+    {
+      "image_id": "mvtec_ad_screw_scratch_neck_006",
+      "inspection_id": "evaluation_0007",
+      "detected": 1
+    },
+    {
+      "image_id": "mvtec_ad_screw_thread_side_016",
+      "inspection_id": "evaluation_0008",
+      "detected": 0
+    },
+    {
+      "image_id": "mvtec_ad_screw_thread_side_014",
+      "inspection_id": "evaluation_0009",
+      "detected": 1
+    },
+    {
+      "image_id": "mvtec_ad_screw_thread_top_017",
+      "inspection_id": "evaluation_0010",
+      "detected": 1
+    },
+    {
+      "image_id": "mvtec_ad_screw_thread_top_007",
+      "inspection_id": "evaluation_0011",
+      "detected": 1
+    }
+  ],
+  "warning": "This report is only independent if the configured test split was never used for model selection or adaptation."
+}

@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "product_key": "screw",
+  "recognizer": "DINOv2 global embedding nearest GOOD gallery",
+  "gallery_path": "artifacts/products/screw/screw-recognizer-rnd1/gallery.pt",
+  "gallery_count": 15,
+  "calibration": {
+    "known_threshold": 0.9895778894424438,
+    "known_validation_count": 3,
+    "unknown_validation_count": 82,
+    "known_validation_recall": 1.0,
+    "unknown_validation_rejection_rate": 1.0,
+    "target_known_recall": 0.9,
+    "score_type": "cosine_similarity",
+    "calibration_protocol": "highest observed threshold meeting explicit known validation recall target"
+  },
+  "known_validation": {
+    "count": 3,
+    "accepted_rate": 1.0,
+    "note": "Only GOOD objects in canonical screw validation are eligible for identity calibration."
+  },
+  "unknown_calibration": {
+    "count": 82,
+    "accepted_as_known": 0,
+    "false_known_rate": 0.0,
+    "score_min": 0.20876727998256683,
+    "score_median": 0.4390674829483032,
+    "score_max": 0.8128042221069336,
+    "categories": [
+      "type_007",
+      "type_009",
+      "type_010",
+      "type_011",
+      "type_012"
+    ],
+    "image_id_range": [
+      1,
+      30
+    ]
+  },
+  "known_holdout": {
+    "count": 2,
+    "accepted_as_known": 0,
+    "false_known_rate": 0.0,
+    "score_min": 0.977510929107666,
+    "score_median": 0.9800305366516113,
+    "score_max": 0.9825500845909119,
+    "note": "Known screw test is historical development data, not an independent production estimate."
+  },
+  "unknown_holdout": {
+    "count": 165,
+    "accepted_as_known": 0,
+    "false_known_rate": 0.0,
+    "score_min": 0.2536211311817169,
+    "score_median": 0.47020888328552246,
+    "score_max": 0.8341190814971924,
+    "categories": [
+      "type_007",
+      "type_009",
+      "type_010",
+      "type_011",
+      "type_012"
+    ],
+    "image_id_range": [
+      31,
+      60
+    ]
+  },
+  "protocol": {
+    "gallery_source": "datasets/products/screw train GOOD object crops only",
+    "unknown_source": "datasets/external/mvtec_screws/extracted/mvtec_screws_test.json",
+    "unknown_split": "by source image id; ids 1-30 calibration, 31-60 holdout",
+    "threshold_selection": "validation known recall target 0.90 with explicit unknown calibration examples",
+    "test_selection": "not used for threshold selection"
+  },
+  "warning": "Small known validation set (3 GOOD objects) and external MVTec Screws unknown holdout; expand with approved multi-product data before release."
+}

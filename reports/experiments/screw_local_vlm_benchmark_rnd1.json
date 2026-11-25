@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "protocol": "saved deterministic inspection evidence -> local VLM -> validated English report",
+  "inspection_json": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_verify_20261125_full2/e2e_verify_20261125_full2/inspection.json",
+  "inspection_sha256": "41a9733ca3789f6a387da014623cae31c07150e654f1de688ebad2b945b6647a",
+  "model": "qwen3-vl-4b",
+  "reporter_model_version": "local-vlm:qwen3-vl-4b:266babe1683e",
+  "base_url": "http://127.0.0.1:8080/v1",
+  "eligible_defect_objects": 1,
+  "completed": 1,
+  "failed": 0,
+  "latency_ms": {
+    "count": 1,
+    "mean": 13930.355,
+    "max": 13930.355
+  },
+  "objects": [
+    {
+      "object_id": "screw_01",
+      "status": "completed",
+      "latency_ms": 13930.355,
+      "evidence": [
+        {
+          "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_verify_20261125_full2/e2e_verify_20261125_full2/input/original.png",
+          "sha256": "e2eee10e9066e5f0af14b0607a0ac15806800061a91311328b0e2c422dbab718",
+          "mime_type": "image/png"
+        },
+        {
+          "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_verify_20261125_full2/e2e_verify_20261125_full2/objects/screw_01/crop_original.png",
+          "sha256": "31bc144d323a81fa6f63087f0dfe2a6446817204c381610a37ce29ac50a57a01",
+          "mime_type": "image/png"
+        },
+        {
+          "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_verify_20261125_full2/e2e_verify_20261125_full2/objects/screw_01/heatmap_overlay.png",
+          "sha256": "81f82f930cc87195a11191760aa60295760e200f3b1da144ea8cfe4c0ad8bc8d",
+          "mime_type": "image/png"
+        },
+        {
+          "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_verify_20261125_full2/e2e_verify_20261125_full2/objects/screw_01/binary_mask.png",
+          "sha256": "e2c4360ce81f3f707e3d1c33fa148732ec43afabfe16f34604ebbebae876bce5",
+          "mime_type": "image/png"
+        }
+      ],
+      "report": {
+        "classifier_label": "DEFECT",
+        "defect_location": "unknown",
+        "description": "The deterministic pipeline has classified this screw as defective. However, the provided images do not contain visible evidence of a crack or defect that matches the classifier's decision. The binary mask and heatmap do not clearly indicate a defect location or type.",
+        "heatmap_consistent_with_visible_evidence": "unknown",
+        "inspection_id": "e2e_verify_20261125_full2",
+        "language": "en",
+        "needs_review": true,
+        "object_id": "screw_01",
+        "other_possible_explanation": "The deterministic pipeline's decision is based on a high probability score (p_defect=0.99998) and a threshold-based decision, but no visual evidence is present in the images to support the defect classification.",
+        "report_status": "completed",
+        "report_version": "1.0",
+        "visible_defect_type": "unknown",
+        "visible_evidence": []
+      },
+      "diagnostic": null
+    }
+  ]
+}

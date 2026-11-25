@@ -1,0 +1,16 @@
+category,support,correct,incorrect,rejected,accuracy,rejection_rate
+bottle,83,83,0,0,1.0,0.0
+cable,150,150,0,0,1.0,0.0
+capsule,132,132,0,0,1.0,0.0
+carpet,117,117,0,0,1.0,0.0
+grid,78,78,0,0,1.0,0.0
+hazelnut,110,110,0,0,1.0,0.0
+leather,124,124,0,0,1.0,0.0
+metal_nut,115,115,0,0,1.0,0.0
+pill,167,167,0,0,1.0,0.0
+screw,160,160,0,0,1.0,0.0
+tile,117,117,0,0,1.0,0.0
+toothbrush,42,42,0,0,1.0,0.0
+transistor,100,100,0,0,1.0,0.0
+wood,79,79,0,0,1.0,0.0
+zipper,151,151,0,0,1.0,0.0

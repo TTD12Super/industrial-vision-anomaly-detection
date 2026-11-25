@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "product_key": "screw",
+  "target_good_false_positive_rate": 0.2,
+  "mask_threshold": 1.7456392015446846e-06,
+  "mask_postprocess": "raw",
+  "model": "mlp",
+  "validation": {
+    "pixel_precision": 0.044513662470355445,
+    "pixel_recall": 0.9916200645390191,
+    "pixel_f1": 0.08520259441631439,
+    "pixel_dice": 0.08520259441631439,
+    "pixel_iou": 0.044496923887538994,
+    "pixel_specificity": 0.7290582094967243,
+    "pixel_false_positive_rate": 0.2709417905032757,
+    "good_false_positive_rate": 0.19751668335425634,
+    "image_precision": 0.8333333333333334,
+    "image_recall": 1.0,
+    "image_f1": 0.9090909090909091,
+    "good_image_false_positive_rate": 1.0,
+    "mean_predicted_area_ratio": 0.2801335095435605,
+    "mean_truth_area_ratio": 0.012544952214026593
+  },
+  "test": {
+    "pixel_precision": 0.043819731523398346,
+    "pixel_recall": 0.9665886297291829,
+    "pixel_f1": 0.08383868517436832,
+    "pixel_dice": 0.08383868517436832,
+    "pixel_iou": 0.04375345881669547,
+    "pixel_specificity": 0.7646547375943797,
+    "pixel_false_positive_rate": 0.23534526240562026,
+    "good_false_positive_rate": 0.25702607099749075,
+    "image_precision": 0.8333333333333334,
+    "image_recall": 1.0,
+    "image_f1": 0.9090909090909091,
+    "good_image_false_positive_rate": 1.0,
+    "mean_predicted_area_ratio": 0.24307090157619113,
+    "mean_truth_area_ratio": 0.01099377068399121
+  },
+  "artifact_path": "artifacts/products/screw/screw-rnd2-mlp/supervised_refiner.pkl",
+  "warning": "Test results are supervised-development diagnostics; do not claim production readiness."
+}

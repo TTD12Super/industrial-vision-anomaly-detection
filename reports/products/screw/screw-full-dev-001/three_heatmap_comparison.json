@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "product_key": "screw",
+  "dataset": "datasets/products/screw_anomaly_full",
+  "dataset_images": 480,
+  "split_counts": {
+    "train": 333,
+    "validation": 69,
+    "test": 78
+  },
+  "methods": {
+    "anomalyclip_baseline": {
+      "test_pixel_precision": 0.01267515157148578,
+      "test_pixel_recall": 0.8471674562423761,
+      "test_pixel_dice": 0.024976608083200996,
+      "test_pixel_iou": 0.012646234057491698,
+      "test_good_false_positive_rate": 0.19345568101725855,
+      "test_pixel_average_precision": 0.13940555281888214
+    },
+    "relation_map_only": {
+      "test_pixel_precision": 0.003141810126096255,
+      "test_pixel_recall": 0.5362117386740801,
+      "test_pixel_dice": 0.006247017282246732,
+      "test_pixel_iou": 0.0031332955167451123,
+      "test_good_false_positive_rate": 0.4987639793005516,
+      "test_pixel_average_precision": 0.002903051801625369
+    },
+    "anomalyclip_plus_relation_map": {
+      "test_pixel_precision": 0.004680367056280474,
+      "test_pixel_recall": 0.8442030013332955,
+      "test_pixel_dice": 0.009309123169062142,
+      "test_pixel_iou": 0.004676327840453921,
+      "test_good_false_positive_rate": 0.5263018135926932,
+      "test_pixel_average_precision": 0.036396678226183435
+    },
+    "supervised_patch_refiner": {
+      "test_pixel_precision": 0.014307864690616746,
+      "test_pixel_recall": 0.9523275935434455,
+      "test_pixel_dice": 0.02819216744739136,
+      "test_pixel_iou": 0.014297624231918746,
+      "test_good_false_positive_rate": 0.17866662634944905,
+      "calibration_target_good_false_positive_rate": 0.15
+    }
+  },
+  "warning": "Test split is supervised-development data and is not an independent production estimate."
+}

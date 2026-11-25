@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "product_key": "screw",
+  "dataset": "datasets/products/screw_anomaly_full",
+  "classifier": "frozen DINOv2 global embedding + balanced linear head",
+  "splits": {
+    "train": {
+      "objects": 333,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "defect_precision": 1.0,
+      "defect_recall": 1.0,
+      "auroc": 1.0,
+      "confusion_matrix": [[252, 0], [0, 81]]
+    },
+    "validation": {
+      "objects": 69,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "defect_precision": 1.0,
+      "defect_recall": 1.0,
+      "auroc": 1.0,
+      "confusion_matrix": [[54, 0], [0, 15]]
+    },
+    "test": {
+      "objects": 78,
+      "accuracy": 0.6410256410256411,
+      "balanced_accuracy": 0.5430830039525691,
+      "defect_precision": 0.3684210526315789,
+      "defect_recall": 0.30434782608695654,
+      "auroc": 0.6671936758893281,
+      "confusion_matrix": [[43, 12], [16, 7]]
+    }
+  },
+  "warning": "The full-pool split exposes a strong generalization gap; do not use this classifier as production-ready."
+}

@@ -1,0 +1,43 @@
+{
+  "protocol": "mixed_nominal",
+  "calibration_count": 120,
+  "test_count": 376,
+  "operating_points": [
+    {
+      "allowed_good_fpr": 0.01,
+      "calibration_threshold": 0.595832347869873,
+      "test_defect_recall": 0.6867469879518072,
+      "test_good_fp": 0.12380952380952381,
+      "test_good_false_positive_count": 26
+    },
+    {
+      "allowed_good_fpr": 0.02,
+      "calibration_threshold": 0.5896881222724915,
+      "test_defect_recall": 0.6987951807228916,
+      "test_good_fp": 0.12380952380952381,
+      "test_good_false_positive_count": 26
+    },
+    {
+      "allowed_good_fpr": 0.03,
+      "calibration_threshold": 0.577250063419342,
+      "test_defect_recall": 0.7831325301204819,
+      "test_good_fp": 0.15714285714285714,
+      "test_good_false_positive_count": 33
+    },
+    {
+      "allowed_good_fpr": 0.04,
+      "calibration_threshold": 0.5708766579627991,
+      "test_defect_recall": 0.8012048192771084,
+      "test_good_fp": 0.15714285714285714,
+      "test_good_false_positive_count": 33
+    },
+    {
+      "allowed_good_fpr": 0.05,
+      "calibration_threshold": 0.5593984723091125,
+      "test_defect_recall": 0.8433734939759037,
+      "test_good_fp": 0.2,
+      "test_good_false_positive_count": 42
+    }
+  ],
+  "selection_rule": "thresholds selected from disjoint calibration only; test rows are locked diagnostics"
+}

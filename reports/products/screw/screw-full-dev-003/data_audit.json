@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "dataset_root": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/products/screw_anomaly_full",
+  "manifest": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-003/classification_manifest.csv",
+  "images": 480,
+  "unique_sha256": 480,
+  "unique_capture_groups": 480,
+  "split_counts": {
+    "test": 78,
+    "train": 333,
+    "validation": 69
+  },
+  "split_label_counts": {
+    "test__DEFECT": 23,
+    "test__GOOD": 55,
+    "train__DEFECT": 81,
+    "train__GOOD": 252,
+    "validation__DEFECT": 15,
+    "validation__GOOD": 54
+  },
+  "defect_type_counts": {
+    "manipulated_front": 24,
+    "scratch_head": 24,
+    "scratch_neck": 25,
+    "thread_side": 23,
+    "thread_top": 23
+  },
+  "sha256_overlap": {},
+  "capture_group_overlap": {},
+  "leakage_free_exact_content": true,
+  "leakage_free_capture_groups": true,
+  "source_manifest_sha256": "a9ec2f2136cc5d700011a430a3ed009f8269239f9f2f336175594725086eba37"
+}

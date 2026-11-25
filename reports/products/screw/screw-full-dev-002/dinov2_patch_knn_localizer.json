@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0",
+  "product_key": "screw",
+  "memory_source": "full train GOOD only",
+  "memory_images": 252,
+  "methods": {
+    "1": {
+      "threshold": 0.3416975188255311,
+      "validation": {
+        "pixel_precision": 0.018803297089916064,
+        "pixel_recall": 0.9067846250176735,
+        "pixel_f1": 0.036842617094550875,
+        "pixel_dice": 0.036842617094550875,
+        "pixel_iou": 0.018767021643483442,
+        "pixel_specificity": 0.8918215198643638,
+        "pixel_false_positive_rate": 0.10817848013563625,
+        "good_false_positive_rate": 0.07479593702276251,
+        "image_precision": 0.21739130434782608,
+        "image_recall": 1.0,
+        "image_f1": 0.3571428571428571,
+        "good_image_false_positive_rate": 1.0,
+        "mean_predicted_area_ratio": 0.11709373690833907,
+        "mean_truth_area_ratio": 0.0027436158450350485,
+        "pixel_average_precision": 0.37437041195422466
+      },
+      "test": {
+        "pixel_precision": 0.022378767508488603,
+        "pixel_recall": 0.9335338004595615,
+        "pixel_f1": 0.043709721122734684,
+        "pixel_dice": 0.043709721122734684,
+        "pixel_iou": 0.02234316736870979,
+        "pixel_specificity": 0.8804444268876603,
+        "pixel_false_positive_rate": 0.11955557311233966,
+        "good_false_positive_rate": 0.11498731411974895,
+        "image_precision": 0.2948717948717949,
+        "image_recall": 1.0,
+        "image_f1": 0.45544554455445546,
+        "good_image_false_positive_rate": 1.0,
+        "mean_predicted_area_ratio": 0.1284984969637609,
+        "mean_truth_area_ratio": 0.002828671849188263,
+        "pixel_average_precision": 0.3983927807012096
+      }
+    },
+    "3": {
+      "threshold": 0.3525189757347107,
+      "validation": {
+        "pixel_precision": 0.015846334536170525,
+        "pixel_recall": 0.903128724070371,
+        "pixel_f1": 0.031146176943135744,
+        "pixel_dice": 0.031146176943135744,
+        "pixel_iou": 0.015819446105337493,
+        "pixel_specificity": 0.8717674127535999,
+        "pixel_false_positive_rate": 0.12823258724640008,
+        "good_false_positive_rate": 0.09309094579551613,
+        "image_precision": 0.21739130434782608,
+        "image_recall": 1.0,
+        "image_f1": 0.3571428571428571,
+        "good_image_false_positive_rate": 1.0,
+        "mean_predicted_area_ratio": 0.13744457487760145,
+        "mean_truth_area_ratio": 0.0027436158450350485,
+        "pixel_average_precision": 0.362458637364572
+      },
+      "test": {
+        "pixel_precision": 0.01938652727209213,
+        "pixel_recall": 0.9367251992851267,
+        "pixel_f1": 0.03798687562966578,
+        "pixel_dice": 0.03798687562966578,
+        "pixel_iou": 0.019361173051203138,
+        "pixel_specificity": 0.8610958066776304,
+        "pixel_false_positive_rate": 0.13890419332236958,
+        "good_false_positive_rate": 0.13556021022879283,
+        "image_precision": 0.2948717948717949,
+        "image_recall": 1.0,
+        "image_f1": 0.45544554455445546,
+        "good_image_false_positive_rate": 1.0,
+        "mean_predicted_area_ratio": 0.14826921844418872,
+        "mean_truth_area_ratio": 0.002828671849188263,
+        "pixel_average_precision": 0.3993829847921363
+      }
+    },
+    "5": {
+      "threshold": 0.3578785419464111,
+      "validation": {
+        "pixel_precision": 0.013761751085690206,
+        "pixel_recall": 0.904986972065685,
+        "pixel_f1": 0.027111233205618177,
+        "pixel_dice": 0.027111233205618177,
+        "pixel_iou": 0.01374189648292714,
+        "pixel_specificity": 0.8517259582802831,
+        "pixel_false_positive_rate": 0.14827404171971692,
+        "good_false_positive_rate": 0.11150521388585355,
+        "image_precision": 0.21739130434782608,
+        "image_recall": 1.0,
+        "image_f1": 0.3571428571428571,
+        "good_image_false_positive_rate": 1.0,
+        "mean_predicted_area_ratio": 0.1577616740551205,
+        "mean_truth_area_ratio": 0.0027436158450350485,
+        "pixel_average_precision": 0.3558403277273586
+      },
+      "test": {
+        "pixel_precision": 0.01703638711641707,
+        "pixel_recall": 0.9397038381889875,
+        "pixel_f1": 0.03346605053019527,
+        "pixel_dice": 0.03346605053019527,
+        "pixel_iou": 0.01701778427940083,
+        "pixel_specificity": 0.841051563581778,
+        "pixel_false_positive_rate": 0.15894843641822198,
+        "good_false_positive_rate": 0.15649010494169371,
+        "image_precision": 0.2948717948717949,
+        "image_recall": 1.0,
+        "image_f1": 0.45544554455445546,
+        "good_image_false_positive_rate": 1.0,
+        "mean_predicted_area_ratio": 0.1686396110420617,
+        "mean_truth_area_ratio": 0.002828671849188263,
+        "pixel_average_precision": 0.39522430219079924
+      }
+    }
+  },
+  "warning": "Test is supervised-development diagnostic and not an independent production estimate."
+}

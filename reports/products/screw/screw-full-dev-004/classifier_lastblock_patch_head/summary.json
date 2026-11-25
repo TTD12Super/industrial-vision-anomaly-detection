@@ -1,0 +1,141 @@
+{
+  "dataset": "MVTec AD/screw",
+  "protocol": "DINOv2 last Transformer block + global/patch-aware GOOD/DEFECT head",
+  "device": "mps",
+  "counts": {
+    "train": {
+      "GOOD": 256,
+      "DEFECT": 81,
+      "total": 337
+    },
+    "validation": {
+      "GOOD": 50,
+      "DEFECT": 15,
+      "total": 65
+    },
+    "test": {
+      "GOOD": 55,
+      "DEFECT": 23,
+      "total": 78
+    }
+  },
+  "best_epoch": 5,
+  "epochs_trained": 11,
+  "threshold": 0.8196384906768799,
+  "threshold_rule": "highest threshold meeting defect recall >= 0.90",
+  "results": {
+    "validation": {
+      "images": 65,
+      "threshold": 0.8196384906768799,
+      "accuracy": 0.9692307692307692,
+      "balanced_accuracy": 0.9566666666666667,
+      "precision_defect": 0.9333333333333333,
+      "recall_defect": 0.9333333333333333,
+      "f1_defect": 0.9333333333333333,
+      "good_recall": 0.98,
+      "image_auroc": 0.9933333333333333,
+      "image_average_precision": 0.9796825396825397,
+      "confusion_matrix_good_defect": [
+        [
+          49,
+          1
+        ],
+        [
+          1,
+          14
+        ]
+      ]
+    },
+    "test": {
+      "images": 78,
+      "threshold": 0.8196384906768799,
+      "accuracy": 0.8846153846153846,
+      "balanced_accuracy": 0.8549407114624505,
+      "precision_defect": 0.8181818181818182,
+      "recall_defect": 0.782608695652174,
+      "f1_defect": 0.8,
+      "good_recall": 0.9272727272727272,
+      "image_auroc": 0.9715415019762845,
+      "image_average_precision": 0.9377294492209232,
+      "confusion_matrix_good_defect": [
+        [
+          51,
+          4
+        ],
+        [
+          5,
+          18
+        ]
+      ]
+    }
+  },
+  "checkpoint": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt",
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.6547353971384753,
+      "validation_auroc": 0.9386666666666665,
+      "validation_balanced_accuracy_at_0_5": 0.6
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.4750612787570727,
+      "validation_auroc": 0.9733333333333334,
+      "validation_balanced_accuracy_at_0_5": 0.8333333333333333
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.3017157006080232,
+      "validation_auroc": 0.9853333333333334,
+      "validation_balanced_accuracy_at_0_5": 0.9
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.1925864820720943,
+      "validation_auroc": 0.9893333333333333,
+      "validation_balanced_accuracy_at_0_5": 0.9
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.08170924259682238,
+      "validation_auroc": 0.9933333333333333,
+      "validation_balanced_accuracy_at_0_5": 0.9466666666666667
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.07722733612967642,
+      "validation_auroc": 0.98,
+      "validation_balanced_accuracy_at_0_5": 0.9233333333333333
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.04138838572893,
+      "validation_auroc": 0.9773333333333334,
+      "validation_balanced_accuracy_at_0_5": 0.8866666666666667
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.01975957133782019,
+      "validation_auroc": 0.9813333333333333,
+      "validation_balanced_accuracy_at_0_5": 0.9233333333333333
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.01981025209038972,
+      "validation_auroc": 0.9773333333333333,
+      "validation_balanced_accuracy_at_0_5": 0.8633333333333333
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.07411822259776958,
+      "validation_auroc": 0.9773333333333333,
+      "validation_balanced_accuracy_at_0_5": 0.88
+    },
+    {
+      "epoch": 11,
+      "train_loss": 0.04984191380175433,
+      "validation_auroc": 0.984,
+      "validation_balanced_accuracy_at_0_5": 0.89
+    }
+  ]
+}

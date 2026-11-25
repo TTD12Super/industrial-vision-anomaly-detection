@@ -1,0 +1,153 @@
+{
+  "report_version": "heatmap-refinement-comparison-v1",
+  "test_images": 345,
+  "test_stride": 5,
+  "validation_images": 1089,
+  "device": "cpu",
+  "methods": {
+    "fixed_0.50": {
+      "true_positive": 479317,
+      "false_positive": 655980,
+      "true_negative": 21234637,
+      "false_negative": 239986,
+      "precision": 0.4221952493488488,
+      "recall": 0.6663631320875903,
+      "f1": 0.516895287393508,
+      "iou": 0.3485224495612903,
+      "false_positive_rate": 0.029966263627927894
+    },
+    "fixed_0.60": {
+      "true_positive": 297176,
+      "false_positive": 245800,
+      "true_negative": 21644817,
+      "false_negative": 422127,
+      "precision": 0.5473096416784535,
+      "recall": 0.4131443911675608,
+      "f1": 0.47085628454565115,
+      "iou": 0.30792153790838905,
+      "false_positive_rate": 0.01122855513848696
+    },
+    "fixed_0.70": {
+      "true_positive": 171638,
+      "false_positive": 90955,
+      "true_negative": 21799662,
+      "false_negative": 547665,
+      "precision": 0.6536274767415735,
+      "recall": 0.2386171057259597,
+      "f1": 0.34960525350953664,
+      "iou": 0.21183129324239933,
+      "false_positive_rate": 0.004154976536294066
+    },
+    "fixed_0.80": {
+      "true_positive": 61112,
+      "false_positive": 25364,
+      "true_negative": 21865253,
+      "false_negative": 658191,
+      "precision": 0.706693186548869,
+      "recall": 0.0849600238008183,
+      "f1": 0.15168427074917565,
+      "iou": 0.08206621214583162,
+      "false_positive_rate": 0.0011586699452098587
+    },
+    "fixed_0.70_open3_area9": {
+      "true_positive": 171415,
+      "false_positive": 90735,
+      "true_negative": 21799882,
+      "false_negative": 547888,
+      "precision": 0.6538813656303643,
+      "recall": 0.23830708338488787,
+      "f1": 0.34930862710695265,
+      "iou": 0.21161352924183804,
+      "false_positive_rate": 0.004144926568310067
+    },
+    "fixed_0.70_area25": {
+      "true_positive": 171612,
+      "false_positive": 90942,
+      "true_negative": 21799675,
+      "false_negative": 547691,
+      "precision": 0.6536255398889371,
+      "recall": 0.23858095962341322,
+      "f1": 0.3495661791890265,
+      "iou": 0.21180260291640182,
+      "false_positive_rate": 0.004154382674549557
+    },
+    "category_q995": {
+      "true_positive": 669366,
+      "false_positive": 2399026,
+      "true_negative": 19491591,
+      "false_negative": 49937,
+      "precision": 0.21814878933330553,
+      "recall": 0.930575849120607,
+      "f1": 0.35344239702510366,
+      "iou": 0.2146553490667598,
+      "false_positive_rate": 0.10959152042174052
+    },
+    "category_q995_open3_area9": {
+      "true_positive": 669311,
+      "false_positive": 2394797,
+      "true_negative": 19495820,
+      "false_negative": 49992,
+      "precision": 0.21843583842344982,
+      "recall": 0.9304993862113741,
+      "f1": 0.3538135296429597,
+      "iou": 0.21492919302527214,
+      "false_positive_rate": 0.10939833262808445
+    },
+    "adaptive_0.40_0.80_area256": {
+      "true_positive": 61725,
+      "false_positive": 56777,
+      "true_negative": 21833840,
+      "false_negative": 657578,
+      "precision": 0.520877284771565,
+      "recall": 0.08581223768008753,
+      "f1": 0.14734932352993835,
+      "iou": 0.07953432635810741,
+      "false_positive_rate": 0.002593668328307055
+    },
+    "top1pct_open3_area9": {
+      "true_positive": 99161,
+      "false_positive": 123694,
+      "true_negative": 21766923,
+      "false_negative": 620142,
+      "precision": 0.4449574835655471,
+      "recall": 0.13785706440818404,
+      "f1": 0.21049760231298786,
+      "iou": 0.11762912560780169,
+      "false_positive_rate": 0.005650548817331188
+    }
+  },
+  "raw_heatmap": {
+    "pixel_auroc": 0.9497717032030335,
+    "pixel_average_precision": 0.47417657716252126,
+    "image_auroc": 0.9231097456903907,
+    "image_average_precision": 0.9738477633050749
+  },
+  "test_latency": {
+    "total_seconds": 52.906267624988686,
+    "mean_seconds": 0.15335150036228604
+  },
+  "thresholds_by_category": {
+    "bottle": 0.2764924168586731,
+    "cable": 0.4209776520729065,
+    "capsule": 0.28307926654815674,
+    "carpet": 0.40430957078933716,
+    "grid": 0.3654710650444031,
+    "hazelnut": 0.48252609372138977,
+    "leather": 0.4033307135105133,
+    "metal_nut": 0.3923196792602539,
+    "pill": 0.3307313024997711,
+    "screw": 0.38738977909088135,
+    "tile": 0.38495495915412903,
+    "toothbrush": 0.3149474561214447,
+    "transistor": 0.37072405219078064,
+    "wood": 0.509492039680481,
+    "zipper": 0.3667841851711273
+  },
+  "selection": {
+    "primary_metric": "f1",
+    "tie_breaker": "iou",
+    "best_method": "fixed_0.50",
+    "warning": "Best method is selected on the 1/5 test subset for exploration; validate on a held-out split before production."
+  },
+  "protocol": "All methods reuse cached PatchCore n=3 maps; category thresholds use GOOD validation pixels only; morphology uses 3x3 opening and connected-component filtering."
+}

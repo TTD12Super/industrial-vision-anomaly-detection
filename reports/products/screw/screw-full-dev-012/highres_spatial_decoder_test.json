@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "product_key": "screw",
+  "split": "test",
+  "mask_threshold": 0.06944858282804489,
+  "mask_postprocess": "raw",
+  "metrics": {
+    "pixel_precision": 0.017998806559303034,
+    "pixel_recall": 0.9613344302289297,
+    "pixel_f1": 0.03533602618294433,
+    "pixel_dice": 0.03533602618294433,
+    "pixel_iou": 0.017985786197469475,
+    "pixel_specificity": 0.8462383180970479,
+    "pixel_false_positive_rate": 0.15376168190295214,
+    "good_false_positive_rate": 0.12106752502501052,
+    "image_precision": 0.2948717948717949,
+    "image_recall": 1.0,
+    "image_f1": 0.45544554455445546,
+    "good_image_false_positive_rate": 1.0,
+    "mean_predicted_area_ratio": 0.15585204261595706,
+    "mean_truth_area_ratio": 0.002828671849188263,
+    "pixel_average_precision": 0.5986558232312904
+  },
+  "sample_count": 78,
+  "warning": "This test split is supervised-development data and is not an independent production estimate."
+}

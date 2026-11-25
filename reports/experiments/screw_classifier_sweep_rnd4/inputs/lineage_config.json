@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "experiment": "dinov2_lastblock_patch_head_threshold_sweep",
+  "model": "artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt",
+  "model_sha256": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c",
+  "classification_manifest": "reports/products/screw/screw-full-dev-004/classification_manifest.csv",
+  "threshold_report": "reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+  "selection": {
+    "split": "validation",
+    "target_defect_recall": 0.9,
+    "good_false_positive_cap": 0.2,
+    "tie_break": [
+      "higher_threshold",
+      "lower_name"
+    ]
+  },
+  "warning": "Development/diagnostic evidence; not a target-camera production benchmark."
+}

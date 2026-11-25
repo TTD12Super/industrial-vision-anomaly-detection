@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "product_key": "screw",
+  "split": "test",
+  "metrics": {
+    "baseline": {
+      "pixel_precision": 0.028994899939130212,
+      "pixel_recall": 0.8508338391282985,
+      "pixel_dice": 0.05607873654252244,
+      "pixel_iou": 0.028848255120570182,
+      "good_false_positive_rate": 0.317935017473068,
+      "pixel_average_precision": 0.12653831700492932
+    },
+    "relation": {
+      "pixel_precision": 0.010842292853925543,
+      "pixel_recall": 0.8000809271944276,
+      "pixel_dice": 0.021394656127777464,
+      "pixel_iou": 0.010812998253561332,
+      "good_false_positive_rate": 0.814464268898197,
+      "pixel_average_precision": 0.012409241388740486
+    },
+    "fusion": {
+      "pixel_precision": 0.014576337815083787,
+      "pixel_recall": 0.8209196797595306,
+      "pixel_dice": 0.02864406848033046,
+      "pixel_iou": 0.0145301353359611,
+      "good_false_positive_rate": 0.6192541728317981,
+      "pixel_average_precision": 0.07341900160026012
+    }
+  },
+  "prototype_path": "artifacts/products/screw/screw-supervised-dev-002/relation_prototype.npz",
+  "warning": "This test split is supervised-development data and is not an independent production estimate."
+}

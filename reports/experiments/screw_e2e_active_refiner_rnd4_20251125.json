@@ -1,0 +1,1231 @@
+{
+  "schema_version": "1.0",
+  "product_key": "screw",
+  "split": "test",
+  "iou_threshold": 0.5,
+  "product_recognizer_active": true,
+  "integrated_metrics": {
+    "gt_defect": 23,
+    "detected_defect": 20,
+    "classified_defect": 15,
+    "review_aware_capture": 15,
+    "gt_good": 55,
+    "good_flagged": 37,
+    "missed_objects": 3,
+    "ground_truth_objects": 78,
+    "predicted_objects": 104,
+    "matched_objects": 70,
+    "missed_ground_truth_objects": 8,
+    "unmatched_predictions": 34,
+    "unmatched_false_positives": 34,
+    "matched_good": 50,
+    "missed_good": 5,
+    "matched_defect": 20,
+    "missed_defect": 3,
+    "good_false_alarm_count": 37,
+    "end_to_end_defect_recall": 0.6521739130434783,
+    "review_aware_capture_rate": 0.6521739130434783,
+    "good_false_alarm_rate": 0.6727272727272727,
+    "matched_known_product_count": 52,
+    "matched_unknown_product_count": 18,
+    "matched_review_product_count": 0,
+    "known_product_objects": 52,
+    "unknown_product_objects": 18,
+    "review_product_objects": 0,
+    "unknown_false_accept_count": 0,
+    "unknown_false_accept_rate": null,
+    "unknown_rejection_rate": null,
+    "product_recognition_coverage": 0.6666666666666666,
+    "known_product_recognition_coverage": 0.6666666666666666,
+    "matched_known_product_recognition_coverage": 0.7428571428571429,
+    "known_only_defect_recall": 0.6521739130434783,
+    "matched_known_quality_defect_recall": 1.0
+  },
+  "per_image": [
+    {
+      "image_id": "mvtec_ad_full_good_train_306",
+      "inspection_id": "evaluation_0000",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 1430.946,
+        "total": 17236.964
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_307",
+      "inspection_id": "evaluation_0001",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 167.948,
+        "total": 3744.739
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_308",
+      "inspection_id": "evaluation_0002",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 139.014,
+        "total": 5387.729
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_309",
+      "inspection_id": "evaluation_0003",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 216.487,
+        "total": 3972.847
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_310",
+      "inspection_id": "evaluation_0004",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 133.69,
+        "total": 3219.595
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_311",
+      "inspection_id": "evaluation_0005",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 131.241,
+        "total": 3550.574
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_312",
+      "inspection_id": "evaluation_0006",
+      "detected": 2,
+      "ground_truth_objects": 1,
+      "predicted_objects": 2,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 1,
+      "unmatched_false_positives": 1,
+      "latency_ms": {
+        "detector": 131.129,
+        "total": 432.484
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_313",
+      "inspection_id": "evaluation_0007",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 125.215,
+        "total": 4046.862
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_314",
+      "inspection_id": "evaluation_0008",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 710.95,
+        "total": 4605.206
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_315",
+      "inspection_id": "evaluation_0009",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 133.957,
+        "total": 3268.103
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_316",
+      "inspection_id": "evaluation_0010",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 136.058,
+        "total": 3307.912
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_317",
+      "inspection_id": "evaluation_0011",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 129.241,
+        "total": 4623.89
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_318",
+      "inspection_id": "evaluation_0012",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 0,
+      "missed_ground_truth_objects": 1,
+      "unmatched_predictions": 1,
+      "unmatched_false_positives": 1,
+      "latency_ms": {
+        "detector": 208.824,
+        "total": 3474.73
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_319",
+      "inspection_id": "evaluation_0013",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 145.123,
+        "total": 361.687
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_000",
+      "inspection_id": "evaluation_0014",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 140.945,
+        "total": 3319.729
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_001",
+      "inspection_id": "evaluation_0015",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 0,
+      "missed_ground_truth_objects": 1,
+      "unmatched_predictions": 1,
+      "unmatched_false_positives": 1,
+      "latency_ms": {
+        "detector": 127.262,
+        "total": 334.042
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_002",
+      "inspection_id": "evaluation_0016",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 130.839,
+        "total": 340.807
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_003",
+      "inspection_id": "evaluation_0017",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 166.857,
+        "total": 3488.028
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_004",
+      "inspection_id": "evaluation_0018",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 133.214,
+        "total": 349.929
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_005",
+      "inspection_id": "evaluation_0019",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 130.668,
+        "total": 336.523
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_006",
+      "inspection_id": "evaluation_0020",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 138.6,
+        "total": 3464.974
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_007",
+      "inspection_id": "evaluation_0021",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 138.4,
+        "total": 344.105
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_008",
+      "inspection_id": "evaluation_0022",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 131.384,
+        "total": 3580.121
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_009",
+      "inspection_id": "evaluation_0023",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 131.947,
+        "total": 2994.724
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_010",
+      "inspection_id": "evaluation_0024",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 128.533,
+        "total": 3280.718
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_011",
+      "inspection_id": "evaluation_0025",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 140.269,
+        "total": 3178.148
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_012",
+      "inspection_id": "evaluation_0026",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 156.301,
+        "total": 3364.441
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_013",
+      "inspection_id": "evaluation_0027",
+      "detected": 4,
+      "ground_truth_objects": 1,
+      "predicted_objects": 4,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 3,
+      "unmatched_false_positives": 3,
+      "latency_ms": {
+        "detector": 141.153,
+        "total": 3740.293
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_014",
+      "inspection_id": "evaluation_0028",
+      "detected": 2,
+      "ground_truth_objects": 1,
+      "predicted_objects": 2,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 1,
+      "unmatched_false_positives": 1,
+      "latency_ms": {
+        "detector": 129.398,
+        "total": 416.144
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_015",
+      "inspection_id": "evaluation_0029",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 115.995,
+        "total": 3239.51
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_016",
+      "inspection_id": "evaluation_0030",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 136.114,
+        "total": 3101.293
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_017",
+      "inspection_id": "evaluation_0031",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 130.896,
+        "total": 3211.149
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_018",
+      "inspection_id": "evaluation_0032",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 194.132,
+        "total": 430.226
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_019",
+      "inspection_id": "evaluation_0033",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 136.504,
+        "total": 3261.408
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_020",
+      "inspection_id": "evaluation_0034",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 127.705,
+        "total": 326.204
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_021",
+      "inspection_id": "evaluation_0035",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 125.495,
+        "total": 2911.325
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_022",
+      "inspection_id": "evaluation_0036",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 0,
+      "missed_ground_truth_objects": 1,
+      "unmatched_predictions": 1,
+      "unmatched_false_positives": 1,
+      "latency_ms": {
+        "detector": 129.137,
+        "total": 337.244
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_023",
+      "inspection_id": "evaluation_0037",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 138.328,
+        "total": 339.837
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_024",
+      "inspection_id": "evaluation_0038",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 119.289,
+        "total": 314.859
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_025",
+      "inspection_id": "evaluation_0039",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 129.596,
+        "total": 409.867
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_026",
+      "inspection_id": "evaluation_0040",
+      "detected": 2,
+      "ground_truth_objects": 1,
+      "predicted_objects": 2,
+      "matched_objects": 0,
+      "missed_ground_truth_objects": 1,
+      "unmatched_predictions": 2,
+      "unmatched_false_positives": 2,
+      "latency_ms": {
+        "detector": 182.495,
+        "total": 3457.642
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_027",
+      "inspection_id": "evaluation_0041",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 130.687,
+        "total": 3185.512
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_028",
+      "inspection_id": "evaluation_0042",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 131.244,
+        "total": 2938.85
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_029",
+      "inspection_id": "evaluation_0043",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 130.077,
+        "total": 3202.199
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_030",
+      "inspection_id": "evaluation_0044",
+      "detected": 5,
+      "ground_truth_objects": 1,
+      "predicted_objects": 5,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 4,
+      "unmatched_false_positives": 4,
+      "latency_ms": {
+        "detector": 137.677,
+        "total": 3844.615
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_031",
+      "inspection_id": "evaluation_0045",
+      "detected": 2,
+      "ground_truth_objects": 1,
+      "predicted_objects": 2,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 1,
+      "unmatched_false_positives": 1,
+      "latency_ms": {
+        "detector": 118.994,
+        "total": 3523.761
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_032",
+      "inspection_id": "evaluation_0046",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 128.645,
+        "total": 3308.467
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_033",
+      "inspection_id": "evaluation_0047",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 133.268,
+        "total": 3206.634
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_034",
+      "inspection_id": "evaluation_0048",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 134.327,
+        "total": 3205.496
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_035",
+      "inspection_id": "evaluation_0049",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 135.461,
+        "total": 3512.501
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_036",
+      "inspection_id": "evaluation_0050",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 133.162,
+        "total": 3226.156
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_037",
+      "inspection_id": "evaluation_0051",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 128.285,
+        "total": 3373.302
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_038",
+      "inspection_id": "evaluation_0052",
+      "detected": 5,
+      "ground_truth_objects": 1,
+      "predicted_objects": 5,
+      "matched_objects": 0,
+      "missed_ground_truth_objects": 1,
+      "unmatched_predictions": 5,
+      "unmatched_false_positives": 5,
+      "latency_ms": {
+        "detector": 138.935,
+        "total": 864.809
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_039",
+      "inspection_id": "evaluation_0053",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 130.113,
+        "total": 3276.022
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_040",
+      "inspection_id": "evaluation_0054",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 147.471,
+        "total": 2948.084
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_manipulated_front_test_019",
+      "inspection_id": "evaluation_0055",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 129.509,
+        "total": 3852.43
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_manipulated_front_test_020",
+      "inspection_id": "evaluation_0056",
+      "detected": 4,
+      "ground_truth_objects": 1,
+      "predicted_objects": 4,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 3,
+      "unmatched_false_positives": 3,
+      "latency_ms": {
+        "detector": 131.881,
+        "total": 3886.156
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_manipulated_front_test_021",
+      "inspection_id": "evaluation_0057",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 132.464,
+        "total": 3626.605
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_manipulated_front_test_022",
+      "inspection_id": "evaluation_0058",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 135.607,
+        "total": 3472.746
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_manipulated_front_test_023",
+      "inspection_id": "evaluation_0059",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 135.765,
+        "total": 3907.21
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_head_test_019",
+      "inspection_id": "evaluation_0060",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 136.17,
+        "total": 4034.606
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_head_test_020",
+      "inspection_id": "evaluation_0061",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 300.579,
+        "total": 546.311
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_head_test_021",
+      "inspection_id": "evaluation_0062",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 127.685,
+        "total": 4918.556
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_head_test_022",
+      "inspection_id": "evaluation_0063",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 197.288,
+        "total": 4200.772
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_head_test_023",
+      "inspection_id": "evaluation_0064",
+      "detected": 3,
+      "ground_truth_objects": 1,
+      "predicted_objects": 3,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 2,
+      "unmatched_false_positives": 2,
+      "latency_ms": {
+        "detector": 138.752,
+        "total": 6227.931
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_neck_test_020",
+      "inspection_id": "evaluation_0065",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 194.751,
+        "total": 439.593
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_neck_test_021",
+      "inspection_id": "evaluation_0066",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 128.506,
+        "total": 3094.1
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_neck_test_022",
+      "inspection_id": "evaluation_0067",
+      "detected": 2,
+      "ground_truth_objects": 1,
+      "predicted_objects": 2,
+      "matched_objects": 0,
+      "missed_ground_truth_objects": 1,
+      "unmatched_predictions": 2,
+      "unmatched_false_positives": 2,
+      "latency_ms": {
+        "detector": 129.989,
+        "total": 3403.048
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_neck_test_023",
+      "inspection_id": "evaluation_0068",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 145.544,
+        "total": 3236.838
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_neck_test_024",
+      "inspection_id": "evaluation_0069",
+      "detected": 2,
+      "ground_truth_objects": 1,
+      "predicted_objects": 2,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 1,
+      "unmatched_false_positives": 1,
+      "latency_ms": {
+        "detector": 133.897,
+        "total": 449.226
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_thread_side_test_019",
+      "inspection_id": "evaluation_0070",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 117.419,
+        "total": 3123.907
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_thread_side_test_020",
+      "inspection_id": "evaluation_0071",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 133.32,
+        "total": 2988.941
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_thread_side_test_021",
+      "inspection_id": "evaluation_0072",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 0,
+      "missed_ground_truth_objects": 1,
+      "unmatched_predictions": 1,
+      "unmatched_false_positives": 1,
+      "latency_ms": {
+        "detector": 132.374,
+        "total": 3089.723
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_thread_side_test_022",
+      "inspection_id": "evaluation_0073",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 130.058,
+        "total": 3262.41
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_thread_top_test_019",
+      "inspection_id": "evaluation_0074",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 131.881,
+        "total": 335.399
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_thread_top_test_020",
+      "inspection_id": "evaluation_0075",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 0,
+      "missed_ground_truth_objects": 1,
+      "unmatched_predictions": 1,
+      "unmatched_false_positives": 1,
+      "latency_ms": {
+        "detector": 128.396,
+        "total": 3132.791
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_thread_top_test_021",
+      "inspection_id": "evaluation_0076",
+      "detected": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0,
+      "unmatched_false_positives": 0,
+      "latency_ms": {
+        "detector": 131.379,
+        "total": 351.517
+      }
+    },
+    {
+      "image_id": "mvtec_ad_full_thread_top_test_022",
+      "inspection_id": "evaluation_0077",
+      "detected": 5,
+      "ground_truth_objects": 1,
+      "predicted_objects": 5,
+      "matched_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 4,
+      "unmatched_false_positives": 4,
+      "latency_ms": {
+        "detector": 123.045,
+        "total": 3640.122
+      }
+    }
+  ],
+  "latency_ms": {
+    "image_total": {
+      "count": 78,
+      "mean": 2922.358435897436,
+      "p50": 3238.174,
+      "p95": 4668.089899999998
+    },
+    "object_total": {
+      "count": 104,
+      "mean": 1991.0499807692306,
+      "p50": 2867.826,
+      "p95": 3892.4749499999994
+    }
+  },
+  "warning": "This report is only independent if the configured test split was never used for model selection or adaptation."
+}

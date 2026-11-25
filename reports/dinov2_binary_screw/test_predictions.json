@@ -1,0 +1,268 @@
+[
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/good/000.png",
+    "true_label": "GOOD",
+    "source_class": "good",
+    "probability_defect": 8.724146755412221e-05,
+    "decision": "GOOD"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/good/001.png",
+    "true_label": "GOOD",
+    "source_class": "good",
+    "probability_defect": 6.0971167840762064e-05,
+    "decision": "GOOD"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/good/002.png",
+    "true_label": "GOOD",
+    "source_class": "good",
+    "probability_defect": 0.0007141127134673297,
+    "decision": "GOOD"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/good/005.png",
+    "true_label": "GOOD",
+    "source_class": "good",
+    "probability_defect": 0.006975959986448288,
+    "decision": "GOOD"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/good/006.png",
+    "true_label": "GOOD",
+    "source_class": "good",
+    "probability_defect": 0.00040095418808050454,
+    "decision": "GOOD"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/good/007.png",
+    "true_label": "GOOD",
+    "source_class": "good",
+    "probability_defect": 0.005472553428262472,
+    "decision": "GOOD"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/good/008.png",
+    "true_label": "GOOD",
+    "source_class": "good",
+    "probability_defect": 0.0002992155496031046,
+    "decision": "GOOD"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/good/014.png",
+    "true_label": "GOOD",
+    "source_class": "good",
+    "probability_defect": 0.0024865830782800913,
+    "decision": "GOOD"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/good/015.png",
+    "true_label": "GOOD",
+    "source_class": "good",
+    "probability_defect": 0.002972859423607588,
+    "decision": "GOOD"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/good/016.png",
+    "true_label": "GOOD",
+    "source_class": "good",
+    "probability_defect": 0.0001143278059316799,
+    "decision": "GOOD"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/good/017.png",
+    "true_label": "GOOD",
+    "source_class": "good",
+    "probability_defect": 0.0021345731802284718,
+    "decision": "GOOD"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/good/019.png",
+    "true_label": "GOOD",
+    "source_class": "good",
+    "probability_defect": 0.0015479745343327522,
+    "decision": "GOOD"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/good/020.png",
+    "true_label": "GOOD",
+    "source_class": "good",
+    "probability_defect": 0.0012119071325287223,
+    "decision": "GOOD"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/good/027.png",
+    "true_label": "GOOD",
+    "source_class": "good",
+    "probability_defect": 0.006857468280941248,
+    "decision": "GOOD"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/good/029.png",
+    "true_label": "GOOD",
+    "source_class": "good",
+    "probability_defect": 0.0032379014883190393,
+    "decision": "GOOD"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/good/031.png",
+    "true_label": "GOOD",
+    "source_class": "good",
+    "probability_defect": 0.0005966196185909212,
+    "decision": "GOOD"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/good/033.png",
+    "true_label": "GOOD",
+    "source_class": "good",
+    "probability_defect": 0.0055967275984585285,
+    "decision": "GOOD"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/good/037.png",
+    "true_label": "GOOD",
+    "source_class": "good",
+    "probability_defect": 0.023615637794137,
+    "decision": "GOOD"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/good/038.png",
+    "true_label": "GOOD",
+    "source_class": "good",
+    "probability_defect": 0.006191411055624485,
+    "decision": "GOOD"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/good/039.png",
+    "true_label": "GOOD",
+    "source_class": "good",
+    "probability_defect": 0.006758243776857853,
+    "decision": "GOOD"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/good/040.png",
+    "true_label": "GOOD",
+    "source_class": "good",
+    "probability_defect": 0.0014247340150177479,
+    "decision": "GOOD"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/manipulated_front/011.png",
+    "true_label": "DEFECT",
+    "source_class": "manipulated_front",
+    "probability_defect": 0.5822700262069702,
+    "decision": "DEFECT"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/manipulated_front/019.png",
+    "true_label": "DEFECT",
+    "source_class": "manipulated_front",
+    "probability_defect": 0.9898847341537476,
+    "decision": "DEFECT"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/manipulated_front/023.png",
+    "true_label": "DEFECT",
+    "source_class": "manipulated_front",
+    "probability_defect": 0.5171184539794922,
+    "decision": "DEFECT"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/scratch_head/003.png",
+    "true_label": "DEFECT",
+    "source_class": "scratch_head",
+    "probability_defect": 0.9960911870002747,
+    "decision": "DEFECT"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/scratch_head/008.png",
+    "true_label": "DEFECT",
+    "source_class": "scratch_head",
+    "probability_defect": 0.9795545935630798,
+    "decision": "DEFECT"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/scratch_head/012.png",
+    "true_label": "DEFECT",
+    "source_class": "scratch_head",
+    "probability_defect": 0.9804136157035828,
+    "decision": "DEFECT"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/scratch_neck/001.png",
+    "true_label": "DEFECT",
+    "source_class": "scratch_neck",
+    "probability_defect": 0.9999948740005493,
+    "decision": "DEFECT"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/scratch_neck/010.png",
+    "true_label": "DEFECT",
+    "source_class": "scratch_neck",
+    "probability_defect": 0.9839251041412354,
+    "decision": "DEFECT"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/scratch_neck/021.png",
+    "true_label": "DEFECT",
+    "source_class": "scratch_neck",
+    "probability_defect": 0.9973440766334534,
+    "decision": "DEFECT"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/thread_side/012.png",
+    "true_label": "DEFECT",
+    "source_class": "thread_side",
+    "probability_defect": 0.1949809491634369,
+    "decision": "DEFECT"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/thread_side/013.png",
+    "true_label": "DEFECT",
+    "source_class": "thread_side",
+    "probability_defect": 0.9673681259155273,
+    "decision": "DEFECT"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/thread_side/018.png",
+    "true_label": "DEFECT",
+    "source_class": "thread_side",
+    "probability_defect": 0.9651232361793518,
+    "decision": "DEFECT"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/thread_side/022.png",
+    "true_label": "DEFECT",
+    "source_class": "thread_side",
+    "probability_defect": 0.999305248260498,
+    "decision": "DEFECT"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/thread_top/000.png",
+    "true_label": "DEFECT",
+    "source_class": "thread_top",
+    "probability_defect": 0.9514249563217163,
+    "decision": "DEFECT"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/thread_top/003.png",
+    "true_label": "DEFECT",
+    "source_class": "thread_top",
+    "probability_defect": 0.02082907222211361,
+    "decision": "GOOD"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/thread_top/017.png",
+    "true_label": "DEFECT",
+    "source_class": "thread_top",
+    "probability_defect": 0.6749120950698853,
+    "decision": "DEFECT"
+  },
+  {
+    "image": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw/test/thread_top/022.png",
+    "true_label": "DEFECT",
+    "source_class": "thread_top",
+    "probability_defect": 0.9933874607086182,
+    "decision": "DEFECT"
+  }
+]

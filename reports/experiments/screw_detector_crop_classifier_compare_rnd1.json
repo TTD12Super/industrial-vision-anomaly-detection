@@ -1,0 +1,413 @@
+{
+  "classifier": "dinov2-global-logreg",
+  "threshold": 0.42665520310401917,
+  "split": "test",
+  "totals": {
+    "gt_defect": 23,
+    "classified_defect": 12,
+    "gt_good": 55,
+    "good_flagged": 14,
+    "matched": 70,
+    "gt_missed": 8,
+    "predicted": 104,
+    "unmatched": 34,
+    "known_matches": 52,
+    "unknown_matches": 18
+  },
+  "end_to_end_defect_recall": 0.5217391304347826,
+  "good_false_alarm_rate": 0.2545454545454545,
+  "elapsed_s": 63.37577312500798,
+  "per_image": [
+    {
+      "image_id": "mvtec_ad_full_good_train_306",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_307",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_308",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_309",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_310",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_311",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_312",
+      "matched": 1,
+      "predicted": 2
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_313",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_314",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_315",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_316",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_317",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_318",
+      "matched": 0,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_319",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_000",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_001",
+      "matched": 0,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_002",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_003",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_004",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_005",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_006",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_007",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_008",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_009",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_010",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_011",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_012",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_013",
+      "matched": 1,
+      "predicted": 4
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_014",
+      "matched": 1,
+      "predicted": 2
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_015",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_016",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_017",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_018",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_019",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_020",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_021",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_022",
+      "matched": 0,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_023",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_024",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_025",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_026",
+      "matched": 0,
+      "predicted": 2
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_027",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_028",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_029",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_030",
+      "matched": 1,
+      "predicted": 5
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_031",
+      "matched": 1,
+      "predicted": 2
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_032",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_033",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_034",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_035",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_036",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_037",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_038",
+      "matched": 0,
+      "predicted": 5
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_039",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_test_040",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_manipulated_front_test_019",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_manipulated_front_test_020",
+      "matched": 1,
+      "predicted": 4
+    },
+    {
+      "image_id": "mvtec_ad_full_manipulated_front_test_021",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_manipulated_front_test_022",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_manipulated_front_test_023",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_head_test_019",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_head_test_020",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_head_test_021",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_head_test_022",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_head_test_023",
+      "matched": 1,
+      "predicted": 3
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_neck_test_020",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_neck_test_021",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_neck_test_022",
+      "matched": 0,
+      "predicted": 2
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_neck_test_023",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_neck_test_024",
+      "matched": 1,
+      "predicted": 2
+    },
+    {
+      "image_id": "mvtec_ad_full_thread_side_test_019",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_thread_side_test_020",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_thread_side_test_021",
+      "matched": 0,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_thread_side_test_022",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_thread_top_test_019",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_thread_top_test_020",
+      "matched": 0,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_thread_top_test_021",
+      "matched": 1,
+      "predicted": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_thread_top_test_022",
+      "matched": 1,
+      "predicted": 5
+    }
+  ],
+  "warning": "Detector-generated test result; current MVTec-derived test was used during development."
+}

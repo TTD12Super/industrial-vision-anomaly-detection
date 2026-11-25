@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.0",
+  "experiment": "dinov2_patchcore_lite",
+  "protocol": "mixed_nominal",
+  "memory_bank": {
+    "artifact_path": "artifacts/products/screw/screw-patch-memory-rnd3/classifier_allowed04.pt",
+    "patch_count": 187720,
+    "embedding_dimension": 768,
+    "k": 1
+  },
+  "calibration": {
+    "threshold": 0.5708766579627991,
+    "allowed_good_fpr": 0.04,
+    "good_quantile": 0.96,
+    "rule": "higher_empirical_good_quantile(q=0.960000) on disjoint CAD-SD train/0_good calibration holdout image scores only"
+  },
+  "mvtec_screw_test": {
+    "metrics": {
+      "count": 160,
+      "good_count": 41,
+      "defect_count": 119,
+      "threshold": 0.5708766579627991,
+      "auroc": 0.926829268292683,
+      "average_precision": 0.9715010201809966,
+      "defect_recall": 0.7899159663865546,
+      "good_false_positive_count": 4,
+      "good_false_positive_rate": 0.0975609756097561
+    },
+    "per_defect_group": {
+      "good": {
+        "count": 41,
+        "good_count": 41,
+        "defect_count": 0,
+        "threshold": 0.5708766579627991,
+        "defect_recall": null,
+        "good_false_positive_count": 4,
+        "good_false_positive_rate": 0.0975609756097561,
+        "auroc": null,
+        "average_precision": null
+      },
+      "manipulated_front": {
+        "count": 24,
+        "good_count": 0,
+        "defect_count": 24,
+        "threshold": 0.5708766579627991,
+        "defect_recall": 0.75,
+        "good_false_positive_count": 0,
+        "good_false_positive_rate": null,
+        "auroc": null,
+        "average_precision": null
+      },
+      "scratch_head": {
+        "count": 24,
+        "good_count": 0,
+        "defect_count": 24,
+        "threshold": 0.5708766579627991,
+        "defect_recall": 0.875,
+        "good_false_positive_count": 0,
+        "good_false_positive_rate": null,
+        "auroc": null,
+        "average_precision": null
+      },
+      "scratch_neck": {
+        "count": 25,
+        "good_count": 0,
+        "defect_count": 25,
+        "threshold": 0.5708766579627991,
+        "defect_recall": 0.92,
+        "good_false_positive_count": 0,
+        "good_false_positive_rate": null,
+        "auroc": null,
+        "average_precision": null
+      },
+      "thread_side": {
+        "count": 23,
+        "good_count": 0,
+        "defect_count": 23,
+        "threshold": 0.5708766579627991,
+        "defect_recall": 0.6086956521739131,
+        "good_false_positive_count": 0,
+        "good_false_positive_rate": null,
+        "auroc": null,
+        "average_precision": null
+      },
+      "thread_top": {
+        "count": 23,
+        "good_count": 0,
+        "defect_count": 23,
+        "threshold": 0.5708766579627991,
+        "defect_recall": 0.782608695652174,
+        "good_false_positive_count": 0,
+        "good_false_positive_rate": null,
+        "auroc": null,
+        "average_precision": null
+      }
+    },
+    "pixel_metrics": {
+      "pixel_average_precision": 0.3097318994225715,
+      "pixel_precision": 0.38657623947614594,
+      "pixel_recall": 0.37928792688056906,
+      "pixel_dice": 0.3828974037255091,
+      "pixel_iou": 0.23677990784730346,
+      "pixel_threshold": 0.5708766579627991
+    },
+    "invalid_defect_mask_count": 0
+  },
+  "provenance": {
+    "test_locked": true,
+    "scoring_device": "cpu",
+    "artifact_path": "artifacts/products/screw/screw-patch-memory-rnd3/classifier_allowed04.pt"
+  }
+}

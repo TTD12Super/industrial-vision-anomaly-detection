@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "status": "development_diagnostic",
+  "ledger_selection": {
+    "threshold": 0.8196384906768799,
+    "validation": {
+      "recall": 0.9333333333333333,
+      "good_fp": 0.02
+    },
+    "diagnostic": {
+      "recall": 0.782608695652174,
+      "good_fp": 0.07272727272727272
+    },
+    "selection_rule": {
+      "target_defect_recall": 0.9,
+      "good_false_positive_cap": 0.2,
+      "selection_split_role": "validation",
+      "tie_break": [
+        "higher_threshold",
+        "lower_name"
+      ]
+    }
+  },
+  "source_report_selection": {
+    "threshold": 0.3896714150905609,
+    "validation": {
+      "recall": 1.0,
+      "good_fp": 0.06
+    },
+    "diagnostic": {
+      "recall": 0.9130434782608695,
+      "good_fp": 0.09090909090909091
+    },
+    "warning": "This is the source report's original operating-point rule, not the formal ledger rule."
+  },
+  "source_report": "reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+  "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+  "warning": "Diagnostic result is not an independent target-camera holdout."
+}

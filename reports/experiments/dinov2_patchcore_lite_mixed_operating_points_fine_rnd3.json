@@ -1,0 +1,105 @@
+{
+  "protocol": "mixed_nominal",
+  "selection_rule": "all thresholds selected from disjoint CAD calibration; both test sets locked",
+  "operating_points": [
+    {
+      "allowed_good_fpr": 0.04,
+      "threshold": 0.5708766579627991,
+      "cad_defect_recall": 0.8012048192771084,
+      "cad_good_fp": 0.15714285714285714,
+      "mvtec_defect_recall": 0.7899159663865546,
+      "mvtec_good_fp": 0.0975609756097561,
+      "meets_both": false
+    },
+    {
+      "allowed_good_fpr": 0.041,
+      "threshold": 0.5708766579627991,
+      "cad_defect_recall": 0.8012048192771084,
+      "cad_good_fp": 0.15714285714285714,
+      "mvtec_defect_recall": 0.7899159663865546,
+      "mvtec_good_fp": 0.0975609756097561,
+      "meets_both": false
+    },
+    {
+      "allowed_good_fpr": 0.042,
+      "threshold": 0.5708766579627991,
+      "cad_defect_recall": 0.8012048192771084,
+      "cad_good_fp": 0.15714285714285714,
+      "mvtec_defect_recall": 0.7899159663865546,
+      "mvtec_good_fp": 0.0975609756097561,
+      "meets_both": false
+    },
+    {
+      "allowed_good_fpr": 0.043,
+      "threshold": 0.5593984723091125,
+      "cad_defect_recall": 0.8433734939759037,
+      "cad_good_fp": 0.2,
+      "mvtec_defect_recall": 0.8319327731092437,
+      "mvtec_good_fp": 0.0975609756097561,
+      "meets_both": false
+    },
+    {
+      "allowed_good_fpr": 0.044,
+      "threshold": 0.5593984723091125,
+      "cad_defect_recall": 0.8433734939759037,
+      "cad_good_fp": 0.2,
+      "mvtec_defect_recall": 0.8319327731092437,
+      "mvtec_good_fp": 0.0975609756097561,
+      "meets_both": false
+    },
+    {
+      "allowed_good_fpr": 0.045,
+      "threshold": 0.5593984723091125,
+      "cad_defect_recall": 0.8433734939759037,
+      "cad_good_fp": 0.2,
+      "mvtec_defect_recall": 0.8319327731092437,
+      "mvtec_good_fp": 0.0975609756097561,
+      "meets_both": false
+    },
+    {
+      "allowed_good_fpr": 0.046,
+      "threshold": 0.5593984723091125,
+      "cad_defect_recall": 0.8433734939759037,
+      "cad_good_fp": 0.2,
+      "mvtec_defect_recall": 0.8319327731092437,
+      "mvtec_good_fp": 0.0975609756097561,
+      "meets_both": false
+    },
+    {
+      "allowed_good_fpr": 0.047,
+      "threshold": 0.5593984723091125,
+      "cad_defect_recall": 0.8433734939759037,
+      "cad_good_fp": 0.2,
+      "mvtec_defect_recall": 0.8319327731092437,
+      "mvtec_good_fp": 0.0975609756097561,
+      "meets_both": false
+    },
+    {
+      "allowed_good_fpr": 0.048,
+      "threshold": 0.5593984723091125,
+      "cad_defect_recall": 0.8433734939759037,
+      "cad_good_fp": 0.2,
+      "mvtec_defect_recall": 0.8319327731092437,
+      "mvtec_good_fp": 0.0975609756097561,
+      "meets_both": false
+    },
+    {
+      "allowed_good_fpr": 0.049,
+      "threshold": 0.5593984723091125,
+      "cad_defect_recall": 0.8433734939759037,
+      "cad_good_fp": 0.2,
+      "mvtec_defect_recall": 0.8319327731092437,
+      "mvtec_good_fp": 0.0975609756097561,
+      "meets_both": false
+    },
+    {
+      "allowed_good_fpr": 0.05,
+      "threshold": 0.5593984723091125,
+      "cad_defect_recall": 0.8433734939759037,
+      "cad_good_fp": 0.2,
+      "mvtec_defect_recall": 0.8319327731092437,
+      "mvtec_good_fp": 0.0975609756097561,
+      "meets_both": false
+    }
+  ]
+}

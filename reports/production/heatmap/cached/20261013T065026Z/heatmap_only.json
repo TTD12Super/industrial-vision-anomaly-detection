@@ -1,0 +1,38 @@
+{
+  "report_version": "cached-patchcore-heatmap-v1",
+  "mode": "patchcore_heatmap_only",
+  "padim_run": false,
+  "processed_root": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_processed",
+  "artifact_root": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/production/mvtec_ad",
+  "test_stride": 5,
+  "test_images": 345,
+  "heatmap_threshold": 0.7,
+  "device": "cpu",
+  "image_ranking": {
+    "auroc": 0.9229390681003584,
+    "average_precision": 0.973783491692578
+  },
+  "heatmap_ranking": {
+    "auroc": 0.9497717032030335,
+    "average_precision": 0.47417657716252126
+  },
+  "thresholded_mask": {
+    "true_positive": 171638,
+    "false_positive": 90955,
+    "true_negative": 21799662,
+    "false_negative": 547665,
+    "precision": 0.6536274767415735,
+    "recall": 0.2386171057259597,
+    "f1": 0.34960525350953664,
+    "iou": 0.21183129324239933,
+    "false_positive_rate": 0.004154976536294066,
+    "protocol": "binary mask is heatmap > threshold"
+  },
+  "latency": {
+    "mean_seconds": 0.1531509595246567,
+    "median_seconds": 0.14449237496592104,
+    "p95_seconds": 0.2050358998007141,
+    "images_per_second": 6.529505287487304
+  },
+  "protocol": "Cached PatchCore n=3; category selected from the MVTec test path; no classifier or PaDiM run."
+}

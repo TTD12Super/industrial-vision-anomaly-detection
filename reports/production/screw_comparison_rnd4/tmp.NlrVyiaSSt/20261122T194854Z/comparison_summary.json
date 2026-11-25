@@ -1,0 +1,80 @@
+{
+  "report_version": "detector-comparison-v1",
+  "dataset_name": "tmp.NlrVyiaSSt",
+  "detectors": {
+    "exact_knn": {
+      "report_dir": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/production/screw_comparison_rnd4/runs/tmp.NlrVyiaSSt/20261122T194633Z",
+      "classification_accuracy": 1.0,
+      "image_auroc": 0.9171961467513835,
+      "image_average_precision": 0.9695789952080885,
+      "pixel_auroc": 0.9158688161554936,
+      "pixel_average_precision": 0.3029501276138822,
+      "pixel_f1": 0.10965395268128274,
+      "latency": {
+        "device": "mps",
+        "sample_count": 160,
+        "total_seconds": 21.346206380992953,
+        "mean_seconds": 0.13341378988120595,
+        "median_seconds": 0.13323856300030457,
+        "p95_seconds": 0.13520931665107128,
+        "images_per_second": 7.49547704844018,
+        "scope": "detector inference including shared DINOv2 forward and routing"
+      },
+      "run_seconds": 53.15187962500022
+    },
+    "patchcore": {
+      "report_dir": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/production/screw_comparison_rnd4/runs/tmp.NlrVyiaSSt/20261122T194726Z",
+      "classification_accuracy": 1.0,
+      "image_auroc": 0.6868210698913713,
+      "image_average_precision": 0.8471865604356454,
+      "pixel_auroc": 0.8524938906119783,
+      "pixel_average_precision": 0.05167612850132668,
+      "pixel_f1": 0.07198947046292527,
+      "latency": {
+        "device": "mps",
+        "sample_count": 160,
+        "total_seconds": 9.01291429500452,
+        "mean_seconds": 0.05633071434377825,
+        "median_seconds": 0.056284958999640367,
+        "p95_seconds": 0.05845628509914604,
+        "images_per_second": 17.752304611248913,
+        "scope": "detector inference including shared DINOv2 forward and routing"
+      },
+      "run_seconds": 44.90211204099978
+    },
+    "padim": {
+      "report_dir": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/production/screw_comparison_rnd4/runs/tmp.NlrVyiaSSt/20261122T194811Z",
+      "classification_accuracy": 1.0,
+      "image_auroc": 0.49354375896700153,
+      "image_average_precision": 0.7625637366986275,
+      "pixel_auroc": 0.9196759575730152,
+      "pixel_average_precision": 0.026134537097283753,
+      "pixel_f1": 0.06608811322082025,
+      "latency": {
+        "device": "mps",
+        "sample_count": 160,
+        "total_seconds": 7.084780039996986,
+        "mean_seconds": 0.04427987524998116,
+        "median_seconds": 0.04286962449987186,
+        "p95_seconds": 0.04988339614974393,
+        "images_per_second": 22.58362279375269,
+        "scope": "detector inference including shared DINOv2 forward and routing"
+      },
+      "run_seconds": 42.67542691699964
+    }
+  },
+  "roles": {
+    "anomaly_image_baseline": "exact_knn",
+    "heatmap_baseline": "patchcore"
+  },
+  "same_test_split": true,
+  "combined": {
+    "mode": "sequential_independent_detectors",
+    "test_images": 160,
+    "total_inference_seconds": 37.44390071599446,
+    "mean_seconds_per_image": 0.23402437947496538,
+    "official_fusion_enabled": false,
+    "fusion_gate": "not_built_until_validation_or_reliability_improves"
+  },
+  "report_dir": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/production/screw_comparison_rnd4/tmp.NlrVyiaSSt/20261122T194854Z"
+}

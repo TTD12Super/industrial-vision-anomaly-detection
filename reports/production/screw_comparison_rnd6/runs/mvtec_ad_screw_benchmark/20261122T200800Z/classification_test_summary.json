@@ -1,0 +1,38 @@
+{
+  "total_test_images": 160,
+  "accepted_known_predictions": 160,
+  "unknown_rejected_predictions": 0,
+  "rejection_rate": 0.0,
+  "top1_accuracy_all": 1.0,
+  "top1_accuracy_accepted": 1.0,
+  "macro_precision": 1.0,
+  "macro_recall": 1.0,
+  "macro_f1": 1.0,
+  "per_category": [
+    {
+      "category": "screw",
+      "support": 160,
+      "correct": 160,
+      "incorrect": 0,
+      "rejected": 0,
+      "accuracy": 1.0,
+      "rejection_rate": 0.0
+    }
+  ],
+  "good_test": {
+    "total_images": 41,
+    "accepted_known_predictions": 41,
+    "unknown_rejected_predictions": 0,
+    "accuracy": 1.0,
+    "accepted_accuracy": 1.0,
+    "rejection_rate": 0.0
+  },
+  "defect_test": {
+    "total_images": 119,
+    "accepted_known_predictions": 119,
+    "unknown_rejected_predictions": 0,
+    "accuracy": 1.0,
+    "accepted_accuracy": 1.0,
+    "rejection_rate": 0.0
+  }
+}

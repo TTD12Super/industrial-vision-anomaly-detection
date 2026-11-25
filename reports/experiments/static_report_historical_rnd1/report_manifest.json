@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "source_files": {
+    "operating_points": {
+      "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/dinov2_patchcore_lite_top1pct_operating_points_rnd3.json",
+      "sha256": "6af5cf9956eb982a48fe1404bab2cf062f51a67ad1a3626e0ed379626ece4682"
+    },
+    "classifier_summary": {
+      "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/summary.json",
+      "sha256": "ea01f35169d393bec02f7045a750adc703722e9a348655d8a27e4e0af28ec14f"
+    }
+  },
+  "generated_files": {
+    "threshold_recall_vs_good_fp.png": {
+      "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/static_report_historical_rnd1/threshold_recall_vs_good_fp.png",
+      "sha256": "aefe34b376815d55ce3d24ee8f8babc0133a3d42e2e5dd1d6690104ba5e660dd"
+    },
+    "classifier_learning_curve.png": {
+      "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/static_report_historical_rnd1/classifier_learning_curve.png",
+      "sha256": "732404c384e2774b418a9fe242155257128987a65cdfc1e01eb1ce780a214496"
+    },
+    "classifier_confusion_matrix.png": {
+      "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/static_report_historical_rnd1/classifier_confusion_matrix.png",
+      "sha256": "f889285d89429d95aeeee3f0916c81d946e5e0f267db20d202a3c7e2b2f54d1e"
+    }
+  },
+  "domains": [
+    "CAD-SD",
+    "MVTec screw"
+  ],
+  "source_protocol": {
+    "operating_points": "mixed_nominal",
+    "classifier_summary": "DINOv2 last Transformer block + global/patch-aware GOOD/DEFECT head"
+  },
+  "status": "historical_development_diagnostic",
+  "warning": "Historical/development/diagnostic evidence rendered from existing JSON; not a fresh independent holdout and no model or threshold selection was performed.",
+  "environment_limitation": "Chart rendering lazy-loads Matplotlib with the Agg backend; the first render may be delayed by environment font-cache initialization. Input validation and --help do not initialize it.",
+  "model_run": false,
+  "threshold_selection": false
+}

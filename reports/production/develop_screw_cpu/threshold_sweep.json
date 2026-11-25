@@ -1,0 +1,172 @@
+{
+  "dataset": "MVTec AD/screw",
+  "split": {
+    "validation_good": 96,
+    "test_good": 41,
+    "test_defect": 119
+  },
+  "score_source": "Exact kNN, same Good-only feature bank as develop benchmark",
+  "note": "Thresholds are swept for diagnosis; test labels are used only to report the trade-off, not to fit the threshold.",
+  "results": [
+    {
+      "target_acceptance_rate": 0.99,
+      "threshold": 0.7925085663795468,
+      "accuracy": 0.4625,
+      "precision_defect": 1.0,
+      "recall_defect": 0.2773109243697479,
+      "f1_defect": 0.4342105263157895,
+      "confusion_matrix_good_defect": [
+        [
+          41,
+          0
+        ],
+        [
+          86,
+          33
+        ]
+      ],
+      "predicted_good": 127,
+      "predicted_defect": 33
+    },
+    {
+      "target_acceptance_rate": 0.95,
+      "threshold": 0.6648348122835159,
+      "accuracy": 0.69375,
+      "precision_defect": 0.9861111111111112,
+      "recall_defect": 0.5966386554621849,
+      "f1_defect": 0.743455497382199,
+      "confusion_matrix_good_defect": [
+        [
+          40,
+          1
+        ],
+        [
+          48,
+          71
+        ]
+      ],
+      "predicted_good": 88,
+      "predicted_defect": 72
+    },
+    {
+      "target_acceptance_rate": 0.9,
+      "threshold": 0.6342642605304718,
+      "accuracy": 0.71875,
+      "precision_defect": 0.9625,
+      "recall_defect": 0.6470588235294118,
+      "f1_defect": 0.7738693467336684,
+      "confusion_matrix_good_defect": [
+        [
+          38,
+          3
+        ],
+        [
+          42,
+          77
+        ]
+      ],
+      "predicted_good": 80,
+      "predicted_defect": 80
+    },
+    {
+      "target_acceptance_rate": 0.85,
+      "threshold": 0.5790411829948425,
+      "accuracy": 0.8375,
+      "precision_defect": 0.9603960396039604,
+      "recall_defect": 0.8151260504201681,
+      "f1_defect": 0.8818181818181818,
+      "confusion_matrix_good_defect": [
+        [
+          37,
+          4
+        ],
+        [
+          22,
+          97
+        ]
+      ],
+      "predicted_good": 59,
+      "predicted_defect": 101
+    },
+    {
+      "target_acceptance_rate": 0.8,
+      "threshold": 0.560693621635437,
+      "accuracy": 0.85,
+      "precision_defect": 0.9439252336448598,
+      "recall_defect": 0.8487394957983193,
+      "f1_defect": 0.8938053097345132,
+      "confusion_matrix_good_defect": [
+        [
+          35,
+          6
+        ],
+        [
+          18,
+          101
+        ]
+      ],
+      "predicted_good": 53,
+      "predicted_defect": 107
+    },
+    {
+      "target_acceptance_rate": 0.7,
+      "threshold": 0.5407853424549103,
+      "accuracy": 0.85,
+      "precision_defect": 0.8925619834710744,
+      "recall_defect": 0.907563025210084,
+      "f1_defect": 0.9,
+      "confusion_matrix_good_defect": [
+        [
+          28,
+          13
+        ],
+        [
+          11,
+          108
+        ]
+      ],
+      "predicted_good": 39,
+      "predicted_defect": 121
+    },
+    {
+      "target_acceptance_rate": 0.6,
+      "threshold": 0.5315307974815369,
+      "accuracy": 0.85,
+      "precision_defect": 0.8740157480314961,
+      "recall_defect": 0.9327731092436975,
+      "f1_defect": 0.9024390243902439,
+      "confusion_matrix_good_defect": [
+        [
+          25,
+          16
+        ],
+        [
+          8,
+          111
+        ]
+      ],
+      "predicted_good": 33,
+      "predicted_defect": 127
+    },
+    {
+      "target_acceptance_rate": 0.5,
+      "threshold": 0.5133570730686188,
+      "accuracy": 0.84375,
+      "precision_defect": 0.8455882352941176,
+      "recall_defect": 0.9663865546218487,
+      "f1_defect": 0.9019607843137255,
+      "confusion_matrix_good_defect": [
+        [
+          20,
+          21
+        ],
+        [
+          4,
+          115
+        ]
+      ],
+      "predicted_good": 24,
+      "predicted_defect": 136
+    }
+  ]
+}

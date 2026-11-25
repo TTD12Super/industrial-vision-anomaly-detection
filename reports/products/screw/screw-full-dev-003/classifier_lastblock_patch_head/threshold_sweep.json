@@ -1,0 +1,1100 @@
+{
+  "schema_version": "1.0",
+  "model": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-003/classifier_lastblock_patch_head/model.pt",
+  "manifest": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-003/classification_manifest.csv",
+  "selected_validation_gate": {
+    "threshold": 0.9459474682807922,
+    "validation": {
+      "defect_recall": 0.8666666666666667,
+      "good_fp": 0.1111111111111111,
+      "predicted_defect": 19
+    },
+    "test_diagnostic": {
+      "defect_recall": 0.6956521739130435,
+      "good_fp": 0.03636363636363636,
+      "predicted_defect": 18
+    }
+  },
+  "validation_gate_exists": true,
+  "points": [
+    {
+      "threshold": 0.0,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 1.0,
+        "predicted_defect": 69
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 1.0,
+        "predicted_defect": 78
+      }
+    },
+    {
+      "threshold": 1.3275387573230546e-05,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 1.0,
+        "predicted_defect": 69
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.9636363636363636,
+        "predicted_defect": 76
+      }
+    },
+    {
+      "threshold": 1.518823228252586e-05,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.9814814814814815,
+        "predicted_defect": 68
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.9272727272727272,
+        "predicted_defect": 74
+      }
+    },
+    {
+      "threshold": 2.2247200831770897e-05,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.9629629629629629,
+        "predicted_defect": 67
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.7636363636363637,
+        "predicted_defect": 65
+      }
+    },
+    {
+      "threshold": 2.325970126548782e-05,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.9444444444444444,
+        "predicted_defect": 66
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.7454545454545455,
+        "predicted_defect": 64
+      }
+    },
+    {
+      "threshold": 2.8544009182951413e-05,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.9259259259259259,
+        "predicted_defect": 65
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.7090909090909091,
+        "predicted_defect": 62
+      }
+    },
+    {
+      "threshold": 3.121929330518469e-05,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.9074074074074074,
+        "predicted_defect": 64
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.6909090909090909,
+        "predicted_defect": 61
+      }
+    },
+    {
+      "threshold": 3.462682434474118e-05,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.8888888888888888,
+        "predicted_defect": 63
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.6363636363636364,
+        "predicted_defect": 58
+      }
+    },
+    {
+      "threshold": 5.246927321422845e-05,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.8703703703703703,
+        "predicted_defect": 62
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.43636363636363634,
+        "predicted_defect": 47
+      }
+    },
+    {
+      "threshold": 6.752987974323332e-05,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.8518518518518519,
+        "predicted_defect": 61
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.41818181818181815,
+        "predicted_defect": 46
+      }
+    },
+    {
+      "threshold": 6.786610174458474e-05,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.8333333333333334,
+        "predicted_defect": 60
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.41818181818181815,
+        "predicted_defect": 46
+      }
+    },
+    {
+      "threshold": 6.982061313465238e-05,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.8148148148148148,
+        "predicted_defect": 59
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.41818181818181815,
+        "predicted_defect": 46
+      }
+    },
+    {
+      "threshold": 7.154553168220446e-05,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.7962962962962963,
+        "predicted_defect": 58
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.41818181818181815,
+        "predicted_defect": 46
+      }
+    },
+    {
+      "threshold": 8.71144438860938e-05,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.7777777777777778,
+        "predicted_defect": 57
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.4,
+        "predicted_defect": 45
+      }
+    },
+    {
+      "threshold": 9.669846622273326e-05,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.7592592592592593,
+        "predicted_defect": 56
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.36363636363636365,
+        "predicted_defect": 43
+      }
+    },
+    {
+      "threshold": 9.964162018150091e-05,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.7407407407407407,
+        "predicted_defect": 55
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.36363636363636365,
+        "predicted_defect": 43
+      }
+    },
+    {
+      "threshold": 0.00010047744581243023,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.7222222222222222,
+        "predicted_defect": 54
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.36363636363636365,
+        "predicted_defect": 43
+      }
+    },
+    {
+      "threshold": 0.00010414358985144645,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.7037037037037037,
+        "predicted_defect": 53
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.36363636363636365,
+        "predicted_defect": 43
+      }
+    },
+    {
+      "threshold": 0.00012973806587979198,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.6851851851851852,
+        "predicted_defect": 52
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.32727272727272727,
+        "predicted_defect": 41
+      }
+    },
+    {
+      "threshold": 0.00014910496247466654,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.6666666666666666,
+        "predicted_defect": 51
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.3090909090909091,
+        "predicted_defect": 40
+      }
+    },
+    {
+      "threshold": 0.00016146971029229462,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.6481481481481481,
+        "predicted_defect": 50
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.2727272727272727,
+        "predicted_defect": 38
+      }
+    },
+    {
+      "threshold": 0.00022200531384442002,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.6296296296296297,
+        "predicted_defect": 49
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.2,
+        "predicted_defect": 34
+      }
+    },
+    {
+      "threshold": 0.00028761322028003633,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.6111111111111112,
+        "predicted_defect": 48
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.18181818181818182,
+        "predicted_defect": 33
+      }
+    },
+    {
+      "threshold": 0.0005257963202893734,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.5925925925925926,
+        "predicted_defect": 47
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.16363636363636364,
+        "predicted_defect": 32
+      }
+    },
+    {
+      "threshold": 0.0006067371577955782,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.5740740740740741,
+        "predicted_defect": 46
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.14545454545454545,
+        "predicted_defect": 31
+      }
+    },
+    {
+      "threshold": 0.0006779207033105195,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.5555555555555556,
+        "predicted_defect": 45
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.14545454545454545,
+        "predicted_defect": 31
+      }
+    },
+    {
+      "threshold": 0.0008064716821536422,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.5370370370370371,
+        "predicted_defect": 44
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.14545454545454545,
+        "predicted_defect": 31
+      }
+    },
+    {
+      "threshold": 0.0008213670225813985,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.5185185185185185,
+        "predicted_defect": 43
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.14545454545454545,
+        "predicted_defect": 31
+      }
+    },
+    {
+      "threshold": 0.0015389983309432864,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.5,
+        "predicted_defect": 42
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.14545454545454545,
+        "predicted_defect": 31
+      }
+    },
+    {
+      "threshold": 0.001997745828703046,
+      "validation": {
+        "defect_recall": 1.0,
+        "good_fp": 0.48148148148148145,
+        "predicted_defect": 41
+      },
+      "test_diagnostic": {
+        "defect_recall": 1.0,
+        "good_fp": 0.14545454545454545,
+        "predicted_defect": 31
+      }
+    },
+    {
+      "threshold": 0.003035216825082898,
+      "validation": {
+        "defect_recall": 0.9333333333333333,
+        "good_fp": 0.48148148148148145,
+        "predicted_defect": 40
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.9565217391304348,
+        "good_fp": 0.14545454545454545,
+        "predicted_defect": 30
+      }
+    },
+    {
+      "threshold": 0.003899980103597045,
+      "validation": {
+        "defect_recall": 0.9333333333333333,
+        "good_fp": 0.46296296296296297,
+        "predicted_defect": 39
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.9565217391304348,
+        "good_fp": 0.14545454545454545,
+        "predicted_defect": 30
+      }
+    },
+    {
+      "threshold": 0.006926242262125015,
+      "validation": {
+        "defect_recall": 0.9333333333333333,
+        "good_fp": 0.4444444444444444,
+        "predicted_defect": 38
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.9130434782608695,
+        "good_fp": 0.12727272727272726,
+        "predicted_defect": 28
+      }
+    },
+    {
+      "threshold": 0.02291949652135372,
+      "validation": {
+        "defect_recall": 0.9333333333333333,
+        "good_fp": 0.42592592592592593,
+        "predicted_defect": 37
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.9130434782608695,
+        "good_fp": 0.09090909090909091,
+        "predicted_defect": 26
+      }
+    },
+    {
+      "threshold": 0.028401169925928116,
+      "validation": {
+        "defect_recall": 0.9333333333333333,
+        "good_fp": 0.4074074074074074,
+        "predicted_defect": 36
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.9130434782608695,
+        "good_fp": 0.07272727272727272,
+        "predicted_defect": 25
+      }
+    },
+    {
+      "threshold": 0.05,
+      "validation": {
+        "defect_recall": 0.9333333333333333,
+        "good_fp": 0.3888888888888889,
+        "predicted_defect": 35
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.8695652173913043,
+        "good_fp": 0.07272727272727272,
+        "predicted_defect": 24
+      }
+    },
+    {
+      "threshold": 0.054841190576553345,
+      "validation": {
+        "defect_recall": 0.9333333333333333,
+        "good_fp": 0.3888888888888889,
+        "predicted_defect": 35
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.8695652173913043,
+        "good_fp": 0.07272727272727272,
+        "predicted_defect": 24
+      }
+    },
+    {
+      "threshold": 0.08243615925312042,
+      "validation": {
+        "defect_recall": 0.9333333333333333,
+        "good_fp": 0.37037037037037035,
+        "predicted_defect": 34
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.8695652173913043,
+        "good_fp": 0.07272727272727272,
+        "predicted_defect": 24
+      }
+    },
+    {
+      "threshold": 0.1,
+      "validation": {
+        "defect_recall": 0.9333333333333333,
+        "good_fp": 0.35185185185185186,
+        "predicted_defect": 33
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.8695652173913043,
+        "good_fp": 0.07272727272727272,
+        "predicted_defect": 24
+      }
+    },
+    {
+      "threshold": 0.11264153569936752,
+      "validation": {
+        "defect_recall": 0.9333333333333333,
+        "good_fp": 0.35185185185185186,
+        "predicted_defect": 33
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.8260869565217391,
+        "good_fp": 0.07272727272727272,
+        "predicted_defect": 23
+      }
+    },
+    {
+      "threshold": 0.14515537023544312,
+      "validation": {
+        "defect_recall": 0.9333333333333333,
+        "good_fp": 0.3333333333333333,
+        "predicted_defect": 32
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.782608695652174,
+        "good_fp": 0.07272727272727272,
+        "predicted_defect": 22
+      }
+    },
+    {
+      "threshold": 0.15,
+      "validation": {
+        "defect_recall": 0.9333333333333333,
+        "good_fp": 0.3148148148148148,
+        "predicted_defect": 31
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.782608695652174,
+        "good_fp": 0.07272727272727272,
+        "predicted_defect": 22
+      }
+    },
+    {
+      "threshold": 0.17604315280914307,
+      "validation": {
+        "defect_recall": 0.9333333333333333,
+        "good_fp": 0.3148148148148148,
+        "predicted_defect": 31
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.782608695652174,
+        "good_fp": 0.07272727272727272,
+        "predicted_defect": 22
+      }
+    },
+    {
+      "threshold": 0.18264898657798767,
+      "validation": {
+        "defect_recall": 0.9333333333333333,
+        "good_fp": 0.2962962962962963,
+        "predicted_defect": 30
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.782608695652174,
+        "good_fp": 0.07272727272727272,
+        "predicted_defect": 22
+      }
+    },
+    {
+      "threshold": 0.2,
+      "validation": {
+        "defect_recall": 0.8666666666666667,
+        "good_fp": 0.2962962962962963,
+        "predicted_defect": 29
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.782608695652174,
+        "good_fp": 0.07272727272727272,
+        "predicted_defect": 22
+      }
+    },
+    {
+      "threshold": 0.21040548384189606,
+      "validation": {
+        "defect_recall": 0.8666666666666667,
+        "good_fp": 0.2962962962962963,
+        "predicted_defect": 29
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.782608695652174,
+        "good_fp": 0.07272727272727272,
+        "predicted_defect": 22
+      }
+    },
+    {
+      "threshold": 0.25,
+      "validation": {
+        "defect_recall": 0.8666666666666667,
+        "good_fp": 0.2777777777777778,
+        "predicted_defect": 28
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.782608695652174,
+        "good_fp": 0.07272727272727272,
+        "predicted_defect": 22
+      }
+    },
+    {
+      "threshold": 0.3,
+      "validation": {
+        "defect_recall": 0.8666666666666667,
+        "good_fp": 0.2777777777777778,
+        "predicted_defect": 28
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.782608695652174,
+        "good_fp": 0.05454545454545454,
+        "predicted_defect": 21
+      }
+    },
+    {
+      "threshold": 0.3178415298461914,
+      "validation": {
+        "defect_recall": 0.8666666666666667,
+        "good_fp": 0.2777777777777778,
+        "predicted_defect": 28
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.782608695652174,
+        "good_fp": 0.05454545454545454,
+        "predicted_defect": 21
+      }
+    },
+    {
+      "threshold": 0.3355132043361664,
+      "validation": {
+        "defect_recall": 0.8666666666666667,
+        "good_fp": 0.25925925925925924,
+        "predicted_defect": 27
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.782608695652174,
+        "good_fp": 0.05454545454545454,
+        "predicted_defect": 21
+      }
+    },
+    {
+      "threshold": 0.4,
+      "validation": {
+        "defect_recall": 0.8666666666666667,
+        "good_fp": 0.24074074074074073,
+        "predicted_defect": 26
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.782608695652174,
+        "good_fp": 0.05454545454545454,
+        "predicted_defect": 21
+      }
+    },
+    {
+      "threshold": 0.4769095778465271,
+      "validation": {
+        "defect_recall": 0.8666666666666667,
+        "good_fp": 0.24074074074074073,
+        "predicted_defect": 26
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.782608695652174,
+        "good_fp": 0.05454545454545454,
+        "predicted_defect": 21
+      }
+    },
+    {
+      "threshold": 0.5,
+      "validation": {
+        "defect_recall": 0.8666666666666667,
+        "good_fp": 0.2222222222222222,
+        "predicted_defect": 25
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.782608695652174,
+        "good_fp": 0.05454545454545454,
+        "predicted_defect": 21
+      }
+    },
+    {
+      "threshold": 0.5608734488487244,
+      "validation": {
+        "defect_recall": 0.8666666666666667,
+        "good_fp": 0.2222222222222222,
+        "predicted_defect": 25
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.7391304347826086,
+        "good_fp": 0.05454545454545454,
+        "predicted_defect": 20
+      }
+    },
+    {
+      "threshold": 0.6,
+      "validation": {
+        "defect_recall": 0.8666666666666667,
+        "good_fp": 0.2037037037037037,
+        "predicted_defect": 24
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.7391304347826086,
+        "good_fp": 0.05454545454545454,
+        "predicted_defect": 20
+      }
+    },
+    {
+      "threshold": 0.7,
+      "validation": {
+        "defect_recall": 0.8666666666666667,
+        "good_fp": 0.2037037037037037,
+        "predicted_defect": 24
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.7391304347826086,
+        "good_fp": 0.05454545454545454,
+        "predicted_defect": 20
+      }
+    },
+    {
+      "threshold": 0.7151032090187073,
+      "validation": {
+        "defect_recall": 0.8666666666666667,
+        "good_fp": 0.2037037037037037,
+        "predicted_defect": 24
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.7391304347826086,
+        "good_fp": 0.05454545454545454,
+        "predicted_defect": 20
+      }
+    },
+    {
+      "threshold": 0.7270639538764954,
+      "validation": {
+        "defect_recall": 0.8666666666666667,
+        "good_fp": 0.18518518518518517,
+        "predicted_defect": 23
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.7391304347826086,
+        "good_fp": 0.05454545454545454,
+        "predicted_defect": 20
+      }
+    },
+    {
+      "threshold": 0.7519800066947937,
+      "validation": {
+        "defect_recall": 0.8666666666666667,
+        "good_fp": 0.16666666666666666,
+        "predicted_defect": 22
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.7391304347826086,
+        "good_fp": 0.05454545454545454,
+        "predicted_defect": 20
+      }
+    },
+    {
+      "threshold": 0.8,
+      "validation": {
+        "defect_recall": 0.8666666666666667,
+        "good_fp": 0.14814814814814814,
+        "predicted_defect": 21
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.7391304347826086,
+        "good_fp": 0.05454545454545454,
+        "predicted_defect": 20
+      }
+    },
+    {
+      "threshold": 0.8970038890838623,
+      "validation": {
+        "defect_recall": 0.8666666666666667,
+        "good_fp": 0.14814814814814814,
+        "predicted_defect": 21
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.6956521739130435,
+        "good_fp": 0.05454545454545454,
+        "predicted_defect": 19
+      }
+    },
+    {
+      "threshold": 0.9,
+      "validation": {
+        "defect_recall": 0.8666666666666667,
+        "good_fp": 0.12962962962962962,
+        "predicted_defect": 20
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.6956521739130435,
+        "good_fp": 0.05454545454545454,
+        "predicted_defect": 19
+      }
+    },
+    {
+      "threshold": 0.9253052473068237,
+      "validation": {
+        "defect_recall": 0.8666666666666667,
+        "good_fp": 0.12962962962962962,
+        "predicted_defect": 20
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.6956521739130435,
+        "good_fp": 0.05454545454545454,
+        "predicted_defect": 19
+      }
+    },
+    {
+      "threshold": 0.9459474682807922,
+      "validation": {
+        "defect_recall": 0.8666666666666667,
+        "good_fp": 0.1111111111111111,
+        "predicted_defect": 19
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.6956521739130435,
+        "good_fp": 0.03636363636363636,
+        "predicted_defect": 18
+      }
+    },
+    {
+      "threshold": 0.9533177614212036,
+      "validation": {
+        "defect_recall": 0.8,
+        "good_fp": 0.1111111111111111,
+        "predicted_defect": 18
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.6956521739130435,
+        "good_fp": 0.03636363636363636,
+        "predicted_defect": 18
+      }
+    },
+    {
+      "threshold": 0.9542209506034851,
+      "validation": {
+        "defect_recall": 0.8,
+        "good_fp": 0.09259259259259259,
+        "predicted_defect": 17
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.6956521739130435,
+        "good_fp": 0.03636363636363636,
+        "predicted_defect": 18
+      }
+    },
+    {
+      "threshold": 0.9547933340072632,
+      "validation": {
+        "defect_recall": 0.8,
+        "good_fp": 0.07407407407407407,
+        "predicted_defect": 16
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.6956521739130435,
+        "good_fp": 0.03636363636363636,
+        "predicted_defect": 18
+      }
+    },
+    {
+      "threshold": 0.9573971033096313,
+      "validation": {
+        "defect_recall": 0.7333333333333333,
+        "good_fp": 0.07407407407407407,
+        "predicted_defect": 15
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.6956521739130435,
+        "good_fp": 0.03636363636363636,
+        "predicted_defect": 18
+      }
+    },
+    {
+      "threshold": 0.9711000323295593,
+      "validation": {
+        "defect_recall": 0.7333333333333333,
+        "good_fp": 0.05555555555555555,
+        "predicted_defect": 14
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.6521739130434783,
+        "good_fp": 0.01818181818181818,
+        "predicted_defect": 16
+      }
+    },
+    {
+      "threshold": 0.978590190410614,
+      "validation": {
+        "defect_recall": 0.7333333333333333,
+        "good_fp": 0.037037037037037035,
+        "predicted_defect": 13
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.6521739130434783,
+        "good_fp": 0.01818181818181818,
+        "predicted_defect": 16
+      }
+    },
+    {
+      "threshold": 0.9868944883346558,
+      "validation": {
+        "defect_recall": 0.7333333333333333,
+        "good_fp": 0.018518518518518517,
+        "predicted_defect": 12
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.6521739130434783,
+        "good_fp": 0.01818181818181818,
+        "predicted_defect": 16
+      }
+    },
+    {
+      "threshold": 0.9933493733406067,
+      "validation": {
+        "defect_recall": 0.6666666666666666,
+        "good_fp": 0.018518518518518517,
+        "predicted_defect": 11
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.5652173913043478,
+        "good_fp": 0.01818181818181818,
+        "predicted_defect": 14
+      }
+    },
+    {
+      "threshold": 0.9991405010223389,
+      "validation": {
+        "defect_recall": 0.6666666666666666,
+        "good_fp": 0.0,
+        "predicted_defect": 10
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.5217391304347826,
+        "good_fp": 0.0,
+        "predicted_defect": 12
+      }
+    },
+    {
+      "threshold": 0.9992859959602356,
+      "validation": {
+        "defect_recall": 0.6,
+        "good_fp": 0.0,
+        "predicted_defect": 9
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.5217391304347826,
+        "good_fp": 0.0,
+        "predicted_defect": 12
+      }
+    },
+    {
+      "threshold": 0.9993919134140015,
+      "validation": {
+        "defect_recall": 0.5333333333333333,
+        "good_fp": 0.0,
+        "predicted_defect": 8
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.5217391304347826,
+        "good_fp": 0.0,
+        "predicted_defect": 12
+      }
+    },
+    {
+      "threshold": 0.9994082450866699,
+      "validation": {
+        "defect_recall": 0.4666666666666667,
+        "good_fp": 0.0,
+        "predicted_defect": 7
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.5217391304347826,
+        "good_fp": 0.0,
+        "predicted_defect": 12
+      }
+    },
+    {
+      "threshold": 0.9995182752609253,
+      "validation": {
+        "defect_recall": 0.4,
+        "good_fp": 0.0,
+        "predicted_defect": 6
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.5217391304347826,
+        "good_fp": 0.0,
+        "predicted_defect": 12
+      }
+    },
+    {
+      "threshold": 0.9998102784156799,
+      "validation": {
+        "defect_recall": 0.3333333333333333,
+        "good_fp": 0.0,
+        "predicted_defect": 5
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.34782608695652173,
+        "good_fp": 0.0,
+        "predicted_defect": 8
+      }
+    },
+    {
+      "threshold": 0.9998788833618164,
+      "validation": {
+        "defect_recall": 0.26666666666666666,
+        "good_fp": 0.0,
+        "predicted_defect": 4
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.30434782608695654,
+        "good_fp": 0.0,
+        "predicted_defect": 7
+      }
+    },
+    {
+      "threshold": 0.9999518394470215,
+      "validation": {
+        "defect_recall": 0.2,
+        "good_fp": 0.0,
+        "predicted_defect": 3
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.08695652173913043,
+        "good_fp": 0.0,
+        "predicted_defect": 2
+      }
+    },
+    {
+      "threshold": 0.9999527931213379,
+      "validation": {
+        "defect_recall": 0.13333333333333333,
+        "good_fp": 0.0,
+        "predicted_defect": 2
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.08695652173913043,
+        "good_fp": 0.0,
+        "predicted_defect": 2
+      }
+    },
+    {
+      "threshold": 0.9999562501907349,
+      "validation": {
+        "defect_recall": 0.06666666666666667,
+        "good_fp": 0.0,
+        "predicted_defect": 1
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.08695652173913043,
+        "good_fp": 0.0,
+        "predicted_defect": 2
+      }
+    },
+    {
+      "threshold": 1.0,
+      "validation": {
+        "defect_recall": 0.0,
+        "good_fp": 0.0,
+        "predicted_defect": 0
+      },
+      "test_diagnostic": {
+        "defect_recall": 0.0,
+        "good_fp": 0.0,
+        "predicted_defect": 0
+      }
+    }
+  ]
+}

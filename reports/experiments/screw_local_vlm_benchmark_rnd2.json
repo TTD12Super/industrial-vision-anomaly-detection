@@ -1,0 +1,249 @@
+{
+  "schema_version": "1.0",
+  "protocol": "saved deterministic inspection evidence -> local VLM -> validated English report",
+  "inspection_jsons": [
+    "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0056/inspection.json",
+    "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0049/inspection.json",
+    "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0026/inspection.json",
+    "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0073/inspection.json",
+    "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0011/inspection.json"
+  ],
+  "model": "qwen3-vl-4b",
+  "reporter_model_version": "local-vlm:qwen3-vl-4b:266babe1683e",
+  "base_url": "http://127.0.0.1:8080/v1",
+  "eligible_defect_objects": 5,
+  "completed": 5,
+  "failed": 0,
+  "latency_ms": {
+    "count": 5,
+    "mean": 17923.181,
+    "max": 18296.976
+  },
+  "objects": [
+    {
+      "inspection_json": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0056/inspection.json",
+      "inspection_sha256": "05372f4fb2057611e96c673ad8cddf93b26621a04ca460ce99e2ccbe0edcd413",
+      "object_id": "screw_04",
+      "status": "completed",
+      "latency_ms": 18296.976,
+      "evidence": [
+        {
+          "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0056/input/original.png",
+          "sha256": "5aa6acb6f916d1f9191092a7a0b7350cbdb0283caaae6122f6ee5e4e63377f7b",
+          "mime_type": "image/png"
+        },
+        {
+          "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0056/objects/screw_04/crop_original.png",
+          "sha256": "3ad8bef63e7f3692802b0e38f6574a0bd87a84f458801fd4a0b921bc2b1265b3",
+          "mime_type": "image/png"
+        },
+        {
+          "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0056/objects/screw_04/heatmap_overlay.png",
+          "sha256": "f0658680f17c022358d0677618540d77af57549e97ae4e9145f1d83764dabdf3",
+          "mime_type": "image/png"
+        },
+        {
+          "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0056/objects/screw_04/binary_mask.png",
+          "sha256": "1998244961331db5d1d24a9648060bf697bc3efe6835b80f62878de63d237de7",
+          "mime_type": "image/png"
+        }
+      ],
+      "report": {
+        "classifier_label": "DEFECT",
+        "defect_location": "unknown",
+        "description": "The deterministic pipeline has classified this screw as defective. Visual inspection of the provided images does not reveal any clearly visible crack, flaw, or defect that matches the classifier's decision. The binary mask and heatmap do not show a clear, localized defect pattern. The defect is not visibly supported by the images.",
+        "heatmap_consistent_with_visible_evidence": "unknown",
+        "inspection_id": "evaluation_0056",
+        "language": "en",
+        "needs_review": true,
+        "object_id": "screw_04",
+        "other_possible_explanation": "The deterministic classifier's decision is based on a high probability (p_defect = 0.9945) and a threshold-based decision, but the visual inspection does not provide sufficient evidence to identify a specific defect type or location. The heatmap and binary mask do not align with visible features in the images.",
+        "report_status": "completed",
+        "report_version": "1.0",
+        "visible_defect_type": "unknown",
+        "visible_evidence": []
+      },
+      "diagnostic": null
+    },
+    {
+      "inspection_json": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0049/inspection.json",
+      "inspection_sha256": "fd015e8572528a5bab276893f22f97113c64e0953ba73ad4cd6e9ca5fb13c994",
+      "object_id": "screw_01",
+      "status": "completed",
+      "latency_ms": 17478.195,
+      "evidence": [
+        {
+          "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0049/input/original.png",
+          "sha256": "b83c5288f65e2fa62017a5b0d2339d1de9e644b983bddc0ace2cdac67696f50f",
+          "mime_type": "image/png"
+        },
+        {
+          "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0049/objects/screw_01/crop_original.png",
+          "sha256": "7291d9d62e31eb68403b5ae6e1a4df22abe5eb62364dac8ef132d58dd91e2a41",
+          "mime_type": "image/png"
+        },
+        {
+          "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0049/objects/screw_01/heatmap_overlay.png",
+          "sha256": "36cc80081cbd5909fe49f2c86202d00d80119b1177238bf7d09931fbd0906a68",
+          "mime_type": "image/png"
+        },
+        {
+          "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0049/objects/screw_01/binary_mask.png",
+          "sha256": "9df695f586ca01b046a6a97c0fc3398b68e6ff5bb51663915293a063bb7c589e",
+          "mime_type": "image/png"
+        }
+      ],
+      "report": {
+        "classifier_label": "DEFECT",
+        "defect_location": "unknown",
+        "description": "The deterministic pipeline has classified this screw as defective. However, the provided images do not show any visible crack, damage, or defect on the screw's surface. The binary mask and heatmap do not correspond to any discernible defect in the visual images.",
+        "heatmap_consistent_with_visible_evidence": "unknown",
+        "inspection_id": "evaluation_0049",
+        "language": "en",
+        "needs_review": true,
+        "object_id": "screw_01",
+        "other_possible_explanation": "The heatmap overlay does not clearly indicate a defect on the screw. The binary mask appears to be a mask of the screw itself, not a defect region. No visible evidence of a defect is present in the images.",
+        "report_status": "completed",
+        "report_version": "1.0",
+        "visible_defect_type": "unknown",
+        "visible_evidence": []
+      },
+      "diagnostic": null
+    },
+    {
+      "inspection_json": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0026/inspection.json",
+      "inspection_sha256": "756b2dd7f3fcf9895aceaac522971907cf7c6ca74aceb966a21c516666546b4b",
+      "object_id": "screw_01",
+      "status": "completed",
+      "latency_ms": 17831.001,
+      "evidence": [
+        {
+          "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0026/input/original.png",
+          "sha256": "a47e3767dfb84f1cd30fb50f1bcc5842dbdaabef8157ae0984b9adff414022d3",
+          "mime_type": "image/png"
+        },
+        {
+          "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0026/objects/screw_01/crop_original.png",
+          "sha256": "f324cc6b13ae942d99d3222da4e16b65d397721db1113012a1f189ff86326993",
+          "mime_type": "image/png"
+        },
+        {
+          "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0026/objects/screw_01/heatmap_overlay.png",
+          "sha256": "8327ef1e7012411fff17fa8cb4343230540bd587dc484d51cd7835715da9cec8",
+          "mime_type": "image/png"
+        },
+        {
+          "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0026/objects/screw_01/binary_mask.png",
+          "sha256": "99618943a88318e10917562fa2bca172f495721ae593e7ebf72b6841d8a273a8",
+          "mime_type": "image/png"
+        }
+      ],
+      "report": {
+        "classifier_label": "DEFECT",
+        "defect_location": "unknown",
+        "description": "The deterministic pipeline has classified this screw as defective with high confidence. However, the provided images do not contain visible evidence of a crack or defect that aligns with the classifier's decision. The binary mask and heatmap do not clearly indicate a defect location or type.",
+        "heatmap_consistent_with_visible_evidence": "unknown",
+        "inspection_id": "evaluation_0026",
+        "language": "en",
+        "needs_review": true,
+        "object_id": "screw_01",
+        "other_possible_explanation": "The classifier's decision is based on a high probability score, but the visual inspection does not support the presence of a visible defect. The heatmap and binary mask do not provide clear evidence of a defect location or type.",
+        "report_status": "completed",
+        "report_version": "1.0",
+        "visible_defect_type": "unknown",
+        "visible_evidence": []
+      },
+      "diagnostic": null
+    },
+    {
+      "inspection_json": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0073/inspection.json",
+      "inspection_sha256": "28ed8a86c356524ed53252c11f1f2b87984c9e33ba4759b0d1882d71a6f38b96",
+      "object_id": "screw_01",
+      "status": "completed",
+      "latency_ms": 18266.43,
+      "evidence": [
+        {
+          "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0073/input/original.png",
+          "sha256": "aac85a5f71ee56a49f1d345814ae6918e7b00597ca187b0a77fb770bf96c32a9",
+          "mime_type": "image/png"
+        },
+        {
+          "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0073/objects/screw_01/crop_original.png",
+          "sha256": "592d9883af3f9f151aacccef38f52b953ad3d514022b639673859581a7db6511",
+          "mime_type": "image/png"
+        },
+        {
+          "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0073/objects/screw_01/heatmap_overlay.png",
+          "sha256": "db1ec4e5c8e1bbe28a17bb20fc029c408fdc9443bef8e0cb1d7741bffe411bc9",
+          "mime_type": "image/png"
+        },
+        {
+          "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0073/objects/screw_01/binary_mask.png",
+          "sha256": "ad5f3b45f3e0ef00c2ef57f2ec79dc440a34dc237953a615b3ea45c630c48eb0",
+          "mime_type": "image/png"
+        }
+      ],
+      "report": {
+        "classifier_label": "DEFECT",
+        "defect_location": "unknown",
+        "description": "The deterministic pipeline has classified this screw as defective. Visual inspection of the provided images does not reveal any clearly visible crack, chip, or other defect that would support this classification. The binary mask and heatmap do not show a clear defect region corresponding to the classifier's decision.",
+        "heatmap_consistent_with_visible_evidence": "unknown",
+        "inspection_id": "evaluation_0073",
+        "language": "en",
+        "needs_review": true,
+        "object_id": "screw_01",
+        "other_possible_explanation": "The classifier's decision is based on a high probability (p_defect = 0.9999998) and a threshold-based decision, but no visible evidence is present in the images to support the defect. The heatmap shows areas of high intensity, but these do not correspond to a clear defect in the screw's structure.",
+        "report_status": "completed",
+        "report_version": "1.0",
+        "visible_defect_type": "unknown",
+        "visible_evidence": []
+      },
+      "diagnostic": null
+    },
+    {
+      "inspection_json": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0011/inspection.json",
+      "inspection_sha256": "80526ad86410d1badf426b5b9b3d907c5466db28f34683330996edb6ae59689d",
+      "object_id": "screw_01",
+      "status": "completed",
+      "latency_ms": 17743.303,
+      "evidence": [
+        {
+          "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0011/input/original.png",
+          "sha256": "c4d31ff901fceb22512d5eabf74715eed96f0f611a857b1965eae86a94667918",
+          "mime_type": "image/png"
+        },
+        {
+          "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0011/objects/screw_01/crop_original.png",
+          "sha256": "d896c064ae36210d64c13564e3bcf02e1143b239236fd7262f6a3659bacf94d4",
+          "mime_type": "image/png"
+        },
+        {
+          "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0011/objects/screw_01/heatmap_overlay.png",
+          "sha256": "69067799b145a23e7dfb4d1aaa5be420b0d40ec70ffe557ff5778ef554f713da",
+          "mime_type": "image/png"
+        },
+        {
+          "path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/e2e_active_refiner_benchmark_20251125/evaluation_0011/objects/screw_01/binary_mask.png",
+          "sha256": "cf44d6a1b2c48bf16447b1ea456d2a76a5fe6a2ed82e6fc3529df6158719d912",
+          "mime_type": "image/png"
+        }
+      ],
+      "report": {
+        "classifier_label": "DEFECT",
+        "defect_location": "unknown",
+        "description": "The deterministic pipeline has classified this screw as defective. Visual inspection of the provided images does not reveal any clearly visible crack, chip, or other physical defect that would support this classification. The binary mask and heatmap are not visually interpretable in this context.",
+        "heatmap_consistent_with_visible_evidence": "unknown",
+        "inspection_id": "evaluation_0011",
+        "language": "en",
+        "needs_review": true,
+        "object_id": "screw_01",
+        "other_possible_explanation": "The deterministic pipeline's high confidence (p_defect = 0.9999995) and decision reason 'at_or_above_defect_threshold' suggest the defect is detected algorithmically, but no visual evidence is present in the supplied images to confirm the defect type or location.",
+        "report_status": "completed",
+        "report_version": "1.0",
+        "visible_defect_type": "unknown",
+        "visible_evidence": []
+      },
+      "diagnostic": null
+    }
+  ]
+}

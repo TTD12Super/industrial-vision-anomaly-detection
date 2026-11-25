@@ -1,0 +1,82 @@
+{
+  "results": [
+    {
+      "category": "bottle",
+      "defect_type": "broken_large",
+      "image_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_processed/bottle/test/broken_large/000.png",
+      "padim_threshold": 1.0749183893203735,
+      "padim_image_score": 2.2428603172302246,
+      "precision": 0.5144047967241884,
+      "recall": 0.9865376525031553,
+      "f1": 0.6762147354255781,
+      "iou": 0.5108190531513215,
+      "predicted_positive_fraction": 0.20867919921875,
+      "ground_truth_positive_fraction": 0.1088104248046875
+    },
+    {
+      "category": "cable",
+      "defect_type": "bent_wire",
+      "image_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_processed/cable/test/bent_wire/000.png",
+      "padim_threshold": 1.557692289352417,
+      "padim_image_score": 2.012998104095459,
+      "precision": 0.41086867023466445,
+      "recall": 0.690179806362379,
+      "f1": 0.5150967741935484,
+      "iou": 0.34688912061174837,
+      "predicted_positive_fraction": 0.0370635986328125,
+      "ground_truth_positive_fraction": 0.022064208984375
+    },
+    {
+      "category": "capsule",
+      "defect_type": "crack",
+      "image_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_processed/capsule/test/crack/000.png",
+      "padim_threshold": 1.3653249740600586,
+      "padim_image_score": 2.2312254905700684,
+      "precision": 0.013319126265316995,
+      "recall": 0.1524390243902439,
+      "f1": 0.024497795198432138,
+      "iou": 0.01240079365079365,
+      "predicted_positive_fraction": 0.0286407470703125,
+      "ground_truth_positive_fraction": 0.00250244140625
+    },
+    {
+      "category": "carpet",
+      "defect_type": "color",
+      "image_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_processed/carpet/test/color/000.png",
+      "padim_threshold": 1.288771152496338,
+      "padim_image_score": 2.2916929721832275,
+      "precision": 0.4847453353504791,
+      "recall": 1.0,
+      "f1": 0.6529676488069966,
+      "iou": 0.4847453353504791,
+      "predicted_positive_fraction": 0.12103271484375,
+      "ground_truth_positive_fraction": 0.0586700439453125
+    },
+    {
+      "category": "transistor",
+      "defect_type": "bent_lead",
+      "image_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_processed/transistor/test/bent_lead/000.png",
+      "padim_threshold": 1.533609390258789,
+      "padim_image_score": 2.0602986812591553,
+      "precision": 0.28794178794178793,
+      "recall": 1.0,
+      "f1": 0.44713478611783697,
+      "iou": 0.28794178794178793,
+      "predicted_positive_fraction": 0.014678955078125,
+      "ground_truth_positive_fraction": 0.0042266845703125
+    },
+    {
+      "category": "zipper",
+      "defect_type": "broken_teeth",
+      "image_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_processed/zipper/test/broken_teeth/000.png",
+      "padim_threshold": 1.2933540344238281,
+      "padim_image_score": 2.007646322250366,
+      "precision": 0.12001191185229303,
+      "recall": 0.22949886104783598,
+      "f1": 0.15760657019945248,
+      "iou": 0.08554447038845256,
+      "predicted_positive_fraction": 0.051239013671875,
+      "ground_truth_positive_fraction": 0.02679443359375
+    }
+  ]
+}

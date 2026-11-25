@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "status": "development_diagnostic",
+  "selected_validation_threshold": 0.3896714150905609,
+  "validation": {
+    "recall": 1.0,
+    "good_fp": 0.06
+  },
+  "diagnostic": {
+    "recall": 0.9130434782608695,
+    "good_fp": 0.09090909090909091
+  },
+  "source_report": "reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+  "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+  "warning": "Diagnostic result is not an independent target-camera holdout."
+}

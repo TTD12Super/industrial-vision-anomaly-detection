@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "status": "supervised_development_diagnostic",
+  "model_run": false,
+  "threshold_selection": false,
+  "warning": "Figures summarize saved development/diagnostic evidence; no independent target-camera holdout claim is made.",
+  "source_files": {
+    "artifacts/products/screw/screw-supervised-dev-001/detector_dataset/training/run/val_batch0_pred.jpg": {
+      "sha256": "615eab40cd8f2ad9130021660cec62cc4103a39a4105f193cd58adb2785e63c3"
+    },
+    "reports/experiments/screw_classifier_sweep_rnd10/inputs/reconciled_threshold_sweep.json": {
+      "sha256": "d2e85d733dc88635c3a7e639ccb22ecfc44ad6144ead6342fe2227c59c82e37f"
+    },
+    "reports/experiments/weee_yolo_obb_rtdetr_fair_aabb_holdout_rnd3.json": {
+      "sha256": "0874df64f8897125be672cf49d52319ece255324b055fde02e8d3b3c046c7b92"
+    },
+    "reports/production/screw_comparison_rnd6/mvtec_ad_screw_benchmark/20261122T201103Z/comparison_summary.json": {
+      "sha256": "146aa159f837c402677aa807eac13d8c684790bdab3e274dc43f0440b32f1cdf"
+    },
+    "reports/products/screw/screw-full-dev-001/classifier_metrics.json": {
+      "sha256": "ca2d86fb8bbe19d3548a7f4adc2f3ef610bcceb95c56c8a0b7c1705169e1b3af"
+    },
+    "reports/products/screw/screw-full-dev-001/three_heatmap_comparison.json": {
+      "sha256": "afab5407aee70d2c81563c39051e5ff6eb819e3b02328f18b8e9f8d2844ce075"
+    },
+    "reports/products/screw/screw-full-dev-002/active_refiner_localizer_methods_open7_open9_correct.json": {
+      "sha256": "4d8909b319b69d00fc53f360720bee69f12c6c484280cce98cc91c8aaf5f1ae2"
+    },
+    "reports/products/screw/screw-full-dev-002/classifier_comparison.md": {
+      "sha256": "07e2276e08fcfd3c33b3c352805657e4d7f111a5762a1adcf7600ef986bdac27"
+    },
+    "reports/products/screw/screw-full-dev-002/classifier_lastblock_patch_head/summary.json": {
+      "sha256": "4757a7e640032185fff31026b099adfe3e03204014ffdf3dc79feb3696355d86"
+    },
+    "reports/products/screw/screw-full-dev-002/classifier_linear_head/summary.json": {
+      "sha256": "c9b11b4d297ab324debb6d4865bf44d348024571cb51ca0940228d60518cf1cb"
+    },
+    "reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/summary.json": {
+      "sha256": "ea01f35169d393bec02f7045a750adc703722e9a348655d8a27e4e0af28ec14f"
+    },
+    "reports/products/screw/screw-full-dev-013/spatial_decoder_448_test.json": {
+      "sha256": "a8713aad119f2a3f575aea398fc3d78cea4543c1ce5d926b4c86bc702db63380"
+    },
+    "runs/screw-open-set-candidate-rnd1/candidate_known_good_000/objects/screw_01/crop_status.png": {
+      "sha256": "6f54b3f2a6a4942d6147cc80bc32ddc132d690b8e5e867d86329072821c37359"
+    },
+    "runs/screw-open-set-candidate-rnd1/candidate_known_good_000/objects/screw_01/heatmap_overlay.png": {
+      "sha256": "ddd0a2a0f287ee8454cbc896dd7cab1a903bb3ab8196ab72f730d74ee9883ee1"
+    },
+    "runs/screw-open-set-candidate-rnd1/candidate_known_good_000/overview/objects_labeled.png": {
+      "sha256": "21c09f74491f9cd7f39818c51b7ad1d357c2cc7e4909ffe669761c0e8b3ba1d7"
+    },
+    "runs/screw-open-set-candidate-rnd1/candidate_mixed_unknown_003_clipped/objects/screw_01/crop_status.png": {
+      "sha256": "5c5235a1e659c5d604c4f1574883f7881e5514251343ff45de58e9909355c9e6"
+    },
+    "runs/screw-open-set-candidate-rnd1/candidate_mixed_unknown_003_clipped/overview/objects_labeled.png": {
+      "sha256": "d11e3338866a5fadd3ae9a4b6a16edfbcbb959805a08a991b307a083fecd924d"
+    }
+  },
+  "generated_files": {
+    "anomaly_detector_comparison.png": {
+      "sha256": "969fdfd0e6d53859f9959943031739ff7bd71b1024c9d4aebd6c8625e21a6d15"
+    },
+    "classifier_comparison.png": {
+      "sha256": "edada2a272383b8cd4c96e8b0752fb71a3365b03f6a5692e116872c2a2e64729"
+    },
+    "classifier_threshold_sweep.png": {
+      "sha256": "fac862540c6f953dd21730650460848e1d7f2bad3902f02dd0094ae6ca444667"
+    },
+    "detector_coverage_latency.png": {
+      "sha256": "9efda02325ad0b527e790bb845166f3db8794e88790c5f6aa9ed481cf99621b6"
+    },
+    "heatmap_method_comparison.png": {
+      "sha256": "55e306897ae82b7ecc48cbadd0220c9c9fc30e75b7df715719982d18a69ae1c9"
+    },
+    "heatmap_postprocess_sweep.png": {
+      "sha256": "cdb081dda8389b632e71a44972fe4ff72296ce7239d2380795e3aa9a5403ad54"
+    },
+    "qualitative_evidence_montage.png": {
+      "sha256": "2adc2b70859f7c3368b36e2d1d1e87434c727b9efb22380ba105cfaa4cd81220"
+    }
+  }
+}

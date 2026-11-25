@@ -1,0 +1,128 @@
+{
+  "schema_version": "1.0",
+  "product_key": "screw",
+  "target_validation_recall": 0.9,
+  "selected_by_validation": "open3_close5",
+  "methods": {
+    "raw": {
+      "mask_threshold": 0.03379588834941387,
+      "validation": {
+        "pixel_precision": 0.03668557094034776,
+        "pixel_recall": 0.9047964993495413,
+        "pixel_dice": 0.07051217906517446,
+        "pixel_iou": 0.03654450590468704,
+        "good_false_positive_rate": 0.30242885994618784
+      },
+      "test": {
+        "pixel_precision": 0.028994899939130212,
+        "pixel_recall": 0.8508338391282985,
+        "pixel_dice": 0.05607873654252244,
+        "pixel_iou": 0.028848255120570182,
+        "good_false_positive_rate": 0.317935017473068
+      }
+    },
+    "border2": {
+      "mask_threshold": 0.022424231749027967,
+      "validation": {
+        "pixel_precision": 0.02693703515372718,
+        "pixel_recall": 0.9012654378347328,
+        "pixel_dice": 0.0523106099979015,
+        "pixel_iou": 0.026857778384183288,
+        "good_false_positive_rate": 0.41442257504875935
+      },
+      "test": {
+        "pixel_precision": 0.023918205735154366,
+        "pixel_recall": 0.9173097488366716,
+        "pixel_dice": 0.046620806764115286,
+        "pixel_iou": 0.02386674687922996,
+        "good_false_positive_rate": 0.41770275273383534
+      }
+    },
+    "border5": {
+      "mask_threshold": 0.0039777452358976005,
+      "validation": {
+        "pixel_precision": 0.013221422832141382,
+        "pixel_recall": 0.8454104647823075,
+        "pixel_dice": 0.026035672289457527,
+        "pixel_iou": 0.013189535354802691,
+        "good_false_positive_rate": 0.8031722129424068
+      },
+      "test": {
+        "pixel_precision": 0.011896618811776906,
+        "pixel_recall": 0.8651117084308795,
+        "pixel_dice": 0.02347048233205573,
+        "pixel_iou": 0.01187459237125279,
+        "good_false_positive_rate": 0.8017606583134781
+      }
+    },
+    "open3": {
+      "mask_threshold": 0.03379588834941387,
+      "validation": {
+        "pixel_precision": 0.03670827769811393,
+        "pixel_recall": 0.9047964993495413,
+        "pixel_dice": 0.07055412137696077,
+        "pixel_iou": 0.036567038318437904,
+        "good_false_positive_rate": 0.3022346612609323
+      },
+      "test": {
+        "pixel_precision": 0.029005161400960138,
+        "pixel_recall": 0.8506026185727911,
+        "pixel_dice": 0.05609742615173181,
+        "pixel_iou": 0.028858146959843737,
+        "good_false_positive_rate": 0.31773280976479407
+      }
+    },
+    "open5": {
+      "mask_threshold": 0.03379588834941387,
+      "validation": {
+        "pixel_precision": 0.0368063957325121,
+        "pixel_recall": 0.9046106540066566,
+        "pixel_dice": 0.07073476675282332,
+        "pixel_iou": 0.036664096534704316,
+        "good_false_positive_rate": 0.30133635792946784
+      },
+      "test": {
+        "pixel_precision": 0.029008413794194166,
+        "pixel_recall": 0.848203705309402,
+        "pixel_dice": 0.05609827664152022,
+        "pixel_iou": 0.028858597102635004,
+        "good_false_positive_rate": 0.316800138804143
+      }
+    },
+    "open3_close5": {
+      "mask_threshold": 0.03472968935966492,
+      "validation": {
+        "pixel_precision": 0.037572741513108104,
+        "pixel_recall": 0.9000489955903969,
+        "pixel_dice": 0.07213422411668648,
+        "pixel_iou": 0.03741662154028118,
+        "good_false_positive_rate": 0.2934679777551105
+      },
+      "test": {
+        "pixel_precision": 0.02944932025642918,
+        "pixel_recall": 0.8419029451718257,
+        "pixel_dice": 0.05690802776535036,
+        "pixel_iou": 0.029287356737881725,
+        "good_false_positive_rate": 0.3095983838863354
+      }
+    },
+    "components": {
+      "mask_threshold": 0.03379588834941387,
+      "validation": {
+        "pixel_precision": 0.03678275549914352,
+        "pixel_recall": 0.9047964993495413,
+        "pixel_dice": 0.07069167728722635,
+        "pixel_iou": 0.03664094352105825,
+        "good_false_positive_rate": 0.30159937563939865
+      },
+      "test": {
+        "pixel_precision": 0.029006808688016295,
+        "pixel_recall": 0.848752854128732,
+        "pixel_dice": 0.05609647539308221,
+        "pixel_iou": 0.028857643747739817,
+        "good_false_positive_rate": 0.3170233090340083
+      }
+    }
+  },
+  "warning": "Test results are supervised-development diagnostics and must not be used for final model selection."
+}

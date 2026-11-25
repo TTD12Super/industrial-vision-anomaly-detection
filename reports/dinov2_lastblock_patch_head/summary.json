@@ -1,0 +1,153 @@
+{
+  "dataset": "MVTec AD/screw",
+  "protocol": "DINOv2 last Transformer block + global/patch-aware GOOD/DEFECT head",
+  "device": "mps",
+  "counts": {
+    "train": {
+      "GOOD": 320,
+      "DEFECT": 84,
+      "total": 404
+    },
+    "validation": {
+      "GOOD": 20,
+      "DEFECT": 18,
+      "total": 38
+    },
+    "test": {
+      "GOOD": 21,
+      "DEFECT": 17,
+      "total": 38
+    }
+  },
+  "best_epoch": 7,
+  "epochs_trained": 13,
+  "threshold": 0.7367033362388611,
+  "threshold_rule": "highest threshold meeting defect recall >= 0.90",
+  "results": {
+    "validation": {
+      "images": 38,
+      "threshold": 0.7367033362388611,
+      "accuracy": 0.9736842105263158,
+      "balanced_accuracy": 0.9722222222222222,
+      "precision_defect": 1.0,
+      "recall_defect": 0.9444444444444444,
+      "f1_defect": 0.9714285714285714,
+      "good_recall": 1.0,
+      "image_auroc": 1.0,
+      "image_average_precision": 1.0000000000000002,
+      "confusion_matrix_good_defect": [
+        [
+          20,
+          0
+        ],
+        [
+          1,
+          17
+        ]
+      ]
+    },
+    "test": {
+      "images": 38,
+      "threshold": 0.7367033362388611,
+      "accuracy": 0.9210526315789473,
+      "balanced_accuracy": 0.9117647058823529,
+      "precision_defect": 1.0,
+      "recall_defect": 0.8235294117647058,
+      "f1_defect": 0.9032258064516129,
+      "good_recall": 1.0,
+      "image_auroc": 1.0,
+      "image_average_precision": 1.0,
+      "confusion_matrix_good_defect": [
+        [
+          21,
+          0
+        ],
+        [
+          3,
+          14
+        ]
+      ]
+    }
+  },
+  "checkpoint": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/production/dinov2_lastblock_patch_head/model.pt",
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.5137359572016624,
+      "validation_auroc": 0.9944444444444445,
+      "validation_balanced_accuracy_at_0_5": 0.8611111111111112
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.2868131049842422,
+      "validation_auroc": 0.9888888888888888,
+      "validation_balanced_accuracy_at_0_5": 0.9472222222222222
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.17444351373952746,
+      "validation_auroc": 0.9972222222222222,
+      "validation_balanced_accuracy_at_0_5": 0.975
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.09923339795345287,
+      "validation_auroc": 0.9972222222222222,
+      "validation_balanced_accuracy_at_0_5": 0.9722222222222222
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.08195431270304301,
+      "validation_auroc": 1.0,
+      "validation_balanced_accuracy_at_0_5": 0.9166666666666667
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.046283553117864314,
+      "validation_auroc": 1.0,
+      "validation_balanced_accuracy_at_0_5": 0.9722222222222222
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.02365080187205039,
+      "validation_auroc": 1.0,
+      "validation_balanced_accuracy_at_0_5": 1.0
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.006944023442443944,
+      "validation_auroc": 1.0,
+      "validation_balanced_accuracy_at_0_5": 1.0
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.001556798533964326,
+      "validation_auroc": 1.0,
+      "validation_balanced_accuracy_at_0_5": 0.9722222222222222
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.0006292539194797565,
+      "validation_auroc": 1.0,
+      "validation_balanced_accuracy_at_0_5": 0.9722222222222222
+    },
+    {
+      "epoch": 11,
+      "train_loss": 0.00036828390076424267,
+      "validation_auroc": 1.0,
+      "validation_balanced_accuracy_at_0_5": 0.9722222222222222
+    },
+    {
+      "epoch": 12,
+      "train_loss": 0.0002355810718481546,
+      "validation_auroc": 1.0,
+      "validation_balanced_accuracy_at_0_5": 0.9722222222222222
+    },
+    {
+      "epoch": 13,
+      "train_loss": 0.0001717716149394859,
+      "validation_auroc": 1.0,
+      "validation_balanced_accuracy_at_0_5": 0.9722222222222222
+    }
+  ]
+}

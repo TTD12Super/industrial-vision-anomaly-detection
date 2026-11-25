@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "selected_candidate": {
+    "name": "threshold_062",
+    "method": "dinov2_lastblock_patch_head",
+    "metric_unit": "object",
+    "artifact_paths": [
+      "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt"
+    ],
+    "artifact_sha256": {
+      "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+    },
+    "artifact_hashes": {
+      "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt": "ba68286ca7576e3f95bf04d0b35d58c6e3f2ca071bde471507d21cf639e95c5c"
+    },
+    "source_report_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+    "source_report_expected_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+    "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+    "source_report_actual_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+    "metrics": {
+      "defect_recall": 0.9333333333333333,
+      "good_false_positive_rate": 0.02,
+      "threshold": 0.8196384906768799
+    },
+    "metric_numerators": {
+      "defect_true_positive": 14,
+      "good_false_alarm_count": 1
+    },
+    "metric_denominators": {
+      "defect_count": 15,
+      "good_count": 50
+    },
+    "split_role": "validation",
+    "holdout_used_for_selection": false,
+    "device": "mps"
+  },
+  "selection_split_role": "validation",
+  "target_defect_recall": 0.9,
+  "good_false_positive_cap": 0.2,
+  "eligible_candidate_count": 21
+}

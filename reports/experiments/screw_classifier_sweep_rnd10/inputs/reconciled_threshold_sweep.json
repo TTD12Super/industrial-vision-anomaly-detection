@@ -1,0 +1,1060 @@
+{
+  "model": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/model.pt",
+  "manifest": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/products/screw/screw-full-dev-004/classification_manifest.csv",
+  "selected_validation_gate": {
+    "threshold": 0.3896714150905609,
+    "validation": {
+      "recall": 1.0,
+      "good_fp": 0.06
+    },
+    "test_diagnostic": {
+      "recall": 0.9130434782608695,
+      "good_fp": 0.09090909090909091
+    }
+  },
+  "validation_gate_exists": true,
+  "points": [
+    {
+      "threshold": 0.0,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 1.0,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 50
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 1.0
+      }
+    },
+    {
+      "threshold": 2.1783396732644178e-05,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 1.0,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 50
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 1.0
+      }
+    },
+    {
+      "threshold": 5.310828782967292e-05,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.98,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 49
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.9636363636363636
+      }
+    },
+    {
+      "threshold": 0.00010944918903987855,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.96,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 48
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.9272727272727272
+      }
+    },
+    {
+      "threshold": 0.00011097100650658831,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.94,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 47
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.9272727272727272
+      }
+    },
+    {
+      "threshold": 0.000122359735541977,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.92,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 46
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.9272727272727272
+      }
+    },
+    {
+      "threshold": 0.000258458690950647,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.9,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 45
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.7454545454545455
+      }
+    },
+    {
+      "threshold": 0.0003249119617976248,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.88,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 44
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.7272727272727273
+      }
+    },
+    {
+      "threshold": 0.00043031704262830317,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.86,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 43
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.6727272727272727
+      }
+    },
+    {
+      "threshold": 0.0005144848837517202,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.84,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 42
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.6545454545454545
+      }
+    },
+    {
+      "threshold": 0.0005630804225802422,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.82,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 41
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.6363636363636364
+      }
+    },
+    {
+      "threshold": 0.0005990149802528322,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.8,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 40
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.6363636363636364
+      }
+    },
+    {
+      "threshold": 0.0006076405989006162,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.78,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 39
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.6363636363636364
+      }
+    },
+    {
+      "threshold": 0.0006818589172326028,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.76,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 38
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.6
+      }
+    },
+    {
+      "threshold": 0.0007291391957551241,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.74,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 37
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.5818181818181818
+      }
+    },
+    {
+      "threshold": 0.0007441928028129041,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.72,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 36
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.5818181818181818
+      }
+    },
+    {
+      "threshold": 0.0007953982567414641,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.7,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 35
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.5818181818181818
+      }
+    },
+    {
+      "threshold": 0.0009196408791467547,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.68,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 34
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.5454545454545454
+      }
+    },
+    {
+      "threshold": 0.0009488992509432137,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.66,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 33
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.5454545454545454
+      }
+    },
+    {
+      "threshold": 0.0011958230752497911,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.64,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 32
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.5272727272727272
+      }
+    },
+    {
+      "threshold": 0.001536599826067686,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.62,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 31
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.5272727272727272
+      }
+    },
+    {
+      "threshold": 0.0017825321992859244,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.6,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 30
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.5272727272727272
+      }
+    },
+    {
+      "threshold": 0.00260344659909606,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.58,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 29
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.45454545454545453
+      }
+    },
+    {
+      "threshold": 0.0026805968955159187,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.56,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 28
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.45454545454545453
+      }
+    },
+    {
+      "threshold": 0.0032111641485244036,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.54,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 27
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.43636363636363634
+      }
+    },
+    {
+      "threshold": 0.0042213271372020245,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.52,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 26
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.38181818181818183
+      }
+    },
+    {
+      "threshold": 0.006000296212732792,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.5,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 25
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.38181818181818183
+      }
+    },
+    {
+      "threshold": 0.006528766360133886,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.48,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 24
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.38181818181818183
+      }
+    },
+    {
+      "threshold": 0.009696079418063164,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.46,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 23
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.36363636363636365
+      }
+    },
+    {
+      "threshold": 0.01066281832754612,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.44,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 22
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.32727272727272727
+      }
+    },
+    {
+      "threshold": 0.01201772503554821,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.42,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 21
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.3090909090909091
+      }
+    },
+    {
+      "threshold": 0.015664223581552505,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.4,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 20
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.2909090909090909
+      }
+    },
+    {
+      "threshold": 0.015699809417128563,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.38,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 19
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.2909090909090909
+      }
+    },
+    {
+      "threshold": 0.020294584333896637,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.36,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 18
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.2909090909090909
+      }
+    },
+    {
+      "threshold": 0.03264486417174339,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.34,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 17
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.2
+      }
+    },
+    {
+      "threshold": 0.05,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.32,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 16
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.18181818181818182
+      }
+    },
+    {
+      "threshold": 0.05705153942108154,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.32,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 16
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.16363636363636364
+      }
+    },
+    {
+      "threshold": 0.07493586838245392,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.3,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 15
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.16363636363636364
+      }
+    },
+    {
+      "threshold": 0.07568493485450745,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.28,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 14
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.16363636363636364
+      }
+    },
+    {
+      "threshold": 0.08417792618274689,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.26,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 13
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.16363636363636364
+      }
+    },
+    {
+      "threshold": 0.09093928337097168,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.24,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 12
+      },
+      "test_diagnostic": {
+        "recall": 1.0,
+        "good_fp": 0.14545454545454545
+      }
+    },
+    {
+      "threshold": 0.09528010338544846,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.22,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 11
+      },
+      "test_diagnostic": {
+        "recall": 0.9565217391304348,
+        "good_fp": 0.14545454545454545
+      }
+    },
+    {
+      "threshold": 0.1,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.2,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 10
+      },
+      "test_diagnostic": {
+        "recall": 0.9565217391304348,
+        "good_fp": 0.14545454545454545
+      }
+    },
+    {
+      "threshold": 0.11580123752355576,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.2,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 10
+      },
+      "test_diagnostic": {
+        "recall": 0.9565217391304348,
+        "good_fp": 0.12727272727272726
+      }
+    },
+    {
+      "threshold": 0.15,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.18,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 9
+      },
+      "test_diagnostic": {
+        "recall": 0.9565217391304348,
+        "good_fp": 0.10909090909090909
+      }
+    },
+    {
+      "threshold": 0.15464046597480774,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.18,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 9
+      },
+      "test_diagnostic": {
+        "recall": 0.9565217391304348,
+        "good_fp": 0.10909090909090909
+      }
+    },
+    {
+      "threshold": 0.2,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.16,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 8
+      },
+      "test_diagnostic": {
+        "recall": 0.9565217391304348,
+        "good_fp": 0.10909090909090909
+      }
+    },
+    {
+      "threshold": 0.2213248759508133,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.16,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 8
+      },
+      "test_diagnostic": {
+        "recall": 0.9565217391304348,
+        "good_fp": 0.10909090909090909
+      }
+    },
+    {
+      "threshold": 0.22295576333999634,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.14,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 7
+      },
+      "test_diagnostic": {
+        "recall": 0.9565217391304348,
+        "good_fp": 0.10909090909090909
+      }
+    },
+    {
+      "threshold": 0.25,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.12,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 6
+      },
+      "test_diagnostic": {
+        "recall": 0.9565217391304348,
+        "good_fp": 0.10909090909090909
+      }
+    },
+    {
+      "threshold": 0.25205230712890625,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.12,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 6
+      },
+      "test_diagnostic": {
+        "recall": 0.9565217391304348,
+        "good_fp": 0.10909090909090909
+      }
+    },
+    {
+      "threshold": 0.2856566309928894,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.1,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 5
+      },
+      "test_diagnostic": {
+        "recall": 0.9130434782608695,
+        "good_fp": 0.10909090909090909
+      }
+    },
+    {
+      "threshold": 0.29681631922721863,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.08,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 4
+      },
+      "test_diagnostic": {
+        "recall": 0.9130434782608695,
+        "good_fp": 0.10909090909090909
+      }
+    },
+    {
+      "threshold": 0.3,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.06,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 3
+      },
+      "test_diagnostic": {
+        "recall": 0.9130434782608695,
+        "good_fp": 0.10909090909090909
+      }
+    },
+    {
+      "threshold": 0.3896714150905609,
+      "validation": {
+        "recall": 1.0,
+        "good_fp": 0.06,
+        "defect_true_positive": 15,
+        "good_false_alarm_count": 3
+      },
+      "test_diagnostic": {
+        "recall": 0.9130434782608695,
+        "good_fp": 0.09090909090909091
+      }
+    },
+    {
+      "threshold": 0.4,
+      "validation": {
+        "recall": 0.9333333333333333,
+        "good_fp": 0.06,
+        "defect_true_positive": 14,
+        "good_false_alarm_count": 3
+      },
+      "test_diagnostic": {
+        "recall": 0.9130434782608695,
+        "good_fp": 0.09090909090909091
+      }
+    },
+    {
+      "threshold": 0.4748420715332031,
+      "validation": {
+        "recall": 0.9333333333333333,
+        "good_fp": 0.06,
+        "defect_true_positive": 14,
+        "good_false_alarm_count": 3
+      },
+      "test_diagnostic": {
+        "recall": 0.9130434782608695,
+        "good_fp": 0.09090909090909091
+      }
+    },
+    {
+      "threshold": 0.5,
+      "validation": {
+        "recall": 0.9333333333333333,
+        "good_fp": 0.04,
+        "defect_true_positive": 14,
+        "good_false_alarm_count": 2
+      },
+      "test_diagnostic": {
+        "recall": 0.8695652173913043,
+        "good_fp": 0.09090909090909091
+      }
+    },
+    {
+      "threshold": 0.6,
+      "validation": {
+        "recall": 0.9333333333333333,
+        "good_fp": 0.04,
+        "defect_true_positive": 14,
+        "good_false_alarm_count": 2
+      },
+      "test_diagnostic": {
+        "recall": 0.8260869565217391,
+        "good_fp": 0.09090909090909091
+      }
+    },
+    {
+      "threshold": 0.6266879439353943,
+      "validation": {
+        "recall": 0.9333333333333333,
+        "good_fp": 0.04,
+        "defect_true_positive": 14,
+        "good_false_alarm_count": 2
+      },
+      "test_diagnostic": {
+        "recall": 0.8260869565217391,
+        "good_fp": 0.09090909090909091
+      }
+    },
+    {
+      "threshold": 0.7,
+      "validation": {
+        "recall": 0.9333333333333333,
+        "good_fp": 0.02,
+        "defect_true_positive": 14,
+        "good_false_alarm_count": 1
+      },
+      "test_diagnostic": {
+        "recall": 0.8260869565217391,
+        "good_fp": 0.09090909090909091
+      }
+    },
+    {
+      "threshold": 0.8,
+      "validation": {
+        "recall": 0.9333333333333333,
+        "good_fp": 0.02,
+        "defect_true_positive": 14,
+        "good_false_alarm_count": 1
+      },
+      "test_diagnostic": {
+        "recall": 0.782608695652174,
+        "good_fp": 0.09090909090909091
+      }
+    },
+    {
+      "threshold": 0.8196384906768799,
+      "validation": {
+        "recall": 0.9333333333333333,
+        "good_fp": 0.02,
+        "defect_true_positive": 14,
+        "good_false_alarm_count": 1
+      },
+      "test_diagnostic": {
+        "recall": 0.782608695652174,
+        "good_fp": 0.07272727272727272
+      }
+    },
+    {
+      "threshold": 0.9,
+      "validation": {
+        "recall": 0.8666666666666667,
+        "good_fp": 0.02,
+        "defect_true_positive": 13,
+        "good_false_alarm_count": 1
+      },
+      "test_diagnostic": {
+        "recall": 0.7391304347826086,
+        "good_fp": 0.05454545454545454
+      }
+    },
+    {
+      "threshold": 0.902828574180603,
+      "validation": {
+        "recall": 0.8666666666666667,
+        "good_fp": 0.02,
+        "defect_true_positive": 13,
+        "good_false_alarm_count": 1
+      },
+      "test_diagnostic": {
+        "recall": 0.7391304347826086,
+        "good_fp": 0.05454545454545454
+      }
+    },
+    {
+      "threshold": 0.9791688323020935,
+      "validation": {
+        "recall": 0.8,
+        "good_fp": 0.02,
+        "defect_true_positive": 12,
+        "good_false_alarm_count": 1
+      },
+      "test_diagnostic": {
+        "recall": 0.6521739130434783,
+        "good_fp": 0.0
+      }
+    },
+    {
+      "threshold": 0.993996262550354,
+      "validation": {
+        "recall": 0.8,
+        "good_fp": 0.0,
+        "defect_true_positive": 12,
+        "good_false_alarm_count": 0
+      },
+      "test_diagnostic": {
+        "recall": 0.5652173913043478,
+        "good_fp": 0.0
+      }
+    },
+    {
+      "threshold": 0.9985263347625732,
+      "validation": {
+        "recall": 0.7333333333333333,
+        "good_fp": 0.0,
+        "defect_true_positive": 11,
+        "good_false_alarm_count": 0
+      },
+      "test_diagnostic": {
+        "recall": 0.391304347826087,
+        "good_fp": 0.0
+      }
+    },
+    {
+      "threshold": 0.9993383288383484,
+      "validation": {
+        "recall": 0.6666666666666666,
+        "good_fp": 0.0,
+        "defect_true_positive": 10,
+        "good_false_alarm_count": 0
+      },
+      "test_diagnostic": {
+        "recall": 0.17391304347826086,
+        "good_fp": 0.0
+      }
+    },
+    {
+      "threshold": 0.9996927976608276,
+      "validation": {
+        "recall": 0.6,
+        "good_fp": 0.0,
+        "defect_true_positive": 9,
+        "good_false_alarm_count": 0
+      },
+      "test_diagnostic": {
+        "recall": 0.17391304347826086,
+        "good_fp": 0.0
+      }
+    },
+    {
+      "threshold": 0.999733030796051,
+      "validation": {
+        "recall": 0.5333333333333333,
+        "good_fp": 0.0,
+        "defect_true_positive": 8,
+        "good_false_alarm_count": 0
+      },
+      "test_diagnostic": {
+        "recall": 0.17391304347826086,
+        "good_fp": 0.0
+      }
+    },
+    {
+      "threshold": 0.9998270869255066,
+      "validation": {
+        "recall": 0.4666666666666667,
+        "good_fp": 0.0,
+        "defect_true_positive": 7,
+        "good_false_alarm_count": 0
+      },
+      "test_diagnostic": {
+        "recall": 0.17391304347826086,
+        "good_fp": 0.0
+      }
+    },
+    {
+      "threshold": 0.9998780488967896,
+      "validation": {
+        "recall": 0.4,
+        "good_fp": 0.0,
+        "defect_true_positive": 6,
+        "good_false_alarm_count": 0
+      },
+      "test_diagnostic": {
+        "recall": 0.08695652173913043,
+        "good_fp": 0.0
+      }
+    },
+    {
+      "threshold": 0.9998935461044312,
+      "validation": {
+        "recall": 0.3333333333333333,
+        "good_fp": 0.0,
+        "defect_true_positive": 5,
+        "good_false_alarm_count": 0
+      },
+      "test_diagnostic": {
+        "recall": 0.08695652173913043,
+        "good_fp": 0.0
+      }
+    },
+    {
+      "threshold": 0.999924898147583,
+      "validation": {
+        "recall": 0.26666666666666666,
+        "good_fp": 0.0,
+        "defect_true_positive": 4,
+        "good_false_alarm_count": 0
+      },
+      "test_diagnostic": {
+        "recall": 0.08695652173913043,
+        "good_fp": 0.0
+      }
+    },
+    {
+      "threshold": 0.9999343156814575,
+      "validation": {
+        "recall": 0.2,
+        "good_fp": 0.0,
+        "defect_true_positive": 3,
+        "good_false_alarm_count": 0
+      },
+      "test_diagnostic": {
+        "recall": 0.08695652173913043,
+        "good_fp": 0.0
+      }
+    },
+    {
+      "threshold": 0.9999369382858276,
+      "validation": {
+        "recall": 0.13333333333333333,
+        "good_fp": 0.0,
+        "defect_true_positive": 2,
+        "good_false_alarm_count": 0
+      },
+      "test_diagnostic": {
+        "recall": 0.043478260869565216,
+        "good_fp": 0.0
+      }
+    },
+    {
+      "threshold": 0.999963641166687,
+      "validation": {
+        "recall": 0.06666666666666667,
+        "good_fp": 0.0,
+        "defect_true_positive": 1,
+        "good_false_alarm_count": 0
+      },
+      "test_diagnostic": {
+        "recall": 0.0,
+        "good_fp": 0.0
+      }
+    },
+    {
+      "threshold": 1.0,
+      "validation": {
+        "recall": 0.0,
+        "good_fp": 0.0,
+        "defect_true_positive": 0,
+        "good_false_alarm_count": 0
+      },
+      "test_diagnostic": {
+        "recall": 0.0,
+        "good_fp": 0.0
+      }
+    }
+  ],
+  "schema_version": "1.1",
+  "source_report": "reports/products/screw/screw-full-dev-004/classifier_lastblock_patch_head/threshold_sweep.json",
+  "source_report_sha256": "a5a2516a13516735b4ff1c574c5081ed51267ba5aabd80993da1f43aea05c68f",
+  "selection": {
+    "target_defect_recall": 0.9,
+    "good_false_positive_cap": 0.2,
+    "selection_split_role": "validation",
+    "tie_break": [
+      "maximize_defect_recall",
+      "lower_good_false_positive_rate",
+      "higher_threshold"
+    ]
+  },
+  "metric_count_source": "legacy_rate_reconstruction_exact_fraction",
+  "warning": "Derived from the legacy saved rates; rerun the trainer to obtain raw confusion counts."
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "product_key": "screw",
+  "target_good_false_positive_rate": 0.1,
+  "selected_by_validation": "dino_open3_close5",
+  "methods": {
+    "dino_raw": {
+      "mask_threshold": 0.06837674975395203,
+      "validation": {
+        "pixel_precision": 0.09176951761278211,
+        "pixel_recall": 0.7301187720691344,
+        "pixel_dice": 0.1630456312712579,
+        "pixel_iou": 0.08875867253256436,
+        "good_false_positive_rate": 0.09197942225138428
+      },
+      "test": {
+        "pixel_precision": 0.042696345591188116,
+        "pixel_recall": 0.5377612069712997,
+        "pixel_dice": 0.07911151551743932,
+        "pixel_iou": 0.041184855943758744,
+        "good_false_positive_rate": 0.13453714107325532
+      }
+    },
+    "dino_open3_close5": {
+      "mask_threshold": 0.06837674975395203,
+      "validation": {
+        "pixel_precision": 0.09191925624044829,
+        "pixel_recall": 0.7316393248745544,
+        "pixel_dice": 0.16331987577054133,
+        "pixel_iou": 0.08892124089329861,
+        "good_false_positive_rate": 0.09200565950454173
+      },
+      "test": {
+        "pixel_precision": 0.042714639515685195,
+        "pixel_recall": 0.5383681609295067,
+        "pixel_dice": 0.07914948404326516,
+        "pixel_iou": 0.04120543654269863,
+        "good_false_positive_rate": 0.1346287311675931
+      }
+    },
+    "raw": {
+      "mask_threshold": 0.06505066901445389,
+      "validation": {
+        "pixel_precision": 0.08723590857642805,
+        "pixel_recall": 0.6940478805183395,
+        "pixel_dice": 0.15499079412031028,
+        "pixel_iou": 0.08400543131513079,
+        "good_false_positive_rate": 0.09243835912218754
+      },
+      "test": {
+        "pixel_precision": 0.04804947183816632,
+        "pixel_recall": 0.544813433914275,
+        "pixel_dice": 0.08831045928466186,
+        "pixel_iou": 0.046194979573731844,
+        "good_false_positive_rate": 0.12043903905221022
+      }
+    }
+  },
+  "warning": "Test results are supervised-development diagnostics and not an independent production estimate."
+}

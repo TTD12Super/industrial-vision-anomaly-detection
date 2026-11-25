@@ -1,0 +1,1504 @@
+{
+  "schema_version": "1.0",
+  "product_key": "screw",
+  "split": "validation",
+  "iou_threshold": 0.5,
+  "protocol": "real detector OBB -> deterministic crop -> calibrated product routing -> classifier score; localizer and VLM disabled",
+  "totals": {
+    "ground_truth_objects": 69,
+    "predicted_objects": 81,
+    "matched_objects": 57,
+    "missed_ground_truth_objects": 12,
+    "unmatched_predictions": 24,
+    "known_product_matches": 47,
+    "unknown_product_matches": 10,
+    "review_product_matches": 0
+  },
+  "scored_known_product_objects": 47,
+  "selection": {
+    "target_defect_recall": 0.9,
+    "max_good_fp": 0.2,
+    "status": "no_validation_gate",
+    "selected": null,
+    "candidate_count": 0,
+    "points": [
+      {
+        "threshold": 0.0,
+        "recall": 1.0,
+        "good_fp": 1.0,
+        "defect_count": 8,
+        "good_flagged_count": 39
+      },
+      {
+        "threshold": 0.9937039936954325,
+        "recall": 1.0,
+        "good_fp": 1.0,
+        "defect_count": 8,
+        "good_flagged_count": 39
+      },
+      {
+        "threshold": 0.9952410491175088,
+        "recall": 1.0,
+        "good_fp": 0.9743589743589743,
+        "defect_count": 8,
+        "good_flagged_count": 38
+      },
+      {
+        "threshold": 0.9959161939731146,
+        "recall": 1.0,
+        "good_fp": 0.9487179487179487,
+        "defect_count": 8,
+        "good_flagged_count": 37
+      },
+      {
+        "threshold": 0.9981844268298387,
+        "recall": 1.0,
+        "good_fp": 0.9230769230769231,
+        "defect_count": 8,
+        "good_flagged_count": 36
+      },
+      {
+        "threshold": 0.9986681423271504,
+        "recall": 1.0,
+        "good_fp": 0.8974358974358975,
+        "defect_count": 8,
+        "good_flagged_count": 35
+      },
+      {
+        "threshold": 0.9987332268078286,
+        "recall": 1.0,
+        "good_fp": 0.8717948717948718,
+        "defect_count": 8,
+        "good_flagged_count": 34
+      },
+      {
+        "threshold": 0.9987600526081388,
+        "recall": 1.0,
+        "good_fp": 0.8461538461538461,
+        "defect_count": 8,
+        "good_flagged_count": 33
+      },
+      {
+        "threshold": 0.9987778155236279,
+        "recall": 1.0,
+        "good_fp": 0.8205128205128205,
+        "defect_count": 8,
+        "good_flagged_count": 32
+      },
+      {
+        "threshold": 0.9993966730382896,
+        "recall": 1.0,
+        "good_fp": 0.7948717948717948,
+        "defect_count": 8,
+        "good_flagged_count": 31
+      },
+      {
+        "threshold": 0.9996042739042117,
+        "recall": 1.0,
+        "good_fp": 0.7692307692307693,
+        "defect_count": 8,
+        "good_flagged_count": 30
+      },
+      {
+        "threshold": 0.9996252261534259,
+        "recall": 1.0,
+        "good_fp": 0.7435897435897436,
+        "defect_count": 8,
+        "good_flagged_count": 29
+      },
+      {
+        "threshold": 0.9996335884472031,
+        "recall": 1.0,
+        "good_fp": 0.717948717948718,
+        "defect_count": 8,
+        "good_flagged_count": 28
+      },
+      {
+        "threshold": 0.9996666621326806,
+        "recall": 1.0,
+        "good_fp": 0.6923076923076923,
+        "defect_count": 8,
+        "good_flagged_count": 27
+      },
+      {
+        "threshold": 0.9996708006213473,
+        "recall": 1.0,
+        "good_fp": 0.6666666666666666,
+        "defect_count": 8,
+        "good_flagged_count": 26
+      },
+      {
+        "threshold": 0.9996917654467719,
+        "recall": 1.0,
+        "good_fp": 0.6410256410256411,
+        "defect_count": 8,
+        "good_flagged_count": 25
+      },
+      {
+        "threshold": 0.9996975772741897,
+        "recall": 1.0,
+        "good_fp": 0.6153846153846154,
+        "defect_count": 8,
+        "good_flagged_count": 24
+      },
+      {
+        "threshold": 0.9997429643438256,
+        "recall": 1.0,
+        "good_fp": 0.5897435897435898,
+        "defect_count": 8,
+        "good_flagged_count": 23
+      },
+      {
+        "threshold": 0.9997957930029722,
+        "recall": 1.0,
+        "good_fp": 0.5641025641025641,
+        "defect_count": 8,
+        "good_flagged_count": 22
+      },
+      {
+        "threshold": 0.9998299261076551,
+        "recall": 1.0,
+        "good_fp": 0.5384615384615384,
+        "defect_count": 8,
+        "good_flagged_count": 21
+      },
+      {
+        "threshold": 0.9998465277901586,
+        "recall": 1.0,
+        "good_fp": 0.5128205128205128,
+        "defect_count": 8,
+        "good_flagged_count": 20
+      },
+      {
+        "threshold": 0.9998646759349057,
+        "recall": 0.875,
+        "good_fp": 0.5128205128205128,
+        "defect_count": 7,
+        "good_flagged_count": 20
+      },
+      {
+        "threshold": 0.9998868004910884,
+        "recall": 0.75,
+        "good_fp": 0.5128205128205128,
+        "defect_count": 6,
+        "good_flagged_count": 20
+      },
+      {
+        "threshold": 0.9998929859231314,
+        "recall": 0.625,
+        "good_fp": 0.5128205128205128,
+        "defect_count": 5,
+        "good_flagged_count": 20
+      },
+      {
+        "threshold": 0.9999081184299503,
+        "recall": 0.625,
+        "good_fp": 0.48717948717948717,
+        "defect_count": 5,
+        "good_flagged_count": 19
+      },
+      {
+        "threshold": 0.9999126249487593,
+        "recall": 0.625,
+        "good_fp": 0.46153846153846156,
+        "defect_count": 5,
+        "good_flagged_count": 18
+      },
+      {
+        "threshold": 0.9999241540184222,
+        "recall": 0.625,
+        "good_fp": 0.4358974358974359,
+        "defect_count": 5,
+        "good_flagged_count": 17
+      },
+      {
+        "threshold": 0.9999249151466753,
+        "recall": 0.625,
+        "good_fp": 0.41025641025641024,
+        "defect_count": 5,
+        "good_flagged_count": 16
+      },
+      {
+        "threshold": 0.9999284299639597,
+        "recall": 0.625,
+        "good_fp": 0.38461538461538464,
+        "defect_count": 5,
+        "good_flagged_count": 15
+      },
+      {
+        "threshold": 0.9999404175110833,
+        "recall": 0.625,
+        "good_fp": 0.358974358974359,
+        "defect_count": 5,
+        "good_flagged_count": 14
+      },
+      {
+        "threshold": 0.9999463287064094,
+        "recall": 0.625,
+        "good_fp": 0.3333333333333333,
+        "defect_count": 5,
+        "good_flagged_count": 13
+      },
+      {
+        "threshold": 0.9999490760108816,
+        "recall": 0.625,
+        "good_fp": 0.3076923076923077,
+        "defect_count": 5,
+        "good_flagged_count": 12
+      },
+      {
+        "threshold": 0.9999506365206023,
+        "recall": 0.625,
+        "good_fp": 0.28205128205128205,
+        "defect_count": 5,
+        "good_flagged_count": 11
+      },
+      {
+        "threshold": 0.9999631415645696,
+        "recall": 0.625,
+        "good_fp": 0.2564102564102564,
+        "defect_count": 5,
+        "good_flagged_count": 10
+      },
+      {
+        "threshold": 0.9999646417752777,
+        "recall": 0.625,
+        "good_fp": 0.23076923076923078,
+        "defect_count": 5,
+        "good_flagged_count": 9
+      },
+      {
+        "threshold": 0.999964783409117,
+        "recall": 0.625,
+        "good_fp": 0.20512820512820512,
+        "defect_count": 5,
+        "good_flagged_count": 8
+      },
+      {
+        "threshold": 0.999987146416184,
+        "recall": 0.5,
+        "good_fp": 0.20512820512820512,
+        "defect_count": 4,
+        "good_flagged_count": 8
+      },
+      {
+        "threshold": 0.9999876968801095,
+        "recall": 0.5,
+        "good_fp": 0.1794871794871795,
+        "defect_count": 4,
+        "good_flagged_count": 7
+      },
+      {
+        "threshold": 0.9999886406233685,
+        "recall": 0.5,
+        "good_fp": 0.15384615384615385,
+        "defect_count": 4,
+        "good_flagged_count": 6
+      },
+      {
+        "threshold": 0.9999895871665933,
+        "recall": 0.5,
+        "good_fp": 0.1282051282051282,
+        "defect_count": 4,
+        "good_flagged_count": 5
+      },
+      {
+        "threshold": 0.999990568727298,
+        "recall": 0.5,
+        "good_fp": 0.10256410256410256,
+        "defect_count": 4,
+        "good_flagged_count": 4
+      },
+      {
+        "threshold": 0.999991892594698,
+        "recall": 0.375,
+        "good_fp": 0.10256410256410256,
+        "defect_count": 3,
+        "good_flagged_count": 4
+      },
+      {
+        "threshold": 0.9999966421523452,
+        "recall": 0.375,
+        "good_fp": 0.07692307692307693,
+        "defect_count": 3,
+        "good_flagged_count": 3
+      },
+      {
+        "threshold": 0.999997644463835,
+        "recall": 0.375,
+        "good_fp": 0.05128205128205128,
+        "defect_count": 3,
+        "good_flagged_count": 2
+      },
+      {
+        "threshold": 0.9999980751569935,
+        "recall": 0.375,
+        "good_fp": 0.02564102564102564,
+        "defect_count": 3,
+        "good_flagged_count": 1
+      },
+      {
+        "threshold": 0.999998475415814,
+        "recall": 0.375,
+        "good_fp": 0.0,
+        "defect_count": 3,
+        "good_flagged_count": 0
+      },
+      {
+        "threshold": 0.9999985331975703,
+        "recall": 0.25,
+        "good_fp": 0.0,
+        "defect_count": 2,
+        "good_flagged_count": 0
+      },
+      {
+        "threshold": 0.999999975816001,
+        "recall": 0.125,
+        "good_fp": 0.0,
+        "defect_count": 1,
+        "good_flagged_count": 0
+      },
+      {
+        "threshold": 1.0,
+        "recall": 0.0,
+        "good_fp": 0.0,
+        "defect_count": 0,
+        "good_flagged_count": 0
+      }
+    ]
+  },
+  "objects": [
+    {
+      "image_id": "mvtec_ad_full_good_train_252",
+      "object_id": "mvtec_ad_full_good_train_252_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.6554864810030067,
+      "detection_score": 0.631405770778656,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9845123887062073,
+      "p_defect": 0.9993966730382896,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0000/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_255",
+      "object_id": "mvtec_ad_full_good_train_255_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.5943487457267124,
+      "detection_score": 0.5580548644065857,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.981881320476532,
+      "p_defect": 0.999997644463835,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0003/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_256",
+      "object_id": "mvtec_ad_full_good_train_256_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.6262403067204455,
+      "detection_score": 0.5372467637062073,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9817098379135132,
+      "p_defect": 0.9996708006213473,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0004/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_257",
+      "object_id": "mvtec_ad_full_good_train_257_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.5510114007998982,
+      "detection_score": 0.6117295026779175,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.979180097579956,
+      "p_defect": 0.9997957930029722,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0005/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_261",
+      "object_id": "mvtec_ad_full_good_train_261_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.8232515364673338,
+      "detection_score": 0.5234413743019104,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9822543263435364,
+      "p_defect": 0.9996917654467719,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0009/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_263",
+      "object_id": "mvtec_ad_full_good_train_263_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.565056998164651,
+      "detection_score": 0.41329705715179443,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9739165902137756,
+      "p_defect": 0.9999876968801095,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0011/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_265",
+      "object_id": "mvtec_ad_full_good_train_265_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.501290709768858,
+      "detection_score": 0.5733970403671265,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9775287508964539,
+      "p_defect": 0.9999646417752777,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0013/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_266",
+      "object_id": "mvtec_ad_full_good_train_266_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.6368911459797266,
+      "detection_score": 0.5115104913711548,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.97428297996521,
+      "p_defect": 0.9999490760108816,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0014/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_267",
+      "object_id": "mvtec_ad_full_good_train_267_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.7710597102565383,
+      "detection_score": 0.5082724690437317,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9795953035354614,
+      "p_defect": 0.9999895871665933,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0015/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_268",
+      "object_id": "mvtec_ad_full_good_train_268_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.728203950826911,
+      "detection_score": 0.6284289956092834,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9814272522926331,
+      "p_defect": 0.9999249151466753,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0016/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_269",
+      "object_id": "mvtec_ad_full_good_train_269_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.7237276086340653,
+      "detection_score": 0.5546867251396179,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9784509539604187,
+      "p_defect": 0.9999506365206023,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0017/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_270",
+      "object_id": "mvtec_ad_full_good_train_270_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.588841856737416,
+      "detection_score": 0.5903421640396118,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9806561470031738,
+      "p_defect": 0.9999284299639597,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0018/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_271",
+      "object_id": "mvtec_ad_full_good_train_271_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.5081691141171543,
+      "detection_score": 0.5690372586250305,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9838907718658447,
+      "p_defect": 0.9996335884472031,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0019/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_272",
+      "object_id": "mvtec_ad_full_good_train_272_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.7642421794979125,
+      "detection_score": 0.5235587358474731,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9828555583953857,
+      "p_defect": 0.9999081184299503,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0020/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_273",
+      "object_id": "mvtec_ad_full_good_train_273_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.7469581127991101,
+      "detection_score": 0.630588948726654,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9847490787506104,
+      "p_defect": 0.9996666621326806,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0021/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_275",
+      "object_id": "mvtec_ad_full_good_train_275_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.8106223657928111,
+      "detection_score": 0.5590617060661316,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9840747117996216,
+      "p_defect": 0.9998929859231314,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0023/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_277",
+      "object_id": "mvtec_ad_full_good_train_277_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.5508632864579165,
+      "detection_score": 0.5779228806495667,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9779472351074219,
+      "p_defect": 0.9998299261076551,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0025/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_278",
+      "object_id": "mvtec_ad_full_good_train_278_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_05",
+      "obb_iou": 0.7179764201152368,
+      "detection_score": 0.5081731677055359,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9864407181739807,
+      "p_defect": 0.9987332268078286,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0026/objects/screw_05/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_279",
+      "object_id": "mvtec_ad_full_good_train_279_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.5033713998093888,
+      "detection_score": 0.6094233989715576,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9865201711654663,
+      "p_defect": 0.9997429643438256,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0027/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_280",
+      "object_id": "mvtec_ad_full_good_train_280_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.5868321266293992,
+      "detection_score": 0.6133931875228882,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9783169031143188,
+      "p_defect": 0.9952410491175088,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0028/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_281",
+      "object_id": "mvtec_ad_full_good_train_281_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_04",
+      "obb_iou": 0.7156979464659042,
+      "detection_score": 0.5501490831375122,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.981850266456604,
+      "p_defect": 0.9937039936954325,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0029/objects/screw_04/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_283",
+      "object_id": "mvtec_ad_full_good_train_283_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.6921406178395281,
+      "detection_score": 0.4362466633319855,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9785763621330261,
+      "p_defect": 0.9999980751569935,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0031/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_285",
+      "object_id": "mvtec_ad_full_good_train_285_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.7060117508437098,
+      "detection_score": 0.5381602048873901,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9861704707145691,
+      "p_defect": 0.9987778155236279,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0033/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_287",
+      "object_id": "mvtec_ad_full_good_train_287_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.6654928784413351,
+      "detection_score": 0.6546542048454285,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9803814888000488,
+      "p_defect": 0.9999241540184222,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0035/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_288",
+      "object_id": "mvtec_ad_full_good_train_288_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_02",
+      "obb_iou": 0.669970124347017,
+      "detection_score": 0.5967552065849304,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9856305122375488,
+      "p_defect": 0.9999463287064094,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0036/objects/screw_02/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_289",
+      "object_id": "mvtec_ad_full_good_train_289_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.6667137574610233,
+      "detection_score": 0.5556104779243469,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9804188013076782,
+      "p_defect": 0.9996252261534259,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0037/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_290",
+      "object_id": "mvtec_ad_full_good_train_290_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.7480471457851087,
+      "detection_score": 0.4931904971599579,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9826071858406067,
+      "p_defect": 0.9999126249487593,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0038/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_291",
+      "object_id": "mvtec_ad_full_good_train_291_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.5170754126545115,
+      "detection_score": 0.5874777436256409,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9851828813552856,
+      "p_defect": 0.9981844268298387,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0039/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_292",
+      "object_id": "mvtec_ad_full_good_train_292_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.7137966240290196,
+      "detection_score": 0.6151382923126221,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.982088029384613,
+      "p_defect": 0.9996042739042117,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0040/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_294",
+      "object_id": "mvtec_ad_full_good_train_294_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.7091857481879907,
+      "detection_score": 0.631750762462616,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9786453247070312,
+      "p_defect": 0.9999886406233685,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0042/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_295",
+      "object_id": "mvtec_ad_full_good_train_295_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.787274670273266,
+      "detection_score": 0.6271408200263977,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9846978187561035,
+      "p_defect": 0.9987600526081388,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0043/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_298",
+      "object_id": "mvtec_ad_full_good_train_298_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.77897719111697,
+      "detection_score": 0.5549561381340027,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.980387270450592,
+      "p_defect": 0.9996975772741897,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0046/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_299",
+      "object_id": "mvtec_ad_full_good_train_299_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.6004642109429943,
+      "detection_score": 0.4966418147087097,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9739891886711121,
+      "p_defect": 0.9986681423271504,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0047/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_300",
+      "object_id": "mvtec_ad_full_good_train_300_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.5540001607494134,
+      "detection_score": 0.47252383828163147,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9849828481674194,
+      "p_defect": 0.999987146416184,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0048/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_301",
+      "object_id": "mvtec_ad_full_good_train_301_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.5604909986764789,
+      "detection_score": 0.4613780677318573,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9800673127174377,
+      "p_defect": 0.9999404175110833,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0049/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_302",
+      "object_id": "mvtec_ad_full_good_train_302_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.5741906795916406,
+      "detection_score": 0.5331003665924072,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9828364849090576,
+      "p_defect": 0.9999631415645696,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0050/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_303",
+      "object_id": "mvtec_ad_full_good_train_303_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.7560442204962972,
+      "detection_score": 0.46601253747940063,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.978358268737793,
+      "p_defect": 0.999991892594698,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0051/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_304",
+      "object_id": "mvtec_ad_full_good_train_304_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.513565686064144,
+      "detection_score": 0.5663729310035706,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.977592945098877,
+      "p_defect": 0.9959161939731146,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0052/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_305",
+      "object_id": "mvtec_ad_full_good_train_305_obj01",
+      "quality_label": "GOOD",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.5446859623252843,
+      "detection_score": 0.5610509514808655,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.975506067276001,
+      "p_defect": 0.9999966421523452,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0053/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_manipulated_front_test_017",
+      "object_id": "mvtec_ad_full_manipulated_front_test_017_obj01",
+      "quality_label": "DEFECT",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.7275158629642792,
+      "detection_score": 0.5463343858718872,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9776003360748291,
+      "p_defect": 0.9998868004910884,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0055/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_manipulated_front_test_018",
+      "object_id": "mvtec_ad_full_manipulated_front_test_018_obj01",
+      "quality_label": "DEFECT",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.654877289594967,
+      "detection_score": 0.4239642024040222,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9742721319198608,
+      "p_defect": 0.9998646759349057,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0056/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_head_test_016",
+      "object_id": "mvtec_ad_full_scratch_head_test_016_obj01",
+      "quality_label": "DEFECT",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.8494803882346674,
+      "detection_score": 0.5359458327293396,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9825323820114136,
+      "p_defect": 0.9998465277901586,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0057/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_neck_test_017",
+      "object_id": "mvtec_ad_full_scratch_neck_test_017_obj01",
+      "quality_label": "DEFECT",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.7482727619263279,
+      "detection_score": 0.5790039300918579,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9846161603927612,
+      "p_defect": 0.9999985331975703,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0060/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_neck_test_019",
+      "object_id": "mvtec_ad_full_scratch_neck_test_019_obj01",
+      "quality_label": "DEFECT",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.5040667124413549,
+      "detection_score": 0.5640590190887451,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9767835140228271,
+      "p_defect": 0.999999975816001,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0062/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_thread_side_test_016",
+      "object_id": "mvtec_ad_full_thread_side_test_016_obj01",
+      "quality_label": "DEFECT",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.6908886389748551,
+      "detection_score": 0.3959498703479767,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9738402366638184,
+      "p_defect": 0.999990568727298,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0063/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_thread_side_test_018",
+      "object_id": "mvtec_ad_full_thread_side_test_018_obj01",
+      "quality_label": "DEFECT",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.739240379319143,
+      "detection_score": 0.6102564930915833,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9747388362884521,
+      "p_defect": 0.999964783409117,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0065/objects/screw_01/crop_original.png"
+    },
+    {
+      "image_id": "mvtec_ad_full_thread_top_test_018",
+      "object_id": "mvtec_ad_full_thread_top_test_018_obj01",
+      "quality_label": "DEFECT",
+      "prediction_object_id": "screw_01",
+      "obb_iou": 0.8613596697910169,
+      "detection_score": 0.5817880630493164,
+      "product_recognition_status": "KNOWN_PRODUCT",
+      "recognition_score": 0.9781502485275269,
+      "p_defect": 0.999998475415814,
+      "crop_path": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/runs/screw_detector_crop_calibration_rnd1/validation_0068/objects/screw_01/crop_original.png"
+    }
+  ],
+  "per_image": [
+    {
+      "image_id": "mvtec_ad_full_good_train_252",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_253",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_254",
+      "matched_objects": 0,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 1,
+      "unmatched_predictions": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_255",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_256",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_257",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_258",
+      "matched_objects": 0,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 1,
+      "unmatched_predictions": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_259",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 2,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_260",
+      "matched_objects": 0,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 1,
+      "unmatched_predictions": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_261",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_262",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_263",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_264",
+      "matched_objects": 0,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 1,
+      "unmatched_predictions": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_265",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_266",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_267",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_268",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_269",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_270",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_271",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 2,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_272",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_273",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_274",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 2,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_275",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_276",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_277",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_278",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 5,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 4
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_279",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_280",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_281",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 4,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 3
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_282",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_283",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_284",
+      "matched_objects": 0,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 1,
+      "unmatched_predictions": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_285",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_286",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_287",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_288",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 2,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_289",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_290",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_291",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_292",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_293",
+      "matched_objects": 0,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 1,
+      "unmatched_predictions": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_294",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_295",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_296",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_297",
+      "matched_objects": 0,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 1,
+      "unmatched_predictions": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_298",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_299",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_300",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_301",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_302",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_303",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_304",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 2,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_good_train_305",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_manipulated_front_test_016",
+      "matched_objects": 0,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 1,
+      "unmatched_predictions": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_manipulated_front_test_017",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_manipulated_front_test_018",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_head_test_016",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_head_test_017",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_head_test_018",
+      "matched_objects": 0,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 1,
+      "unmatched_predictions": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_neck_test_017",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_neck_test_018",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_scratch_neck_test_019",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_thread_side_test_016",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_thread_side_test_017",
+      "matched_objects": 0,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 1,
+      "unmatched_predictions": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_thread_side_test_018",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    },
+    {
+      "image_id": "mvtec_ad_full_thread_top_test_016",
+      "matched_objects": 0,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 1,
+      "unmatched_predictions": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_thread_top_test_017",
+      "matched_objects": 0,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 1,
+      "unmatched_predictions": 1
+    },
+    {
+      "image_id": "mvtec_ad_full_thread_top_test_018",
+      "matched_objects": 1,
+      "ground_truth_objects": 1,
+      "predicted_objects": 1,
+      "missed_ground_truth_objects": 0,
+      "unmatched_predictions": 0
+    }
+  ],
+  "provenance": {
+    "config": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/configs/experiments/screw_patchcore_padim.yaml",
+    "config_sha256": "97ad7513fd8336e79ca78335eed830940397808a5f66d2daa22724abc6e4a55a",
+    "image_manifest": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/products/screw_anomaly_full/manifests/images.jsonl",
+    "image_manifest_sha256": "a9ec2f2136cc5d700011a430a3ed009f8269239f9f2f336175594725086eba37",
+    "object_manifest": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/products/screw_anomaly_full/manifests/objects.jsonl",
+    "object_manifest_sha256": "347f0061dc94e1086b395204cd69d14c1b1ef2df70a7a18bbc8f4a7e66a3b8af",
+    "detector_weights": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-supervised-dev-001/detector_dataset/training/run/weights/best.pt",
+    "classifier_artifact": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-patch-memory-rnd3/classifier_top1_allowed03.pt",
+    "product_gallery": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-recognizer-rnd6/gallery.pt",
+    "product_calibration": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/products/screw/screw-recognizer-rnd6/calibration.json",
+    "report_repaired_from": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/experiments/screw_detector_crop_calibration_rnd1.json"
+  },
+  "warning": "Validation-only calibration evidence; crop paths were attached from the existing deterministic run directories. Do not apply any threshold to a locked test or production bundle without an independent holdout."
+}

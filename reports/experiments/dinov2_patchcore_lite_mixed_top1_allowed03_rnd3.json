@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "experiment": "dinov2_patchcore_lite",
+  "protocol": "mixed_nominal",
+  "aggregation": "top_1pct",
+  "calibration": {
+    "source": "disjoint CAD-SD train/0_good calibration holdout",
+    "allowed_good_fpr": 0.03,
+    "good_quantile": 0.97,
+    "threshold": 0.5161746740341187,
+    "rule": "higher_empirical_good_quantile(q=0.970000) on disjoint CAD-SD train/0_good calibration holdout image scores only"
+  },
+  "cad_sd_test": {
+    "metrics": {
+      "count": 376,
+      "good_count": 210,
+      "defect_count": 166,
+      "threshold": 0.5161746740341187,
+      "auroc": 0.9709122203098106,
+      "average_precision": 0.96580826101328,
+      "defect_recall": 0.9096385542168675,
+      "good_false_positive_count": 22,
+      "good_false_positive_rate": 0.10476190476190476
+    }
+  },
+  "mvtec_screw_test": {
+    "metrics": {
+      "count": 160,
+      "good_count": 41,
+      "defect_count": 119,
+      "threshold": 0.5161746740341187,
+      "auroc": 0.9262143881943021,
+      "average_precision": 0.9719291182673174,
+      "defect_recall": 0.8067226890756303,
+      "good_false_positive_count": 5,
+      "good_false_positive_rate": 0.12195121951219512
+    }
+  },
+  "runtime_artifact": "artifacts/products/screw/screw-patch-memory-rnd3/classifier_top1_allowed03.pt",
+  "provenance": {
+    "thresholds_selected_from_disjoint_calibration_only": true,
+    "test_sets_locked": true
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "dataset": "MVTec AD/screw",
+  "dataset_root": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_screw_compare_processed/screw",
+  "device": "mps",
+  "encoder": {
+    "model_name": "dinov2_vitb14",
+    "model_revision": "7764ea0f912e53c92e82eb78a2a1631e92725fc8",
+    "patch_feature_key": "x_norm_patchtokens",
+    "global_feature_key": "x_norm_clstoken",
+    "image_size": [
+      256,
+      256
+    ],
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ],
+    "l2_normalize_patches": true,
+    "feature_layers": [],
+    "patch_size": [
+      14,
+      14
+    ],
+    "padding": [
+      10,
+      10
+    ],
+    "padded_size": [
+      266,
+      266
+    ],
+    "patch_grid": [
+      19,
+      19
+    ],
+    "patch_count": 361,
+    "embedding_dimension": 768
+  },
+  "counts": {
+    "train": {
+      "GOOD": 320,
+      "DEFECT": 84,
+      "total": 404
+    },
+    "validation": {
+      "GOOD": 20,
+      "DEFECT": 18,
+      "total": 38
+    },
+    "test": {
+      "GOOD": 21,
+      "DEFECT": 17,
+      "total": 38
+    }
+  },
+  "embedding_images": 480,
+  "embedding_seconds": 0.0,
+  "embedding_cache_reused_splits": 3,
+  "classifier": {
+    "type": "frozen DINOv2 global embedding + logistic regression",
+    "training_images_before_balance": 404,
+    "training_images_after_balance": 640,
+    "threshold": 0.09173355996608734,
+    "threshold_rule": "highest threshold meeting defect recall >= 0.90",
+    "validation": {
+      "images": 38,
+      "threshold": 0.09173355996608734,
+      "accuracy": 0.9210526315789473,
+      "balanced_accuracy": 0.9222222222222223,
+      "precision_defect": 0.8947368421052632,
+      "recall_defect": 0.9444444444444444,
+      "f1_defect": 0.918918918918919,
+      "good_recall": 0.9,
+      "image_auroc": 0.9638888888888888,
+      "image_average_precision": 0.9591548997766748,
+      "confusion_matrix_good_defect": [
+        [
+          18,
+          2
+        ],
+        [
+          1,
+          17
+        ]
+      ],
+      "predicted_counts": {
+        "good": 19,
+        "defect": 19
+      }
+    },
+    "test": {
+      "images": 38,
+      "threshold": 0.09173355996608734,
+      "accuracy": 0.9736842105263158,
+      "balanced_accuracy": 0.9705882352941176,
+      "precision_defect": 1.0,
+      "recall_defect": 0.9411764705882353,
+      "f1_defect": 0.9696969696969697,
+      "good_recall": 1.0,
+      "image_auroc": 0.9971988795518206,
+      "image_average_precision": 0.9967320261437909,
+      "confusion_matrix_good_defect": [
+        [
+          21,
+          0
+        ],
+        [
+          1,
+          16
+        ]
+      ],
+      "predicted_counts": {
+        "good": 22,
+        "defect": 16
+      }
+    }
+  },
+  "classifier_artifact": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/production/dinov2_binary_screw/classifier/classifier.pt",
+  "split_manifest": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/dinov2_binary_screw/split_manifest.csv",
+  "test_predictions": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/reports/dinov2_binary_screw/test_predictions.json",
+  "benchmark_note": "Official test images were partitioned for supervised development; do not compare this directly with the original one-class MVTec AD benchmark."
+}

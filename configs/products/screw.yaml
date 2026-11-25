@@ -1,0 +1,60 @@
+schema_version: 1
+product_key: screw
+dataset:
+  root: datasets/products/screw
+  image_manifest: manifests/images.jsonl
+  object_manifest: manifests/objects.jsonl
+  split_policy: grouped_by_source_and_capture
+models:
+  detector:
+    backend: yolo_obb
+    weights: artifacts/products/screw/screw-supervised-dev-001/detector_dataset/training/run/weights/best.pt
+    image_size: 1024
+    confidence_candidates: [0.01, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5]
+    calibration_iou: 0.5
+    calibration_path: artifacts/products/screw/screw-supervised-dev-002/detector_calibration.json
+  classifier:
+    backend: dinov2_logreg
+    artifact_dir: artifacts/products/screw/screw-supervised-dev-002/classifier
+    encoder_artifact_root: artifacts/production/mvtec_ad
+    image_size: [256, 256]
+    frozen_backbone: true
+    model_version: dinov2-v2-oriented-crop-supervised-dev
+    calibration_source:
+      validation_embeddings: artifacts/products/screw/screw-supervised-dev-002/classifier/validation_embeddings.pt
+  localizer:
+    backend: anomalyclip
+    runner: scripts/run_anomalyclip_single.py
+    repository: artifacts/external/anomalyclip
+    checkpoint: artifacts/external/anomalyclip/checkpoints/9_12_4_multiscale/epoch_15.pth
+    clip_cache: artifacts/external/clip
+    calibration_path: artifacts/products/screw/screw-supervised-dev-002/anomalyclip_calibration.json
+    mask_postprocess: open3_close5
+    relation_prototype_path: artifacts/products/screw/screw-supervised-dev-002/relation_prototype.npz
+    relation_calibration_path: artifacts/products/screw/screw-supervised-dev-002/relation_calibration.json
+    dino_artifact_root: artifacts/production/mvtec_ad
+    dino_top_k: 128
+    dino_temperature: 0.1
+    dino_eta: 1.0
+    supervised_refiner_path: artifacts/products/screw/screw-supervised-dev-003/supervised_refiner.pkl
+    supervised_refiner_calibration_path: artifacts/products/screw/screw-supervised-dev-004/supervised_refiner_calibration.json
+    supervised_refiner_enabled: true
+    device: mps
+    timeout_seconds: 300
+    relation_fusion_enabled: false
+  reporter:
+    backend: mock
+    async_enabled: true
+policy:
+  quality_labels: [GOOD, DEFECT]
+  optimize_for: defect_recall
+  target_defect_recall: 0.90
+  target_detector_recall: 0.99
+  calibration_path: artifacts/products/screw/screw-supervised-dev-002/calibration.json
+  model_bundle_version: screw-supervised-dev-002
+outputs:
+  overview: true
+  per_object_status_crop: true
+  heatmap_for_defect: true
+  json: true
+  compact_pdf: true

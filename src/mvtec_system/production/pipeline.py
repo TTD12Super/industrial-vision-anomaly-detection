@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 import csv
 from datetime import datetime, timezone
+import hashlib
 import json
 from pathlib import Path
 import time
@@ -97,6 +98,32 @@ class ProductionConfig:
 
 def _error_message(error: Exception) -> str:
     return f"{type(error).__name__}: {error}"
+
+
+def _test_manifest_info(records: list[dict[str, Any]], processed_root: Path) -> dict[str, Any]:
+    """Hash the ordered test identities so comparisons cannot rely on count alone."""
+
+    root = processed_root.resolve()
+    entries = []
+    for record in records:
+        path = Path(record["image_path"]).resolve()
+        try:
+            image_path = str(path.relative_to(root))
+        except ValueError:
+            image_path = str(path)
+        entries.append(
+            {
+                "image_path": image_path,
+                "true_category": record["true_category"],
+                "defect_type": record["defect_type"],
+                "is_defect": bool(record["is_defect"]),
+            }
+        )
+    payload = json.dumps(entries, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return {
+        "count": len(entries),
+        "sha256": hashlib.sha256(payload).hexdigest(),
+    }
 
 
 def infer_exact_first(
@@ -498,11 +525,23 @@ def _anomaly_report(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "image": {"ranking": _safe_ranking(scores, labels)},
     }
     if evaluated:
+        true_positive = sum(label == 1 and prediction == 1 for label, prediction in zip(labels, predictions))
+        false_positive = sum(label == 0 and prediction == 1 for label, prediction in zip(labels, predictions))
+        false_negative = sum(label == 1 and prediction == 0 for label, prediction in zip(labels, predictions))
+        true_negative = sum(label == 0 and prediction == 0 for label, prediction in zip(labels, predictions))
         report["image"]["thresholded"] = {
             "accuracy": float(accuracy_score(labels, predictions)),
             "precision": float(precision_score(labels, predictions, zero_division=0)),
             "recall": float(recall_score(labels, predictions, zero_division=0)),
             "f1": float(f1_score(labels, predictions, zero_division=0)),
+            "counts": {
+                "true_positive": true_positive,
+                "false_positive": false_positive,
+                "false_negative": false_negative,
+                "true_negative": true_negative,
+                "positive_total": sum(labels),
+                "negative_total": len(labels) - sum(labels),
+            },
         }
     pixel_scores: list[float] = []
     pixel_labels: list[int] = []
@@ -520,10 +559,22 @@ def _anomaly_report(rows: list[dict[str, Any]]) -> dict[str, Any]:
         pixel_predictions.extend(prediction.astype(np.int64).tolist())
     report["pixel"] = {"ranking": _safe_ranking(pixel_scores, pixel_labels)}
     if pixel_predictions:
+        true_positive = sum(label == 1 and prediction == 1 for label, prediction in zip(pixel_labels, pixel_predictions))
+        false_positive = sum(label == 0 and prediction == 1 for label, prediction in zip(pixel_labels, pixel_predictions))
+        false_negative = sum(label == 1 and prediction == 0 for label, prediction in zip(pixel_labels, pixel_predictions))
+        true_negative = sum(label == 0 and prediction == 0 for label, prediction in zip(pixel_labels, pixel_predictions))
         report["pixel"]["thresholded"] = {
             "precision": float(precision_score(pixel_labels, pixel_predictions, zero_division=0)),
             "recall": float(recall_score(pixel_labels, pixel_predictions, zero_division=0)),
             "f1": float(f1_score(pixel_labels, pixel_predictions, zero_division=0)),
+            "counts": {
+                "true_positive": true_positive,
+                "false_positive": false_positive,
+                "false_negative": false_negative,
+                "true_negative": true_negative,
+                "positive_total": sum(pixel_labels),
+                "negative_total": len(pixel_labels) - sum(pixel_labels),
+            },
         }
     return report
 
@@ -855,6 +906,7 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
         _write_json(artifact_dir / "image_thresholds.json", image_thresholds)
         _write_json(artifact_dir / "pixel_thresholds.json", pixel_thresholds)
     test_records = discover_mvtec_test_images(processed_root)
+    test_manifest = _test_manifest_info(test_records, processed_root)
     inference_rows: list[dict[str, Any]] = []
     inference_latencies: list[float] = []
     for item in test_records:
@@ -1084,6 +1136,7 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
         },
         "preparation": preparation,
         "manifest": manifest_info,
+        "test_manifest": test_manifest,
         "classification": classification_report,
         "anomaly": anomaly_report,
         "performance": {

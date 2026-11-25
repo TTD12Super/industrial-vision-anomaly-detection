@@ -4,7 +4,17 @@ anomalib
 opencv-python
 Pillow
 numpy
+scipy
 scikit-learn
 pandas
 matplotlib
 ipykernel
+PyYAML
+fastapi>=0.115,<1
+uvicorn>=0.30,<1
+python-multipart>=0.0.9,<1
+reportlab>=4.2,<5
+ftfy>=6.2,<7
+regex>=2024.0.0
+tqdm>=4.66,<6
+thop>=0.1.1

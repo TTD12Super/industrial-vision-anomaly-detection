@@ -18,6 +18,7 @@ from mvtec_system import (
     create_detector,
     detector_names,
 )
+from mvtec_system.anomaly.multi_layer import padim_scores
 
 
 class TinyMultiLayerEncoder:
@@ -90,6 +91,17 @@ class DetectorTests(unittest.TestCase):
             detector.save(directory)
             loaded = PaDiMDetector(detector.config).load(directory)
             self.assertEqual(loaded.predict(features).patch_scores.shape, (4,))
+
+    def test_padim_scores_moves_cpu_statistics_to_feature_device(self) -> None:
+        descriptors = torch.empty((2, 4, 3), device="meta")
+        means = torch.empty((4, 2))
+        inverse_covariance = torch.empty((4, 2, 2))
+        projection = torch.empty((3, 2))
+
+        scores = padim_scores(descriptors, means, inverse_covariance, projection)
+
+        self.assertEqual(scores.device, descriptors.device)
+        self.assertEqual(tuple(scores.shape), (2, 4))
 
 
 if __name__ == "__main__":

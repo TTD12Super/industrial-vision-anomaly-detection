@@ -1,0 +1,21 @@
+schema_version: 1
+product_key: screw
+dataset:
+  root: datasets/products/screw_anomaly_full
+  image_manifest: manifests/images.jsonl
+  object_manifest: manifests/objects.jsonl
+  split_policy: grouped_by_source_and_capture
+models:
+  detector:
+    backend: yolo_obb
+  classifier:
+    backend: dinov2_logreg
+    encoder_artifact_root: artifacts/production/mvtec_ad
+  localizer:
+    backend: anomalyclip
+  reporter:
+    backend: mock
+policy:
+  quality_labels: [GOOD, DEFECT]
+outputs:
+  json: true

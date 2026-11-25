@@ -1,0 +1,55 @@
+schema_version: 1
+product_key: screw
+dataset:
+  root: datasets/products/screw_anomaly_full
+  image_manifest: manifests/images.jsonl
+  object_manifest: manifests/objects.jsonl
+  split_policy: stratified_by_defect_type
+models:
+  detector:
+    backend: yolo_obb
+    weights: artifacts/products/screw/screw-supervised-dev-001/detector_dataset/training/run/weights/best.pt
+    image_size: 1024
+    confidence_candidates: [0.01, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5]
+    calibration_iou: 0.5
+    calibration_path: artifacts/products/screw/screw-supervised-dev-002/detector_calibration.json
+  classifier:
+    backend: dinov2_logreg
+    artifact_dir: artifacts/products/screw/screw-full-dev-002/classifier_lastblock_patch_head
+    encoder_artifact_root: artifacts/production/mvtec_ad
+    image_size: [256, 256]
+    frozen_backbone: false
+    model_version: dinov2-lastblock-patch-head
+  localizer:
+    backend: anomalyclip
+    runner: scripts/run_anomalyclip_single.py
+    repository: artifacts/external/anomalyclip
+    checkpoint: artifacts/external/anomalyclip/checkpoints/9_12_4_multiscale/epoch_15.pth
+    clip_cache: artifacts/external/clip
+    calibration_path: artifacts/products/screw/screw-full-dev-002/anomalyclip_calibration.json
+    mask_postprocess: raw
+    relation_prototype_path: artifacts/products/screw/screw-full-dev-002/relation_prototype.npz
+    relation_calibration_path: artifacts/products/screw/screw-full-dev-002/relation_calibration.json
+    synthetic_segmenter_path: artifacts/products/screw/screw-full-dev-010/synthetic_segmenter.pkl
+    synthetic_segmenter_image_size: 224
+    synthetic_segmenter_epochs: 20
+    synthetic_segmenter_learning_rate: 0.001
+    synthetic_segmenter_batch_size: 8
+    device: mps
+    timeout_seconds: 300
+    relation_fusion_enabled: false
+  reporter:
+    backend: mock
+    async_enabled: true
+policy:
+  quality_labels: [GOOD, DEFECT]
+  optimize_for: defect_recall
+  target_defect_recall: 0.90
+  target_detector_recall: 0.99
+  model_bundle_version: screw-full-dev-010-synthetic-segmenter
+outputs:
+  overview: true
+  per_object_status_crop: true
+  heatmap_for_defect: true
+  json: true
+  compact_pdf: true

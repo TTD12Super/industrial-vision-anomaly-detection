@@ -1,0 +1,43 @@
+# Copy this file to configs/products/<product-key>.yaml. Do not add product conditionals to core code.
+schema_version: 1
+product_key: example_product
+dataset:
+  root: datasets/products/example_product
+  image_manifest: manifests/images.jsonl
+  object_manifest: manifests/objects.jsonl
+  split_policy: grouped_by_source_and_capture
+models:
+  detector:
+    backend: yolo_obb
+    weights: artifacts/products/example_product/<bundle>/detector/best.pt
+    image_size: 1024
+    confidence: 0.5
+  classifier:
+    backend: dinov2_logreg
+    artifact_dir: artifacts/products/example_product/<bundle>
+    encoder_artifact_root: artifacts/dinov2_knn
+    image_size: [256, 256]
+  localizer:
+    backend: anomalyclip
+    runner: null
+    checkpoint: null
+    repository: null
+    clip_cache: null
+    calibration_path: artifacts/products/example_product/<bundle>/anomalyclip_calibration.json
+    relation_prototype_path: artifacts/products/example_product/<bundle>/relation_prototype.npz
+    relation_calibration_path: artifacts/products/example_product/<bundle>/relation_calibration.json
+    relation_fusion_enabled: false
+  reporter:
+    backend: mock  # local_vlm uses base_url/model for llama.cpp or Ollama
+    async_enabled: true
+policy:
+  quality_labels: [GOOD, DEFECT]
+  optimize_for: defect_recall
+  calibration_path: artifacts/products/example_product/<bundle>/calibration.json
+  model_bundle_version: example-001
+outputs:
+  overview: true
+  per_object_status_crop: true
+  heatmap_for_defect: true
+  json: true
+  compact_pdf: true

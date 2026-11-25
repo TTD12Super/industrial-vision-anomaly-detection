@@ -112,7 +112,7 @@ def infer_image(
         encoder.config.image_size,
     )[0]
     result["anomaly_score"] = image_score
-    result["patch_scores"] = patch_scores[0].numpy()
+    result["patch_scores"] = patch_scores[0].detach().cpu().numpy()
     result["anomaly_map"] = anomaly_map
 
     if image_thresholds is not None:

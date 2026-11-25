@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="840" viewBox="0 0 1600 840" role="img" aria-labelledby="title desc">
+  <title id="title">Single-image inspection sequence</title>
+  <desc id="desc">A sequence diagram for detector, open-set gate, classifier, localizer, artifact store and VLM.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,3 L0,6 z" fill="#344054"/></marker>
+    <style>
+      .head { fill:#eef2ff; stroke:#344054; stroke-width:2; rx:14; ry:14; }
+      .headtext { font:700 18px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; fill:#101828; }
+      .line { stroke:#98a2b3; stroke-width:2; stroke-dasharray:7 7; }
+      .msg { stroke:#344054; stroke-width:2.5; fill:none; marker-end:url(#arrow); }
+      .ret { stroke:#667085; stroke-width:2; stroke-dasharray:8 6; fill:none; marker-end:url(#arrow); }
+      .text { font:16px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; fill:#344054; }
+      .note { fill:#fffaeb; stroke:#d97706; stroke-width:2; rx:12; ry:12; }
+      .notetext { font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; fill:#7c2d12; }
+    </style>
+  </defs>
+  <rect width="1600" height="840" fill="#f8fafc"/>
+  <text x="800" y="42" text-anchor="middle" style="font:700 26px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#101828">Single-image inspection sequence</text>
+  <text x="800" y="70" text-anchor="middle" style="font:16px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#475467">All transitions are persisted with model version, threshold and artifact provenance.</text>
+
+  <g>
+    <rect x="45" y="100" width="185" height="55" class="head"/><text x="137" y="134" text-anchor="middle" class="headtext">Client / API</text>
+    <rect x="285" y="100" width="185" height="55" class="head"/><text x="377" y="134" text-anchor="middle" class="headtext">YOLO-OBB</text>
+    <rect x="525" y="100" width="185" height="55" class="head"/><text x="617" y="134" text-anchor="middle" class="headtext">Open-set gate</text>
+    <rect x="765" y="100" width="185" height="55" class="head"/><text x="857" y="134" text-anchor="middle" class="headtext">DINOv2</text>
+    <rect x="1005" y="100" width="185" height="55" class="head"/><text x="1097" y="134" text-anchor="middle" class="headtext">Localizer</text>
+    <rect x="1245" y="100" width="185" height="55" class="head"/><text x="1337" y="134" text-anchor="middle" class="headtext">Store / VLM</text>
+  </g>
+  <g>
+    <path d="M137 155 V790" class="line"/><path d="M377 155 V790" class="line"/><path d="M617 155 V790" class="line"/><path d="M857 155 V790" class="line"/><path d="M1097 155 V790" class="line"/><path d="M1337 155 V790" class="line"/>
+  </g>
+
+  <path d="M137 205 H377" class="msg"/><text x="250" y="194" text-anchor="middle" class="text">upload image</text>
+  <path d="M377 265 H617" class="msg"/><text x="497" y="254" text-anchor="middle" class="text">detections + OBB</text>
+  <path d="M617 325 H857" class="msg"/><text x="737" y="314" text-anchor="middle" class="text">KNOWN crop</text>
+  <path d="M857 385 H1337" class="msg"/><text x="1097" y="374" text-anchor="middle" class="text">GOOD decision + evidence</text>
+  <path d="M857 455 H1097" class="msg"/><text x="977" y="444" text-anchor="middle" class="text">DEFECT / REVIEW</text>
+  <path d="M1097 515 H1337" class="msg"/><text x="1217" y="504" text-anchor="middle" class="text">heatmap + mask + overlay</text>
+  <path d="M1337 575 H137" class="ret"/><text x="735" y="564" text-anchor="middle" class="text">JSON / PDF / artifact links</text>
+
+  <rect x="70" y="635" width="380" height="100" class="note"/>
+  <text x="90" y="665" class="notetext">UNKNOWN_PRODUCT:</text><text x="90" y="690" class="notetext">stop classifier/localizer; save crop</text><text x="90" y="713" class="notetext">and route to review.</text>
+  <path d="M617 325 C500 350 450 660 450 660" class="ret"/>
+
+  <rect x="975" y="635" width="450" height="100" class="note"/>
+  <text x="995" y="665" class="notetext">VLM is advisory:</text><text x="995" y="690" class="notetext">it describes visible evidence and flags</text><text x="995" y="713" class="notetext">contradictions; it never changes the label.</text>
+  <path d="M1337 575 V635" class="ret"/>
+</svg>

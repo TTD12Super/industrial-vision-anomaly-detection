@@ -43,7 +43,7 @@ def make_anomaly_maps(
     maps = padded_maps[:, 0, : image_size[0], : image_size[1]]
     if not torch.isfinite(maps).all().item():
         raise ValueError("Anomaly maps contain invalid values.")
-    return maps.numpy()
+    return maps.detach().cpu().numpy()
 
 
 def plot_anomaly_examples(

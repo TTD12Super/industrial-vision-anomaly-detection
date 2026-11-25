@@ -202,7 +202,12 @@ def padim_scores(
 
     if descriptors.ndim != 3:
         raise ValueError("descriptors must have shape [batch, patches, dimensions]")
-    reduced = descriptors.float() @ projection.float()
+    # Artifacts are intentionally loaded on CPU; inference features may live on MPS/CUDA.
+    device = descriptors.device
+    projection = projection.to(device=device, dtype=torch.float32)
+    means = means.to(device=device, dtype=torch.float32)
+    inverse_covariance = inverse_covariance.to(device=device, dtype=torch.float32)
+    reduced = descriptors.float() @ projection
     if reduced.shape[1:] != means.shape:
         raise ValueError("PaDiM statistics do not match descriptor shape")
     difference = reduced - means

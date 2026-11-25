@@ -101,7 +101,7 @@ class ExactKNNDetector(AnomalyDetector):
         patches = features.patch_embeddings.reshape(-1, features.patch_embeddings.shape[-1])
         scores = nearest_neighbor_scores(patches, self.bank, k=self.k).reshape(1, -1)
         anomaly_map = make_anomaly_maps(scores, self.patch_grid, self.padded_size, self.image_size)[0]
-        return AnomalyResult(float(scores.max().item()), anomaly_map, scores[0].numpy(), {"detector": self.name, "k": self.k})
+        return AnomalyResult(float(scores.max().item()), anomaly_map, scores[0].detach().cpu().numpy(), {"detector": self.name, "k": self.k})
 
     def save(self, artifact_dir: str | Path) -> None:
         self.validate_artifacts()
@@ -180,7 +180,7 @@ class PatchCoreDetector(AnomalyDetector):
         ).reshape(1, -1)
         anomaly_map = make_anomaly_maps(scores, self.patch_grid, self.padded_size, self.image_size)[0]
         metadata = {"detector": self.name, "k": self.k, **self.config.to_dict()}
-        return AnomalyResult(float(scores.max().item()), anomaly_map, scores[0].numpy(), metadata)
+        return AnomalyResult(float(scores.max().item()), anomaly_map, scores[0].detach().cpu().numpy(), metadata)
 
     def save(self, artifact_dir: str | Path) -> None:
         self.validate_artifacts()
@@ -253,7 +253,7 @@ class PaDiMDetector(AnomalyDetector):
             scores, self.patch_grid, self.padded_size, self.image_size
         )[0]
         metadata = {"detector": self.name, **self.config.to_dict()}
-        return AnomalyResult(float(scores.max().item()), anomaly_map, scores[0].numpy(), metadata)
+        return AnomalyResult(float(scores.max().item()), anomaly_map, scores[0].detach().cpu().numpy(), metadata)
 
     def save(self, artifact_dir: str | Path) -> None:
         self.validate_artifacts()

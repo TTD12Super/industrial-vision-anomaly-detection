@@ -153,6 +153,15 @@ split is never used to choose the classifier or thresholds. Existing
 compatible embeddings and detector artifacts are reused unless `--force` is
 specified.
 
+On the full 15-category test split, the current independent PatchCore baseline
+remains the selected heatmap method. With the same protocol, `PatchCore raw`
+achieved pixel AUROC/AP `0.9596/0.4946`, while `dino_affinity + open3`
+achieved `0.9486/0.4877`; binary-mask F1 was `0.3073` versus `0.2029`.
+Affinity propagation also increased mean CPU latency from `0.2536` to
+`0.3341` seconds per image. Therefore affinity is retained as an explicit
+experiment option, not enabled as the production default, until a later
+method improves both localization quality and false-positive control.
+
 ## Reproduction and reports
 
 Recompute the saved 15-category baseline without rebuilding DINOv2 or banks:

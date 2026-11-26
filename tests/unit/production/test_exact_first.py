@@ -147,6 +147,27 @@ class ExactFirstTests(TestCase):
         self.assertEqual(report["image"]["thresholded"]["accuracy"], 0.0)
         self.assertEqual(report["image"]["thresholded"]["f1"], 0.0)
 
+    def test_detector_pixel_metrics_do_not_mix_heatmap_and_mask_sources(self) -> None:
+        truth = np.zeros((2, 2), dtype=bool)
+        truth[0, 0] = True
+        report = _anomaly_report(
+            [
+                {
+                    "anomaly_evaluated": True,
+                    "anomaly_score": 0.9,
+                    "ground_truth_is_defect": True,
+                    "decision_is_defect": True,
+                    "patchcore_heatmap": np.ones((2, 2), dtype=np.float32),
+                    "padim_heatmap": np.ones((2, 2), dtype=np.float32),
+                    "padim_binary_mask": truth.copy(),
+                    "mask": truth,
+                }
+            ]
+        )
+
+        self.assertNotIn("thresholded", report["detectors"]["patchcore"])
+        self.assertIn("thresholded", report["detectors"]["padim"])
+
     def test_unavailable_decision_does_not_break_category_report(self) -> None:
         report, _ = _classification_report(
             [

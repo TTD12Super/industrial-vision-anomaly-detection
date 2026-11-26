@@ -133,6 +133,26 @@ multi-layer fusion, dimension reduction, and per-position regularized Gaussian
 statistics. Full implementation details are in
 [MULTI_DETECTOR_IMPLEMENTATION.md](<AI config/MULTI_DETECTOR_IMPLEMENTATION.md>).
 
+For a full-test heatmap experiment, use independent orchestration so every
+test image receives a localization result. `dino_affinity` propagates each
+detector's patch scores over frozen DINOv2 cosine affinity; `open3` removes
+isolated thresholded pixels. Both settings are calibrated from normal
+validation images only:
+
+```bash
+PYTHONPATH=src DAenv/bin/python scripts/run_production.py \
+  --detector patchcore --orchestration independent \
+  --heatmap-refiner dino_affinity --mask-postprocess open3 \
+  --device cpu
+```
+
+The report separates continuous-map ranking from binary-mask metrics and keeps
+PatchCore/PaDiM sources separate. It also records classification model
+selection on validation (`C ∈ {0.1, 1, 10}`, 500 max iterations); the official test
+split is never used to choose the classifier or thresholds. Existing
+compatible embeddings and detector artifacts are reused unless `--force` is
+specified.
+
 ## Reproduction and reports
 
 Recompute the saved 15-category baseline without rebuilding DINOv2 or banks:

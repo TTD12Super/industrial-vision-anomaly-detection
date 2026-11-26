@@ -53,7 +53,7 @@ def summarize_comparison(
             "image_average_precision": anomaly["image"]["ranking"]["average_precision"],
             "pixel_auroc": anomaly["pixel"]["ranking"]["auroc"],
             "pixel_average_precision": anomaly["pixel"]["ranking"]["average_precision"],
-            "pixel_f1": anomaly["pixel"]["thresholded"].get("f1"),
+            "pixel_f1": anomaly["pixel"].get("thresholded", {}).get("f1"),
             "latency": latency,
             "run_seconds": record["run_seconds"],
         }
@@ -121,6 +121,11 @@ def run_detector_comparison(
                 covariance_regularization=config.covariance_regularization,
                 target_acceptance_rate=config.target_acceptance_rate,
                 classification_confidence_threshold=config.classification_confidence_threshold,
+                heatmap_refiner=config.heatmap_refiner,
+                affinity_top_k=config.affinity_top_k,
+                affinity_temperature=config.affinity_temperature,
+                affinity_eta=config.affinity_eta,
+                mask_postprocess=config.mask_postprocess,
                 device=config.device,
                 artifact_namespace=detector,
                 force=config.force,
@@ -160,10 +165,11 @@ def _markdown_report(comparison: dict[str, Any]) -> str:
     for name in DETECTOR_ORDER:
         result = comparison["detectors"][name]
         latency = result["latency"]
+        pixel_f1 = "n/a" if result["pixel_f1"] is None else f"{result['pixel_f1']:.4f}"
         lines.append(
             f"| {name} | {result['classification_accuracy']:.4f} | "
             f"{result['image_auroc']:.4f} | {result['pixel_auroc']:.4f} | "
-            f"{result['pixel_average_precision']:.4f} | {result['pixel_f1']:.4f} | "
+            f"{result['pixel_average_precision']:.4f} | {pixel_f1} | "
             f"{latency['mean_seconds']:.4f} | {latency['p95_seconds']:.4f} |"
         )
     combined = comparison["combined"]

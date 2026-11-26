@@ -44,6 +44,25 @@ class AnomalyDetector:
     def predict(self, features: DINOv2Features) -> AnomalyResult:
         raise NotImplementedError
 
+    def predict_batch(self, features: DINOv2Features) -> list[AnomalyResult]:
+        """Predict a batch; concrete detectors override this for vectorization."""
+
+        batch_size = int(features.patch_embeddings.shape[0])
+        return [
+            self.predict(
+                DINOv2Features(
+                    features.global_embedding[index : index + 1],
+                    features.patch_embeddings[index : index + 1],
+                    {
+                        layer: values[index : index + 1]
+                        for layer, values in (features.layer_patch_embeddings or {}).items()
+                    }
+                    or None,
+                )
+            )
+            for index in range(batch_size)
+        ]
+
     def save(self, artifact_dir: str | Path) -> None:
         raise NotImplementedError
 
@@ -101,7 +120,7 @@ class ExactKNNDetector(AnomalyDetector):
         patches = features.patch_embeddings.reshape(-1, features.patch_embeddings.shape[-1])
         scores = nearest_neighbor_scores(patches, self.bank, k=self.k).reshape(1, -1)
         anomaly_map = make_anomaly_maps(scores, self.patch_grid, self.padded_size, self.image_size)[0]
-        return AnomalyResult(float(scores.max().item()), anomaly_map, scores[0].numpy(), {"detector": self.name, "k": self.k})
+        return AnomalyResult(float(scores.max().item()), anomaly_map, scores[0].detach().cpu().numpy(), {"detector": self.name, "k": self.k})
 
     def save(self, artifact_dir: str | Path) -> None:
         self.validate_artifacts()
@@ -180,7 +199,25 @@ class PatchCoreDetector(AnomalyDetector):
         ).reshape(1, -1)
         anomaly_map = make_anomaly_maps(scores, self.patch_grid, self.padded_size, self.image_size)[0]
         metadata = {"detector": self.name, "k": self.k, **self.config.to_dict()}
-        return AnomalyResult(float(scores.max().item()), anomaly_map, scores[0].numpy(), metadata)
+        return AnomalyResult(float(scores.max().item()), anomaly_map, scores[0].detach().cpu().numpy(), metadata)
+
+    def predict_batch(self, features: DINOv2Features) -> list[AnomalyResult]:
+        self.validate_artifacts()
+        descriptors = fused_patch_features(features, self.config.layers)
+        descriptors = local_neighborhood_aggregate(
+            descriptors, self.patch_grid, self.config.neighborhood_size
+        )
+        scores = nearest_neighbor_scores(
+            descriptors.reshape(-1, descriptors.shape[-1]), self.coreset, k=self.k
+        ).reshape(descriptors.shape[0], -1)
+        anomaly_maps = make_anomaly_maps(
+            scores, self.patch_grid, self.padded_size, self.image_size
+        )
+        metadata = {"detector": self.name, "k": self.k, **self.config.to_dict()}
+        return [
+            AnomalyResult(float(scores[index].max().item()), anomaly_maps[index], scores[index].detach().cpu().numpy(), metadata)
+            for index in range(scores.shape[0])
+        ]
 
     def save(self, artifact_dir: str | Path) -> None:
         self.validate_artifacts()
@@ -201,6 +238,8 @@ class PatchCoreDetector(AnomalyDetector):
     def load(self, artifact_dir: str | Path) -> "PatchCoreDetector":
         payload = torch.load(Path(artifact_dir) / "coreset.pt", map_location="cpu", weights_only=True)
         self.coreset = payload["coreset"].float()
+        if isinstance(payload.get("config"), dict):
+            self.config = MultiLayerConfig(**payload["config"])
         self.category = payload["category"]
         self.patch_grid = tuple(payload["patch_grid"])
         self.padded_size = tuple(payload["padded_size"])
@@ -253,7 +292,22 @@ class PaDiMDetector(AnomalyDetector):
             scores, self.patch_grid, self.padded_size, self.image_size
         )[0]
         metadata = {"detector": self.name, **self.config.to_dict()}
-        return AnomalyResult(float(scores.max().item()), anomaly_map, scores[0].numpy(), metadata)
+        return AnomalyResult(float(scores.max().item()), anomaly_map, scores[0].detach().cpu().numpy(), metadata)
+
+    def predict_batch(self, features: DINOv2Features) -> list[AnomalyResult]:
+        self.validate_artifacts()
+        descriptors = fused_patch_features(features, self.config.layers)
+        scores = padim_scores(
+            descriptors, self.means, self.inverse_covariance, self.projection
+        )
+        anomaly_maps = make_anomaly_maps(
+            scores, self.patch_grid, self.padded_size, self.image_size
+        )
+        metadata = {"detector": self.name, **self.config.to_dict()}
+        return [
+            AnomalyResult(float(scores[index].max().item()), anomaly_maps[index], scores[index].detach().cpu().numpy(), metadata)
+            for index in range(scores.shape[0])
+        ]
 
     def save(self, artifact_dir: str | Path) -> None:
         self.validate_artifacts()
@@ -278,6 +332,8 @@ class PaDiMDetector(AnomalyDetector):
         self.means = payload["means"].float()
         self.inverse_covariance = payload["inverse_covariance"].float()
         self.projection = payload["projection"].float()
+        if isinstance(payload.get("config"), dict):
+            self.config = MultiLayerConfig(**payload["config"])
         self.category = payload["category"]
         self.patch_grid = tuple(payload["patch_grid"])
         self.padded_size = tuple(payload["padded_size"])

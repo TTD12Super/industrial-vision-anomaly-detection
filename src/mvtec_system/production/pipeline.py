@@ -32,8 +32,8 @@ from ..anomaly.feature_bank import FeatureBankResult, load_or_build_feature_bank
 from ..anomaly.knn import nearest_neighbor_scores
 from ..anomaly.maps import make_anomaly_maps, plot_anomaly_examples
 from ..anomaly.multi_layer import MultiLayerConfig
+from ..anomaly.refinement import postprocess_mask, propagate_scores
 from ..anomaly.thresholds import (
-    binary_anomaly_masks,
     calibrate_category_image_thresholds,
     calibrate_category_pixel_thresholds,
     classify_image_score,
@@ -48,6 +48,7 @@ from ..classification.embeddings import (
     build_global_embedding_artifact,
     category_mapping,
     make_embedding_metadata,
+    load_compatible_embedding_artifacts,
     read_classification_manifest,
     save_embedding_artifacts,
 )
@@ -64,6 +65,7 @@ from ..data.preprocessing import (
 )
 from ..evaluation.visualization import plot_dataset_distribution, save_figure
 from ..evaluation.performance import synchronize
+from ..evaluation.evaluation import evaluate_product_classifier, select_linear_classifier
 
 
 @dataclass(frozen=True)
@@ -90,6 +92,11 @@ class ProductionConfig:
     covariance_regularization: float = 0.01
     target_acceptance_rate: float = 0.99
     classification_confidence_threshold: float = 0.50
+    heatmap_refiner: str = "none"
+    affinity_top_k: int = 128
+    affinity_temperature: float = 0.10
+    affinity_eta: float = 1.0
+    mask_postprocess: str = "raw"
     device: str | None = None
     artifact_namespace: str | None = None
     force: bool = False
@@ -129,6 +136,9 @@ def infer_exact_first(
             "anomaly_map": None,
             "patchcore": {"status": "not_run", "heatmap": None, "error": None},
             "padim": {"status": "not_run", "mask": None, "error": None},
+            "patchcore_heatmap": None,
+            "padim_heatmap": None,
+            "padim_binary_mask": None,
             "localization_status": {"patchcore": "not_run", "padim": "not_run"},
         }
 
@@ -144,6 +154,9 @@ def infer_exact_first(
     result["anomaly_map"] = None
     result["patchcore"] = {"status": "not_run", "heatmap": None, "error": None}
     result["padim"] = {"status": "not_run", "mask": None, "error": None}
+    result["patchcore_heatmap"] = None
+    result["padim_heatmap"] = None
+    result["padim_binary_mask"] = None
     result["localization_status"] = {"patchcore": "not_run", "padim": "not_run"}
 
     if result.get("decision") is None and result.get("is_defect") is not None:
@@ -176,6 +189,7 @@ def infer_exact_first(
             raise ValueError("PatchCore heatmap must be a finite non-empty 2D array")
         result["heatmap"] = heatmap
         result["anomaly_map"] = heatmap
+        result["patchcore_heatmap"] = heatmap
         result["patchcore"] = {"status": "available", "heatmap": heatmap, "error": None}
         result["localization_status"]["patchcore"] = "available"
     except Exception as error:
@@ -184,11 +198,22 @@ def infer_exact_first(
         result["localization_status"]["patchcore"] = "failed"
 
     try:
-        mask = np.asarray(padim_runner(), dtype=bool)
+        padim_output = padim_runner()
+        padim_heatmap = None
+        if isinstance(padim_output, dict):
+            padim_heatmap = padim_output.get("heatmap")
+            padim_output = padim_output.get("binary_mask")
+        mask = np.asarray(padim_output, dtype=bool)
         if mask.ndim != 2 or mask.size == 0:
             raise ValueError("PaDiM mask must be a non-empty 2D array")
         status = "available" if bool(mask.any()) else "empty"
         result["binary_mask"] = mask
+        result["padim_binary_mask"] = mask
+        if padim_heatmap is not None:
+            padim_heatmap = np.asarray(padim_heatmap, dtype=np.float32)
+            if padim_heatmap.ndim != 2 or not np.isfinite(padim_heatmap).all():
+                raise ValueError("PaDiM heatmap must be a finite 2D array")
+            result["padim_heatmap"] = padim_heatmap
         result["padim"] = {"status": status, "mask": mask, "error": None}
         result["localization_status"]["padim"] = status
     except Exception as error:
@@ -315,6 +340,53 @@ def _score_with_detector(
     return detector.predict(features)
 
 
+def _score_detector_paths(
+    paths: list[Path],
+    encoder: SharedDINOv2,
+    detector: AnomalyDetector,
+    batch_size: int,
+    config: ProductionConfig,
+) -> list[AnomalyResult]:
+    """Score paths in batches for efficient validation calibration."""
+
+    if not paths or batch_size < 1:
+        raise ValueError("paths must be non-empty and batch_size must be positive")
+    results: list[AnomalyResult] = []
+    for start in range(0, len(paths), batch_size):
+        batch = torch.stack(
+            [image_tensor(path, encoder.config) for path in paths[start : start + batch_size]]
+        )
+        with torch.inference_mode():
+            features = encoder.forward(batch)
+        batch_results = detector.predict_batch(features)
+        for index, result in enumerate(batch_results):
+            patch_scores = result.patch_scores
+            if config.heatmap_refiner == "dino_affinity":
+                patch_scores = propagate_scores(
+                    patch_scores,
+                    features.patch_embeddings[index].detach().cpu().numpy(),
+                    config.affinity_top_k,
+                    config.affinity_temperature,
+                    config.affinity_eta,
+                )
+            elif config.heatmap_refiner != "none":
+                raise ValueError("heatmap_refiner must be none or dino_affinity")
+            anomaly_map = make_anomaly_maps(
+                torch.as_tensor(patch_scores)[None, :],
+                encoder.patch_grid,
+                encoder.padded_size,
+                encoder.config.image_size,
+            )[0]
+            batch_results[index] = AnomalyResult(
+                float(np.max(patch_scores)),
+                anomaly_map,
+                patch_scores,
+                result.metadata,
+            )
+        results.extend(batch_results)
+    return results
+
+
 def _calibrate_detector_thresholds(
     rows: list[dict[str, str]],
     processed_root: Path,
@@ -334,16 +406,14 @@ def _calibrate_detector_thresholds(
                 row for row in rows
                 if row["category"] == category and row["split"] == "train"
             ][:1]
-        scores: list[float] = []
-        pixels: list[np.ndarray] = []
-        for row in selected:
-            result = _score_with_detector(
-                processed_root / row["image_path"], encoder, detectors[category]
-            )
-            scores.append(result.image_score)
-            pixels.append(result.anomaly_map.reshape(-1))
-        image_scores[category] = scores
-        pixel_scores[category] = np.concatenate(pixels).tolist()
+        paths = [processed_root / row["image_path"] for row in selected]
+        results = _score_detector_paths(
+            paths, encoder, detectors[category], config.batch_size, config
+        )
+        image_scores[category] = [result.image_score for result in results]
+        pixel_scores[category] = np.concatenate(
+            [result.anomaly_map.reshape(-1) for result in results]
+        ).tolist()
     return (
         calibrate_category_image_thresholds(image_scores, config.target_acceptance_rate),
         calibrate_category_pixel_thresholds(pixel_scores, config.target_acceptance_rate),
@@ -370,12 +440,11 @@ def _calibrate_detector_pixel_thresholds(
                 row for row in rows
                 if row["category"] == category and row["split"] == "train"
             ][:1]
-        maps = [
-            _score_with_detector(
-                processed_root / row["image_path"], encoder, detectors[category]
-            ).anomaly_map.reshape(-1)
-            for row in selected
-        ]
+        paths = [processed_root / row["image_path"] for row in selected]
+        results = _score_detector_paths(
+            paths, encoder, detectors[category], config.batch_size, config
+        )
+        maps = [result.anomaly_map.reshape(-1) for result in results]
         pixel_scores[category] = np.concatenate(maps).tolist()
     return calibrate_category_pixel_thresholds(pixel_scores, config.target_acceptance_rate)
 
@@ -383,6 +452,7 @@ def _calibrate_detector_pixel_thresholds(
 def _infer_with_detector(
     item: dict[str, Any],
     encoder: SharedDINOv2,
+    classifier_encoder: SharedDINOv2,
     classifier: dict[str, Any] | None,
     reference_artifact: dict[str, Any] | None,
     mapping: dict[str, int],
@@ -398,14 +468,21 @@ def _infer_with_detector(
         features = encoder.forward(
             torch.stack([image_tensor(item["image_path"], encoder.config)])
         )
+        classifier_features = (
+            features
+            if classifier_encoder is encoder
+            else classifier_encoder.forward(
+                torch.stack([image_tensor(item["image_path"], classifier_encoder.config)])
+            )
+        )
     route = route_product(
-        features.global_embedding,
+        classifier_features.global_embedding,
         classifier,
         reference_artifact,
         mapping,
         calibration,
         config.artifact_root,
-        encoder.metadata(),
+        classifier_encoder.metadata(),
         config.classification_confidence_threshold,
         resolve_bank=False,
     )
@@ -419,15 +496,34 @@ def _infer_with_detector(
             "patch_scores": None,
             "anomaly_map": None,
             "binary_mask": None,
+            "anomaly_detector": config.detector,
         }
     )
     if route.rejected or route.category not in detectors:
         return result
     detector_result = detectors[route.category].predict(features)
-    result["anomaly_score"] = detector_result.image_score
-    result["patch_scores"] = detector_result.patch_scores
-    result["anomaly_map"] = detector_result.anomaly_map
-    decision = classify_image_score(route.category, detector_result.image_score, image_thresholds)
+    patch_scores = detector_result.patch_scores
+    if config.heatmap_refiner == "dino_affinity":
+        patch_scores = propagate_scores(
+            patch_scores,
+            features.patch_embeddings[0].detach().cpu().numpy(),
+            config.affinity_top_k,
+            config.affinity_temperature,
+            config.affinity_eta,
+        )
+    elif config.heatmap_refiner != "none":
+        raise ValueError("heatmap_refiner must be none or dino_affinity")
+    anomaly_map = make_anomaly_maps(
+        torch.as_tensor(patch_scores)[None, :],
+        encoder.patch_grid,
+        encoder.padded_size,
+        encoder.config.image_size,
+    )[0]
+    result["anomaly_score"] = float(np.max(patch_scores))
+    result["patch_scores"] = patch_scores
+    result["anomaly_map"] = anomaly_map
+    decision = classify_image_score(route.category, result["anomaly_score"], image_thresholds)
+    pixel_threshold = float(pixel_thresholds["categories"][route.category]["threshold"])
     result.update(
         {
             "threshold": decision["threshold"],
@@ -437,24 +533,24 @@ def _infer_with_detector(
             "decision_source": config.detector,
             "decision_status": "available",
             "decision_is_defect": decision["is_defect"],
-            "image_score": detector_result.image_score,
+            "image_score": result["anomaly_score"],
             "image_threshold": decision["threshold"],
-            "binary_mask": binary_anomaly_masks(
-                route.category,
-                detector_result.anomaly_map[None, ...],
-                pixel_thresholds,
-            )[0].numpy(),
+            "binary_mask": postprocess_mask(
+                anomaly_map, pixel_threshold, config.mask_postprocess
+            ),
         }
     )
     return result
 
 
 def _safe_ranking(scores: list[float], labels: list[int]) -> dict[str, float | None]:
-    if len(set(labels)) < 2:
+    score_values = np.asarray(scores, dtype=np.float32)
+    label_values = np.asarray(labels, dtype=np.int64)
+    if np.unique(label_values).size < 2:
         return {"auroc": None, "average_precision": None}
     return {
-        "auroc": float(roc_auc_score(labels, scores)),
-        "average_precision": float(average_precision_score(labels, scores)),
+        "auroc": float(roc_auc_score(label_values, score_values)),
+        "average_precision": float(average_precision_score(label_values, score_values)),
     }
 
 
@@ -504,27 +600,75 @@ def _anomaly_report(rows: list[dict[str, Any]]) -> dict[str, Any]:
             "recall": float(recall_score(labels, predictions, zero_division=0)),
             "f1": float(f1_score(labels, predictions, zero_division=0)),
         }
-    pixel_scores: list[float] = []
-    pixel_labels: list[int] = []
-    pixel_predictions: list[int] = []
-    pixel_rows = [
-        row for row in evaluated
-        if row.get("heatmap") is not None and row.get("binary_mask") is not None
-    ]
-    for row in pixel_rows:
-        truth = np.asarray(row["mask"], dtype=np.uint8).reshape(-1)
-        score_map = np.asarray(row["heatmap"], dtype=np.float32).reshape(-1)
-        prediction = np.asarray(row["binary_mask"], dtype=np.uint8).reshape(-1)
-        pixel_scores.extend(score_map.tolist())
-        pixel_labels.extend((truth > 0).astype(np.int64).tolist())
-        pixel_predictions.extend(prediction.astype(np.int64).tolist())
-    report["pixel"] = {"ranking": _safe_ranking(pixel_scores, pixel_labels)}
-    if pixel_predictions:
-        report["pixel"]["thresholded"] = {
-            "precision": float(precision_score(pixel_labels, pixel_predictions, zero_division=0)),
-            "recall": float(recall_score(pixel_labels, pixel_predictions, zero_division=0)),
-            "f1": float(f1_score(pixel_labels, pixel_predictions, zero_division=0)),
+
+    def pixel_report(map_key: str, mask_key: str | None) -> dict[str, Any]:
+        map_rows = [row for row in rows if row.get(map_key) is not None]
+        score_chunks: list[np.ndarray] = []
+        label_chunks: list[np.ndarray] = []
+        prediction_chunks: list[np.ndarray] = []
+        mask_rows = [
+            row for row in map_rows
+            if mask_key is not None and row.get(mask_key) is not None
+        ]
+        for row in map_rows:
+            truth = np.asarray(row["mask"], dtype=np.uint8).reshape(-1)
+            score_map = np.asarray(row[map_key], dtype=np.float32).reshape(-1)
+            score_chunks.append(score_map)
+            label_chunks.append((truth > 0).astype(np.int64))
+        for row in mask_rows:
+            prediction_chunks.append(
+                np.asarray(row[mask_key], dtype=np.uint8).reshape(-1).astype(np.int64)
+            )
+        pixel_scores = np.concatenate(score_chunks) if score_chunks else np.empty(0, dtype=np.float32)
+        pixel_labels = np.concatenate(label_chunks) if label_chunks else np.empty(0, dtype=np.int64)
+        pixel_predictions = (
+            np.concatenate(prediction_chunks) if prediction_chunks else np.empty(0, dtype=np.int64)
+        )
+        result: dict[str, Any] = {
+            "map_key": map_key,
+            "map_images": len(map_rows),
+            "mask_images": len(mask_rows),
+            "map_coverage": len(map_rows) / len(rows) if rows else 0.0,
+            "mask_coverage": len(mask_rows) / len(rows) if rows else 0.0,
+            "ranking": _safe_ranking(pixel_scores, pixel_labels),
         }
+        if mask_rows:
+            mask_label_chunks: list[np.ndarray] = []
+            for row in mask_rows:
+                mask_label_chunks.append(
+                    (np.asarray(row["mask"], dtype=np.uint8).reshape(-1) > 0).astype(np.int64)
+                )
+            mask_labels = np.concatenate(mask_label_chunks)
+            tn, fp, fn, tp = confusion_matrix(
+                mask_labels, pixel_predictions, labels=[0, 1]
+            ).ravel()
+            denominator = 2 * tp + fp + fn
+            union = tp + fp + fn
+            result["thresholded"] = {
+                "precision": float(precision_score(mask_labels, pixel_predictions, zero_division=0)),
+                "recall": float(recall_score(mask_labels, pixel_predictions, zero_division=0)),
+                "f1": float(f1_score(mask_labels, pixel_predictions, zero_division=0)),
+                "specificity": float(tn / (tn + fp)) if tn + fp else 0.0,
+                "dice": float(2 * tp / denominator) if denominator else 0.0,
+                "iou": float(tp / union) if union else 0.0,
+                "evaluated_pixels": len(mask_labels),
+            }
+        return result
+
+    detector_reports: dict[str, Any] = {}
+    if any(row.get("anomaly_detector") for row in rows):
+        detector = next(
+            (row.get("anomaly_detector") for row in rows if row.get("anomaly_detector")),
+            "unknown",
+        )
+        detector_reports[detector] = pixel_report("heatmap", "binary_mask")
+    else:
+        detector_reports["patchcore"] = pixel_report("patchcore_heatmap", None)
+        detector_reports["padim"] = pixel_report("padim_heatmap", "padim_binary_mask")
+    report["detectors"] = detector_reports
+    # Backward-compatible headline: independent runs have one detector; exact-first
+    # keeps PatchCore as the continuous heatmap headline and exposes PaDiM beside it.
+    report["pixel"] = next(iter(detector_reports.values()))
     return report
 
 
@@ -731,30 +875,70 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
         )
         encoder = exact_encoder
     else:
-        encoder = SharedDINOv2(
+        classifier_encoder = SharedDINOv2(
             DINOv2Config(
                 image_size=(config.image_size, config.image_size),
-                feature_layers=()
-                if config.detector == "exact_knn"
-                else config.detector_layers,
+                feature_layers=(),
             ),
             artifact_root=artifact_base,
             device=config.device,
         )
-        exact_encoder = encoder
-        localization_encoder = encoder
+        exact_encoder = classifier_encoder
+        localization_encoder = (
+            classifier_encoder
+            if config.detector == "exact_knn"
+            else SharedDINOv2(
+                DINOv2Config(
+                    image_size=(config.image_size, config.image_size),
+                    feature_layers=config.detector_layers,
+                ),
+                artifact_root=artifact_base,
+                device=config.device,
+            )
+        )
+        encoder = localization_encoder
+
+    classifier_encoder = exact_encoder
 
     classifier = None
     reference_artifact = None
     calibration: dict[str, Any] = {}
+    validation_classification: dict[str, Any] | None = None
     classification_report: dict[str, Any] | None = None
     if len(categories) > 1:
-        train_artifact = build_global_embedding_artifact(rows, "train", processed_root, encoder, mapping, config.batch_size)
-        validation_artifact = build_global_embedding_artifact(rows, "validation", processed_root, encoder, mapping, config.batch_size)
-        embedding_metadata = make_embedding_metadata(rows, mapping, manifest_info["manifest_path"], processed_root, encoder)
-        save_embedding_artifacts(artifact_dir / "embeddings", train_artifact, validation_artifact, mapping, embedding_metadata)
-        classifier_config = LinearClassifierConfig()
-        classifier = fit_linear_classifier(train_artifact, mapping, classifier_config)
+        embedding_metadata = make_embedding_metadata(rows, mapping, manifest_info["manifest_path"], processed_root, classifier_encoder)
+        cached_embeddings = None if config.force else load_compatible_embedding_artifacts(
+            artifact_dir / "embeddings", embedding_metadata
+        )
+        if cached_embeddings is None:
+            train_artifact = build_global_embedding_artifact(
+                rows, "train", processed_root, classifier_encoder, mapping, config.batch_size
+            )
+            validation_artifact = build_global_embedding_artifact(
+                rows, "validation", processed_root, classifier_encoder, mapping, config.batch_size
+            )
+            save_embedding_artifacts(
+                artifact_dir / "embeddings",
+                train_artifact,
+                validation_artifact,
+                mapping,
+                embedding_metadata,
+            )
+        else:
+            train_artifact, validation_artifact = cached_embeddings
+        classifier, classifier_config, validation_classification, _ = select_linear_classifier(
+            train_artifact,
+            validation_artifact,
+            mapping,
+            [
+                LinearClassifierConfig(C=value, max_iter=500)
+                for value in (0.1, 1.0, 10.0)
+            ],
+        )
+        _write_json(
+            artifact_dir / "classification_validation_summary.json",
+            validation_classification,
+        )
         save_linear_classifier(artifact_dir / "classifier", classifier, mapping, classifier_config, embedding_metadata)
         reference_artifact = train_artifact
         calibration = calibrate_open_set_thresholds(
@@ -817,7 +1001,13 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
                     if detector_name == "patchcore":
                         kwargs["k"] = config.k
                     detector = create_detector(detector_name, **kwargs)
-                    detector.fit(category, paths, localization_encoder, config.batch_size)
+                    artifact_path = detector_root / category
+                    if not config.force and (
+                        artifact_path / ("coreset.pt" if detector_name == "patchcore" else "statistics.pt")
+                    ).is_file():
+                        detector.load(artifact_path)
+                    else:
+                        detector.fit(category, paths, localization_encoder, config.batch_size)
                     detector.save(detector_root / category)
                     localization_detectors[detector_name][category] = detector
             pixel_thresholds = _calibrate_detector_pixel_thresholds(
@@ -840,11 +1030,19 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
             if config.detector == "patchcore":
                 kwargs["k"] = config.k
             detector = create_detector(config.detector, **kwargs)
-            detector.fit(category, paths, encoder, config.batch_size)
+            artifact_path = detector_root / category
+            artifact_name = {
+                "patchcore": "coreset.pt",
+                "padim": "statistics.pt",
+            }.get(config.detector)
+            if not config.force and artifact_name and (artifact_path / artifact_name).is_file():
+                detector.load(artifact_path)
+            else:
+                detector.fit(category, paths, localization_encoder, config.batch_size)
             detector.save(detector_root / category)
             detectors[category] = detector
         image_thresholds, pixel_thresholds = _calibrate_detector_thresholds(
-            rows, processed_root, detectors, encoder, config
+            rows, processed_root, detectors, localization_encoder, config
         )
     threshold_name = "exact_first" if exact_first else config.detector
     threshold_root = artifact_dir / "thresholds" / threshold_name
@@ -905,20 +1103,58 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
                 detector = localization_detectors["patchcore"].get(category)
                 if detector is None:
                     raise RuntimeError(f"PatchCore artifact is unavailable for category: {category}")
-                return detector.predict(localization_features()).anomaly_map
+                features = localization_features()
+                detector_result = detector.predict(features)
+                patch_scores = detector_result.patch_scores
+                if config.heatmap_refiner == "dino_affinity":
+                    patch_scores = propagate_scores(
+                        patch_scores,
+                        features.patch_embeddings[0].detach().cpu().numpy(),
+                        config.affinity_top_k,
+                        config.affinity_temperature,
+                        config.affinity_eta,
+                    )
+                elif config.heatmap_refiner != "none":
+                    raise ValueError("heatmap_refiner must be none or dino_affinity")
+                return make_anomaly_maps(
+                    torch.as_tensor(patch_scores)[None, :],
+                    localization_encoder.patch_grid,
+                    localization_encoder.padded_size,
+                    localization_encoder.config.image_size,
+                )[0]
 
-            def padim_runner() -> np.ndarray:
+            def padim_runner() -> dict[str, np.ndarray]:
                 exact_result = exact_result_holder["result"]
                 category = exact_result.get("category")
                 detector = localization_detectors["padim"].get(category)
                 if detector is None:
                     raise RuntimeError(f"PaDiM artifact is unavailable for category: {category}")
-                detector_result = detector.predict(localization_features())
-                return binary_anomaly_masks(
-                    category,
-                    detector_result.anomaly_map[None, ...],
-                    pixel_thresholds,
-                )[0].numpy()
+                features = localization_features()
+                detector_result = detector.predict(features)
+                patch_scores = detector_result.patch_scores
+                if config.heatmap_refiner == "dino_affinity":
+                    patch_scores = propagate_scores(
+                        patch_scores,
+                        features.patch_embeddings[0].detach().cpu().numpy(),
+                        config.affinity_top_k,
+                        config.affinity_temperature,
+                        config.affinity_eta,
+                    )
+                elif config.heatmap_refiner != "none":
+                    raise ValueError("heatmap_refiner must be none or dino_affinity")
+                heatmap = make_anomaly_maps(
+                    torch.as_tensor(patch_scores)[None, :],
+                    localization_encoder.patch_grid,
+                    localization_encoder.padded_size,
+                    localization_encoder.config.image_size,
+                )[0]
+                threshold = float(pixel_thresholds["categories"][category]["threshold"])
+                return {
+                    "heatmap": heatmap,
+                    "binary_mask": postprocess_mask(
+                        heatmap, threshold, config.mask_postprocess
+                    ),
+                }
 
             result = infer_exact_first(exact_runner, patchcore_runner, padim_runner)
         elif config.detector == "exact_knn":
@@ -941,6 +1177,7 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
             result = _infer_with_detector(
                 item,
                 encoder,
+                classifier_encoder,
                 classifier,
                 reference_artifact,
                 mapping,
@@ -950,6 +1187,8 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
                 pixel_thresholds,
                 config,
             )
+        if not exact_first and config.detector == "exact_knn":
+            result["anomaly_detector"] = "exact_knn"
         synchronize(encoder.device)
         inference_latencies.append(time.perf_counter() - started)
         if result.get("decision_is_defect") is None and result.get("is_defect") is not None:
@@ -1079,12 +1318,18 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
             "padim_reduced_dim": config.padim_reduced_dim,
             "covariance_regularization": config.covariance_regularization,
             "classification_confidence_threshold": config.classification_confidence_threshold,
+            "heatmap_refiner": config.heatmap_refiner,
+            "affinity_top_k": config.affinity_top_k,
+            "affinity_temperature": config.affinity_temperature,
+            "affinity_eta": config.affinity_eta,
+            "mask_postprocess": config.mask_postprocess,
             "target_acceptance_rate": config.target_acceptance_rate,
             "artifact_namespace": config.artifact_namespace,
         },
         "preparation": preparation,
         "manifest": manifest_info,
         "classification": classification_report,
+        "classification_validation": validation_classification,
         "anomaly": anomaly_report,
         "performance": {
             "inference": _latency_summary(inference_latencies, encoder.device),
@@ -1093,6 +1338,7 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
             "final_report": "final_report.md",
             "summary": "final_summary.json",
             "classification_summary": "classification_test_summary.json",
+            "classification_validation": "classification_validation_summary.json",
             "anomaly_metrics": "anomaly_metrics.json",
             "per_category": "per_category_metrics.csv",
             "errors": "error_analysis.csv",
@@ -1104,6 +1350,7 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
             "pixel_thresholds": str(threshold_root / "pixel_thresholds.json"),
         },
     }
+    _write_json(report_dir / "classification_validation_summary.json", validation_classification)
     _write_json(report_dir / "final_summary.json", summary)
     (report_dir / "final_report.md").write_text(_markdown_report(summary, report_dir), encoding="utf-8")
     return summary

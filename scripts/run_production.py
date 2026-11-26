@@ -28,12 +28,23 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--batch-size", type=int, default=8)
     parser.add_argument("--k", type=int, default=1)
+    parser.add_argument("--detector", choices=("exact_knn", "patchcore", "padim"), default="exact_knn")
+    parser.add_argument("--orchestration", choices=("exact_first", "independent"), default="exact_first")
     parser.add_argument("--layers", type=_layers, default=(5, 8, 11))
     parser.add_argument("--neighborhood-size", type=int, default=3)
     parser.add_argument("--coreset-ratio", type=float, default=0.10)
     parser.add_argument("--coreset-max-points", type=int, default=50000)
     parser.add_argument("--padim-reduced-dim", type=int, default=100)
     parser.add_argument("--covariance-regularization", type=float, default=0.01)
+    parser.add_argument("--heatmap-refiner", choices=("none", "dino_affinity"), default="none")
+    parser.add_argument("--affinity-top-k", type=int, default=128)
+    parser.add_argument("--affinity-temperature", type=float, default=0.10)
+    parser.add_argument("--affinity-eta", type=float, default=1.0)
+    parser.add_argument(
+        "--mask-postprocess",
+        choices=("raw", "open3", "open5", "open3_close5", "components"),
+        default="raw",
+    )
     parser.add_argument("--device", default=None, help="cpu, mps, or cuda; auto-detect when omitted")
     parser.add_argument("--force", action="store_true", help="rebuild processed images and compatible artifacts")
     return parser
@@ -53,12 +64,19 @@ def main(argv: list[str] | None = None) -> int:
             seed=args.seed,
             batch_size=args.batch_size,
             k=args.k,
+            detector=args.detector,
+            orchestration=args.orchestration,
             detector_layers=args.layers,
             neighborhood_size=args.neighborhood_size,
             coreset_ratio=args.coreset_ratio,
             coreset_max_points=args.coreset_max_points,
             padim_reduced_dim=args.padim_reduced_dim,
             covariance_regularization=args.covariance_regularization,
+            heatmap_refiner=args.heatmap_refiner,
+            affinity_top_k=args.affinity_top_k,
+            affinity_temperature=args.affinity_temperature,
+            affinity_eta=args.affinity_eta,
+            mask_postprocess=args.mask_postprocess,
             device=args.device,
             force=args.force,
         )

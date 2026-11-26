@@ -52,6 +52,7 @@ def audit(processed_root: Path, manifest_path: Path) -> dict[str, object]:
     counts: dict[str, int] = defaultdict(int)
     hashes: dict[str, list[tuple[str, str, str]]] = defaultdict(list)
     test_inventory: list[str] = []
+    dataset_inventory: list[str] = []
     for path, category, split in records:
         counts[split] += 1
         pixel_hash = decoded_pixel_sha256(path)
@@ -59,6 +60,7 @@ def audit(processed_root: Path, manifest_path: Path) -> dict[str, object]:
         hashes[pixel_hash].append(
             (split, category, relative_path)
         )
+        dataset_inventory.append(f"{split}\t{category}\t{relative_path}\t{pixel_hash}")
         if split == "test":
             test_inventory.append(f"{relative_path}\t{category}\t{pixel_hash}")
 
@@ -76,6 +78,9 @@ def audit(processed_root: Path, manifest_path: Path) -> dict[str, object]:
         "python_version": platform.python_version(),
         "processed_root": processed_root.as_posix(),
         "manifest_sha256": hashlib.sha256(manifest_path.read_bytes()).hexdigest(),
+        "dataset_inventory_sha256": hashlib.sha256(
+            ("\n".join(sorted(dataset_inventory)) + "\n").encode("utf-8")
+        ).hexdigest(),
         "test_image_inventory_sha256": hashlib.sha256(
             ("\n".join(sorted(test_inventory)) + "\n").encode("utf-8")
         ).hexdigest(),

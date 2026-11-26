@@ -1,10 +1,11 @@
 {
   "protocol": "SHA-256 over decoded RGBA pixels and dimensions",
-  "audit_date": "2026-11-26",
-  "decoder": "Pillow 12.3.0",
+  "audit_date": "2026-11-27",
+  "decoder": "Pillow 13.0.0",
   "python_version": "3.13.7",
   "processed_root": "datasets/mvtec_ad_processed_320",
   "manifest_sha256": "fac2c931624430c83e1a96f2122691cd5ad319c5f984b43c0bccf5ac7029d432",
+  "dataset_inventory_sha256": "76ecec7e1a11c95e244f345e7fe4c542cc9778fec5fa839e1f709229cc9df6eb",
   "test_image_inventory_sha256": "a88785e62f357832c19188baddb3df95ca252e1257dc6050c26f728c23ac32be",
   "image_count": 5354,
   "files_by_split": {

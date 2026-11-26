@@ -13,6 +13,7 @@ import csv
 import hashlib
 import json
 import math
+import re
 import subprocess
 import sys
 import tempfile
@@ -113,6 +114,64 @@ def _sha256_file(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def _clip_weight_provenance(clip_cache: Path) -> tuple[Path, str]:
+    path = clip_cache / "ViT-L-14-336px.pt"
+    if not path.is_file():
+        raise FileNotFoundError(f"CLIP backbone weights not found in cache: {path}")
+    return path, _sha256_file(path)
+
+
+def _available_memory_bytes() -> int:
+    if sys.platform == "darwin":
+        output = subprocess.check_output(["vm_stat"], text=True)
+        page_size = int(re.search(r"page size of (\d+) bytes", output).group(1))
+        available_pages = sum(
+            int(match.group(1))
+            for line in output.splitlines()
+            if (match := re.match(r"Pages (?:free|inactive|speculative|purgeable):\s*(\d+)\.", line))
+        )
+        return available_pages * page_size
+    if sys.platform.startswith("linux"):
+        for line in Path("/proc/meminfo").read_text(encoding="ascii").splitlines():
+            if line.startswith("MemAvailable:"):
+                return int(line.split()[1]) * 1024
+    if sys.platform == "win32":
+        import ctypes
+
+        class MemoryStatus(ctypes.Structure):
+            _fields_ = [
+                ("dwLength", ctypes.c_ulong),
+                ("dwMemoryLoad", ctypes.c_ulong),
+                ("ullTotalPhys", ctypes.c_ulonglong),
+                ("ullAvailPhys", ctypes.c_ulonglong),
+                ("ullTotalPageFile", ctypes.c_ulonglong),
+                ("ullAvailPageFile", ctypes.c_ulonglong),
+                ("ullTotalVirtual", ctypes.c_ulonglong),
+                ("ullAvailVirtual", ctypes.c_ulonglong),
+                ("ullAvailExtendedVirtual", ctypes.c_ulonglong),
+            ]
+
+        status = MemoryStatus()
+        status.dwLength = ctypes.sizeof(status)
+        if not ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(status)):
+            raise OSError("GlobalMemoryStatusEx failed")
+        return int(status.ullAvailPhys)
+    raise RuntimeError(f"Cannot read available RAM on {sys.platform}; use a supported OS")
+
+
+def _preflight_metric_memory(total_pixels: int) -> dict[str, int]:
+    # 32 bytes/pixel covers sklearn ranking work arrays; 2 GiB is model/runtime headroom.
+    estimated = total_pixels * 32 + 2 * 1024**3
+    available = _available_memory_bytes()
+    if estimated > available:
+        raise MemoryError(
+            f"Pixel metrics need an estimated {estimated / 1024**3:.2f} GiB, "
+            f"but only {available / 1024**3:.2f} GiB RAM is available; "
+            "lower --metric-size or free memory before running."
+        )
+    return {"estimated_peak_bytes": estimated, "available_bytes": available}
 
 
 def _sha256_source(root: Path) -> str:
@@ -290,6 +349,8 @@ class _AnomalyCLIPRunner:
         self.clip_cache = clip_cache
         self.requested_device = device
         self.device: str | None = None
+        self.backbone_checkpoint: Path | None = None
+        self.backbone_sha256: str | None = None
         self.model: Any | None = None
         self.preprocess: Any | None = None
         self.text_features: Any | None = None
@@ -341,6 +402,7 @@ class _AnomalyCLIPRunner:
             design_details=parameters,
             download_root=str(self.clip_cache),
         )
+        self.backbone_checkpoint, self.backbone_sha256 = _clip_weight_provenance(self.clip_cache)
         model.eval()
         prompt_learner = AnomalyCLIP_PromptLearner(model.to("cpu"), parameters)
         try:
@@ -603,6 +665,8 @@ def _write_readme(path: Path, summary: dict[str, Any]) -> None:
         f"- Relation: `M=A@F`, patch L2 distance to a category prototype\n- Fusion: `fuse_maps`, per-image normalization, beta={settings['fusion_beta']}\n"
         f"- Prototype fit: manifest `train` GOOD only\n- Threshold calibration: manifest `validation` GOOD only, q={settings['validation_quantile']}\n"
         f"- Evaluation: official MVTec `test` only; metric size `{settings['metric_size']}`\n- CLIP cache: `{provenance['clip_cache']}`\n\n"
+        f"- Resolved device: `{provenance['resolved_device']}`\n- CLIP backbone: `{provenance['clip_backbone']}`; SHA-256: `{provenance['clip_backbone_sha256']}`\n"
+        f"- Pixel metric memory preflight: estimated `{settings['metric_memory_estimate_bytes']}` bytes; `{settings['metric_memory_available_bytes']}` bytes available\n\n"
         "## Localization scope\n\n"
         "This is an **oracle-category localization ablation**: each test image uses its ground-truth category to select that category's GOOD prototype. It isolates heatmap quality and is not an end-to-end routed result; classification accuracy is evaluated separately.\n\n"
         "## Frozen outputs\n\n"
@@ -665,6 +729,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "project_worktree_dirty": project_worktree_dirty,
             "source_revision": source_revision,
             "clip_cache": str(clip_cache),
+            "resolved_device": runner.device,
+            "clip_backbone": str(runner.backbone_checkpoint),
+            "clip_backbone_sha256": runner.backbone_sha256,
             "exact_hash_audit": "not run in smoke mode",
         }
         print(json.dumps(result, indent=2, sort_keys=True))
@@ -673,6 +740,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     if sorted({row["category"] for row in test}) != list(MVTEC_CATEGORIES):
         raise ValueError("official test data must contain exactly the 15 MVTec categories")
     split_audit = _require_clean_split_hashes(manifest, test, processed_root)
+    metric_width = metric_height = args.metric_size
+    total_pixels = len(test) * metric_width * metric_height
+    memory_preflight = _preflight_metric_memory(total_pixels)
     provenance = {
         "processed_root": str(processed_root),
         "manifest": str(manifest_path),
@@ -696,6 +766,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     runner = _AnomalyCLIPRunner(repository, checkpoint, clip_cache, args.device)
     prototypes = _build_prototypes(runner, manifest)
     thresholds = _thresholds(runner, manifest, prototypes)
+    clip_backbone, clip_backbone_sha256 = _clip_weight_provenance(clip_cache)
+    provenance["resolved_device"] = runner.device
+    provenance["clip_backbone"] = str(clip_backbone)
+    provenance["clip_backbone_sha256"] = clip_backbone_sha256
     output_dir.mkdir(parents=True, exist_ok=True)
     settings = {
         "image_size": IMAGE_SIZE,
@@ -705,15 +779,17 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "validation_quantile": QUANTILE,
         "fusion_beta": FUSION_BETA,
         "metric_size": args.metric_size,
-        "device": args.device,
+        "requested_device": args.device,
+        "resolved_device": runner.device,
         "clip_cache": str(clip_cache),
+        "clip_backbone_sha256": clip_backbone_sha256,
+        "metric_memory_estimate_bytes": memory_preflight["estimated_peak_bytes"],
+        "metric_memory_available_bytes": memory_preflight["available_bytes"],
         "captured_attention_layers": 5,
         "captured_attention_layer_indices": list(runner.captured_layer_indices),
     }
     category_rows: dict[str, list[dict[str, Any]]] = {method: [] for method in METHODS}
     gallery: list[dict[str, Any]] = []
-    metric_width = metric_height = args.metric_size
-    total_pixels = len(test) * metric_width * metric_height
     with tempfile.TemporaryDirectory(prefix="anomalyclip-relation-") as temp_dir:
         score_maps = {
             method: np.memmap(Path(temp_dir) / f"{method}.f32", dtype=np.float32, mode="w+", shape=(total_pixels,))

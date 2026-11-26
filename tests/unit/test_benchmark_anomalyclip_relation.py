@@ -37,6 +37,31 @@ def test_relation_math_is_m_a_at_f_and_fusion_is_per_image_normalized() -> None:
     np.testing.assert_allclose(fuse_maps(raw, contextual, beta=1.0), expected)
 
 
+def test_metric_memory_preflight_rejects_insufficient_available_ram(monkeypatch) -> None:
+    monkeypatch.setattr(benchmark, "_available_memory_bytes", lambda: 3 * 1024**3)
+    result = benchmark._preflight_metric_memory(10)
+    assert result["available_bytes"] == 3 * 1024**3
+    assert result["estimated_peak_bytes"] == 2 * 1024**3 + 320
+
+    monkeypatch.setattr(benchmark, "_available_memory_bytes", lambda: 2 * 1024**3)
+    with pytest.raises(MemoryError, match="lower --metric-size"):
+        benchmark._preflight_metric_memory(10)
+
+
+def test_clip_backbone_provenance_hashes_cached_model(tmp_path) -> None:
+    cache = tmp_path / "clip"
+    cache.mkdir()
+    weights = cache / "ViT-L-14-336px.pt"
+    weights.write_bytes(b"clip weights")
+
+    resolved_path, digest = benchmark._clip_weight_provenance(cache)
+    assert resolved_path == weights
+    assert digest == benchmark._sha256_file(weights)
+
+    with pytest.raises(FileNotFoundError, match="CLIP backbone weights"):
+        benchmark._clip_weight_provenance(tmp_path / "empty")
+
+
 def test_split_audit_records_data_and_masks_and_rejects_duplicate_content(tmp_path) -> None:
     train = tmp_path / "category/train.png"
     validation = tmp_path / "category/validation.png"

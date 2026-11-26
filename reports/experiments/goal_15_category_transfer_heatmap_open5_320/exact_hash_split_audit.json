@@ -1,0 +1,22 @@
+{
+  "protocol": "Independent SHA-256 audit of processed images used by both raw and open5 runs",
+  "processed_root": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_processed_320",
+  "classification_manifest_sha256": "fac2c931624430c83e1a96f2122691cd5ad319c5f984b43c0bccf5ac7029d432",
+  "candidate_manifest_sha256": "fac2c931624430c83e1a96f2122691cd5ad319c5f984b43c0bccf5ac7029d432",
+  "manifest_byte_identical": true,
+  "files_by_split": {
+    "train": 2540,
+    "validation": 1089,
+    "test": 1725
+  },
+  "within_split_duplicate_hash_groups": {
+    "train": 0,
+    "validation": 0,
+    "test": 0
+  },
+  "cross_split_exact_hash_overlap_count": 0,
+  "cross_split_exact_hash_overlaps": [],
+  "near_duplicate_check": "not performed; exact byte identity only",
+  "prior_test_exposure": "official MVTec test split was previously inspected and used in method/resolution comparisons; results remain exploratory",
+  "hash_manifest": "split_file_hashes.csv"
+}

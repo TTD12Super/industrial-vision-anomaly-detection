@@ -1,0 +1,1250 @@
+{
+  "test_images": 1725,
+  "anomaly_evaluated_images": 1725,
+  "anomaly_skipped_images": 0,
+  "image": {
+    "ranking": {
+      "auroc": 0.9299030104547172,
+      "average_precision": 0.9760952436273674
+    },
+    "thresholded": {
+      "accuracy": 0.8614492753623189,
+      "precision": 0.989433237271854,
+      "recall": 0.8187599364069952,
+      "f1": 0.8960417572857764
+    }
+  },
+  "detectors": {
+    "patchcore": {
+      "map_key": "heatmap",
+      "map_images": 1725,
+      "mask_images": 1725,
+      "map_coverage": 1.0,
+      "mask_coverage": 1.0,
+      "rejected_images": 3,
+      "rejected_map_images": 3,
+      "rejected_mask_images": 3,
+      "rejected_map_coverage": 1.0,
+      "rejected_mask_coverage": 1.0,
+      "ranking": {
+        "auroc": 0.9626782293433396,
+        "average_precision": 0.5534663360264126
+      },
+      "thresholded": {
+        "precision": 0.200090400490347,
+        "recall": 0.9541557294193114,
+        "f1": 0.3308088233219583,
+        "specificity": 0.8738967850114808,
+        "dice": 0.3308088233219583,
+        "iou": 0.19818510182897142,
+        "evaluated_pixels": 176640000
+      },
+      "subgroups": {
+        "good": {
+          "image_count": 467,
+          "map_images": 467,
+          "mask_images": 467,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "false_positive_pixel_rate": 0.01291122273153105,
+          "predicted_mask_area": {
+            "sample_count": 467,
+            "total_pixels": 617425,
+            "mean_pixels": 1322.1092077087794,
+            "mean_ratio": 0.01291122273153105
+          }
+        },
+        "defect": {
+          "map_key": "heatmap",
+          "map_images": 1258,
+          "mask_images": 1258,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 3,
+          "rejected_map_images": 3,
+          "rejected_mask_images": 3,
+          "rejected_map_coverage": 1.0,
+          "rejected_mask_coverage": 1.0,
+          "ranking": {
+            "auroc": 0.953630930480027,
+            "average_precision": 0.556810713895386
+          },
+          "thresholded": {
+            "precision": 0.2047809603859887,
+            "recall": 0.9541557294193114,
+            "f1": 0.33719344351951774,
+            "specificity": 0.8299487008228488,
+            "dice": 0.33719344351951774,
+            "iou": 0.20278573127184782,
+            "evaluated_pixels": 128819200
+          },
+          "image_count": 1258
+        }
+      }
+    }
+  },
+  "per_category": [
+    {
+      "true_category": "bottle",
+      "image_count": 83,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 83,
+          "mask_images": 83,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9890826690721792,
+            "average_precision": 0.8395870792060522
+          },
+          "thresholded": {
+            "precision": 0.22955633437818532,
+            "recall": 0.9998554713263254,
+            "f1": 0.3733869413660242,
+            "specificity": 0.794140021888254,
+            "dice": 0.3733869413660242,
+            "iou": 0.2295487174310486,
+            "evaluated_pixels": 8499200
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 20,
+              "map_images": 20,
+              "mask_images": 20,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.01717822265625,
+              "predicted_mask_area": {
+                "sample_count": 20,
+                "total_pixels": 35181,
+                "mean_pixels": 1759.05,
+                "mean_ratio": 0.01717822265625
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 63,
+              "mask_images": 63,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.9853481681002328,
+                "average_precision": 0.8396183172795736
+              },
+              "thresholded": {
+                "precision": 0.23339380646191332,
+                "recall": 0.9998554713263254,
+                "f1": 0.37844753460247604,
+                "specificity": 0.7293038462751689,
+                "dice": 0.37844753460247604,
+                "iou": 0.23338593272694358,
+                "evaluated_pixels": 6451200
+              },
+              "image_count": 63
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "cable",
+      "image_count": 150,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 150,
+          "mask_images": 150,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 1,
+          "rejected_map_images": 1,
+          "rejected_mask_images": 1,
+          "rejected_map_coverage": 1.0,
+          "rejected_mask_coverage": 1.0,
+          "ranking": {
+            "auroc": 0.9805436954147864,
+            "average_precision": 0.7133938288698142
+          },
+          "thresholded": {
+            "precision": 0.25904637588720864,
+            "recall": 0.9513342730101663,
+            "f1": 0.4072102373828861,
+            "specificity": 0.9196443454951307,
+            "dice": 0.4072102373828861,
+            "iou": 0.25565849739880214,
+            "evaluated_pixels": 15360000
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 58,
+              "map_images": 58,
+              "mask_images": 58,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.010169551454741379,
+              "predicted_mask_area": {
+                "sample_count": 58,
+                "total_pixels": 60399,
+                "mean_pixels": 1041.3620689655172,
+                "mean_ratio": 0.010169551454741379
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 92,
+              "mask_images": 92,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 1,
+              "rejected_map_images": 1,
+              "rejected_mask_images": 1,
+              "rejected_map_coverage": 1.0,
+              "rejected_mask_coverage": 1.0,
+              "ranking": {
+                "auroc": 0.9704538210397478,
+                "average_precision": 0.7148275367799213
+              },
+              "thresholded": {
+                "precision": 0.26909142737177844,
+                "recall": 0.9513342730101663,
+                "f1": 0.4195190208660507,
+                "specificity": 0.8732257539706976,
+                "dice": 0.4195190208660507,
+                "iou": 0.26543756388383305,
+                "evaluated_pixels": 9420800
+              },
+              "image_count": 92
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "capsule",
+      "image_count": 132,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 132,
+          "mask_images": 132,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9882797792378866,
+            "average_precision": 0.48662038419916476
+          },
+          "thresholded": {
+            "precision": 0.12274006932352606,
+            "recall": 0.9737598037633541,
+            "f1": 0.21800156799271642,
+            "specificity": 0.93559736420907,
+            "dice": 0.21800156799271642,
+            "iou": 0.12233544321762084,
+            "evaluated_pixels": 13516800
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 23,
+              "map_images": 23,
+              "mask_images": 23,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.012146314538043478,
+              "predicted_mask_area": {
+                "sample_count": 23,
+                "total_pixels": 28607,
+                "mean_pixels": 1243.7826086956522,
+                "mean_ratio": 0.01214631453804348
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 109,
+              "mask_images": 109,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.9861161566382792,
+                "average_precision": 0.48709076425702297
+              },
+              "thresholded": {
+                "precision": 0.12641825082311187,
+                "recall": 0.9737598037633541,
+                "f1": 0.2237837968144002,
+                "specificity": 0.9244469936946826,
+                "dice": 0.2237837968144002,
+                "iou": 0.12598905269136126,
+                "evaluated_pixels": 11161600
+              },
+              "image_count": 109
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "carpet",
+      "image_count": 117,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 117,
+          "mask_images": 117,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9960958660444359,
+            "average_precision": 0.8105179295619382
+          },
+          "thresholded": {
+            "precision": 0.12436646313943776,
+            "recall": 0.9992289176713314,
+            "f1": 0.2212016326869557,
+            "specificity": 0.8854557802101679,
+            "dice": 0.2212016326869557,
+            "iou": 0.12435452873789782,
+            "evaluated_pixels": 11980800
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 28,
+              "map_images": 28,
+              "mask_images": 28,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.009922223772321428,
+              "predicted_mask_area": {
+                "sample_count": 28,
+                "total_pixels": 28449,
+                "mean_pixels": 1016.0357142857143,
+                "mean_ratio": 0.009922223772321428
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 89,
+              "mask_images": 89,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.9948482408656912,
+                "average_precision": 0.810527779466821
+              },
+              "thresholded": {
+                "precision": 0.1267038694261099,
+                "recall": 0.9992289176713314,
+                "f1": 0.22489116892634664,
+                "specificity": 0.851832875982076,
+                "dice": 0.22489116892634664,
+                "iou": 0.1266914822289087,
+                "evaluated_pixels": 9113600
+              },
+              "image_count": 89
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "grid",
+      "image_count": 78,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 78,
+          "mask_images": 78,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9903292969088716,
+            "average_precision": 0.370988186779847
+          },
+          "thresholded": {
+            "precision": 0.03201422208584393,
+            "recall": 1.0,
+            "f1": 0.062042211048484876,
+            "specificity": 0.7900159768273599,
+            "dice": 0.062042211048484876,
+            "iou": 0.03201422208584393,
+            "evaluated_pixels": 7987200
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 21,
+              "map_images": 21,
+              "mask_images": 21,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.03067475818452381,
+              "predicted_mask_area": {
+                "sample_count": 21,
+                "total_pixels": 65963,
+                "mean_pixels": 3141.095238095238,
+                "mean_ratio": 0.030674758184523802
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 57,
+              "mask_images": 57,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.986735177226886,
+                "average_precision": 0.37098969952826966
+              },
+              "thresholded": {
+                "precision": 0.03329040617232546,
+                "recall": 1.0,
+                "f1": 0.06443572101989206,
+                "specificity": 0.7233252498005349,
+                "dice": 0.06443572101989206,
+                "iou": 0.03329040617232546,
+                "evaluated_pixels": 5836800
+              },
+              "image_count": 57
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "hazelnut",
+      "image_count": 110,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 110,
+          "mask_images": 110,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9944255657210648,
+            "average_precision": 0.7390866566064093
+          },
+          "thresholded": {
+            "precision": 0.3175973051395791,
+            "recall": 0.9910867429351717,
+            "f1": 0.4810427378232919,
+            "specificity": 0.9535992864889735,
+            "dice": 0.4810427378232919,
+            "iou": 0.3166927403434276,
+            "evaluated_pixels": 11264000
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 40,
+              "map_images": 40,
+              "mask_images": 40,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.005017822265625,
+              "predicted_mask_area": {
+                "sample_count": 40,
+                "total_pixels": 20553,
+                "mean_pixels": 513.825,
+                "mean_ratio": 0.005017822265625001
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 70,
+              "mask_images": 70,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.9912866967232242,
+                "average_precision": 0.7393023591640243
+              },
+              "thresholded": {
+                "precision": 0.32655118775565073,
+                "recall": 0.9910867429351717,
+                "f1": 0.4912435283411712,
+                "specificity": 0.9291320067738715,
+                "dice": 0.4912435283411712,
+                "iou": 0.3255949767698858,
+                "evaluated_pixels": 7168000
+              },
+              "image_count": 70
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "leather",
+      "image_count": 124,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 124,
+          "mask_images": 124,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9924149222509555,
+            "average_precision": 0.43949448595727186
+          },
+          "thresholded": {
+            "precision": 0.026577061695585866,
+            "recall": 1.0,
+            "f1": 0.05177801586894769,
+            "specificity": 0.7609825390251105,
+            "dice": 0.05177801586894769,
+            "iou": 0.026577061695585866,
+            "evaluated_pixels": 12697600
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 32,
+              "map_images": 32,
+              "mask_images": 32,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.00756317138671875,
+              "predicted_mask_area": {
+                "sample_count": 32,
+                "total_pixels": 24783,
+                "mean_pixels": 774.46875,
+                "mean_ratio": 0.0075631713867187495
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 92,
+              "mask_images": 92,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.9897533760383171,
+                "average_precision": 0.4394944859572719
+              },
+              "thresholded": {
+                "precision": 0.02679141229876338,
+                "recall": 1.0,
+                "f1": 0.05218472218964749,
+                "specificity": 0.6797669855088759,
+                "dice": 0.05218472218964749,
+                "iou": 0.02679141229876338,
+                "evaluated_pixels": 9420800
+              },
+              "image_count": 92
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "metal_nut",
+      "image_count": 115,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 115,
+          "mask_images": 115,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9814172245084285,
+            "average_precision": 0.869835163202333
+          },
+          "thresholded": {
+            "precision": 0.5797981309727658,
+            "recall": 0.9544778650249133,
+            "f1": 0.7213884381166551,
+            "specificity": 0.9081761352333952,
+            "dice": 0.7213884381166551,
+            "iou": 0.5641967111998253,
+            "evaluated_pixels": 11776000
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 22,
+              "map_images": 22,
+              "mask_images": 22,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.014320401278409091,
+              "predicted_mask_area": {
+                "sample_count": 22,
+                "total_pixels": 32261,
+                "mean_pixels": 1466.409090909091,
+                "mean_ratio": 0.01432040127840909
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 93,
+              "mask_images": 93,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.9772593480175684,
+                "average_precision": 0.8709112039154917
+              },
+              "thresholded": {
+                "precision": 0.5881503490273984,
+                "recall": 0.9544778650249133,
+                "f1": 0.7278182576197743,
+                "specificity": 0.8867349886015493,
+                "dice": 0.7278182576197743,
+                "iou": 0.5721024232418565,
+                "evaluated_pixels": 9523200
+              },
+              "image_count": 93
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "pill",
+      "image_count": 167,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 167,
+          "mask_images": 167,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9787485287297528,
+            "average_precision": 0.7328604237509276
+          },
+          "thresholded": {
+            "precision": 0.3384914502800603,
+            "recall": 0.9084275678357838,
+            "f1": 0.4932075947895354,
+            "specificity": 0.9382997603536395,
+            "dice": 0.4932075947895354,
+            "iou": 0.3273228568740002,
+            "evaluated_pixels": 17100800
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 26,
+              "map_images": 26,
+              "mask_images": 26,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.00832294170673077,
+              "predicted_mask_area": {
+                "sample_count": 26,
+                "total_pixels": 22159,
+                "mean_pixels": 852.2692307692307,
+                "mean_ratio": 0.00832294170673077
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 141,
+              "mask_images": 141,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.975554916830391,
+                "average_precision": 0.7339670189221906
+              },
+              "thresholded": {
+                "precision": 0.3434283664462794,
+                "recall": 0.9084275678357838,
+                "f1": 0.49842763390426337,
+                "specificity": 0.9280493737934158,
+                "dice": 0.49842763390426337,
+                "iou": 0.3319371381348961,
+                "evaluated_pixels": 14438400
+              },
+              "image_count": 141
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "screw",
+      "image_count": 160,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 160,
+          "mask_images": 160,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9216637248914421,
+            "average_precision": 0.10208026128594316
+          },
+          "thresholded": {
+            "precision": 0.054871295024589074,
+            "recall": 0.6055050356898406,
+            "f1": 0.10062397426106173,
+            "specificity": 0.9738941688635174,
+            "dice": 0.10062397426106173,
+            "iou": 0.0529773846239397,
+            "evaluated_pixels": 16384000
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 41,
+              "map_images": 41,
+              "mask_images": 41,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.013644483612804879,
+              "predicted_mask_area": {
+                "sample_count": 41,
+                "total_pixels": 57285,
+                "mean_pixels": 1397.1951219512196,
+                "mean_ratio": 0.013644483612804875
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 119,
+              "mask_images": 119,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.9157314355865425,
+                "average_precision": 0.10781918567827721
+              },
+              "thresholded": {
+                "precision": 0.06284648660991791,
+                "recall": 0.6055050356898406,
+                "f1": 0.11387380098059273,
+                "specificity": 0.9695863015710896,
+                "dice": 0.11387380098059273,
+                "iou": 0.06037443360884094,
+                "evaluated_pixels": 12185600
+              },
+              "image_count": 119
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "tile",
+      "image_count": 117,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 117,
+          "mask_images": 117,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9744882559456757,
+            "average_precision": 0.6915613531471346
+          },
+          "thresholded": {
+            "precision": 0.1662394914906705,
+            "recall": 0.999991698164227,
+            "f1": 0.28508603246480674,
+            "specificity": 0.6203046379866135,
+            "dice": 0.28508603246480674,
+            "iou": 0.16623926206313103,
+            "evaluated_pixels": 11980800
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 33,
+              "map_images": 33,
+              "mask_images": 33,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.008120857007575758,
+              "predicted_mask_area": {
+                "sample_count": 33,
+                "total_pixels": 27442,
+                "mean_pixels": 831.5757575757576,
+                "mean_ratio": 0.008120857007575756
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 84,
+              "mask_images": 84,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.9633854691355102,
+                "average_precision": 0.6915665929494772
+              },
+              "thresholded": {
+                "precision": 0.16714380694908137,
+                "recall": 0.999991698164227,
+                "f1": 0.286414762667029,
+                "specificity": 0.4584642503563551,
+                "dice": 0.286414762667029,
+                "iou": 0.1671435750186584,
+                "evaluated_pixels": 8601600
+              },
+              "image_count": 84
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "toothbrush",
+      "image_count": 42,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 42,
+          "mask_images": 42,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9901999139145012,
+            "average_precision": 0.5082547394187333
+          },
+          "thresholded": {
+            "precision": 0.09604209536299656,
+            "recall": 0.9989063568010936,
+            "f1": 0.17523575541657896,
+            "specificity": 0.8538434201935553,
+            "dice": 0.17523575541657896,
+            "iou": 0.09603199752337534,
+            "evaluated_pixels": 4300800
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 12,
+              "map_images": 12,
+              "mask_images": 12,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.017659505208333332,
+              "predicted_mask_area": {
+                "sample_count": 12,
+                "total_pixels": 21700,
+                "mean_pixels": 1808.3333333333333,
+                "mean_ratio": 0.017659505208333332
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 30,
+              "mask_images": 30,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.9864113477102521,
+                "average_precision": 0.5096822804190676
+              },
+              "thresholded": {
+                "precision": 0.09918540762045817,
+                "recall": 0.9989063568010936,
+                "f1": 0.1804529227594647,
+                "specificity": 0.8013189562116517,
+                "dice": 0.1804529227594647,
+                "iou": 0.09917463802757641,
+                "evaluated_pixels": 3072000
+              },
+              "image_count": 30
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "transistor",
+      "image_count": 100,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 100,
+          "mask_images": 100,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 2,
+          "rejected_map_images": 2,
+          "rejected_mask_images": 2,
+          "rejected_map_coverage": 1.0,
+          "rejected_mask_coverage": 1.0,
+          "ranking": {
+            "auroc": 0.9790977272285197,
+            "average_precision": 0.7285760402840653
+          },
+          "thresholded": {
+            "precision": 0.4378857845639764,
+            "recall": 0.9229367782009819,
+            "f1": 0.5939656003415178,
+            "specificity": 0.9403680203058702,
+            "dice": 0.5939656003415178,
+            "iou": 0.42244030479324596,
+            "evaluated_pixels": 10240000
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 60,
+              "map_images": 60,
+              "mask_images": 60,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.011503743489583333,
+              "predicted_mask_area": {
+                "sample_count": 60,
+                "total_pixels": 70679,
+                "mean_pixels": 1177.9833333333333,
+                "mean_ratio": 0.011503743489583334
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 40,
+              "mask_images": 40,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 2,
+              "rejected_map_images": 2,
+              "rejected_mask_images": 2,
+              "rejected_map_coverage": 1.0,
+              "rejected_mask_coverage": 1.0,
+              "ranking": {
+                "auroc": 0.9502942806954555,
+                "average_precision": 0.7367211437202316
+              },
+              "thresholded": {
+                "precision": 0.4700049918169487,
+                "recall": 0.9229367782009819,
+                "f1": 0.6228327733762046,
+                "specificity": 0.8583498899813857,
+                "dice": 0.6228327733762046,
+                "iou": 0.45225645900905936,
+                "evaluated_pixels": 4096000
+              },
+              "image_count": 40
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "wood",
+      "image_count": 79,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 79,
+          "mask_images": 79,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9217160350304211,
+            "average_precision": 0.6888090964538854
+          },
+          "thresholded": {
+            "precision": 0.2129430721788831,
+            "recall": 0.8582274429472202,
+            "f1": 0.3412222157886666,
+            "specificity": 0.8725686850101001,
+            "dice": 0.3412222157886666,
+            "iou": 0.20570700851946896,
+            "evaluated_pixels": 8089600
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 19,
+              "map_images": 19,
+              "mask_images": 19,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.04107113486842105,
+              "predicted_mask_area": {
+                "sample_count": 19,
+                "total_pixels": 79908,
+                "mean_pixels": 4205.684210526316,
+                "mean_ratio": 0.04107113486842105
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 60,
+              "mask_images": 60,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.9126380152286578,
+                "average_precision": 0.6921408333888313
+              },
+              "thresholded": {
+                "precision": 0.22737205573216945,
+                "recall": 0.8582274429472202,
+                "f1": 0.35950078869058594,
+                "specificity": 0.8437561411420939,
+                "dice": 0.35950078869058594,
+                "iou": 0.21914109206040977,
+                "evaluated_pixels": 6144000
+              },
+              "image_count": 60
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "zipper",
+      "image_count": 151,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 151,
+          "mask_images": 151,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9600241148661504,
+            "average_precision": 0.4648287465777354
+          },
+          "thresholded": {
+            "precision": 0.10811733094748555,
+            "recall": 0.9426545364765152,
+            "f1": 0.19398557507869585,
+            "specificity": 0.835682879633496,
+            "dice": 0.19398557507869585,
+            "iou": 0.10741086693543361,
+            "evaluated_pixels": 15462400
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 32,
+              "map_images": 32,
+              "mask_images": 32,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.01283447265625,
+              "predicted_mask_area": {
+                "sample_count": 32,
+                "total_pixels": 42056,
+                "mean_pixels": 1314.25,
+                "mean_ratio": 0.012834472656249998
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 119,
+              "mask_images": 119,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.9500691289144776,
+                "average_precision": 0.4652133229260608
+              },
+              "thresholded": {
+                "precision": 0.10977214629686781,
+                "recall": 0.9426545364765152,
+                "f1": 0.1966449794161817,
+                "specificity": 0.7938495791246429,
+                "dice": 0.1966449794161817,
+                "iou": 0.1090439637074456,
+                "evaluated_pixels": 12185600
+              },
+              "image_count": 119
+            }
+          }
+        }
+      }
+    }
+  ],
+  "pixel": {
+    "map_key": "heatmap",
+    "map_images": 1725,
+    "mask_images": 1725,
+    "map_coverage": 1.0,
+    "mask_coverage": 1.0,
+    "rejected_images": 3,
+    "rejected_map_images": 3,
+    "rejected_mask_images": 3,
+    "rejected_map_coverage": 1.0,
+    "rejected_mask_coverage": 1.0,
+    "ranking": {
+      "auroc": 0.9626782293433396,
+      "average_precision": 0.5534663360264126
+    },
+    "thresholded": {
+      "precision": 0.200090400490347,
+      "recall": 0.9541557294193114,
+      "f1": 0.3308088233219583,
+      "specificity": 0.8738967850114808,
+      "dice": 0.3308088233219583,
+      "iou": 0.19818510182897142,
+      "evaluated_pixels": 176640000
+    },
+    "subgroups": {
+      "good": {
+        "image_count": 467,
+        "map_images": 467,
+        "mask_images": 467,
+        "map_coverage": 1.0,
+        "mask_coverage": 1.0,
+        "false_positive_pixel_rate": 0.01291122273153105,
+        "predicted_mask_area": {
+          "sample_count": 467,
+          "total_pixels": 617425,
+          "mean_pixels": 1322.1092077087794,
+          "mean_ratio": 0.01291122273153105
+        }
+      },
+      "defect": {
+        "map_key": "heatmap",
+        "map_images": 1258,
+        "mask_images": 1258,
+        "map_coverage": 1.0,
+        "mask_coverage": 1.0,
+        "rejected_images": 3,
+        "rejected_map_images": 3,
+        "rejected_mask_images": 3,
+        "rejected_map_coverage": 1.0,
+        "rejected_mask_coverage": 1.0,
+        "ranking": {
+          "auroc": 0.953630930480027,
+          "average_precision": 0.556810713895386
+        },
+        "thresholded": {
+          "precision": 0.2047809603859887,
+          "recall": 0.9541557294193114,
+          "f1": 0.33719344351951774,
+          "specificity": 0.8299487008228488,
+          "dice": 0.33719344351951774,
+          "iou": 0.20278573127184782,
+          "evaluated_pixels": 128819200
+        },
+        "image_count": 1258
+      }
+    }
+  }
+}

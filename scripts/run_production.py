@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 
 from mvtec_system.production import ProductionConfig, run_production
+from mvtec_system.production.pipeline import HEATMAP_REFINERS
 
 
 def _layers(value: str) -> tuple[int, ...]:
@@ -36,7 +37,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--coreset-max-points", type=int, default=50000)
     parser.add_argument("--padim-reduced-dim", type=int, default=100)
     parser.add_argument("--covariance-regularization", type=float, default=0.01)
-    parser.add_argument("--heatmap-refiner", choices=("none", "dino_affinity"), default="none")
+    parser.add_argument("--heatmap-refiner", choices=HEATMAP_REFINERS, default="none")
     parser.add_argument("--affinity-top-k", type=int, default=128)
     parser.add_argument("--affinity-temperature", type=float, default=0.10)
     parser.add_argument("--affinity-eta", type=float, default=1.0)

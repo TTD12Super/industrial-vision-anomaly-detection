@@ -66,7 +66,7 @@ class ComparisonTests(unittest.TestCase):
                 side_effect=lambda config: summaries[config.detector],
             ) as run:
                 run_detector_comparison(
-                    ProductionConfig(),
+                    ProductionConfig(heatmap_refiner="heatmap_open5"),
                     output_root=Path(directory),
                 )
 
@@ -74,6 +74,14 @@ class ComparisonTests(unittest.TestCase):
         self.assertEqual(
             {call.args[0].orchestration for call in run.call_args_list},
             {"independent"},
+        )
+        refiners = {
+            call.args[0].detector: call.args[0].heatmap_refiner
+            for call in run.call_args_list
+        }
+        self.assertEqual(
+            refiners,
+            {"exact_knn": "none", "patchcore": "heatmap_open5", "padim": "heatmap_open5"},
         )
 
 

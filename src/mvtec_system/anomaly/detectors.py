@@ -237,9 +237,10 @@ class PatchCoreDetector(AnomalyDetector):
 
     def load(self, artifact_dir: str | Path) -> "PatchCoreDetector":
         payload = torch.load(Path(artifact_dir) / "coreset.pt", map_location="cpu", weights_only=True)
+        if not isinstance(payload, dict) or not isinstance(payload.get("config"), dict):
+            raise ValueError("PatchCore artifact is missing a valid detector configuration")
         self.coreset = payload["coreset"].float()
-        if isinstance(payload.get("config"), dict):
-            self.config = MultiLayerConfig(**payload["config"])
+        self.config = MultiLayerConfig(**payload["config"])
         self.category = payload["category"]
         self.patch_grid = tuple(payload["patch_grid"])
         self.padded_size = tuple(payload["padded_size"])
@@ -329,11 +330,12 @@ class PaDiMDetector(AnomalyDetector):
 
     def load(self, artifact_dir: str | Path) -> "PaDiMDetector":
         payload = torch.load(Path(artifact_dir) / "statistics.pt", map_location="cpu", weights_only=True)
+        if not isinstance(payload, dict) or not isinstance(payload.get("config"), dict):
+            raise ValueError("PaDiM artifact is missing a valid detector configuration")
         self.means = payload["means"].float()
         self.inverse_covariance = payload["inverse_covariance"].float()
         self.projection = payload["projection"].float()
-        if isinstance(payload.get("config"), dict):
-            self.config = MultiLayerConfig(**payload["config"])
+        self.config = MultiLayerConfig(**payload["config"])
         self.category = payload["category"]
         self.patch_grid = tuple(payload["patch_grid"])
         self.padded_size = tuple(payload["padded_size"])

@@ -135,9 +135,21 @@ statistics. Full implementation details are in
 
 For a full-test heatmap experiment, use independent orchestration so every
 test image receives a localization result. `dino_affinity` propagates each
-detector's patch scores over frozen DINOv2 cosine affinity; `open3` removes
-isolated thresholded pixels. Both settings are calibrated from normal
-validation images only:
+detector's patch scores over frozen DINOv2 cosine affinity. The continuous-map
+refiners `heatmap_open3`, `heatmap_open5`, `heatmap_open7`, and `heatmap_open9`
+apply morphology before pixel thresholding. `--mask-postprocess open3` instead
+changes an already-thresholded binary mask; these options are distinct. Pixel
+thresholds are calibrated from normal validation images only. For example, to
+evaluate the continuous-map opening without an additional binary-mask operation:
+
+```bash
+PYTHONPATH=src DAenv/bin/python scripts/run_production.py \
+  --detector patchcore --orchestration independent \
+  --heatmap-refiner heatmap_open5 --mask-postprocess raw \
+  --device cpu
+```
+
+Affinity plus a binary-mask opening can be evaluated separately:
 
 ```bash
 PYTHONPATH=src DAenv/bin/python scripts/run_production.py \
@@ -151,7 +163,9 @@ PatchCore/PaDiM sources separate. It also records classification model
 selection on validation (`C ∈ {0.1, 1, 10}`, 500 max iterations); the official test
 split is never used to choose the classifier or thresholds. Existing
 compatible embeddings and detector artifacts are reused unless `--force` is
-specified.
+specified. PatchCore and PaDiM cache reuse checks the detector settings,
+category, image geometry, DINOv2 checkpoint hash, split-manifest hash, and
+training-image content hashes; a mismatch triggers a refit.
 
 On the full 15-category test split, the current independent PatchCore baseline
 remains the selected heatmap method. With the same protocol, `PatchCore raw`
@@ -167,6 +181,27 @@ weaker continuous map: pixel AUROC/AP `0.9274/0.3943`, precision/recall/F1
 `0.3515/0.6582/0.4583`, and IoU `0.2973`. This supports the intended
 separation: PatchCore remains the continuous heatmap source and PaDiM remains
 an independent binary-mask candidate; their metrics are not fused.
+
+### 320px heatmap refiner transfer check
+
+A later controlled run compared raw PatchCore with the screw-branch
+`heatmap_open5` refiner on the same 15-category, 320×320 split. The refiner
+changed pixel AP from `0.553759` to `0.553466` and thresholded F1 from `0.332078`
+to `0.330809`; recall increased by only `0.089` percentage points. It was not
+promoted. The 15-class product classifier remained at `99.826%` Top-1 on this
+test set. The comparison report, per-category plots, exact-hash audit, and
+artifact provenance are in
+[`goal_15_category_transfer_heatmap_open5_320`](reports/experiments/goal_15_category_transfer_heatmap_open5_320/README.md).
+The report is exploratory because this official MVTec test split had already
+been used in prior method selection; a new locked holdout is still required for
+an unbiased final claim.
+
+The follow-up four-method comparison adds DINO affinity and Exact kNN to the
+same split. Raw PatchCore remains the strongest recorded heatmap: macro Pixel
+AP is `61.279%`; open5 is `61.243%`, DINO affinity `59.618%`, and Exact kNN
+`53.464%`. See the [combined method table, category plots, and independent QA](reports/experiments/goal_15_category_heatmap_methods_320/README.md). The Exact
+kNN test used the same split but omitted maps for three rejected images; all
+test metrics remain exploratory because of prior MVTec test exposure.
 
 ## Reproduction and reports
 

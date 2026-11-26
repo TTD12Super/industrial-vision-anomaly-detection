@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="440" viewBox="0 0 980 440">
+<rect x="0" y="0" width="980" height="440" fill="#ffffff"/>
+<style>text{font-family:Arial,sans-serif;fill:#202124}.small{font-size:13px}.title{font-size:21px;font-weight:bold}.metric{font-size:15px}</style>
+<text x="40" y="35" class="title">15-category Pixel AP comparison (320px)</text>
+<line x1="230" y1="72" x2="230" y2="352" stroke="#e5e7eb"/><text x="230" y="372" text-anchor="middle" class="small">0%</text>
+<line x1="348.0" y1="72" x2="348.0" y2="352" stroke="#e5e7eb"/><text x="348.0" y="372" text-anchor="middle" class="small">20%</text>
+<line x1="466.0" y1="72" x2="466.0" y2="352" stroke="#e5e7eb"/><text x="466.0" y="372" text-anchor="middle" class="small">40%</text>
+<line x1="584.0" y1="72" x2="584.0" y2="352" stroke="#e5e7eb"/><text x="584.0" y="372" text-anchor="middle" class="small">60%</text>
+<line x1="702.0" y1="72" x2="702.0" y2="352" stroke="#e5e7eb"/><text x="702.0" y="372" text-anchor="middle" class="small">80%</text>
+<line x1="820.0" y1="72" x2="820.0" y2="352" stroke="#e5e7eb"/><text x="820.0" y="372" text-anchor="middle" class="small">100%</text>
+<text x="40" y="95" class="metric">Pixel AP micro</text>
+<rect x="230" y="107" width="326.7" height="17" rx="3" fill="#2563eb"/><text x="563.7" y="120" class="small">55.4%</text>
+<rect x="230" y="132" width="324.3" height="17" rx="3" fill="#e87916"/><text x="561.3" y="145" class="small">55.0%</text>
+<rect x="230" y="157" width="326.5" height="17" rx="3" fill="#16a34a"/><text x="563.5" y="170" class="small">55.3%</text>
+<rect x="230" y="182" width="258.1" height="17" rx="3" fill="#9333ea"/><text x="495.1" y="195" class="small">43.8%</text>
+<text x="40" y="235" class="metric">Pixel AP macro (15 categories)</text>
+<rect x="230" y="247" width="361.5" height="17" rx="3" fill="#2563eb"/><text x="598.5" y="260" class="small">61.3%</text>
+<rect x="230" y="272" width="351.7" height="17" rx="3" fill="#e87916"/><text x="588.7" y="285" class="small">59.6%</text>
+<rect x="230" y="297" width="361.3" height="17" rx="3" fill="#16a34a"/><text x="598.3" y="310" class="small">61.2%</text>
+<rect x="230" y="322" width="315.4" height="17" rx="3" fill="#9333ea"/><text x="552.4" y="335" class="small">53.5%</text>
+<rect x="850" y="106" width="14" height="14" fill="#2563eb"/><text x="872" y="118" class="small">Raw PatchCore</text>
+<rect x="850" y="134" width="14" height="14" fill="#e87916"/><text x="872" y="146" class="small">DINO affinity</text>
+<rect x="850" y="162" width="14" height="14" fill="#16a34a"/><text x="872" y="174" class="small">Open5</text>
+<rect x="850" y="190" width="14" height="14" fill="#9333ea"/><text x="872" y="202" class="small">Exact kNN</text>
+<text x="40" y="425" class="small">Higher is better; AP ranks continuous heatmap scores, independent of the binary threshold.</text></svg>

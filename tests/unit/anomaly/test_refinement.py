@@ -6,7 +6,7 @@ import unittest
 
 import numpy as np
 
-from mvtec_system import postprocess_mask, propagate_scores
+from mvtec_system import postprocess_mask, propagate_scores, refine_heatmap
 
 
 class RefinementTests(unittest.TestCase):
@@ -29,6 +29,17 @@ class RefinementTests(unittest.TestCase):
         heatmap[4, 4] = 1.0
         mask = postprocess_mask(heatmap, 0.5, "open3")
         self.assertFalse(mask.any())
+
+    def test_continuous_heatmap_opening_preserves_region_and_removes_spike(self) -> None:
+        heatmap = np.zeros((15, 15), dtype=np.float32)
+        heatmap[4:11, 4:11] = 0.5
+        heatmap[1, 1] = 1.0
+
+        actual = refine_heatmap(heatmap, "heatmap_open5")
+
+        self.assertEqual(actual.shape, heatmap.shape)
+        self.assertEqual(float(actual[1, 1]), 0.0)
+        self.assertGreater(float(actual[7, 7]), 0.0)
 
 
 if __name__ == "__main__":

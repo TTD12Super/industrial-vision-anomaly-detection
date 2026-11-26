@@ -121,7 +121,9 @@ def run_detector_comparison(
                 covariance_regularization=config.covariance_regularization,
                 target_acceptance_rate=config.target_acceptance_rate,
                 classification_confidence_threshold=config.classification_confidence_threshold,
-                heatmap_refiner=config.heatmap_refiner,
+                heatmap_refiner=(
+                    "none" if detector == "exact_knn" else config.heatmap_refiner
+                ),
                 affinity_top_k=config.affinity_top_k,
                 affinity_temperature=config.affinity_temperature,
                 affinity_eta=config.affinity_eta,

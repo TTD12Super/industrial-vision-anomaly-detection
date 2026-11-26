@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="760" viewBox="0 0 1120 760">
+<rect x="0" y="0" width="1120" height="760" fill="#ffffff"/>
+<style>text{font-family:Arial,sans-serif;fill:#202124}.small{font-size:12px}.title{font-size:21px;font-weight:bold}</style>
+<text x="35" y="34" class="title">Pixel AP by MVTec category</text>
+<line x1="170" y1="75" x2="170" y2="666" stroke="#e5e7eb"/><text x="170" y="685" text-anchor="middle" class="small">0%</text>
+<line x1="304.0" y1="75" x2="304.0" y2="666" stroke="#e5e7eb"/><text x="304.0" y="685" text-anchor="middle" class="small">20%</text>
+<line x1="438.0" y1="75" x2="438.0" y2="666" stroke="#e5e7eb"/><text x="438.0" y="685" text-anchor="middle" class="small">40%</text>
+<line x1="572.0" y1="75" x2="572.0" y2="666" stroke="#e5e7eb"/><text x="572.0" y="685" text-anchor="middle" class="small">60%</text>
+<line x1="706.0" y1="75" x2="706.0" y2="666" stroke="#e5e7eb"/><text x="706.0" y="685" text-anchor="middle" class="small">80%</text>
+<line x1="840.0" y1="75" x2="840.0" y2="666" stroke="#e5e7eb"/><text x="840.0" y="685" text-anchor="middle" class="small">100%</text>
+<text x="160" y="105" text-anchor="end" class="small">bottle</text>
+<rect x="170" y="85" width="562.66" height="5.5" fill="#2563eb"/>
+<rect x="170" y="92" width="559.38" height="5.5" fill="#e87916"/>
+<rect x="170" y="99" width="562.52" height="5.5" fill="#16a34a"/>
+<rect x="170" y="106" width="532.82" height="5.5" fill="#9333ea"/>
+<text x="160" y="144" text-anchor="end" class="small">cable</text>
+<rect x="170" y="124" width="478.09" height="5.5" fill="#2563eb"/>
+<rect x="170" y="131" width="437.91" height="5.5" fill="#e87916"/>
+<rect x="170" y="138" width="477.97" height="5.5" fill="#16a34a"/>
+<rect x="170" y="145" width="365.19" height="5.5" fill="#9333ea"/>
+<text x="160" y="183" text-anchor="end" class="small">capsule</text>
+<rect x="170" y="163" width="326.32" height="5.5" fill="#2563eb"/>
+<rect x="170" y="170" width="303.65" height="5.5" fill="#e87916"/>
+<rect x="170" y="177" width="326.04" height="5.5" fill="#16a34a"/>
+<rect x="170" y="184" width="350.57" height="5.5" fill="#9333ea"/>
+<text x="160" y="222" text-anchor="end" class="small">carpet</text>
+<rect x="170" y="202" width="542.99" height="5.5" fill="#2563eb"/>
+<rect x="170" y="209" width="491.10" height="5.5" fill="#e87916"/>
+<rect x="170" y="216" width="543.05" height="5.5" fill="#16a34a"/>
+<rect x="170" y="223" width="311.34" height="5.5" fill="#9333ea"/>
+<text x="160" y="261" text-anchor="end" class="small">grid</text>
+<rect x="170" y="241" width="250.95" height="5.5" fill="#2563eb"/>
+<rect x="170" y="248" width="241.43" height="5.5" fill="#e87916"/>
+<rect x="170" y="255" width="248.56" height="5.5" fill="#16a34a"/>
+<rect x="170" y="262" width="243.22" height="5.5" fill="#9333ea"/>
+<text x="160" y="300" text-anchor="end" class="small">hazelnut</text>
+<rect x="170" y="280" width="494.80" height="5.5" fill="#2563eb"/>
+<rect x="170" y="287" width="528.96" height="5.5" fill="#e87916"/>
+<rect x="170" y="294" width="495.19" height="5.5" fill="#16a34a"/>
+<rect x="170" y="301" width="514.02" height="5.5" fill="#9333ea"/>
+<text x="160" y="339" text-anchor="end" class="small">leather</text>
+<rect x="170" y="319" width="295.95" height="5.5" fill="#2563eb"/>
+<rect x="170" y="326" width="271.32" height="5.5" fill="#e87916"/>
+<rect x="170" y="333" width="294.46" height="5.5" fill="#16a34a"/>
+<rect x="170" y="340" width="196.34" height="5.5" fill="#9333ea"/>
+<text x="160" y="378" text-anchor="end" class="small">metal_nut</text>
+<rect x="170" y="358" width="582.54" height="5.5" fill="#2563eb"/>
+<rect x="170" y="365" width="608.22" height="5.5" fill="#e87916"/>
+<rect x="170" y="372" width="582.79" height="5.5" fill="#16a34a"/>
+<rect x="170" y="379" width="552.31" height="5.5" fill="#9333ea"/>
+<text x="160" y="417" text-anchor="end" class="small">pill</text>
+<rect x="170" y="397" width="490.53" height="5.5" fill="#2563eb"/>
+<rect x="170" y="404" width="542.89" height="5.5" fill="#e87916"/>
+<rect x="170" y="411" width="491.02" height="5.5" fill="#16a34a"/>
+<rect x="170" y="418" width="404.45" height="5.5" fill="#9333ea"/>
+<text x="160" y="456" text-anchor="end" class="small">screw</text>
+<rect x="170" y="436" width="68.57" height="5.5" fill="#2563eb"/>
+<rect x="170" y="443" width="69.06" height="5.5" fill="#e87916"/>
+<rect x="170" y="450" width="68.39" height="5.5" fill="#16a34a"/>
+<rect x="170" y="457" width="234.08" height="5.5" fill="#9333ea"/>
+<text x="160" y="495" text-anchor="end" class="small">tile</text>
+<rect x="170" y="475" width="463.27" height="5.5" fill="#2563eb"/>
+<rect x="170" y="482" width="446.03" height="5.5" fill="#e87916"/>
+<rect x="170" y="489" width="463.35" height="5.5" fill="#16a34a"/>
+<rect x="170" y="496" width="359.42" height="5.5" fill="#9333ea"/>
+<text x="160" y="534" text-anchor="end" class="small">toothbrush</text>
+<rect x="170" y="514" width="340.37" height="5.5" fill="#2563eb"/>
+<rect x="170" y="521" width="345.68" height="5.5" fill="#e87916"/>
+<rect x="170" y="528" width="340.53" height="5.5" fill="#16a34a"/>
+<rect x="170" y="535" width="335.04" height="5.5" fill="#9333ea"/>
+<text x="160" y="573" text-anchor="end" class="small">transistor</text>
+<rect x="170" y="553" width="487.99" height="5.5" fill="#2563eb"/>
+<rect x="170" y="560" width="452.62" height="5.5" fill="#e87916"/>
+<rect x="170" y="567" width="488.15" height="5.5" fill="#16a34a"/>
+<rect x="170" y="574" width="318.13" height="5.5" fill="#9333ea"/>
+<text x="160" y="612" text-anchor="end" class="small">wood</text>
+<rect x="170" y="592" width="461.66" height="5.5" fill="#2563eb"/>
+<rect x="170" y="599" width="452.99" height="5.5" fill="#e87916"/>
+<rect x="170" y="606" width="461.50" height="5.5" fill="#16a34a"/>
+<rect x="170" y="613" width="382.75" height="5.5" fill="#9333ea"/>
+<text x="160" y="651" text-anchor="end" class="small">zipper</text>
+<rect x="170" y="631" width="311.88" height="5.5" fill="#2563eb"/>
+<rect x="170" y="638" width="240.41" height="5.5" fill="#e87916"/>
+<rect x="170" y="645" width="311.44" height="5.5" fill="#16a34a"/>
+<rect x="170" y="652" width="273.45" height="5.5" fill="#9333ea"/>
+<rect x="880" y="114" width="15" height="14" fill="#2563eb"/><text x="903" y="125" class="small">Raw PatchCore</text>
+<rect x="880" y="140" width="15" height="14" fill="#e87916"/><text x="903" y="151" class="small">DINO affinity</text>
+<rect x="880" y="166" width="15" height="14" fill="#16a34a"/><text x="903" y="177" class="small">Open5</text>
+<rect x="880" y="192" width="15" height="14" fill="#9333ea"/><text x="903" y="203" class="small">Exact kNN</text>
+<text x="505.0" y="712" text-anchor="middle" class="small">Pixel AP</text></svg>

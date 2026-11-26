@@ -1,0 +1,256 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-11-26T11:06:45.771468+00:00",
+  "git": {
+    "branch": "develop",
+    "base_commit_at_run": "deeb73f26282122dcbdb86d0aceca516faac9559",
+    "review_snapshot_source_sha256": {
+      "README.md": "a9c77085abcdf7e224e6723cfd745de3c56bda1dee891626c2e656709b4606f6",
+      "scripts/run_production.py": "857f08dc6d706277dc6805a69f8141b7ea698ce0f195d2dd5a660ac9884020d7",
+      "src/mvtec_system/production/pipeline.py": "a7c9a2682ceafd9761301238ce9c77b48f16845ff6ed4d51b3bd42105b3716e5",
+      "src/mvtec_system/production/comparison.py": "b2c0c2ffa4d4e0eeea66033580f107f75b18e516a6a926efc82cc1bd11c177b3",
+      "src/mvtec_system/anomaly/detectors.py": "ca80d0b79fb7ceb282cbe16468ec6bacca762283c590b3aacd72caab47e71b3d",
+      "src/mvtec_system/anomaly/feature_bank.py": "92140e8fa1ac61eddb35c6540260206b4bb2d626f18bee888c0f974a73b8110a",
+      "src/mvtec_system/anomaly/knn.py": "c2f270cb6e10141e073457a6c33ffab5dba21219de418ce470acf0329cd9b6bc",
+      "src/mvtec_system/anomaly/maps.py": "d6c367dabc8e12866bc7467c686f6d91aa39bb34080f5191007b2f0c3aa2f101",
+      "src/mvtec_system/anomaly/multi_layer.py": "5844d9802b6fd9056e261633fa161a22b64dcce8bff58f894638d8ed485137a8",
+      "src/mvtec_system/anomaly/refinement.py": "7cfb2603d61516ce74c89c445453eca2a684f3289be88d3f81225f881ae9ec9a",
+      "src/mvtec_system/anomaly/thresholds.py": "d82a04b78de5a5ff1fc50a7eb17cb1e4c54c4ce9eb77284ddea7010bae408469",
+      "src/mvtec_system/core/dinov2.py": "3de81381df968d3fec81bbd34b5a03a1c5afb678afc29f28d24ae44510dc26c6",
+      "src/mvtec_system/classification/classifier.py": "097ec6694e2d9b2c6b131d98c5e44eba5cd3ccc4b8f66f6428280302b2caa5cc",
+      "src/mvtec_system/classification/embeddings.py": "56ada30385a5057705c9afc5d63f47cf51c2c7330536a7abfb5d4431cdfd797d",
+      "src/mvtec_system/classification/product_test_evaluation.py": "bd737f5c14fbc824276c83cf8b3869fede965edab01cd99361de4312fa21b88d",
+      "src/mvtec_system/evaluation/evaluation.py": "8515daa710262d5d978f35593d05bdac2c531cf51dd0f3a7029ed923d3ca756d",
+      "tests/unit/anomaly/test_refinement.py": "e28a55d15ea1d0c2a5c798ac6500b2dae3c2cc63f292109dc13cccd9c5a50eaf",
+      "tests/unit/production/test_exact_first.py": "e2ee7eebf7916bef20d49bf3e66ec1dd4d2ae435613cf4517db27df9e0a4c38f",
+      "tests/unit/production/test_comparison.py": "f04d171728a5809196016f80cda34ebf728c89848b26693dcb1989ce2c219a0b"
+    },
+    "run_source_snapshot_captured": false,
+    "run_source_limit": "The exact uncommitted source tree was not snapshotted at benchmark execution. The current source-hash table is a post-run review snapshot. The later artifact-cache guard does not change heatmap scoring or open5 refinement."
+  },
+  "runtime": {
+    "python": "3.13.7",
+    "torch_package_version": "2.14.0",
+    "numpy_package_version": "2.5.3",
+    "device": "cpu"
+  },
+  "dataset_and_split": {
+    "name": "mvtec_ad",
+    "processed_root": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_processed_320",
+    "categories": [
+      "bottle",
+      "cable",
+      "capsule",
+      "carpet",
+      "grid",
+      "hazelnut",
+      "leather",
+      "metal_nut",
+      "pill",
+      "screw",
+      "tile",
+      "toothbrush",
+      "transistor",
+      "wood",
+      "zipper"
+    ],
+    "split_audit": {
+      "path": "reports/experiments/goal_15_category_transfer_heatmap_open5_320/exact_hash_split_audit.json",
+      "sha256": "8638df5daad1cf24e0c7f818a528dedd3b8fefbb8613106741897b6b66d7e1a1"
+    },
+    "split_hash_csv": {
+      "path": "reports/experiments/goal_15_category_transfer_heatmap_open5_320/split_file_hashes.csv",
+      "sha256": "19d61eee95d95816b134171fcf5af77cbc071031f45eedcb4c6e720262621214"
+    },
+    "train_validation_manifest": {
+      "raw": {
+        "path": "artifacts/production_highres/mvtec_ad/classification_split.csv",
+        "sha256": "fac2c931624430c83e1a96f2122691cd5ad319c5f984b43c0bccf5ac7029d432"
+      },
+      "candidate": {
+        "path": "artifacts/production_highres/mvtec_ad/variants/goal_15_heatmap_open5_320/classification_split.csv",
+        "sha256": "fac2c931624430c83e1a96f2122691cd5ad319c5f984b43c0bccf5ac7029d432"
+      },
+      "byte_identical": true
+    },
+    "test_exposure": "Official MVTec test was previously inspected and used for method/resolution decisions; all results are exploratory.",
+    "near_duplicate_audit_performed": false
+  },
+  "method_comparison": {
+    "baseline": "PatchCore raw heatmap",
+    "candidate": "PatchCore heatmap_open5 (continuous-map 5x5 opening)",
+    "configuration_differences": {
+      "artifact_namespace": {
+        "raw": null,
+        "open5": "goal_15_heatmap_open5_320"
+      },
+      "heatmap_refiner": {
+        "raw": "none",
+        "open5": "heatmap_open5"
+      }
+    },
+    "dinov2_checkpoint": {
+      "path": "artifacts/production_highres/mvtec_ad/torch_hub/checkpoints/dinov2_vitb14_pretrain.pth",
+      "sha256": "0b8b82f85de91b424aded121c7e1dcc2b7bc6d0adeea651bf73a13307fad8c73",
+      "bytes": 346378731
+    },
+    "patchcore_coresets_by_category": {
+      "bottle": {
+        "sha256": "e8339c82e396b7eda6be21f6d9ac222d2f696351e825cbf80134d96d6941effe",
+        "candidate_sha256": "e8339c82e396b7eda6be21f6d9ac222d2f696351e825cbf80134d96d6941effe",
+        "identical": true
+      },
+      "cable": {
+        "sha256": "8bc99c23c44087aca6b76629cdf07f2a0a62ea70b952c34d6213215c9d2afbcb",
+        "candidate_sha256": "8bc99c23c44087aca6b76629cdf07f2a0a62ea70b952c34d6213215c9d2afbcb",
+        "identical": true
+      },
+      "capsule": {
+        "sha256": "4d1dc0de07b07edaf58be9207c154dba4068038d64803b283232c2d7dd542228",
+        "candidate_sha256": "4d1dc0de07b07edaf58be9207c154dba4068038d64803b283232c2d7dd542228",
+        "identical": true
+      },
+      "carpet": {
+        "sha256": "1a97f6759ca5fdf2d73977214eecb884b00added52e06e6d1b52d7b20b61eaf5",
+        "candidate_sha256": "1a97f6759ca5fdf2d73977214eecb884b00added52e06e6d1b52d7b20b61eaf5",
+        "identical": true
+      },
+      "grid": {
+        "sha256": "fe23606b6bbaf878282d2f820f2dae07e258e51b57010d502c5115602d2166ef",
+        "candidate_sha256": "fe23606b6bbaf878282d2f820f2dae07e258e51b57010d502c5115602d2166ef",
+        "identical": true
+      },
+      "hazelnut": {
+        "sha256": "6aafb9feccfbab582d85ca7a9e545f48d6c54c4fabda7a4d92116ae046e55ccd",
+        "candidate_sha256": "6aafb9feccfbab582d85ca7a9e545f48d6c54c4fabda7a4d92116ae046e55ccd",
+        "identical": true
+      },
+      "leather": {
+        "sha256": "8aa0d903e7b54877a5512fc25b4b0ac48c51eaa016aec08442c14879f3015fbb",
+        "candidate_sha256": "8aa0d903e7b54877a5512fc25b4b0ac48c51eaa016aec08442c14879f3015fbb",
+        "identical": true
+      },
+      "metal_nut": {
+        "sha256": "cd01397ff3a3757002db4a13ec447394b1f29023f7fe1289fe468d732fb0d839",
+        "candidate_sha256": "cd01397ff3a3757002db4a13ec447394b1f29023f7fe1289fe468d732fb0d839",
+        "identical": true
+      },
+      "pill": {
+        "sha256": "977fd9f41dbeecfd69dcfebbb7d3e6d7c56acfaac0dd8c1e6aae14cf0c9a765c",
+        "candidate_sha256": "977fd9f41dbeecfd69dcfebbb7d3e6d7c56acfaac0dd8c1e6aae14cf0c9a765c",
+        "identical": true
+      },
+      "screw": {
+        "sha256": "751e82f65a01ac0e0edce1be9a1d4c6f06c52ca1fdb32f848f085d0b4921414f",
+        "candidate_sha256": "751e82f65a01ac0e0edce1be9a1d4c6f06c52ca1fdb32f848f085d0b4921414f",
+        "identical": true
+      },
+      "tile": {
+        "sha256": "a8287daab4f54680b57ccd9d8b97c192bce36a0b2308b6fd306cbe9d3bdfbc44",
+        "candidate_sha256": "a8287daab4f54680b57ccd9d8b97c192bce36a0b2308b6fd306cbe9d3bdfbc44",
+        "identical": true
+      },
+      "toothbrush": {
+        "sha256": "1137955577dd35c8071dc8f5deccdf7a038508fbccbc9a57dfc2959b7d98aef8",
+        "candidate_sha256": "1137955577dd35c8071dc8f5deccdf7a038508fbccbc9a57dfc2959b7d98aef8",
+        "identical": true
+      },
+      "transistor": {
+        "sha256": "ef5c8c604a97176406a94bdfb89086f5ea4ffa79d95e6ae9bf888b0a90757c27",
+        "candidate_sha256": "ef5c8c604a97176406a94bdfb89086f5ea4ffa79d95e6ae9bf888b0a90757c27",
+        "identical": true
+      },
+      "wood": {
+        "sha256": "9aeb8e4c558ac7d315e2a4452f1bd20d1abe762aef025b13d82d9a1b7ceead63",
+        "candidate_sha256": "9aeb8e4c558ac7d315e2a4452f1bd20d1abe762aef025b13d82d9a1b7ceead63",
+        "identical": true
+      },
+      "zipper": {
+        "sha256": "c2af3b16f49a1ad84dffeea9f9d13e3d17778924b11ae508a51a0bd86ea79d77",
+        "candidate_sha256": "c2af3b16f49a1ad84dffeea9f9d13e3d17778924b11ae508a51a0bd86ea79d77",
+        "identical": true
+      }
+    },
+    "all_patchcore_coresets_identical": true,
+    "pixel_thresholds": {
+      "raw_image": {
+        "path": "artifacts/production_highres/mvtec_ad/thresholds/patchcore/image_thresholds.json",
+        "sha256": "78d6266a6984ff1d418ef4bf0cee1dd7003a2f0b8ec2ec33598e0167918bbd8a"
+      },
+      "raw_pixel": {
+        "path": "artifacts/production_highres/mvtec_ad/thresholds/patchcore/pixel_thresholds.json",
+        "sha256": "2644c0e92226ff1fa02afb6f5ac09c3689bd8cded1b8aa6e7f259228dd305cdb"
+      },
+      "open5_image": {
+        "path": "artifacts/production_highres/mvtec_ad/variants/goal_15_heatmap_open5_320/thresholds/patchcore/image_thresholds.json",
+        "sha256": "78d6266a6984ff1d418ef4bf0cee1dd7003a2f0b8ec2ec33598e0167918bbd8a"
+      },
+      "open5_pixel": {
+        "path": "artifacts/production_highres/mvtec_ad/variants/goal_15_heatmap_open5_320/thresholds/patchcore/pixel_thresholds.json",
+        "sha256": "9d4b7458e6093c4a012b9ee33218e3615df2eb4f1ca829fb1c542a975e1bf5e8"
+      }
+    },
+    "image_thresholds_raw_and_candidate_identical": true
+  },
+  "source_reports": {
+    "raw_baseline": {
+      "reports/experiments/goal_15_category_postpatch_raw/mvtec_ad/20261126T062935Z/final_summary.json": {
+        "sha256": "4a10a95fbb3795641fecd849539c2b058303da4d92d21a3ad48d1bc950b50011",
+        "bytes": 36848
+      },
+      "reports/experiments/goal_15_category_postpatch_raw/mvtec_ad/20261126T062935Z/anomaly_metrics.json": {
+        "sha256": "110255b117e59a03f46e314466fa8ffbc92ad161b4384dc8c06b07437a452ba8",
+        "bytes": 13894
+      },
+      "reports/experiments/goal_15_category_postpatch_raw/mvtec_ad/20261126T062935Z/localization_metrics.csv": {
+        "sha256": "64806691f2dab83afd2767261a4ed3893ee499e8ec85c737c5fa625717de12b4",
+        "bytes": 3998
+      },
+      "reports/experiments/goal_15_category_postpatch_raw/mvtec_ad/20261126T062935Z/per_category_metrics.csv": {
+        "sha256": "21e6a483af7f2f22aba1d6d694cefb9b18a101c83658e5177bd9fd5862e2b8cf",
+        "bytes": 503
+      }
+    },
+    "raw_subgroup_qa": {
+      "reports/experiments/goal_15_category_postpatch_qa/mvtec_ad/20261126T072127Z/final_summary.json": {
+        "sha256": "b572ece82501ac48276eec214ffc55617c79f61de15aebfccb5bc7c8457d3533",
+        "bytes": 65429
+      },
+      "reports/experiments/goal_15_category_postpatch_qa/mvtec_ad/20261126T072127Z/anomaly_metrics.json": {
+        "sha256": "27c6213d60319d70e00fc9aab11c290fef172594c792a25a89bde4970866d5fb",
+        "bytes": 40854
+      },
+      "reports/experiments/goal_15_category_postpatch_qa/mvtec_ad/20261126T072127Z/localization_metrics.csv": {
+        "sha256": "4cc4b4e9ade5cdabff6ca8d93ce2de5ac786bd856854d054d04cf91e3d211f16",
+        "bytes": 11812
+      },
+      "reports/experiments/goal_15_category_postpatch_qa/mvtec_ad/20261126T072127Z/per_category_metrics.csv": {
+        "sha256": "21e6a483af7f2f22aba1d6d694cefb9b18a101c83658e5177bd9fd5862e2b8cf",
+        "bytes": 503
+      }
+    },
+    "open5_candidate": {
+      "reports/experiments/goal_15_category_transfer_heatmap_open5_320/mvtec_ad/20261126T101011Z/final_summary.json": {
+        "sha256": "3b4933c89dee7a660878a0fe85f98699e147c8d7030b0942bb0a48f84475c761",
+        "bytes": 65578
+      },
+      "reports/experiments/goal_15_category_transfer_heatmap_open5_320/mvtec_ad/20261126T101011Z/anomaly_metrics.json": {
+        "sha256": "d994781b2e837cbb391f6856c0e8d9f6ddfb3190f3c01a61eabebab3dd35e4fa",
+        "bytes": 40944
+      },
+      "reports/experiments/goal_15_category_transfer_heatmap_open5_320/mvtec_ad/20261126T101011Z/localization_metrics.csv": {
+        "sha256": "da44d1cd45b847b9431b9f930dcd460ffabe72eff03e9d41de9aa65ed8632f01",
+        "bytes": 11895
+      },
+      "reports/experiments/goal_15_category_transfer_heatmap_open5_320/mvtec_ad/20261126T101011Z/per_category_metrics.csv": {
+        "sha256": "a320a596a577a0dd3ba3af1a58c7009f2b445a29e4dbd65b80e05e2e284cd1ed",
+        "bytes": 519
+      }
+    }
+  },
+  "uncertainty": {
+    "paired_bootstrap_ci_computed": false,
+    "reason": "Per-image heatmap arrays were not retained by the production report; deltas are descriptive."
+  },
+  "reproducibility_note": "Model artifacts and dataset are local and excluded from Git commit; provenance records their hashes for verification."
+}

@@ -1,0 +1,301 @@
+{
+  "raw": {
+    "raw_root": "/private/var/folders/x6/6k_h0_3j0m93sxlcrq42t4100000gn/T/industrial-vision-mvtec-reuse/mvtec_ad",
+    "categories": [
+      "bottle",
+      "cable",
+      "capsule",
+      "carpet",
+      "grid",
+      "hazelnut",
+      "leather",
+      "metal_nut",
+      "pill",
+      "screw",
+      "tile",
+      "toothbrush",
+      "transistor",
+      "wood",
+      "zipper"
+    ],
+    "category_count": 15,
+    "counts": {
+      "bottle": {
+        "train": 209,
+        "test": 83,
+        "test_good": 20,
+        "test_defect": 63,
+        "ground_truth": 63,
+        "test_labels": [
+          "broken_large",
+          "broken_small",
+          "contamination",
+          "good"
+        ]
+      },
+      "cable": {
+        "train": 224,
+        "test": 150,
+        "test_good": 58,
+        "test_defect": 92,
+        "ground_truth": 92,
+        "test_labels": [
+          "bent_wire",
+          "cable_swap",
+          "combined",
+          "cut_inner_insulation",
+          "cut_outer_insulation",
+          "good",
+          "missing_cable",
+          "missing_wire",
+          "poke_insulation"
+        ]
+      },
+      "capsule": {
+        "train": 219,
+        "test": 132,
+        "test_good": 23,
+        "test_defect": 109,
+        "ground_truth": 109,
+        "test_labels": [
+          "crack",
+          "faulty_imprint",
+          "good",
+          "poke",
+          "scratch",
+          "squeeze"
+        ]
+      },
+      "carpet": {
+        "train": 280,
+        "test": 117,
+        "test_good": 28,
+        "test_defect": 89,
+        "ground_truth": 89,
+        "test_labels": [
+          "color",
+          "cut",
+          "good",
+          "hole",
+          "metal_contamination",
+          "thread"
+        ]
+      },
+      "grid": {
+        "train": 264,
+        "test": 78,
+        "test_good": 21,
+        "test_defect": 57,
+        "ground_truth": 57,
+        "test_labels": [
+          "bent",
+          "broken",
+          "glue",
+          "good",
+          "metal_contamination",
+          "thread"
+        ]
+      },
+      "hazelnut": {
+        "train": 391,
+        "test": 110,
+        "test_good": 40,
+        "test_defect": 70,
+        "ground_truth": 70,
+        "test_labels": [
+          "crack",
+          "cut",
+          "good",
+          "hole",
+          "print"
+        ]
+      },
+      "leather": {
+        "train": 245,
+        "test": 124,
+        "test_good": 32,
+        "test_defect": 92,
+        "ground_truth": 92,
+        "test_labels": [
+          "color",
+          "cut",
+          "fold",
+          "glue",
+          "good",
+          "poke"
+        ]
+      },
+      "metal_nut": {
+        "train": 220,
+        "test": 115,
+        "test_good": 22,
+        "test_defect": 93,
+        "ground_truth": 93,
+        "test_labels": [
+          "bent",
+          "color",
+          "flip",
+          "good",
+          "scratch"
+        ]
+      },
+      "pill": {
+        "train": 267,
+        "test": 167,
+        "test_good": 26,
+        "test_defect": 141,
+        "ground_truth": 141,
+        "test_labels": [
+          "color",
+          "combined",
+          "contamination",
+          "crack",
+          "faulty_imprint",
+          "good",
+          "pill_type",
+          "scratch"
+        ]
+      },
+      "screw": {
+        "train": 320,
+        "test": 160,
+        "test_good": 41,
+        "test_defect": 119,
+        "ground_truth": 119,
+        "test_labels": [
+          "good",
+          "manipulated_front",
+          "scratch_head",
+          "scratch_neck",
+          "thread_side",
+          "thread_top"
+        ]
+      },
+      "tile": {
+        "train": 230,
+        "test": 117,
+        "test_good": 33,
+        "test_defect": 84,
+        "ground_truth": 84,
+        "test_labels": [
+          "crack",
+          "glue_strip",
+          "good",
+          "gray_stroke",
+          "oil",
+          "rough"
+        ]
+      },
+      "toothbrush": {
+        "train": 60,
+        "test": 42,
+        "test_good": 12,
+        "test_defect": 30,
+        "ground_truth": 30,
+        "test_labels": [
+          "defective",
+          "good"
+        ]
+      },
+      "transistor": {
+        "train": 213,
+        "test": 100,
+        "test_good": 60,
+        "test_defect": 40,
+        "ground_truth": 40,
+        "test_labels": [
+          "bent_lead",
+          "cut_lead",
+          "damaged_case",
+          "good",
+          "misplaced"
+        ]
+      },
+      "wood": {
+        "train": 247,
+        "test": 79,
+        "test_good": 19,
+        "test_defect": 60,
+        "ground_truth": 60,
+        "test_labels": [
+          "color",
+          "combined",
+          "good",
+          "hole",
+          "liquid",
+          "scratch"
+        ]
+      },
+      "zipper": {
+        "train": 240,
+        "test": 151,
+        "test_good": 32,
+        "test_defect": 119,
+        "ground_truth": 119,
+        "test_labels": [
+          "broken_teeth",
+          "combined",
+          "fabric_border",
+          "fabric_interior",
+          "good",
+          "rough",
+          "split_teeth",
+          "squeezed_teeth"
+        ]
+      }
+    },
+    "splits": {
+      "train": {
+        "total": 3629,
+        "readable": 3629,
+        "failures": [],
+        "unexpected": []
+      },
+      "test": {
+        "total": 1725,
+        "readable": 1725,
+        "failures": [],
+        "unexpected": []
+      },
+      "ground_truth": {
+        "total": 1258,
+        "readable": 1258,
+        "failures": [],
+        "unexpected": []
+      }
+    },
+    "failures": {
+      "train": [],
+      "test": [],
+      "ground_truth": []
+    },
+    "valid": true
+  },
+  "processing": {
+    "created": 0,
+    "reused": 6612,
+    "validation": {
+      "processed_root": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_processed_320",
+      "image_size": [
+        320,
+        320
+      ],
+      "splits": {
+        "train": {
+          "failures": [],
+          "count": 3629
+        },
+        "test": {
+          "failures": [],
+          "count": 1725
+        },
+        "ground_truth": {
+          "failures": [],
+          "count": 1258
+        }
+      },
+      "valid": true
+    },
+    "raw_dataset_unchanged": true
+  }
+}

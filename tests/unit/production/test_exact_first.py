@@ -2,25 +2,36 @@
 
 from __future__ import annotations
 
+import json
+import hashlib
 from pathlib import Path
+import tempfile
 from unittest import TestCase
 from unittest.mock import Mock, patch
 
 import numpy as np
 import torch
 
-from mvtec_system.anomaly.detectors import AnomalyResult
+from mvtec_system.anomaly.detectors import AnomalyResult, PaDiMDetector, PatchCoreDetector
+from mvtec_system.anomaly.multi_layer import MultiLayerConfig
 from mvtec_system.core.dinov2 import DINOv2Config, DINOv2Features
 from mvtec_system.production.pipeline import (
     _anomaly_report,
+    _calibrate_anomaly_thresholds,
+    _calibrate_detector_pixel_thresholds,
+    _calibrate_detector_thresholds,
     _classification_report,
     _ERROR_ANALYSIS_FIELDS,
     _error_analysis_rows,
     _infer_with_detector,
     _localization_metric_rows,
     _markdown_report,
+    _load_or_fit_detector,
+    _make_refined_anomaly_map,
+    _validate_category_train_paths,
     infer_exact_first,
     ProductionConfig,
+    run_production,
 )
 
 
@@ -37,6 +48,236 @@ def _exact(decision: str) -> dict:
 
 
 class ExactFirstTests(TestCase):
+    def test_threshold_calibration_requires_validation_rows(self) -> None:
+        encoder = Mock()
+        config = ProductionConfig()
+        with tempfile.TemporaryDirectory() as directory:
+            for rows, expected in (
+                (
+                    [{"category": "bottle", "split": "train", "image_path": "train.png"}],
+                    "bottle",
+                ),
+                (
+                    [
+                        {"category": "bottle", "split": "validation", "image_path": "val.png"},
+                        {"category": "cable", "split": "train", "image_path": "train.png"},
+                    ],
+                    "cable",
+                ),
+            ):
+                for calibrate, categories in (
+                    (_calibrate_anomaly_thresholds, ("bottle", "cable")),
+                    (_calibrate_detector_thresholds, ("bottle", "cable")),
+                    (_calibrate_detector_pixel_thresholds, ("bottle", "cable")),
+                ):
+                    model = {category: Mock() for category in categories}
+                    with self.subTest(calibrator=calibrate.__name__, missing=expected), patch(
+                        "mvtec_system.production.pipeline._score_with_bank"
+                    ) as score_with_bank, patch(
+                        "mvtec_system.production.pipeline._score_detector_paths"
+                    ) as score_detector:
+                        with self.assertRaisesRegex(
+                            ValueError, f"No validation images for threshold calibration: .*{expected}"
+                        ):
+                            calibrate(rows, Path(directory), model, encoder, config)
+                        score_with_bank.assert_not_called()
+                        score_detector.assert_not_called()
+
+    def test_categories_without_train_images_fail_instead_of_using_validation(self) -> None:
+        with self.assertRaisesRegex(ValueError, "No training images for categories: \\['bottle'\\]"):
+            _validate_category_train_paths({"bottle": [], "cable": [Path("train.png")]})
+
+    def test_stale_detector_artifact_is_refit_for_requested_config(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            artifact_path = Path(directory)
+            artifact_file = artifact_path / "coreset.pt"
+            artifact_file.write_bytes(b"unchanged")
+            identity = {"cache_reusable": True, "category": "bottle"}
+            saved_identity = {
+                **identity,
+                "artifact_file_sha256": hashlib.sha256(b"unchanged").hexdigest(),
+                "artifact_file_size": len(b"unchanged"),
+            }
+            (artifact_path / "artifact_metadata.json").write_text(json.dumps(saved_identity))
+            stored_config = MultiLayerConfig(layers=(5,))
+            requested = MultiLayerConfig(layers=(5, 8, 11))
+            fit_configs = []
+            detector = Mock()
+            detector.config = requested
+            detector.load.side_effect = lambda _: setattr(detector, "config", stored_config)
+            detector.fit.side_effect = lambda *_: fit_configs.append(detector.config)
+            detector.patch_grid = (2, 2)
+            detector.padded_size = (28, 28)
+            detector.image_size = (28, 28)
+            encoder = Mock()
+            encoder.patch_grid = (2, 2)
+            encoder.padded_size = (28, 28)
+            encoder.config.image_size = (28, 28)
+
+            _load_or_fit_detector(
+                detector,
+                "bottle",
+                [Path("normal.png")],
+                encoder,
+                4,
+                artifact_path,
+                "coreset.pt",
+                requested,
+                identity,
+                False,
+            )
+
+        detector.load.assert_called_once_with(artifact_path)
+        detector.fit.assert_called_once_with("bottle", [Path("normal.png")], encoder, 4)
+        detector.save.assert_called_once_with(artifact_path)
+        self.assertEqual(fit_configs, [requested])
+        self.assertEqual(detector.config, requested)
+
+    def test_changed_detector_payload_is_refit_without_loading(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            artifact_path = Path(directory)
+            artifact_file = artifact_path / "coreset.pt"
+            artifact_file.write_bytes(b"changed")
+            identity = {"cache_reusable": True, "category": "bottle"}
+            saved_identity = {
+                **identity,
+                "artifact_file_sha256": hashlib.sha256(b"original").hexdigest(),
+                "artifact_file_size": len(b"original"),
+            }
+            (artifact_path / "artifact_metadata.json").write_text(json.dumps(saved_identity))
+            detector = Mock()
+            detector.config = MultiLayerConfig()
+            encoder = Mock()
+
+            _load_or_fit_detector(
+                detector,
+                "bottle",
+                [Path("normal.png")],
+                encoder,
+                4,
+                artifact_path,
+                "coreset.pt",
+                MultiLayerConfig(),
+                identity,
+                False,
+            )
+
+        detector.load.assert_not_called()
+        detector.fit.assert_called_once()
+        detector.save.assert_called_once_with(artifact_path)
+
+    def test_real_patchcore_artifact_round_trips_through_cache_guard(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            artifact_path = Path(directory)
+            config = MultiLayerConfig()
+            saved = PatchCoreDetector(config)
+            saved.coreset = torch.tensor([[0.0, 1.0], [2.0, 3.0]])
+            saved.category = "bottle"
+            saved.patch_grid = (1, 2)
+            saved.padded_size = (14, 28)
+            saved.image_size = (14, 28)
+            saved.save(artifact_path)
+            artifact_file = artifact_path / "coreset.pt"
+            identity = {"cache_reusable": True, "category": "bottle"}
+            identity.update(
+                artifact_file_sha256=hashlib.sha256(artifact_file.read_bytes()).hexdigest(),
+                artifact_file_size=artifact_file.stat().st_size,
+            )
+            (artifact_path / "artifact_metadata.json").write_text(json.dumps(identity))
+            encoder = Mock()
+            encoder.patch_grid = (1, 2)
+            encoder.padded_size = (14, 28)
+            encoder.config.image_size = (14, 28)
+            loaded = PatchCoreDetector(config)
+
+            result = _load_or_fit_detector(
+                loaded,
+                "bottle",
+                [],
+                encoder,
+                4,
+                artifact_path,
+                "coreset.pt",
+                config,
+                {key: value for key, value in identity.items() if not key.startswith("artifact_file_")},
+                False,
+            )
+
+        self.assertIs(result, loaded)
+        self.assertEqual(loaded.category, "bottle")
+        torch.testing.assert_close(loaded.coreset, saved.coreset)
+
+    def test_missing_saved_detector_config_is_refit_for_both_detectors(self) -> None:
+        config = MultiLayerConfig()
+        for detector_type, artifact_name in (
+            (PatchCoreDetector, "coreset.pt"),
+            (PaDiMDetector, "statistics.pt"),
+        ):
+            with self.subTest(detector=detector_type.__name__), tempfile.TemporaryDirectory() as directory:
+                artifact_path = Path(directory)
+                artifact_file = artifact_path / artifact_name
+                torch.save({}, artifact_file)
+                identity = {"cache_reusable": True, "category": "bottle"}
+                saved_identity = {
+                    **identity,
+                    "artifact_file_sha256": hashlib.sha256(artifact_file.read_bytes()).hexdigest(),
+                    "artifact_file_size": artifact_file.stat().st_size,
+                }
+                (artifact_path / "artifact_metadata.json").write_text(json.dumps(saved_identity))
+                detector = detector_type(config)
+                detector.fit = Mock()
+                detector.save = Mock()
+                encoder = Mock()
+
+                _load_or_fit_detector(
+                    detector,
+                    "bottle",
+                    [Path("normal.png")],
+                    encoder,
+                    4,
+                    artifact_path,
+                    artifact_name,
+                    config,
+                    identity,
+                    False,
+                )
+
+                detector.fit.assert_called_once()
+                detector.save.assert_called_once_with(artifact_path)
+
+    def test_heatmap_open5_refines_map_without_changing_patch_scores(self) -> None:
+        patch_scores = np.array([0.1, 0.9, 0.2, 0.3], dtype=np.float32)
+        source_map = np.zeros((15, 15), dtype=np.float32)
+        source_map[4:11, 4:11] = 0.5
+        source_map[1, 1] = 1.0
+        encoder = Mock()
+        encoder.patch_grid = (2, 2)
+        encoder.padded_size = (15, 15)
+        encoder.config.image_size = (15, 15)
+        config = ProductionConfig(heatmap_refiner="heatmap_open5")
+
+        with patch(
+            "mvtec_system.production.pipeline.make_anomaly_maps",
+            return_value=source_map[None, ...],
+        ):
+            scores, anomaly_map = _make_refined_anomaly_map(
+                patch_scores, torch.zeros((4, 2)), encoder, config
+            )
+
+        np.testing.assert_array_equal(scores, patch_scores)
+        self.assertEqual(float(anomaly_map[1, 1]), 0.0)
+        self.assertGreater(float(anomaly_map[7, 7]), 0.0)
+
+    def test_independent_exact_knn_rejects_unsupported_heatmap_refiner(self) -> None:
+        with self.assertRaisesRegex(ValueError, "not supported for independent exact_knn"):
+            run_production(
+                ProductionConfig(
+                    detector="exact_knn",
+                    orchestration="independent",
+                    heatmap_refiner="heatmap_open5",
+                )
+            )
+
     def test_good_short_circuits_localization(self) -> None:
         patchcore = Mock()
         padim = Mock()

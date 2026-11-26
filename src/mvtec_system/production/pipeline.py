@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import hashlib
 import csv
+import pickle
 from datetime import datetime, timezone
 import json
 from pathlib import Path
 import time
-from typing import Any, Callable
+from typing import Any, Callable, Iterable
 
 import matplotlib
 
@@ -32,7 +34,7 @@ from ..anomaly.feature_bank import FeatureBankResult, load_or_build_feature_bank
 from ..anomaly.knn import nearest_neighbor_scores
 from ..anomaly.maps import make_anomaly_maps, plot_anomaly_examples
 from ..anomaly.multi_layer import MultiLayerConfig
-from ..anomaly.refinement import postprocess_mask, propagate_scores
+from ..anomaly.refinement import postprocess_mask, propagate_scores, refine_heatmap
 from ..anomaly.thresholds import (
     calibrate_category_image_thresholds,
     calibrate_category_pixel_thresholds,
@@ -51,6 +53,7 @@ from ..classification.embeddings import (
     load_compatible_embedding_artifacts,
     read_classification_manifest,
     save_embedding_artifacts,
+    sha256_file,
 )
 from ..classification.product_test_evaluation import discover_mvtec_test_images
 from ..classification.router import route_product
@@ -100,6 +103,16 @@ class ProductionConfig:
     device: str | None = None
     artifact_namespace: str | None = None
     force: bool = False
+
+
+HEATMAP_REFINERS = (
+    "none",
+    "dino_affinity",
+    "heatmap_open3",
+    "heatmap_open5",
+    "heatmap_open7",
+    "heatmap_open9",
+)
 
 
 def _error_message(error: Exception) -> str:
@@ -490,6 +503,22 @@ def _score_with_bank(
     return score, anomaly_map
 
 
+def _validation_rows_by_category(
+    rows: list[dict[str, str]], categories: Iterable[str]
+) -> dict[str, list[dict[str, str]]]:
+    selected = {
+        category: [
+            row for row in rows
+            if row["category"] == category and row["split"] == "validation"
+        ]
+        for category in categories
+    }
+    missing = sorted(category for category, category_rows in selected.items() if not category_rows)
+    if missing:
+        raise ValueError(f"No validation images for threshold calibration: {missing}")
+    return selected
+
+
 def _calibrate_anomaly_thresholds(
     rows: list[dict[str, str]],
     processed_root: Path,
@@ -499,10 +528,9 @@ def _calibrate_anomaly_thresholds(
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     image_scores: dict[str, list[float]] = {}
     pixel_scores: dict[str, list[float]] = {}
+    validation_rows = _validation_rows_by_category(rows, banks)
     for category in sorted(banks):
-        selected = [row for row in rows if row["category"] == category and row["split"] == "validation"]
-        if not selected:
-            selected = [row for row in rows if row["category"] == category and row["split"] == "train"][:1]
+        selected = validation_rows[category]
         scores: list[float] = []
         pixels: list[np.ndarray] = []
         for row in selected:
@@ -531,6 +559,128 @@ def _detector_config(config: ProductionConfig) -> MultiLayerConfig:
     )
 
 
+def _validate_category_train_paths(train_paths: dict[str, list[Path]]) -> None:
+    missing = [category for category, paths in train_paths.items() if not paths]
+    if missing:
+        raise ValueError(f"No training images for categories: {missing}")
+
+
+def _encoder_artifact_identity(encoder: SharedDINOv2) -> dict[str, Any]:
+    checkpoints = sorted(
+        (encoder.artifact_root / "torch_hub" / "checkpoints").glob(
+            f"{encoder.config.model_name}*_pretrain.pth"
+        )
+    )
+    return {
+        **encoder.metadata(),
+        "checkpoint_sha256": sha256_file(checkpoints[0]) if len(checkpoints) == 1 else None,
+    }
+
+
+def _training_images_sha256(paths: list[Path], processed_root: Path) -> str:
+    digest = hashlib.sha256()
+    for path in sorted(paths):
+        relative_path = path.resolve().relative_to(processed_root.resolve()).as_posix()
+        digest.update(relative_path.encode("utf-8"))
+        digest.update(b"\0")
+        digest.update(sha256_file(path).encode("ascii"))
+        digest.update(b"\n")
+    return digest.hexdigest()
+
+
+def _detector_artifact_identity(
+    category: str,
+    detector: AnomalyDetector,
+    config: MultiLayerConfig,
+    encoder_identity: dict[str, Any],
+    manifest_sha256: str,
+    training_images_sha256: str,
+) -> dict[str, Any]:
+    return {
+        "schema_version": 1,
+        "category": category,
+        "detector": detector.name,
+        "configuration": json.loads(json.dumps(config.to_dict())),
+        "encoder": encoder_identity,
+        "training_manifest_sha256": manifest_sha256,
+        "training_images_sha256": training_images_sha256,
+        "cache_reusable": encoder_identity["checkpoint_sha256"] is not None,
+    }
+
+
+def _load_or_fit_detector(
+    detector: AnomalyDetector,
+    category: str,
+    paths: list[Path],
+    encoder: SharedDINOv2,
+    batch_size: int,
+    artifact_path: Path,
+    artifact_name: str,
+    expected_config: MultiLayerConfig,
+    expected_identity: dict[str, Any],
+    force: bool,
+) -> AnomalyDetector:
+    artifact_file = artifact_path / artifact_name
+    metadata_file = artifact_path / "artifact_metadata.json"
+    can_check_cache = (
+        not force
+        and expected_identity["cache_reusable"]
+        and artifact_file.is_file()
+        and metadata_file.is_file()
+    )
+    if can_check_cache:
+        try:
+            stored_identity = json.loads(metadata_file.read_text(encoding="utf-8"))
+            metadata_matches = isinstance(stored_identity, dict) and (
+                stored_identity.get("artifact_file_sha256") == sha256_file(artifact_file)
+                and stored_identity.get("artifact_file_size") == artifact_file.stat().st_size
+                and {
+                    key: value
+                    for key, value in stored_identity.items()
+                    if key not in {"artifact_file_sha256", "artifact_file_size"}
+                }
+                == expected_identity
+            )
+        except (OSError, json.JSONDecodeError):
+            metadata_matches = False
+        if metadata_matches:
+            try:
+                detector.load(artifact_path)
+                detector.validate_artifacts()
+            except (
+                AttributeError,
+                EOFError,
+                KeyError,
+                OSError,
+                pickle.UnpicklingError,
+                RuntimeError,
+                TypeError,
+                ValueError,
+            ):
+                metadata_matches = False
+        if (
+            metadata_matches
+            and detector.config == expected_config
+            and detector.category == expected_identity["category"]
+            and detector.patch_grid == encoder.patch_grid
+            and detector.padded_size == encoder.padded_size
+            and detector.image_size == encoder.config.image_size
+        ):
+            return detector
+    detector.config = expected_config
+    detector.fit(category, paths, encoder, batch_size)
+    detector.save(artifact_path)
+    saved_identity = {
+        **expected_identity,
+        "artifact_file_sha256": sha256_file(artifact_file),
+        "artifact_file_size": artifact_file.stat().st_size,
+    }
+    metadata_file.write_text(
+        json.dumps(saved_identity, indent=2) + "\n", encoding="utf-8"
+    )
+    return detector
+
+
 def _score_with_detector(
     image_path: Path,
     encoder: SharedDINOv2,
@@ -539,6 +689,34 @@ def _score_with_detector(
     with torch.inference_mode():
         features = encoder.forward(torch.stack([image_tensor(image_path, encoder.config)]))
     return detector.predict(features)
+
+
+def _make_refined_anomaly_map(
+    patch_scores: np.ndarray,
+    patch_features: torch.Tensor,
+    encoder: SharedDINOv2,
+    config: ProductionConfig,
+) -> tuple[np.ndarray, np.ndarray]:
+    """Apply the configured patch- or map-space refiner consistently."""
+
+    scores = patch_scores
+    if config.heatmap_refiner == "dino_affinity":
+        scores = propagate_scores(
+            scores,
+            patch_features.detach().cpu().numpy(),
+            config.affinity_top_k,
+            config.affinity_temperature,
+            config.affinity_eta,
+        )
+    anomaly_map = make_anomaly_maps(
+        torch.as_tensor(scores)[None, :],
+        encoder.patch_grid,
+        encoder.padded_size,
+        encoder.config.image_size,
+    )[0]
+    if config.heatmap_refiner.startswith("heatmap_"):
+        anomaly_map = refine_heatmap(anomaly_map, config.heatmap_refiner)
+    return scores, anomaly_map
 
 
 def _score_detector_paths(
@@ -561,23 +739,12 @@ def _score_detector_paths(
             features = encoder.forward(batch)
         batch_results = detector.predict_batch(features)
         for index, result in enumerate(batch_results):
-            patch_scores = result.patch_scores
-            if config.heatmap_refiner == "dino_affinity":
-                patch_scores = propagate_scores(
-                    patch_scores,
-                    features.patch_embeddings[index].detach().cpu().numpy(),
-                    config.affinity_top_k,
-                    config.affinity_temperature,
-                    config.affinity_eta,
-                )
-            elif config.heatmap_refiner != "none":
-                raise ValueError("heatmap_refiner must be none or dino_affinity")
-            anomaly_map = make_anomaly_maps(
-                torch.as_tensor(patch_scores)[None, :],
-                encoder.patch_grid,
-                encoder.padded_size,
-                encoder.config.image_size,
-            )[0]
+            patch_scores, anomaly_map = _make_refined_anomaly_map(
+                result.patch_scores,
+                features.patch_embeddings[index],
+                encoder,
+                config,
+            )
             batch_results[index] = AnomalyResult(
                 float(np.max(patch_scores)),
                 anomaly_map,
@@ -597,16 +764,9 @@ def _calibrate_detector_thresholds(
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     image_scores: dict[str, list[float]] = {}
     pixel_scores: dict[str, list[float]] = {}
+    validation_rows = _validation_rows_by_category(rows, detectors)
     for category in sorted(detectors):
-        selected = [
-            row for row in rows
-            if row["category"] == category and row["split"] == "validation"
-        ]
-        if not selected:
-            selected = [
-                row for row in rows
-                if row["category"] == category and row["split"] == "train"
-            ][:1]
+        selected = validation_rows[category]
         paths = [processed_root / row["image_path"] for row in selected]
         results = _score_detector_paths(
             paths, encoder, detectors[category], config.batch_size, config
@@ -631,16 +791,9 @@ def _calibrate_detector_pixel_thresholds(
     """Calibrate only the pixel threshold needed by a localization detector."""
 
     pixel_scores: dict[str, list[float]] = {}
+    validation_rows = _validation_rows_by_category(rows, detectors)
     for category in sorted(detectors):
-        selected = [
-            row for row in rows
-            if row["category"] == category and row["split"] == "validation"
-        ]
-        if not selected:
-            selected = [
-                row for row in rows
-                if row["category"] == category and row["split"] == "train"
-            ][:1]
+        selected = validation_rows[category]
         paths = [processed_root / row["image_path"] for row in selected]
         results = _score_detector_paths(
             paths, encoder, detectors[category], config.batch_size, config
@@ -716,23 +869,12 @@ def _infer_with_detector(
     if localization_category not in detectors:
         return result
     detector_result = detectors[localization_category].predict(features)
-    patch_scores = detector_result.patch_scores
-    if config.heatmap_refiner == "dino_affinity":
-        patch_scores = propagate_scores(
-            patch_scores,
-            features.patch_embeddings[0].detach().cpu().numpy(),
-            config.affinity_top_k,
-            config.affinity_temperature,
-            config.affinity_eta,
-        )
-    elif config.heatmap_refiner != "none":
-        raise ValueError("heatmap_refiner must be none or dino_affinity")
-    anomaly_map = make_anomaly_maps(
-        torch.as_tensor(patch_scores)[None, :],
-        encoder.patch_grid,
-        encoder.padded_size,
-        encoder.config.image_size,
-    )[0]
+    patch_scores, anomaly_map = _make_refined_anomaly_map(
+        detector_result.patch_scores,
+        features.patch_embeddings[0],
+        encoder,
+        config,
+    )
     result["anomaly_score"] = float(np.max(patch_scores))
     result["patch_scores"] = patch_scores
     result["anomaly_map"] = anomaly_map
@@ -1252,6 +1394,17 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
         raise ValueError("detector must be one of: exact_knn, patchcore, padim")
     if config.orchestration not in {"exact_first", "independent"}:
         raise ValueError("orchestration must be one of: exact_first, independent")
+    if config.heatmap_refiner not in HEATMAP_REFINERS:
+        raise ValueError(f"heatmap_refiner must be one of: {', '.join(HEATMAP_REFINERS)}")
+    if (
+        config.orchestration == "independent"
+        and config.detector == "exact_knn"
+        and config.heatmap_refiner != "none"
+    ):
+        raise ValueError(
+            "heatmap_refiner is not supported for independent exact_knn; "
+            "use patchcore or padim for refined localization"
+        )
     raw_root = discover_dataset_root(config.datasets_root, config.dataset_root)
     processed_root = (config.processed_root or raw_root.parent / f"{raw_root.name}_processed").resolve()
     run_name = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
@@ -1377,6 +1530,14 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
         category: [processed_root / row["image_path"] for row in rows if row["category"] == category and row["split"] == "train"]
         for category in categories
     }
+    _validate_category_train_paths(train_paths)
+    manifest_sha256 = sha256_file(manifest_info["manifest_path"])
+    detector_encoder_identity = (
+        _encoder_artifact_identity(localization_encoder)
+        if exact_first or config.detector in {"patchcore", "padim"}
+        else {}
+    )
+    training_images_hashes: dict[str, str] = {}
     banks: dict[str, FeatureBankResult] = {}
     detectors: dict[str, AnomalyDetector] = {}
     localization_detectors: dict[str, dict[str, AnomalyDetector]] = {
@@ -1385,11 +1546,7 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
     }
     if exact_first or config.detector == "exact_knn":
         for category in categories:
-            paths = train_paths[category] or [
-                processed_root / row["image_path"]
-                for row in rows
-                if row["category"] == category
-            ]
+            paths = train_paths[category]
             bank = load_or_build_feature_bank(
                 artifact_dir / "feature_banks",
                 category,
@@ -1413,23 +1570,36 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
             for detector_name in ("patchcore", "padim"):
                 detector_root = artifact_dir / "detectors" / detector_name
                 for category in categories:
-                    paths = train_paths[category] or [
-                        processed_root / row["image_path"]
-                        for row in rows
-                        if row["category"] == category
-                    ]
+                    paths = train_paths[category]
                     kwargs: dict[str, Any] = {"config": multi_layer_config}
                     if detector_name == "patchcore":
                         kwargs["k"] = config.k
                     detector = create_detector(detector_name, **kwargs)
                     artifact_path = detector_root / category
-                    if not config.force and (
-                        artifact_path / ("coreset.pt" if detector_name == "patchcore" else "statistics.pt")
-                    ).is_file():
-                        detector.load(artifact_path)
-                    else:
-                        detector.fit(category, paths, localization_encoder, config.batch_size)
-                    detector.save(detector_root / category)
+                    if category not in training_images_hashes:
+                        training_images_hashes[category] = _training_images_sha256(
+                            paths, processed_root
+                        )
+                    artifact_identity = _detector_artifact_identity(
+                        category,
+                        detector,
+                        multi_layer_config,
+                        detector_encoder_identity,
+                        manifest_sha256,
+                        training_images_hashes[category],
+                    )
+                    _load_or_fit_detector(
+                        detector,
+                        category,
+                        paths,
+                        localization_encoder,
+                        config.batch_size,
+                        artifact_path,
+                        "coreset.pt" if detector_name == "patchcore" else "statistics.pt",
+                        multi_layer_config,
+                        artifact_identity,
+                        config.force,
+                    )
                     localization_detectors[detector_name][category] = detector
             pixel_thresholds = _calibrate_detector_pixel_thresholds(
                 rows,
@@ -1442,11 +1612,7 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
         multi_layer_config = _detector_config(config)
         detector_root = artifact_dir / "detectors" / config.detector
         for category in categories:
-            paths = train_paths[category] or [
-                processed_root / row["image_path"]
-                for row in rows
-                if row["category"] == category
-            ]
+            paths = train_paths[category]
             kwargs: dict[str, Any] = {"config": multi_layer_config}
             if config.detector == "patchcore":
                 kwargs["k"] = config.k
@@ -1456,11 +1622,32 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
                 "patchcore": "coreset.pt",
                 "padim": "statistics.pt",
             }.get(config.detector)
-            if not config.force and artifact_name and (artifact_path / artifact_name).is_file():
-                detector.load(artifact_path)
+            if artifact_name:
+                if category not in training_images_hashes:
+                    training_images_hashes[category] = _training_images_sha256(paths, processed_root)
+                artifact_identity = _detector_artifact_identity(
+                    category,
+                    detector,
+                    multi_layer_config,
+                    detector_encoder_identity,
+                    manifest_sha256,
+                    training_images_hashes[category],
+                )
+                _load_or_fit_detector(
+                    detector,
+                    category,
+                    paths,
+                    localization_encoder,
+                    config.batch_size,
+                    artifact_path,
+                    artifact_name,
+                    multi_layer_config,
+                    artifact_identity,
+                    config.force,
+                )
             else:
                 detector.fit(category, paths, localization_encoder, config.batch_size)
-            detector.save(detector_root / category)
+                detector.save(artifact_path)
             detectors[category] = detector
         image_thresholds, pixel_thresholds = _calibrate_detector_thresholds(
             rows, processed_root, detectors, localization_encoder, config
@@ -1526,23 +1713,13 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
                     raise RuntimeError(f"PatchCore artifact is unavailable for category: {category}")
                 features = localization_features()
                 detector_result = detector.predict(features)
-                patch_scores = detector_result.patch_scores
-                if config.heatmap_refiner == "dino_affinity":
-                    patch_scores = propagate_scores(
-                        patch_scores,
-                        features.patch_embeddings[0].detach().cpu().numpy(),
-                        config.affinity_top_k,
-                        config.affinity_temperature,
-                        config.affinity_eta,
-                    )
-                elif config.heatmap_refiner != "none":
-                    raise ValueError("heatmap_refiner must be none or dino_affinity")
-                return make_anomaly_maps(
-                    torch.as_tensor(patch_scores)[None, :],
-                    localization_encoder.patch_grid,
-                    localization_encoder.padded_size,
-                    localization_encoder.config.image_size,
-                )[0]
+                _, heatmap = _make_refined_anomaly_map(
+                    detector_result.patch_scores,
+                    features.patch_embeddings[0],
+                    localization_encoder,
+                    config,
+                )
+                return heatmap
 
             def padim_runner() -> dict[str, np.ndarray]:
                 exact_result = exact_result_holder["result"]
@@ -1552,23 +1729,12 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
                     raise RuntimeError(f"PaDiM artifact is unavailable for category: {category}")
                 features = localization_features()
                 detector_result = detector.predict(features)
-                patch_scores = detector_result.patch_scores
-                if config.heatmap_refiner == "dino_affinity":
-                    patch_scores = propagate_scores(
-                        patch_scores,
-                        features.patch_embeddings[0].detach().cpu().numpy(),
-                        config.affinity_top_k,
-                        config.affinity_temperature,
-                        config.affinity_eta,
-                    )
-                elif config.heatmap_refiner != "none":
-                    raise ValueError("heatmap_refiner must be none or dino_affinity")
-                heatmap = make_anomaly_maps(
-                    torch.as_tensor(patch_scores)[None, :],
-                    localization_encoder.patch_grid,
-                    localization_encoder.padded_size,
-                    localization_encoder.config.image_size,
-                )[0]
+                _, heatmap = _make_refined_anomaly_map(
+                    detector_result.patch_scores,
+                    features.patch_embeddings[0],
+                    localization_encoder,
+                    config,
+                )
                 threshold = float(pixel_thresholds["categories"][category]["threshold"])
                 return {
                     "heatmap": heatmap,

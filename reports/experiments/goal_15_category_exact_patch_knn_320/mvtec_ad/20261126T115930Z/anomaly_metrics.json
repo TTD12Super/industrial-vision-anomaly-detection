@@ -1,0 +1,1250 @@
+{
+  "test_images": 1725,
+  "anomaly_evaluated_images": 1722,
+  "anomaly_skipped_images": 3,
+  "image": {
+    "ranking": {
+      "auroc": 0.9650460257471186,
+      "average_precision": 0.9875239963906001
+    },
+    "thresholded": {
+      "accuracy": 0.8844367015098722,
+      "precision": 0.9916201117318436,
+      "recall": 0.848605577689243,
+      "f1": 0.9145556032632031
+    }
+  },
+  "detectors": {
+    "exact_knn": {
+      "map_key": "heatmap",
+      "map_images": 1722,
+      "mask_images": 1722,
+      "map_coverage": 0.9982608695652174,
+      "mask_coverage": 0.9982608695652174,
+      "rejected_images": 3,
+      "rejected_map_images": 0,
+      "rejected_mask_images": 0,
+      "rejected_map_coverage": 0.0,
+      "rejected_mask_coverage": 0.0,
+      "ranking": {
+        "auroc": 0.9423633599088702,
+        "average_precision": 0.4375077301045058
+      },
+      "thresholded": {
+        "precision": 0.20053216878742935,
+        "recall": 0.8983471885635139,
+        "f1": 0.3278749552289541,
+        "specificity": 0.8835670203921409,
+        "dice": 0.3278749552289541,
+        "iou": 0.19608279671084533,
+        "evaluated_pixels": 176332800
+      },
+      "subgroups": {
+        "good": {
+          "image_count": 467,
+          "map_images": 467,
+          "mask_images": 467,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "false_positive_pixel_rate": 0.012876990765524626,
+          "predicted_mask_area": {
+            "sample_count": 467,
+            "total_pixels": 615788,
+            "mean_pixels": 1318.6038543897216,
+            "mean_ratio": 0.012876990765524624
+          }
+        },
+        "defect": {
+          "map_key": "heatmap",
+          "map_images": 1255,
+          "mask_images": 1255,
+          "map_coverage": 0.9976152623211447,
+          "mask_coverage": 0.9976152623211447,
+          "rejected_images": 3,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": 0.0,
+          "rejected_mask_coverage": 0.0,
+          "ranking": {
+            "auroc": 0.9298604065172094,
+            "average_precision": 0.4406668003984702
+          },
+          "thresholded": {
+            "precision": 0.20562300351626844,
+            "recall": 0.8983471885635139,
+            "f1": 0.334648251262704,
+            "specificity": 0.8432926836458816,
+            "dice": 0.334648251262704,
+            "iou": 0.20094748843086224,
+            "evaluated_pixels": 128512000
+          },
+          "image_count": 1258
+        }
+      }
+    }
+  },
+  "per_category": [
+    {
+      "true_category": "bottle",
+      "image_count": 83,
+      "sources": {
+        "exact_knn": {
+          "map_key": "heatmap",
+          "map_images": 83,
+          "mask_images": 83,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9877714450482922,
+            "average_precision": 0.7952529077699357
+          },
+          "thresholded": {
+            "precision": 0.2318640440734791,
+            "recall": 0.9986849926310732,
+            "f1": 0.37635093643574863,
+            "specificity": 0.7970372684737713,
+            "dice": 0.37635093643574863,
+            "iou": 0.231793276565306,
+            "evaluated_pixels": 8499200
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 20,
+              "map_images": 20,
+              "mask_images": 20,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.0147265625,
+              "predicted_mask_area": {
+                "sample_count": 20,
+                "total_pixels": 30160,
+                "mean_pixels": 1508.0,
+                "mean_ratio": 0.014726562500000002
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 63,
+              "mask_images": 63,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.9836306268388367,
+                "average_precision": 0.7953090418630607
+              },
+              "thresholded": {
+                "precision": 0.23521678658293063,
+                "recall": 0.9986849926310732,
+                "f1": 0.3807555491571055,
+                "specificity": 0.7323542084595369,
+                "dice": 0.3807555491571055,
+                "iou": 0.2351439580101102,
+                "evaluated_pixels": 6451200
+              },
+              "image_count": 63
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "cable",
+      "image_count": 150,
+      "sources": {
+        "exact_knn": {
+          "map_key": "heatmap",
+          "map_images": 149,
+          "mask_images": 149,
+          "map_coverage": 0.9933333333333333,
+          "mask_coverage": 0.9933333333333333,
+          "rejected_images": 1,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": 0.0,
+          "rejected_mask_coverage": 0.0,
+          "ranking": {
+            "auroc": 0.9350391370984195,
+            "average_precision": 0.5450596719562653
+          },
+          "thresholded": {
+            "precision": 0.2732571089803779,
+            "recall": 0.764018702781943,
+            "f1": 0.40254200389465994,
+            "specificity": 0.9428377340833182,
+            "dice": 0.40254200389465994,
+            "iou": 0.25198910073133174,
+            "evaluated_pixels": 15257600
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 58,
+              "map_images": 58,
+              "mask_images": 58,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.009893083243534483,
+              "predicted_mask_area": {
+                "sample_count": 58,
+                "total_pixels": 58757,
+                "mean_pixels": 1013.051724137931,
+                "mean_ratio": 0.009893083243534483
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 91,
+              "mask_images": 91,
+              "map_coverage": 0.9891304347826086,
+              "mask_coverage": 0.9891304347826086,
+              "rejected_images": 1,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": 0.0,
+              "rejected_mask_coverage": 0.0,
+              "ranking": {
+                "auroc": 0.9169871881207947,
+                "average_precision": 0.5515310233581265
+              },
+              "thresholded": {
+                "precision": 0.2877413511424007,
+                "recall": 0.764018702781943,
+                "f1": 0.4180416873910944,
+                "specificity": 0.911297054395039,
+                "dice": 0.4180416873910944,
+                "iou": 0.26425581765279005,
+                "evaluated_pixels": 9318400
+              },
+              "image_count": 92
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "capsule",
+      "image_count": 132,
+      "sources": {
+        "exact_knn": {
+          "map_key": "heatmap",
+          "map_images": 132,
+          "mask_images": 132,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9802333838724406,
+            "average_precision": 0.5232313959627624
+          },
+          "thresholded": {
+            "precision": 0.11342179278524815,
+            "recall": 0.9267178775457509,
+            "f1": 0.20210747859262101,
+            "specificity": 0.932968651673413,
+            "dice": 0.20210747859262101,
+            "iou": 0.11241354874451145,
+            "evaluated_pixels": 13516800
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 23,
+              "map_images": 23,
+              "mask_images": 23,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.010886973505434782,
+              "predicted_mask_area": {
+                "sample_count": 23,
+                "total_pixels": 25641,
+                "mean_pixels": 1114.8260869565217,
+                "mean_ratio": 0.010886973505434784
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 109,
+              "mask_images": 109,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.9769921099895337,
+                "average_precision": 0.5253645691744185
+              },
+              "thresholded": {
+                "precision": 0.11636849245808556,
+                "recall": 0.9267178775457509,
+                "f1": 0.20677245038406386,
+                "specificity": 0.920988654487524,
+                "dice": 0.20677245038406386,
+                "iou": 0.11530742455320256,
+                "evaluated_pixels": 11161600
+              },
+              "image_count": 109
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "carpet",
+      "image_count": 117,
+      "sources": {
+        "exact_knn": {
+          "map_key": "heatmap",
+          "map_images": 117,
+          "mask_images": 117,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9872503708767146,
+            "average_precision": 0.4646834004794666
+          },
+          "thresholded": {
+            "precision": 0.10347328302329574,
+            "recall": 0.9923985870437328,
+            "f1": 0.18740647090943974,
+            "specificity": 0.860005741012152,
+            "dice": 0.18740647090943974,
+            "iou": 0.10339133837880791,
+            "evaluated_pixels": 11980800
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 28,
+              "map_images": 28,
+              "mask_images": 28,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.00913330078125,
+              "predicted_mask_area": {
+                "sample_count": 28,
+                "total_pixels": 26187,
+                "mean_pixels": 935.25,
+                "mean_ratio": 0.009133300781250001
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 89,
+              "mask_images": 89,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.9833150973317979,
+                "average_precision": 0.46479879168025073
+              },
+              "thresholded": {
+                "precision": 0.10496648141668022,
+                "recall": 0.9923985870437328,
+                "f1": 0.18985220295195412,
+                "specificity": 0.8179502877378677,
+                "dice": 0.18985220295195412,
+                "iou": 0.10488215562373494,
+                "evaluated_pixels": 9113600
+              },
+              "image_count": 89
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "grid",
+      "image_count": 78,
+      "sources": {
+        "exact_knn": {
+          "map_key": "heatmap",
+          "map_images": 78,
+          "mask_images": 78,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9903804521618071,
+            "average_precision": 0.3630199186886436
+          },
+          "thresholded": {
+            "precision": 0.038271555163813406,
+            "recall": 0.9994554069018099,
+            "f1": 0.07372018678762114,
+            "specificity": 0.8255785060046421,
+            "dice": 0.07372018678762114,
+            "iou": 0.03827075707380277,
+            "evaluated_pixels": 7987200
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 21,
+              "map_images": 21,
+              "mask_images": 21,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.018831845238095238,
+              "predicted_mask_area": {
+                "sample_count": 21,
+                "total_pixels": 40496,
+                "mean_pixels": 1928.3809523809523,
+                "mean_ratio": 0.01883184523809524
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 57,
+              "mask_images": 57,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.986819069843474,
+                "average_precision": 0.3630232930792789
+              },
+              "thresholded": {
+                "precision": 0.03938009801930059,
+                "recall": 0.9994554069018099,
+                "f1": 0.07577456046364557,
+                "specificity": 0.7677098465454788,
+                "dice": 0.07577456046364557,
+                "iou": 0.03937925302655992,
+                "evaluated_pixels": 5836800
+              },
+              "image_count": 57
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "hazelnut",
+      "image_count": 110,
+      "sources": {
+        "exact_knn": {
+          "map_key": "heatmap",
+          "map_images": 110,
+          "mask_images": 110,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9953092606542708,
+            "average_precision": 0.7671932989506942
+          },
+          "thresholded": {
+            "precision": 0.2957695753981416,
+            "recall": 0.994916820702403,
+            "f1": 0.45598392685421213,
+            "specificity": 0.948382480953022,
+            "dice": 0.45598392685421213,
+            "iou": 0.29532330316043126,
+            "evaluated_pixels": 11264000
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 40,
+              "map_images": 40,
+              "mask_images": 40,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.009190185546875,
+              "predicted_mask_area": {
+                "sample_count": 40,
+                "total_pixels": 37643,
+                "mean_pixels": 941.075,
+                "mean_ratio": 0.009190185546875
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 70,
+              "mask_images": 70,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.9927064973536712,
+                "average_precision": 0.7676915273322362
+              },
+              "thresholded": {
+                "precision": 0.3102220906821607,
+                "recall": 0.994916820702403,
+                "f1": 0.47296908165234297,
+                "specificity": 0.9232976837077767,
+                "dice": 0.47296908165234297,
+                "iou": 0.30973117568839087,
+                "evaluated_pixels": 7168000
+              },
+              "image_count": 70
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "leather",
+      "image_count": 124,
+      "sources": {
+        "exact_knn": {
+          "map_key": "heatmap",
+          "map_images": 124,
+          "mask_images": 124,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9854596046126876,
+            "average_precision": 0.2930480343050521
+          },
+          "thresholded": {
+            "precision": 0.023934042677549054,
+            "recall": 0.9997935013665351,
+            "f1": 0.0467489625919695,
+            "specificity": 0.7339223282885232,
+            "dice": 0.0467489625919695,
+            "iou": 0.023933924363355518,
+            "evaluated_pixels": 12697600
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 32,
+              "map_images": 32,
+              "mask_images": 32,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.00781005859375,
+              "predicted_mask_area": {
+                "sample_count": 32,
+                "total_pixels": 25592,
+                "mean_pixels": 799.75,
+                "mean_ratio": 0.0078100585937500005
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 92,
+              "mask_images": 92,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.9803606378789449,
+                "average_precision": 0.2930486134004954
+              },
+              "thresholded": {
+                "precision": 0.024113490552854243,
+                "recall": 0.9997935013665351,
+                "f1": 0.04709121305014984,
+                "specificity": 0.6432981830545137,
+                "dice": 0.04709121305014984,
+                "iou": 0.024113370457869276,
+                "evaluated_pixels": 9420800
+              },
+              "image_count": 92
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "metal_nut",
+      "image_count": 115,
+      "sources": {
+        "exact_knn": {
+          "map_key": "heatmap",
+          "map_images": 115,
+          "mask_images": 115,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9785798707569935,
+            "average_precision": 0.8243403159566438
+          },
+          "thresholded": {
+            "precision": 0.6240392278256746,
+            "recall": 0.9612250251451462,
+            "f1": 0.7567724072931993,
+            "specificity": 0.9231286958883849,
+            "dice": 0.7567724072931993,
+            "iou": 0.6087159034537889,
+            "evaluated_pixels": 11776000
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 22,
+              "map_images": 22,
+              "mask_images": 22,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.014788263494318181,
+              "predicted_mask_area": {
+                "sample_count": 22,
+                "total_pixels": 33315,
+                "mean_pixels": 1514.3181818181818,
+                "mean_ratio": 0.014788263494318181
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 93,
+              "mask_images": 93,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.9739011874280427,
+                "average_precision": 0.8258675377435872
+              },
+              "thresholded": {
+                "precision": 0.6339755075588378,
+                "recall": 0.9612250251451462,
+                "f1": 0.7640332493641835,
+                "specificity": 0.9059535721285409,
+                "dice": 0.7640332493641835,
+                "iou": 0.6181665072876298,
+                "evaluated_pixels": 9523200
+              },
+              "image_count": 93
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "pill",
+      "image_count": 167,
+      "sources": {
+        "exact_knn": {
+          "map_key": "heatmap",
+          "map_images": 167,
+          "mask_images": 167,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.946878159064598,
+            "average_precision": 0.6036632902535436
+          },
+          "thresholded": {
+            "precision": 0.3870620277512961,
+            "recall": 0.8001862926884472,
+            "f1": 0.5217471757080525,
+            "specificity": 0.9559611616177355,
+            "dice": 0.5217471757080525,
+            "iou": 0.3529485397451946,
+            "evaluated_pixels": 17100800
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 26,
+              "map_images": 26,
+              "mask_images": 26,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.007999549278846154,
+              "predicted_mask_area": {
+                "sample_count": 26,
+                "total_pixels": 21298,
+                "mean_pixels": 819.1538461538462,
+                "mean_ratio": 0.007999549278846154
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 141,
+              "mask_images": 141,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.9415352818778726,
+                "average_precision": 0.6058987630283014
+              },
+              "thresholded": {
+                "precision": 0.3941314082939287,
+                "recall": 0.8001862926884472,
+                "f1": 0.5281317528416158,
+                "specificity": 0.949040304644355,
+                "dice": 0.5281317528416158,
+                "iou": 0.3588172744817593,
+                "evaluated_pixels": 14438400
+              },
+              "image_count": 141
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "screw",
+      "image_count": 160,
+      "sources": {
+        "exact_knn": {
+          "map_key": "heatmap",
+          "map_images": 160,
+          "mask_images": 160,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9488355404449054,
+            "average_precision": 0.34936899112515485
+          },
+          "thresholded": {
+            "precision": 0.070849265797147,
+            "recall": 0.7935367165346632,
+            "f1": 0.1300842329670682,
+            "specificity": 0.9739509512643018,
+            "dice": 0.1300842329670682,
+            "iou": 0.069566894541714,
+            "evaluated_pixels": 16384000
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 41,
+              "map_images": 41,
+              "mask_images": 41,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.009493378429878048,
+              "predicted_mask_area": {
+                "sample_count": 41,
+                "total_pixels": 39857,
+                "mean_pixels": 972.1219512195122,
+                "mean_ratio": 0.009493378429878048
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 119,
+              "mask_images": 119,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.9440555532883752,
+                "average_precision": 0.35396830725657585
+              },
+              "thresholded": {
+                "precision": 0.07759958118887855,
+                "recall": 0.7935367165346632,
+                "f1": 0.14137424194584472,
+                "specificity": 0.9682276833368849,
+                "dice": 0.14137424194584472,
+                "iou": 0.07606385596089725,
+                "evaluated_pixels": 12185600
+              },
+              "image_count": 119
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "tile",
+      "image_count": 117,
+      "sources": {
+        "exact_knn": {
+          "map_key": "heatmap",
+          "map_images": 117,
+          "mask_images": 117,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9489900314226136,
+            "average_precision": 0.5364480697935085
+          },
+          "thresholded": {
+            "precision": 0.19472973594044427,
+            "recall": 0.9848977747522198,
+            "f1": 0.3251685500166313,
+            "specificity": 0.6916582574740207,
+            "dice": 0.3251685500166313,
+            "iou": 0.19415001433120946,
+            "evaluated_pixels": 11980800
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 33,
+              "map_images": 33,
+              "mask_images": 33,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.008800011837121213,
+              "predicted_mask_area": {
+                "sample_count": 33,
+                "total_pixels": 29737,
+                "mean_pixels": 901.1212121212121,
+                "mean_ratio": 0.008800011837121213
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 84,
+              "mask_images": 84,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.9272235883287404,
+                "average_precision": 0.5365417475143185
+              },
+              "thresholded": {
+                "precision": 0.19609710437560968,
+                "recall": 0.9848977747522198,
+                "f1": 0.327072716653138,
+                "specificity": 0.5611919602630074,
+                "dice": 0.327072716653138,
+                "iou": 0.19550922500277212,
+                "evaluated_pixels": 8601600
+              },
+              "image_count": 84
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "toothbrush",
+      "image_count": 42,
+      "sources": {
+        "exact_knn": {
+          "map_key": "heatmap",
+          "map_images": 42,
+          "mask_images": 42,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9891571865631242,
+            "average_precision": 0.5000654464680889
+          },
+          "thresholded": {
+            "precision": 0.20886766668480225,
+            "recall": 0.9913116123642439,
+            "f1": 0.345036690845264,
+            "specificity": 0.9416292696633857,
+            "dice": 0.345036690845264,
+            "iou": 0.2084860062677098,
+            "evaluated_pixels": 4300800
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 12,
+              "map_images": 12,
+              "mask_images": 12,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.011564127604166667,
+              "predicted_mask_area": {
+                "sample_count": 12,
+                "total_pixels": 14210,
+                "mean_pixels": 1184.1666666666667,
+                "mean_ratio": 0.011564127604166667
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 30,
+              "mask_images": 30,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.9851631024646215,
+                "average_precision": 0.5029968821655311
+              },
+              "thresholded": {
+                "precision": 0.21881904838542032,
+                "recall": 0.9913116123642439,
+                "f1": 0.3585032107798707,
+                "specificity": 0.9224966028145495,
+                "dice": 0.3585032107798707,
+                "iou": 0.2184001900790769,
+                "evaluated_pixels": 3072000
+              },
+              "image_count": 30
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "transistor",
+      "image_count": 100,
+      "sources": {
+        "exact_knn": {
+          "map_key": "heatmap",
+          "map_images": 98,
+          "mask_images": 98,
+          "map_coverage": 0.98,
+          "mask_coverage": 0.98,
+          "rejected_images": 2,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": 0.0,
+          "rejected_mask_coverage": 0.0,
+          "ranking": {
+            "auroc": 0.9221169807844788,
+            "average_precision": 0.47482154467356064
+          },
+          "thresholded": {
+            "precision": 0.433370756910951,
+            "recall": 0.5493630688873129,
+            "f1": 0.48452161253171405,
+            "specificity": 0.9691580180391969,
+            "dice": 0.48452161253171405,
+            "iou": 0.3197152902596927,
+            "evaluated_pixels": 10035200
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 60,
+              "map_images": 60,
+              "mask_images": 60,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.011172688802083334,
+              "predicted_mask_area": {
+                "sample_count": 60,
+                "total_pixels": 68645,
+                "mean_pixels": 1144.0833333333333,
+                "mean_ratio": 0.011172688802083336
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 38,
+              "mask_images": 38,
+              "map_coverage": 0.95,
+              "mask_coverage": 0.95,
+              "rejected_images": 2,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": 0.0,
+              "rejected_mask_coverage": 0.0,
+              "ranking": {
+                "auroc": 0.8785210211815172,
+                "average_precision": 0.5252454265241067
+              },
+              "thresholded": {
+                "precision": 0.4987398069388625,
+                "recall": 0.5493630688873129,
+                "f1": 0.5228288887199651,
+                "specificity": 0.9344120421604424,
+                "dice": 0.5228288887199651,
+                "iou": 0.35393928619881454,
+                "evaluated_pixels": 3891200
+              },
+              "image_count": 40
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "wood",
+      "image_count": 79,
+      "sources": {
+        "exact_knn": {
+          "map_key": "heatmap",
+          "map_images": 79,
+          "mask_images": 79,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.8950312415056624,
+            "average_precision": 0.5712695285023027
+          },
+          "thresholded": {
+            "precision": 0.174678853267976,
+            "recall": 0.8508849982396056,
+            "f1": 0.2898534606829779,
+            "specificity": 0.8384954938621633,
+            "dice": 0.2898534606829779,
+            "iou": 0.16949042320007038,
+            "evaluated_pixels": 8089600
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 19,
+              "map_images": 19,
+              "mask_images": 19,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.06203125,
+              "predicted_mask_area": {
+                "sample_count": 19,
+                "total_pixels": 120688,
+                "mean_pixels": 6352.0,
+                "mean_ratio": 0.06203125000000002
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 60,
+              "mask_images": 60,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.8845067763480352,
+                "average_precision": 0.5740169165157984
+              },
+              "thresholded": {
+                "precision": 0.18972425103589632,
+                "recall": 0.8508849982396056,
+                "f1": 0.31026731526955614,
+                "specificity": 0.805308004533942,
+                "dice": 0.31026731526955614,
+                "iou": 0.18361917128865374,
+                "evaluated_pixels": 6144000
+              },
+              "image_count": 60
+            }
+          }
+        }
+      }
+    },
+    {
+      "true_category": "zipper",
+      "image_count": 151,
+      "sources": {
+        "exact_knn": {
+          "map_key": "heatmap",
+          "map_images": 151,
+          "mask_images": 151,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9448590303989318,
+            "average_precision": 0.40813867362384376
+          },
+          "thresholded": {
+            "precision": 0.10894295291274436,
+            "recall": 0.9043263025317761,
+            "f1": 0.1944596212015825,
+            "specificity": 0.8437034565198829,
+            "dice": 0.1944596212015825,
+            "iou": 0.10770161857637041,
+            "evaluated_pixels": 15462400
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 32,
+              "map_images": 32,
+              "mask_images": 32,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.0132940673828125,
+              "predicted_mask_area": {
+                "sample_count": 32,
+                "total_pixels": 43562,
+                "mean_pixels": 1361.3125,
+                "mean_ratio": 0.0132940673828125
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 119,
+              "mask_images": 119,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.9327759194677525,
+                "average_precision": 0.4085766356634784
+              },
+              "thresholded": {
+                "precision": 0.11075951184054243,
+                "recall": 0.9043263025317761,
+                "f1": 0.19734831951113052,
+                "specificity": 0.8042120319474058,
+                "dice": 0.19734831951113052,
+                "iou": 0.10947667907624323,
+                "evaluated_pixels": 12185600
+              },
+              "image_count": 119
+            }
+          }
+        }
+      }
+    }
+  ],
+  "pixel": {
+    "map_key": "heatmap",
+    "map_images": 1722,
+    "mask_images": 1722,
+    "map_coverage": 0.9982608695652174,
+    "mask_coverage": 0.9982608695652174,
+    "rejected_images": 3,
+    "rejected_map_images": 0,
+    "rejected_mask_images": 0,
+    "rejected_map_coverage": 0.0,
+    "rejected_mask_coverage": 0.0,
+    "ranking": {
+      "auroc": 0.9423633599088702,
+      "average_precision": 0.4375077301045058
+    },
+    "thresholded": {
+      "precision": 0.20053216878742935,
+      "recall": 0.8983471885635139,
+      "f1": 0.3278749552289541,
+      "specificity": 0.8835670203921409,
+      "dice": 0.3278749552289541,
+      "iou": 0.19608279671084533,
+      "evaluated_pixels": 176332800
+    },
+    "subgroups": {
+      "good": {
+        "image_count": 467,
+        "map_images": 467,
+        "mask_images": 467,
+        "map_coverage": 1.0,
+        "mask_coverage": 1.0,
+        "false_positive_pixel_rate": 0.012876990765524626,
+        "predicted_mask_area": {
+          "sample_count": 467,
+          "total_pixels": 615788,
+          "mean_pixels": 1318.6038543897216,
+          "mean_ratio": 0.012876990765524624
+        }
+      },
+      "defect": {
+        "map_key": "heatmap",
+        "map_images": 1255,
+        "mask_images": 1255,
+        "map_coverage": 0.9976152623211447,
+        "mask_coverage": 0.9976152623211447,
+        "rejected_images": 3,
+        "rejected_map_images": 0,
+        "rejected_mask_images": 0,
+        "rejected_map_coverage": 0.0,
+        "rejected_mask_coverage": 0.0,
+        "ranking": {
+          "auroc": 0.9298604065172094,
+          "average_precision": 0.4406668003984702
+        },
+        "thresholded": {
+          "precision": 0.20562300351626844,
+          "recall": 0.8983471885635139,
+          "f1": 0.334648251262704,
+          "specificity": 0.8432926836458816,
+          "dice": 0.334648251262704,
+          "iou": 0.20094748843086224,
+          "evaluated_pixels": 128512000
+        },
+        "image_count": 1258
+      }
+    }
+  }
+}

@@ -17,7 +17,7 @@ The split has 2,540 train, 1,089 validation and 1,725 official-test images acros
 ## Threshold calibration
 
 - Raw PatchCore, open5 and Exact kNN have method-specific threshold artifacts with known-normal validation calibration at q=.99 and no test-label selection.
-- DINO affinity references the shared raw PatchCore threshold file. Its report does not preserve a separate threshold calibrated on affinity-transformed normal validation maps. Treat its thresholded precision, recall, F1/Dice and IoU as provisional; use its threshold-free AP/AUROC for method ranking.
+- DINO affinity's `final_summary.json` references the shared raw PatchCore threshold. A separate q=.99 `affinity_thresholds/pixel_thresholds.json` exists, but the run summary does not reference it and the file has no manifest digest. Its use for the reported predictions is unverified. Treat thresholded precision, recall, F1/Dice and IoU as provisional; use threshold-free AP/AUROC for method ranking.
 
 ## Metric check
 

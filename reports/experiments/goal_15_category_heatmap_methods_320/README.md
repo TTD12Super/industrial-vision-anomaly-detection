@@ -4,7 +4,7 @@
 
 ## Protocol
 
-All four methods use the same 15-category train/validation/test manifest, SHA-256 `fac2c931624430c83e1a96f2122691cd5ad319c5f984b43c0bccf5ac7029d432`, with 2,540 train, 1,089 validation and 1,725 test images at 320×320. The effective split has zero exact-hash overlap. Raw PatchCore, open5 and Exact kNN thresholds use known-normal validation pixels at q=.99. The DINO-affinity report references the shared raw PatchCore threshold file rather than preserving an affinity-specific calibration artifact; its thresholded precision/recall/F1/IoU are therefore not a fair calibrated operating-point comparison. Pixel AP and AUROC are threshold-free.
+All four methods use the same 15-category train/validation/test manifest, SHA-256 `fac2c931624430c83e1a96f2122691cd5ad319c5f984b43c0bccf5ac7029d432`, with 2,540 train, 1,089 validation and 1,725 test images at 320×320. The effective split has zero exact-hash overlap. Raw PatchCore, open5 and Exact kNN thresholds use known-normal validation pixels at q=.99. The DINO-affinity run's `final_summary.json` references the shared PatchCore threshold. A separate q=.99 known-normal affinity threshold file exists at [`affinity_thresholds/pixel_thresholds.json`](../goal_15_category_postpatch_affinity_320/mvtec_ad/20261126T065220Z/affinity_thresholds/pixel_thresholds.json), but the run summary does not link it and it has no manifest digest; its use for the reported predictions is unverified. Therefore, treat the affinity precision/recall/F1/IoU as provisional and compare methods using threshold-free Pixel AP/AUROC.
 
 The official MVTec test split had already informed prior method and resolution choices. These comparisons are **exploratory**, not an unbiased final estimate; the exact-hash audit does not address near-duplicates or acquisition sessions.
 
@@ -25,7 +25,7 @@ The official MVTec test split had already informed prior method and resolution c
 
 [Vector version](pixel_ap_by_category.svg)
 
-- **DINO affinity / relation propagation:** threshold-free Pixel AP and AUROC decrease. Do not compare its reported precision, recall, Dice or IoU with PatchCore because it reuses PatchCore's threshold rather than its own validation calibration.
+- **DINO affinity / relation propagation:** threshold-free Pixel AP and AUROC decrease. Its saved production summary points to PatchCore's threshold; a separate affinity-calibrated file exists, but the report does not prove that file was applied. Do not compare threshold-dependent precision, recall, Dice or IoU until the threshold lineage is verified.
 - **open5 morphology:** Pixel AP changes by -0.029 percentage points (micro) / -0.036 percentage points (macro); Pixel AUROC rises by 0.0032 percentage points (micro) / 0.0048 percentage points (macro). These near-zero shifts do not justify replacing the simpler raw map.
 - **Exact patch kNN:** Pixel AP is lower by over 11 percentage points; 3 UNKNOWN/rejected test images have no map. Do not replace PatchCore for localization.
 - **Product classification:** unchanged. Top-1 is 100.00% on the 1,089-image normal validation split and 99.826% on the 1,725-image official test split (the 3 UNKNOWN/rejects count as incorrect). The validation score was also used to choose among three classifier regularization values, so it is a model-selection score; the test score is exploratory because the official test was previously inspected. Both exceed 90% numerically, but neither establishes performance on an untouched camera/product holdout.

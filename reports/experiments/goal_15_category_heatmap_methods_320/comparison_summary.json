@@ -41,10 +41,16 @@
     },
     "dino_affinity": {
       "referenced_artifact": "artifacts/production_highres/mvtec_ad/thresholds/patchcore/pixel_thresholds.json",
+      "separate_calibration_artifact_found": "reports/experiments/goal_15_category_postpatch_affinity_320/mvtec_ad/20261126T065220Z/affinity_thresholds/pixel_thresholds.json",
+      "separate_calibration_artifact_sha256": "645ec51272a82827d0c08ec6da69932ee7c57549eaca82c755564cb9be3dd1eb",
+      "separate_calibration_split": "known_normal_validation",
+      "separate_calibration_quantile": 0.99,
+      "separate_calibration_manifest_digest": null,
+      "reported_metric_threshold_lineage": "unverified; final_summary.json points to the shared PatchCore threshold, not the separate affinity artifact",
       "artifact_calibration_split": "known_normal_validation",
       "artifact_quantile": 0.99,
       "test_labels_used": false,
-      "limitation": "The affinity report reuses the shared raw PatchCore threshold file and does not preserve an affinity-specific calibrated threshold; its thresholded precision/recall/F1/IoU are not a fair calibrated operating-point comparison. Pixel AP/AUROC are threshold-free."
+      "limitation": "A separate affinity-calibrated q=.99 artifact exists, but it has no manifest digest and the run summary does not reference it. The threshold used for saved predictions is therefore unverified; thresholded precision/recall/F1/IoU are not a fair calibrated operating-point comparison. Pixel AP/AUROC are threshold-free."
     },
     "open5": {
       "calibration_split": "known_normal_validation",

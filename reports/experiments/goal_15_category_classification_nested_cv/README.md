@@ -32,12 +32,15 @@ Fold-level outcomes and per-category values are available in [`fold_metrics.csv`
 
 ## Reproduce
 
-From the repository root, create an isolated Python 3.13 environment and install the recorded package versions, then run:
+The script requires the local `train_embeddings.pt` and `embedding_metadata.json` produced by the project pipeline under `artifacts/production_highres/mvtec_ad/embeddings`, plus the processed MVTec images under `datasets/mvtec_ad_processed_320`. These data and cache files are not in Git, so a clean checkout needs the MVTec dataset and project preprocessing/embedding step before the CV can run. Verify the manifest and embedding hashes against `summary.json` before interpreting a reproduction.
+
+From the repository root, create an isolated Python 3.13 environment, install the recorded package versions, and use a new output directory:
 
 ```bash
 python3.13 -m venv /tmp/ivision_goal_env
 /tmp/ivision_goal_env/bin/python -m pip install torch==2.15.0 torchvision==0.29.2 scikit-learn==1.9.1 Pillow==13.0.0 numpy==2.5.5 matplotlib==3.11.2
-/tmp/ivision_goal_env/bin/python reports/classification_evaluation/nested_good_embedding_cv.py
+/tmp/ivision_goal_env/bin/python reports/classification_evaluation/nested_good_embedding_cv.py \
+  --output /tmp/goal_15_category_classification_nested_cv_reproduction
 ```
 
-The default output directory is this report folder and must not already exist. In the recorded run, PyTorch 2.15.0 was used to load the `.pt` cache; the CV models ran through scikit-learn on CPU. MPS availability was checked but not used for this experiment.
+The output directory must not already exist. In the recorded run, PyTorch 2.15.0 loaded the `.pt` cache; the CV models ran through scikit-learn on CPU. MPS availability was checked but not used for this experiment.

@@ -1,0 +1,75 @@
+{
+  "raw": {
+    "raw_root": "/private/tmp/ivision_visa_download/visa_capsules_mvtetc",
+    "categories": [
+      "capsules"
+    ],
+    "category_count": 1,
+    "counts": {
+      "capsules": {
+        "train": 542,
+        "test": 160,
+        "test_good": 60,
+        "test_defect": 100,
+        "ground_truth": 100,
+        "test_labels": [
+          "bad",
+          "good"
+        ]
+      }
+    },
+    "splits": {
+      "train": {
+        "total": 542,
+        "readable": 542,
+        "failures": [],
+        "unexpected": []
+      },
+      "test": {
+        "total": 160,
+        "readable": 160,
+        "failures": [],
+        "unexpected": []
+      },
+      "ground_truth": {
+        "total": 100,
+        "readable": 100,
+        "failures": [],
+        "unexpected": []
+      }
+    },
+    "failures": {
+      "train": [],
+      "test": [],
+      "ground_truth": []
+    },
+    "valid": true
+  },
+  "processing": {
+    "created": 802,
+    "reused": 0,
+    "validation": {
+      "processed_root": "/private/tmp/ivision_visa_download/visa_processed_320",
+      "image_size": [
+        320,
+        320
+      ],
+      "splits": {
+        "train": {
+          "failures": [],
+          "count": 542
+        },
+        "test": {
+          "failures": [],
+          "count": 160
+        },
+        "ground_truth": {
+          "failures": [],
+          "count": 100
+        }
+      },
+      "valid": true
+    },
+    "raw_dataset_unchanged": true
+  }
+}

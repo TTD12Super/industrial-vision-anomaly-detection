@@ -1,0 +1,228 @@
+{
+  "test_images": 160,
+  "anomaly_evaluated_images": 160,
+  "anomaly_skipped_images": 0,
+  "image": {
+    "ranking": {
+      "auroc": 0.8371666666666666,
+      "average_precision": 0.9080197789229328
+    },
+    "thresholded": {
+      "accuracy": 0.55,
+      "precision": 1.0,
+      "recall": 0.28,
+      "f1": 0.4375
+    }
+  },
+  "detectors": {
+    "patchcore": {
+      "map_key": "heatmap",
+      "map_images": 160,
+      "mask_images": 160,
+      "map_coverage": 1.0,
+      "mask_coverage": 1.0,
+      "rejected_images": 0,
+      "rejected_map_images": 0,
+      "rejected_mask_images": 0,
+      "rejected_map_coverage": null,
+      "rejected_mask_coverage": null,
+      "ranking": {
+        "auroc": 0.9763609516818704,
+        "average_precision": 0.30103909622839936
+      },
+      "thresholded": {
+        "precision": 0.09098663043580817,
+        "recall": 0.8643053041031065,
+        "f1": 0.16464124618846485,
+        "specificity": 0.9704978125897794,
+        "dice": 0.16464124618846485,
+        "iou": 0.08970521204453911,
+        "evaluated_pixels": 16384000
+      },
+      "subgroups": {
+        "good": {
+          "image_count": 60,
+          "map_images": 60,
+          "mask_images": 60,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "false_positive_pixel_rate": 0.0111552734375,
+          "predicted_mask_area": {
+            "sample_count": 60,
+            "total_pixels": 68538,
+            "mean_pixels": 1142.3,
+            "mean_ratio": 0.0111552734375
+          }
+        },
+        "defect": {
+          "map_key": "heatmap",
+          "map_images": 100,
+          "mask_images": 100,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9703000318839149,
+            "average_precision": 0.30638705229453905
+          },
+          "thresholded": {
+            "precision": 0.10450219658992148,
+            "recall": 0.8643053041031065,
+            "f1": 0.1864597512684074,
+            "specificity": 0.9594293638595344,
+            "dice": 0.1864597512684074,
+            "iou": 0.10281533668680312,
+            "evaluated_pixels": 10240000
+          },
+          "image_count": 100
+        }
+      }
+    }
+  },
+  "per_category": [
+    {
+      "true_category": "capsules",
+      "image_count": 160,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 160,
+          "mask_images": 160,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "rejected_images": 0,
+          "rejected_map_images": 0,
+          "rejected_mask_images": 0,
+          "rejected_map_coverage": null,
+          "rejected_mask_coverage": null,
+          "ranking": {
+            "auroc": 0.9763609516818704,
+            "average_precision": 0.30103909622839936
+          },
+          "thresholded": {
+            "precision": 0.09098663043580817,
+            "recall": 0.8643053041031065,
+            "f1": 0.16464124618846485,
+            "specificity": 0.9704978125897794,
+            "dice": 0.16464124618846485,
+            "iou": 0.08970521204453911,
+            "evaluated_pixels": 16384000
+          },
+          "subgroups": {
+            "good": {
+              "image_count": 60,
+              "map_images": 60,
+              "mask_images": 60,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "false_positive_pixel_rate": 0.0111552734375,
+              "predicted_mask_area": {
+                "sample_count": 60,
+                "total_pixels": 68538,
+                "mean_pixels": 1142.3,
+                "mean_ratio": 0.0111552734375
+              }
+            },
+            "defect": {
+              "map_key": "heatmap",
+              "map_images": 100,
+              "mask_images": 100,
+              "map_coverage": 1.0,
+              "mask_coverage": 1.0,
+              "rejected_images": 0,
+              "rejected_map_images": 0,
+              "rejected_mask_images": 0,
+              "rejected_map_coverage": null,
+              "rejected_mask_coverage": null,
+              "ranking": {
+                "auroc": 0.9703000318839149,
+                "average_precision": 0.30638705229453905
+              },
+              "thresholded": {
+                "precision": 0.10450219658992148,
+                "recall": 0.8643053041031065,
+                "f1": 0.1864597512684074,
+                "specificity": 0.9594293638595344,
+                "dice": 0.1864597512684074,
+                "iou": 0.10281533668680312,
+                "evaluated_pixels": 10240000
+              },
+              "image_count": 100
+            }
+          }
+        }
+      }
+    }
+  ],
+  "pixel": {
+    "map_key": "heatmap",
+    "map_images": 160,
+    "mask_images": 160,
+    "map_coverage": 1.0,
+    "mask_coverage": 1.0,
+    "rejected_images": 0,
+    "rejected_map_images": 0,
+    "rejected_mask_images": 0,
+    "rejected_map_coverage": null,
+    "rejected_mask_coverage": null,
+    "ranking": {
+      "auroc": 0.9763609516818704,
+      "average_precision": 0.30103909622839936
+    },
+    "thresholded": {
+      "precision": 0.09098663043580817,
+      "recall": 0.8643053041031065,
+      "f1": 0.16464124618846485,
+      "specificity": 0.9704978125897794,
+      "dice": 0.16464124618846485,
+      "iou": 0.08970521204453911,
+      "evaluated_pixels": 16384000
+    },
+    "subgroups": {
+      "good": {
+        "image_count": 60,
+        "map_images": 60,
+        "mask_images": 60,
+        "map_coverage": 1.0,
+        "mask_coverage": 1.0,
+        "false_positive_pixel_rate": 0.0111552734375,
+        "predicted_mask_area": {
+          "sample_count": 60,
+          "total_pixels": 68538,
+          "mean_pixels": 1142.3,
+          "mean_ratio": 0.0111552734375
+        }
+      },
+      "defect": {
+        "map_key": "heatmap",
+        "map_images": 100,
+        "mask_images": 100,
+        "map_coverage": 1.0,
+        "mask_coverage": 1.0,
+        "rejected_images": 0,
+        "rejected_map_images": 0,
+        "rejected_mask_images": 0,
+        "rejected_map_coverage": null,
+        "rejected_mask_coverage": null,
+        "ranking": {
+          "auroc": 0.9703000318839149,
+          "average_precision": 0.30638705229453905
+        },
+        "thresholded": {
+          "precision": 0.10450219658992148,
+          "recall": 0.8643053041031065,
+          "f1": 0.1864597512684074,
+          "specificity": 0.9594293638595344,
+          "dice": 0.1864597512684074,
+          "iou": 0.10281533668680312,
+          "evaluated_pixels": 10240000
+        },
+        "image_count": 100
+      }
+    }
+  }
+}

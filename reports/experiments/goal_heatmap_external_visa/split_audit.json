@@ -1,0 +1,27 @@
+{
+  "protocol": "SHA-256 over decoded RGBA pixels and dimensions",
+  "audit_date": "2026-11-26",
+  "decoder": "Pillow 13.0.0",
+  "python_version": "3.13.7",
+  "processed_root": "/tmp/ivision_visa_download/visa_processed_320",
+  "manifest_sha256": "8e82dd9071c6e7a729a9acec60334412eed534e5c0a993c3e23fe8c22febe050",
+  "test_image_inventory_sha256": "7582da73fdd474692d57b09df1041dd29e27ffaae713f64d7ab65d4a512ad5c0",
+  "image_count": 702,
+  "files_by_split": {
+    "test": 160,
+    "train": 379,
+    "validation": 163
+  },
+  "unique_decoded_pixel_hashes": 702,
+  "decoded_pixel_hash_failures": 0,
+  "cross_split_identical_pixel_pair_count": 0,
+  "cross_split_identical_pixel_pairs": [],
+  "implementation": "scripts/audit_decoded_pixel_split_duplicates.py",
+  "limitations": [
+    "Exact decoded-pixel hashes do not detect perceptual near-duplicates or shared acquisition sessions.",
+    "The source provides no physical-item/session group IDs; counts are image-level.",
+    "Three candidate methods were compared on this public test split. Treat results as exploratory model selection, not as a sealed final acceptance estimate."
+  ],
+  "test_used_for_calibration": false,
+  "candidate_comparison_used_test": true
+}

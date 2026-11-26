@@ -1,0 +1,81 @@
+{
+  "dataset": "VisA capsules official 1-class split",
+  "dataset_repository": "https://github.com/amazon-science/spot-diff",
+  "dataset_download": "https://amazon-visual-anomaly.s3.us-west-2.amazonaws.com/VisA_20220922.tar",
+  "dataset_license": "CC BY 4.0",
+  "archive_bytes": 1929840640,
+  "archive_sha256": "2eb8690c803ab37de0324772964100169ec8ba1fa3f7e94291c9ca673f40f362",
+  "official_split_csv": "https://raw.githubusercontent.com/amazon-science/spot-diff/main/split_csv/1cls.csv",
+  "official_split_csv_sha256": "a48557e6033318cb90556f706196bc9d247a776a23ea51aecee5a80dd0332995",
+  "official_counts": {
+    "train_good": 542,
+    "validation_good": 163,
+    "feature_bank_train_good": 379,
+    "test_good": 60,
+    "test_defect": 100,
+    "test_masks": 100
+  },
+  "preprocessing": {
+    "image_size": [
+      320,
+      320
+    ],
+    "mask_resize": "nearest-neighbor in existing project preprocessing",
+    "source_mask": "all nonzero values mapped to 255"
+  },
+  "split_audit": {
+    "manifest_sha256": "8e82dd9071c6e7a729a9acec60334412eed534e5c0a993c3e23fe8c22febe050",
+    "test_inventory_sha256": "7582da73fdd474692d57b09df1041dd29e27ffaae713f64d7ab65d4a512ad5c0",
+    "exact_cross_split_duplicate_pairs": 0,
+    "image_counts": {
+      "test": 160,
+      "train": 379,
+      "validation": 163
+    }
+  },
+  "threshold_protocol": {
+    "source": "known_normal_validation_maps",
+    "quantile": 0.99,
+    "test_labels_used_for_calibration": false,
+    "per_method_values": {
+      "raw_patchcore": 0.3855860233306885,
+      "dino_affinity": 0.3395765423774719,
+      "heatmap_open5": 0.3845406174659729
+    }
+  },
+  "model": {
+    "backbone": "DINOv2 ViT-B/14",
+    "revision": "7764ea0f912e53c92e82eb78a2a1631e92725fc8",
+    "layers": [
+      5,
+      8,
+      11
+    ],
+    "patchcore_coreset_ratio": 0.1,
+    "seed": 42,
+    "device": "MPS"
+  },
+  "checkpoint_sha256": "0b8b82f85de91b424aded121c7e1dcc2b7bc6d0adeea651bf73a13307fad8c73",
+  "package_versions": {
+    "python": "3.13.7",
+    "torch": "2.15.0",
+    "scikit_learn": "1.9.1",
+    "opencv": "5.1.0"
+  },
+  "project_commit_before_report_changes": "d7c1daf805bc575acfea30dbafeb176684259e4e",
+  "code_sha256": {
+    "preparation": "9c34bbf01732c52bb889f664c58b6155ca76e63e087d8ee2ce96f6796ace42f1",
+    "production_entrypoint": "857f08dc6d706277dc6805a69f8141b7ea698ce0f195d2dd5a660ac9884020d7",
+    "production_pipeline": "75baa64b03942bd9c30bcef22e0c819dc86fc039f566c6a209d576781f312852",
+    "split_audit": "3be2f366ab61528288ff6f8c84d1374ab0754e259cea6b262aef3c845acf684c",
+    "benchmark_runner": "9124da0d92f5503f35701c82faf8865cf761aef26d7f6a4cf9e0dfdab322108c"
+  },
+  "test_selection_note": "All three candidates were compared on the public VisA test. No test labels were used for fitting or calibration, but the comparison is exploratory and not a sealed final estimate.",
+  "run_orchestration": {
+    "executed_via": "three direct scripts/run_production.py invocations",
+    "convenience_runner_used_for_recorded_runs": false,
+    "reproduction_runner": "scripts/run_visa_capsules_holdout.sh",
+    "reproduction_runner_sha256": "9124da0d92f5503f35701c82faf8865cf761aef26d7f6a4cf9e0dfdab322108c",
+    "same_protocol": "all three runs used identical train/validation/test split, seed, image size, model, device and coreset settings; only heatmap_refiner changed"
+  }
+}

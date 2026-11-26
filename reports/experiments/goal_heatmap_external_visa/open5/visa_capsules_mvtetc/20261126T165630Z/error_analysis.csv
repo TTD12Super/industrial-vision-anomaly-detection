@@ -1,0 +1,1 @@
+image_path,true_category,predicted_category,routed_category,localization_category,confidence,routing_status,defect_type,is_defect,decision,anomaly_decision,anomaly_decision_source,anomaly_decision_status,global_distance,rejection_reason

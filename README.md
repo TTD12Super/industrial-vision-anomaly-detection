@@ -162,6 +162,12 @@ Affinity propagation also increased mean CPU latency from `0.2536` to
 experiment option, not enabled as the production default, until a later
 method improves both localization quality and false-positive control.
 
+The same full-test run gives PaDiM a better binary-mask operating point but a
+weaker continuous map: pixel AUROC/AP `0.9274/0.3943`, precision/recall/F1
+`0.3515/0.6582/0.4583`, and IoU `0.2973`. This supports the intended
+separation: PatchCore remains the continuous heatmap source and PaDiM remains
+an independent binary-mask candidate; their metrics are not fused.
+
 ## Reproduction and reports
 
 Recompute the saved 15-category baseline without rebuilding DINOv2 or banks:

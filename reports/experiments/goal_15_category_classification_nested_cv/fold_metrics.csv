@@ -1,0 +1,6 @@
+fold,train_images,heldout_images,train_groups,heldout_groups,baseline_accuracy,baseline_macro_accuracy,selected_accuracy,selected_macro_accuracy,selected_model,selected_params
+1,2032,508,2032,508,1.0,1.0,1.0,1.0,"LogisticRegression(C=0.01, max_iter=5000, random_state=42)","{""clf"": ""LogisticRegression(max_iter=5000, random_state=42)"", ""clf__C"": ""0.01""}"
+2,2032,508,2032,508,1.0,1.0,1.0,1.0,"LogisticRegression(C=0.01, max_iter=5000, random_state=42)","{""clf"": ""LogisticRegression(max_iter=5000, random_state=42)"", ""clf__C"": ""0.01""}"
+3,2032,508,2032,508,1.0,1.0,1.0,1.0,"LogisticRegression(C=0.01, max_iter=5000, random_state=42)","{""clf"": ""LogisticRegression(max_iter=5000, random_state=42)"", ""clf__C"": ""0.01""}"
+4,2032,508,2032,508,1.0,1.0,1.0,1.0,"LogisticRegression(C=0.01, max_iter=5000, random_state=42)","{""clf"": ""LogisticRegression(max_iter=5000, random_state=42)"", ""clf__C"": ""0.01""}"
+5,2032,508,2032,508,1.0,1.0,1.0,1.0,"LogisticRegression(C=0.01, max_iter=5000, random_state=42)","{""clf"": ""LogisticRegression(max_iter=5000, random_state=42)"", ""clf__C"": ""0.01""}"

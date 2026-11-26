@@ -1,0 +1,172 @@
+{
+  "protocol": "nested 5-fold StratifiedGroupKFold; 4-fold inner model/parameter selection",
+  "seed": 20261126,
+  "scope": "MVTec AD train/good images only; official test and validation embeddings were not loaded",
+  "target": "15-way product category; GOOD-only images",
+  "n_images": 2540,
+  "n_categories": 15,
+  "unique_decoded_pixel_groups": 2540,
+  "exact_duplicate_images_grouped": 0,
+  "groups": "SHA-256 over decoded RGB pixels; exact duplicate images kept in one fold",
+  "residual_group_limit": "No physical-object or acquisition-session IDs exist in the source manifest; only exact decoded-pixel duplicates are grouped.",
+  "baseline": {
+    "top1_accuracy": 1.0,
+    "macro_top1_accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  "nested_model_selection": {
+    "top1_accuracy": 1.0,
+    "macro_top1_accuracy": 1.0,
+    "macro_f1": 1.0
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "train_images": 2032,
+      "heldout_images": 508,
+      "train_groups": 2032,
+      "heldout_groups": 508,
+      "baseline_accuracy": 1.0,
+      "baseline_macro_accuracy": 1.0,
+      "selected_accuracy": 1.0,
+      "selected_macro_accuracy": 1.0,
+      "selected_model": "LogisticRegression(C=0.01, max_iter=5000, random_state=42)",
+      "selected_params": "{\"clf\": \"LogisticRegression(max_iter=5000, random_state=42)\", \"clf__C\": \"0.01\"}"
+    },
+    {
+      "fold": 2,
+      "train_images": 2032,
+      "heldout_images": 508,
+      "train_groups": 2032,
+      "heldout_groups": 508,
+      "baseline_accuracy": 1.0,
+      "baseline_macro_accuracy": 1.0,
+      "selected_accuracy": 1.0,
+      "selected_macro_accuracy": 1.0,
+      "selected_model": "LogisticRegression(C=0.01, max_iter=5000, random_state=42)",
+      "selected_params": "{\"clf\": \"LogisticRegression(max_iter=5000, random_state=42)\", \"clf__C\": \"0.01\"}"
+    },
+    {
+      "fold": 3,
+      "train_images": 2032,
+      "heldout_images": 508,
+      "train_groups": 2032,
+      "heldout_groups": 508,
+      "baseline_accuracy": 1.0,
+      "baseline_macro_accuracy": 1.0,
+      "selected_accuracy": 1.0,
+      "selected_macro_accuracy": 1.0,
+      "selected_model": "LogisticRegression(C=0.01, max_iter=5000, random_state=42)",
+      "selected_params": "{\"clf\": \"LogisticRegression(max_iter=5000, random_state=42)\", \"clf__C\": \"0.01\"}"
+    },
+    {
+      "fold": 4,
+      "train_images": 2032,
+      "heldout_images": 508,
+      "train_groups": 2032,
+      "heldout_groups": 508,
+      "baseline_accuracy": 1.0,
+      "baseline_macro_accuracy": 1.0,
+      "selected_accuracy": 1.0,
+      "selected_macro_accuracy": 1.0,
+      "selected_model": "LogisticRegression(C=0.01, max_iter=5000, random_state=42)",
+      "selected_params": "{\"clf\": \"LogisticRegression(max_iter=5000, random_state=42)\", \"clf__C\": \"0.01\"}"
+    },
+    {
+      "fold": 5,
+      "train_images": 2032,
+      "heldout_images": 508,
+      "train_groups": 2032,
+      "heldout_groups": 508,
+      "baseline_accuracy": 1.0,
+      "baseline_macro_accuracy": 1.0,
+      "selected_accuracy": 1.0,
+      "selected_macro_accuracy": 1.0,
+      "selected_model": "LogisticRegression(C=0.01, max_iter=5000, random_state=42)",
+      "selected_params": "{\"clf\": \"LogisticRegression(max_iter=5000, random_state=42)\", \"clf__C\": \"0.01\"}"
+    }
+  ],
+  "selected_models_by_outer_fold": [
+    {
+      "outer_fold": 1,
+      "inner_balanced_accuracy": 1.0,
+      "clf": "LogisticRegression(max_iter=5000, random_state=42)",
+      "clf__C": "0.01"
+    },
+    {
+      "outer_fold": 2,
+      "inner_balanced_accuracy": 1.0,
+      "clf": "LogisticRegression(max_iter=5000, random_state=42)",
+      "clf__C": "0.01"
+    },
+    {
+      "outer_fold": 3,
+      "inner_balanced_accuracy": 1.0,
+      "clf": "LogisticRegression(max_iter=5000, random_state=42)",
+      "clf__C": "0.01"
+    },
+    {
+      "outer_fold": 4,
+      "inner_balanced_accuracy": 1.0,
+      "clf": "LogisticRegression(max_iter=5000, random_state=42)",
+      "clf__C": "0.01"
+    },
+    {
+      "outer_fold": 5,
+      "inner_balanced_accuracy": 1.0,
+      "clf": "LogisticRegression(max_iter=5000, random_state=42)",
+      "clf__C": "0.01"
+    }
+  ],
+  "per_category": {
+    "baseline": {
+      "bottle": 1.0,
+      "cable": 1.0,
+      "capsule": 1.0,
+      "carpet": 1.0,
+      "grid": 1.0,
+      "hazelnut": 1.0,
+      "leather": 1.0,
+      "metal_nut": 1.0,
+      "pill": 1.0,
+      "screw": 1.0,
+      "tile": 1.0,
+      "toothbrush": 1.0,
+      "transistor": 1.0,
+      "wood": 1.0,
+      "zipper": 1.0
+    },
+    "nested_model_selection": {
+      "bottle": 1.0,
+      "cable": 1.0,
+      "capsule": 1.0,
+      "carpet": 1.0,
+      "grid": 1.0,
+      "hazelnut": 1.0,
+      "leather": 1.0,
+      "metal_nut": 1.0,
+      "pill": 1.0,
+      "screw": 1.0,
+      "tile": 1.0,
+      "toothbrush": 1.0,
+      "transistor": 1.0,
+      "wood": 1.0,
+      "zipper": 1.0
+    }
+  },
+  "limitations": [
+    "This does not evaluate DEFECT images or UNKNOWN rejection.",
+    "MVTec train/good is an in-domain development partition, not a fresh production-camera holdout.",
+    "The 15-category research program previously inspected the official MVTec test; this nested CV is a training-only estimate for GOOD images and is not an untouched external acceptance result.",
+    "Group IDs are unavailable, so the split can prevent exact decoded-image duplicates crossing folds but cannot rule out shared physical objects or acquisition sessions."
+  ],
+  "provenance": {
+    "git_head": "1ba4ee4798a1b591633bee4eaa63341f5eaeb3e6",
+    "embedding_manifest_sha256": "fac2c931624430c83e1a96f2122691cd5ad319c5f984b43c0bccf5ac7029d432",
+    "train_embedding_file_sha256": "4e3c3e0a676f1644d32d92aa749af42e837fb8280dc9c677f8829fcfb806916c",
+    "metadata_sha256": "c4ff55275c8185504f5f0932eafc2115dd7a62a82734dfab6a670be78bf66041",
+    "script_sha256": "7364e190a6e5f397d55c0e1b7aaddb22e94ba8d6f59d19565bc4badcc6f501a3",
+    "torch_version": "2.15.0",
+    "scikit_learn_version": "1.9.1"
+  }
+}

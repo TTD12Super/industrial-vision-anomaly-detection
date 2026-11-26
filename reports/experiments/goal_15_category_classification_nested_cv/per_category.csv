@@ -1,0 +1,16 @@
+category,baseline_accuracy,nested_model_selection_accuracy
+bottle,1.0,1.0
+cable,1.0,1.0
+capsule,1.0,1.0
+carpet,1.0,1.0
+grid,1.0,1.0
+hazelnut,1.0,1.0
+leather,1.0,1.0
+metal_nut,1.0,1.0
+pill,1.0,1.0
+screw,1.0,1.0
+tile,1.0,1.0
+toothbrush,1.0,1.0
+transistor,1.0,1.0
+wood,1.0,1.0
+zipper,1.0,1.0

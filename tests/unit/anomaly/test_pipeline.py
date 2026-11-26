@@ -131,6 +131,58 @@ class PipelineTests(unittest.TestCase):
         self.assertIsNone(result["category"])
         self.assertIsNone(result["anomaly_score"])
 
+    def test_anomaly_decision_schema_for_rejected_and_thresholded_inference(self) -> None:
+        image_thresholds = calibrate_category_image_thresholds({"bottle": [0.1, 0.2]}, 0.5)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            accepted_root = root / "accepted"
+            accepted_root.mkdir()
+            accepted_image = accepted_root / "input.png"
+            Image.new("RGB", (256, 256), color=(255, 255, 255)).save(accepted_image)
+            accepted_encoder = self.make_artifacts(accepted_root)
+            accepted = infer_image(
+                accepted_image,
+                accepted_encoder,
+                *self.make_common_inputs(),
+                accepted_root,
+                image_thresholds,
+            )
+
+            rejected_root = root / "rejected"
+            rejected_root.mkdir()
+            rejected_image = rejected_root / "input.png"
+            Image.new("RGB", (256, 256), color=(255, 255, 255)).save(rejected_image)
+            rejected_encoder = self.make_artifacts(rejected_root)
+            rejected_encoder.accepted = False
+            classifier, reference, mapping, calibration = self.make_common_inputs()
+            calibration["classification_confidence_threshold"] = 0.99999
+            rejected = infer_image(
+                rejected_image,
+                rejected_encoder,
+                classifier,
+                reference,
+                mapping,
+                calibration,
+                rejected_root,
+                image_thresholds,
+            )
+
+        self.assertEqual(accepted["anomaly_decision"], "GOOD")
+        self.assertFalse(accepted["anomaly_decision_is_defect"])
+        self.assertEqual(accepted["anomaly_decision_source"], "exact_knn")
+        self.assertEqual(accepted["anomaly_decision_status"], "available")
+        self.assertEqual(accepted["decision"], accepted["anomaly_decision"])
+        self.assertEqual(accepted["decision_source"], "exact_knn")
+
+        self.assertTrue(rejected["rejected"])
+        self.assertIsNone(rejected["category"])
+        self.assertIsNone(rejected["anomaly_decision"])
+        self.assertIsNone(rejected["anomaly_decision_is_defect"])
+        self.assertIsNone(rejected["anomaly_decision_source"])
+        self.assertEqual(rejected["anomaly_decision_status"], "not_run")
+        self.assertIsNone(rejected["decision"])
+        self.assertEqual(rejected["decision_status"], "not_run")
+
     def test_single_category_runs_anomaly_detection_without_classifier(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

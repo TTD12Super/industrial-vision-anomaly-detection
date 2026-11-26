@@ -1,0 +1,87 @@
+{
+  "branch": "develop",
+  "classification_manifest_sha256": "fac2c931624430c83e1a96f2122691cd5ad319c5f984b43c0bccf5ac7029d432",
+  "configuration": {
+    "affinity_eta": 1.0,
+    "affinity_temperature": 0.1,
+    "affinity_top_k": 128,
+    "artifact_namespace": null,
+    "batch_size": 32,
+    "classification_confidence_threshold": 0.5,
+    "coreset_max_points": 50000,
+    "coreset_ratio": 0.1,
+    "covariance_regularization": 0.01,
+    "decision_authority": "patchcore",
+    "detector": "patchcore",
+    "detector_layers": [
+      5,
+      8,
+      11
+    ],
+    "heatmap_refiner": "none",
+    "image_size": 320,
+    "k": 1,
+    "mask_postprocess": "raw",
+    "neighborhood_size": 3,
+    "orchestration": "independent",
+    "padim_reduced_dim": 100,
+    "seed": 42,
+    "target_acceptance_rate": 0.99,
+    "validation_fraction": 0.3
+  },
+  "dataset_processed_root": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_processed_320",
+  "environment": {
+    "packages": {
+      "Pillow": "12.3.0",
+      "numpy": "2.5.3",
+      "scikit-learn": "1.9.0",
+      "torch": "2.14.0"
+    },
+    "platform": "macOS-26.4.1-arm64-arm-64bit-Mach-O",
+    "python": "3.13.7"
+  },
+  "exact_hash_audit": {
+    "audit_file": "qa_leakage_audit.json",
+    "caveat": "Exact byte-identical overlap only. Near duplicates, acquisition/session leakage, and repeated use of the official test set for method selection are not ruled out; treat metrics as exploratory/development results.",
+    "cross_split_exact_hash_overlap_count": 0,
+    "within_split_duplicate_hash_groups": {
+      "test": 0,
+      "train": 0,
+      "validation": 0
+    }
+  },
+  "git_head_before_local_commit": "411e75940a4ff55e8936891db4b4abf166f38291",
+  "git_status_line_count_at_capture": 13,
+  "hashes": {
+    "artifacts/production_highres/mvtec_ad/classification_split.csv": "fac2c931624430c83e1a96f2122691cd5ad319c5f984b43c0bccf5ac7029d432",
+    "artifacts/production_highres/mvtec_ad/classifier/classifier.pt": "9877b5e2c4adb3c3ad048a204380815b427a3a66ec9a1a9c4fc11c042fd7cdce",
+    "artifacts/production_highres/mvtec_ad/detectors/patchcore/bottle/coreset.pt": "e8339c82e396b7eda6be21f6d9ac222d2f696351e825cbf80134d96d6941effe",
+    "artifacts/production_highres/mvtec_ad/detectors/patchcore/cable/coreset.pt": "8bc99c23c44087aca6b76629cdf07f2a0a62ea70b952c34d6213215c9d2afbcb",
+    "artifacts/production_highres/mvtec_ad/detectors/patchcore/capsule/coreset.pt": "4d1dc0de07b07edaf58be9207c154dba4068038d64803b283232c2d7dd542228",
+    "artifacts/production_highres/mvtec_ad/detectors/patchcore/carpet/coreset.pt": "1a97f6759ca5fdf2d73977214eecb884b00added52e06e6d1b52d7b20b61eaf5",
+    "artifacts/production_highres/mvtec_ad/detectors/patchcore/grid/coreset.pt": "fe23606b6bbaf878282d2f820f2dae07e258e51b57010d502c5115602d2166ef",
+    "artifacts/production_highres/mvtec_ad/detectors/patchcore/hazelnut/coreset.pt": "6aafb9feccfbab582d85ca7a9e545f48d6c54c4fabda7a4d92116ae046e55ccd",
+    "artifacts/production_highres/mvtec_ad/detectors/patchcore/leather/coreset.pt": "8aa0d903e7b54877a5512fc25b4b0ac48c51eaa016aec08442c14879f3015fbb",
+    "artifacts/production_highres/mvtec_ad/detectors/patchcore/metal_nut/coreset.pt": "cd01397ff3a3757002db4a13ec447394b1f29023f7fe1289fe468d732fb0d839",
+    "artifacts/production_highres/mvtec_ad/detectors/patchcore/pill/coreset.pt": "977fd9f41dbeecfd69dcfebbb7d3e6d7c56acfaac0dd8c1e6aae14cf0c9a765c",
+    "artifacts/production_highres/mvtec_ad/detectors/patchcore/screw/coreset.pt": "751e82f65a01ac0e0edce1be9a1d4c6f06c52ca1fdb32f848f085d0b4921414f",
+    "artifacts/production_highres/mvtec_ad/detectors/patchcore/tile/coreset.pt": "a8287daab4f54680b57ccd9d8b97c192bce36a0b2308b6fd306cbe9d3bdfbc44",
+    "artifacts/production_highres/mvtec_ad/detectors/patchcore/toothbrush/coreset.pt": "1137955577dd35c8071dc8f5deccdf7a038508fbccbc9a57dfc2959b7d98aef8",
+    "artifacts/production_highres/mvtec_ad/detectors/patchcore/transistor/coreset.pt": "ef5c8c604a97176406a94bdfb89086f5ea4ffa79d95e6ae9bf888b0a90757c27",
+    "artifacts/production_highres/mvtec_ad/detectors/patchcore/wood/coreset.pt": "9aeb8e4c558ac7d315e2a4452f1bd20d1abe762aef025b13d82d9a1b7ceead63",
+    "artifacts/production_highres/mvtec_ad/detectors/patchcore/zipper/coreset.pt": "c2af3b16f49a1ad84dffeea9f9d13e3d17778924b11ae508a51a0bd86ea79d77",
+    "artifacts/production_highres/mvtec_ad/thresholds/patchcore/image_thresholds.json": "78d6266a6984ff1d418ef4bf0cee1dd7003a2f0b8ec2ec33598e0167918bbd8a",
+    "artifacts/production_highres/mvtec_ad/thresholds/patchcore/pixel_thresholds.json": "2644c0e92226ff1fa02afb6f5ac09c3689bd8cded1b8aa6e7f259228dd305cdb",
+    "artifacts/production_highres/mvtec_ad/torch_hub/checkpoints/dinov2_vitb14_pretrain.pth": "0b8b82f85de91b424aded121c7e1dcc2b7bc6d0adeea651bf73a13307fad8c73",
+    "reports/experiments/goal_15_category_postpatch_qa/mvtec_ad/20261126T072127Z/qa_leakage_audit.json": "84af0de1fc200e207f0bbe7e53dd9d064b07dd0027bfaa96c952c4fb01bb5e2d",
+    "reports/experiments/goal_15_category_postpatch_raw/mvtec_ad/20261126T062935Z/qa_leakage_audit.json": "84af0de1fc200e207f0bbe7e53dd9d064b07dd0027bfaa96c952c4fb01bb5e2d",
+    "src/mvtec_system/anomaly/pipeline.py": "af19a0623f6f9395f06adb7d96b613d976d5451e4cea419b73895fb1e95578fd",
+    "src/mvtec_system/production/pipeline.py": "4d885b24d09d7b18de5bb8adde165d2b1bdf16e0380f99a378130746c24a922a",
+    "tests/unit/anomaly/test_pipeline.py": "afe3c12b238e7b4f8aeff7a32fb0353a79e4bcc85a097a1d3d2020c77f7b4fe0",
+    "tests/unit/production/test_exact_first.py": "de4a42c14db9d23778149b192e30a54d95c52f2ec0d899315b2bf8b20cab5d9b"
+  },
+  "report_refresh_note": "Predictions, anomaly scores, masks, and thresholds came from the completed run. After an output-schema-only source follow-up, JSON/CSV/Markdown serialization was refreshed from saved run metrics; defect subgroup counts were derived from validated split counts; error-analysis fields were added from the saved three error rows. No prediction, score, or threshold was changed.",
+  "run_id": "20261126T072127Z",
+  "run_protocol": "MVTec AD 15 categories; independent PatchCore; raw maps/masks; CPU; 320x320; validation_fraction=0.30; seed=42; thresholds reused from raw baseline",
+  "working_tree_dirty_during_run": true
+}

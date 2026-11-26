@@ -2,15 +2,25 @@
 
 from __future__ import annotations
 
+from pathlib import Path
 from unittest import TestCase
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 import numpy as np
+import torch
 
+from mvtec_system.anomaly.detectors import AnomalyResult
+from mvtec_system.core.dinov2 import DINOv2Config, DINOv2Features
 from mvtec_system.production.pipeline import (
     _anomaly_report,
     _classification_report,
+    _ERROR_ANALYSIS_FIELDS,
+    _error_analysis_rows,
+    _infer_with_detector,
+    _localization_metric_rows,
+    _markdown_report,
     infer_exact_first,
+    ProductionConfig,
 )
 
 
@@ -109,8 +119,50 @@ class ExactFirstTests(TestCase):
         self.assertIsNone(result["decision"])
         self.assertEqual(result["status"], "unknown_product_category")
         self.assertEqual(result["decision_status"], "unavailable")
+        self.assertIsNone(result["anomaly_decision"])
+        self.assertIsNone(result["anomaly_decision_is_defect"])
+        self.assertIsNone(result["anomaly_decision_source"])
+        self.assertEqual(result["anomaly_decision_status"], "unavailable")
         patchcore.assert_not_called()
         padim.assert_not_called()
+
+    def test_exact_first_anomaly_schema_is_consistent_across_outcomes(self) -> None:
+        good = infer_exact_first(lambda: _exact("GOOD"), Mock(), Mock())
+        defect = infer_exact_first(
+            lambda: _exact("DEFECT"),
+            lambda: np.ones((2, 2), dtype=np.float32),
+            lambda: np.zeros((2, 2), dtype=bool),
+        )
+
+        def fail_exact() -> dict:
+            raise RuntimeError("exact bank unavailable")
+
+        unavailable = infer_exact_first(fail_exact, Mock(), Mock())
+
+        self.assertEqual(
+            (good["anomaly_decision"], good["anomaly_decision_is_defect"]),
+            ("GOOD", False),
+        )
+        self.assertEqual(good["anomaly_decision_source"], "exact_knn")
+        self.assertEqual(good["anomaly_decision_status"], "available")
+        self.assertEqual(good["decision"], "GOOD")
+
+        self.assertEqual(
+            (defect["anomaly_decision"], defect["anomaly_decision_is_defect"]),
+            ("DEFECT", True),
+        )
+        self.assertEqual(defect["anomaly_decision_source"], "exact_knn")
+        self.assertEqual(defect["anomaly_decision_status"], "available")
+        self.assertEqual(defect["decision"], "DEFECT")
+        self.assertEqual(defect["decision_source"], "exact_knn")
+        self.assertEqual(defect["decision_status"], "available")
+
+        self.assertIsNone(unavailable["anomaly_decision"])
+        self.assertIsNone(unavailable["anomaly_decision_is_defect"])
+        self.assertIsNone(unavailable["anomaly_decision_source"])
+        self.assertEqual(unavailable["anomaly_decision_status"], "unavailable")
+        self.assertIsNone(unavailable["decision"])
+        self.assertEqual(unavailable["decision_status"], "unavailable")
 
     def test_missing_exact_artifact_is_explicitly_unavailable(self) -> None:
         result = infer_exact_first(
@@ -168,6 +220,290 @@ class ExactFirstTests(TestCase):
         self.assertNotIn("thresholded", report["detectors"]["patchcore"])
         self.assertIn("thresholded", report["detectors"]["padim"])
 
+    def test_localization_metrics_cover_each_true_category_and_keep_sources_separate(self) -> None:
+        empty = np.zeros((2, 2), dtype=bool)
+        defect = empty.copy()
+        defect[0, 0] = True
+        report = _anomaly_report(
+            [
+                {
+                    "true_category": "bottle",
+                    "ground_truth_is_defect": False,
+                    "rejected": False,
+                    "patchcore_heatmap": empty.astype(np.float32),
+                    "padim_heatmap": empty.astype(np.float32),
+                    "padim_binary_mask": empty,
+                    "mask": empty,
+                },
+                {
+                    "true_category": "bottle",
+                    "ground_truth_is_defect": True,
+                    "rejected": True,
+                    "patchcore_heatmap": defect.astype(np.float32),
+                    "padim_heatmap": defect.astype(np.float32),
+                    "padim_binary_mask": defect,
+                    "mask": defect,
+                },
+                {
+                    "true_category": "cable",
+                    "ground_truth_is_defect": False,
+                    "rejected": False,
+                    "mask": empty,
+                },
+            ]
+        )
+
+        per_category = {row["true_category"]: row for row in report["per_category"]}
+        self.assertEqual(set(per_category), {"bottle", "cable"})
+        bottle = per_category["bottle"]
+        self.assertEqual(bottle["image_count"], 2)
+        self.assertEqual(bottle["sources"]["patchcore"]["map_images"], 2)
+        self.assertEqual(bottle["sources"]["patchcore"]["mask_images"], 0)
+        self.assertEqual(bottle["sources"]["padim"]["mask_images"], 2)
+        self.assertEqual(bottle["sources"]["padim"]["rejected_images"], 1)
+        self.assertEqual(bottle["sources"]["padim"]["rejected_map_images"], 1)
+        self.assertEqual(bottle["sources"]["padim"]["rejected_mask_images"], 1)
+        self.assertEqual(bottle["sources"]["padim"]["rejected_map_coverage"], 1.0)
+        self.assertEqual(bottle["sources"]["padim"]["rejected_mask_coverage"], 1.0)
+        self.assertNotIn("map_sample_count", bottle["sources"]["padim"])
+        self.assertNotIn("mask_sample_count", bottle["sources"]["padim"])
+        self.assertEqual(
+            bottle["sources"]["padim"]["subgroups"]["good"][
+                "false_positive_pixel_rate"
+            ],
+            0.0,
+        )
+        self.assertEqual(
+            bottle["sources"]["padim"]["subgroups"]["good"][
+                "predicted_mask_area"
+            ]["mean_pixels"],
+            0.0,
+        )
+        self.assertIsNotNone(
+            bottle["sources"]["padim"]["subgroups"]["defect"]["ranking"]["auroc"]
+        )
+        self.assertIn("thresholded", bottle["sources"]["padim"]["subgroups"]["defect"])
+        self.assertEqual(per_category["cable"]["sources"]["patchcore"]["map_images"], 0)
+        self.assertEqual(per_category["cable"]["sources"]["patchcore"]["map_coverage"], 0.0)
+
+        csv_rows = _localization_metric_rows(report)
+        self.assertEqual(len(csv_rows), 2)
+        self.assertIn("patchcore_pixel_average_precision", csv_rows[0])
+        self.assertIn("padim_specificity", csv_rows[0])
+        self.assertIn("padim_rejected_map_images", csv_rows[0])
+        self.assertIn("padim_good_false_positive_pixel_rate", csv_rows[0])
+        self.assertIn("padim_defect_pixel_auroc", csv_rows[0])
+        self.assertIn("padim_dice", csv_rows[0])
+        self.assertEqual(csv_rows[0]["padim_good_image_count"], 1)
+        self.assertEqual(csv_rows[0]["padim_good_map_images"], 1)
+        self.assertEqual(csv_rows[0]["padim_good_mask_images"], 1)
+        self.assertEqual(csv_rows[0]["padim_good_map_coverage"], 1.0)
+        self.assertEqual(csv_rows[0]["padim_good_mask_coverage"], 1.0)
+        self.assertEqual(csv_rows[0]["padim_defect_image_count"], 1)
+        self.assertEqual(csv_rows[0]["padim_defect_map_images"], 1)
+        self.assertEqual(csv_rows[0]["padim_defect_mask_images"], 1)
+        self.assertEqual(csv_rows[0]["padim_defect_map_coverage"], 1.0)
+        self.assertEqual(csv_rows[0]["padim_defect_mask_coverage"], 1.0)
+        self.assertNotIn("patchcore_map_sample_count", csv_rows[0])
+        self.assertNotIn("padim_mask_sample_count", csv_rows[0])
+
+    def test_error_analysis_serializes_rejected_route_audit_fields(self) -> None:
+        rows = _error_analysis_rows(
+            [
+                {
+                    "image_path": "rejected.png",
+                    "true_category": "bottle",
+                    "predicted_category": "bottle",
+                    "category": None,
+                    "localization_category": "bottle",
+                    "confidence": 0.2,
+                    "status": "unknown_product_category",
+                    "defect_type": "crack",
+                    "ground_truth_is_defect": True,
+                    "rejected": True,
+                    "reason": "confidence below threshold",
+                    "decision": "DEFECT",
+                    "anomaly_decision": "DEFECT",
+                    "anomaly_decision_source": "patchcore",
+                    "anomaly_decision_status": "available",
+                }
+            ]
+        )
+
+        self.assertEqual(len(rows), 1)
+        row = rows[0]
+        self.assertIsNone(row["routed_category"])
+        self.assertEqual(row["localization_category"], "bottle")
+        self.assertEqual(row["anomaly_decision"], "DEFECT")
+        self.assertEqual(row["anomaly_decision_source"], "patchcore")
+        self.assertEqual(row["anomaly_decision_status"], "available")
+        self.assertEqual(row["decision"], "DEFECT")
+        self.assertTrue(set(_ERROR_ANALYSIS_FIELDS).issubset(row))
+
+    def test_markdown_reports_subgroup_coverage_and_good_mask_condition(self) -> None:
+        summary = {
+            "dataset_name": "tiny",
+            "dataset_root": "datasets/tiny",
+            "processed_root": "datasets/tiny_processed",
+            "categories": ["bottle"],
+            "classification_enabled": True,
+            "configuration": {
+                "orchestration": "independent",
+                "detector": "padim",
+                "decision_authority": "padim",
+                "classification_confidence_threshold": 0.5,
+                "k": 1,
+            },
+            "classification": {
+                "total_test_images": 2,
+                "top1_accuracy_all": 1.0,
+                "top1_accuracy_accepted": 1.0,
+                "unknown_rejected_predictions": 0,
+                "rejection_rate": 0.0,
+                "macro_precision": 1.0,
+                "macro_recall": 1.0,
+                "macro_f1": 1.0,
+                "good_test": {"accuracy": 1.0},
+                "defect_test": {"accuracy": 1.0},
+            },
+            "anomaly": {
+                "anomaly_evaluated_images": 2,
+                "anomaly_skipped_images": 0,
+                "image": {"ranking": {"auroc": 1.0, "average_precision": 1.0}},
+                "pixel": {"ranking": {"auroc": 1.0, "average_precision": 1.0}},
+                "detectors": {
+                    "padim": {
+                        "rejected_images": 0,
+                        "rejected_map_images": 0,
+                        "rejected_mask_images": 0,
+                        "rejected_map_coverage": 0.0,
+                        "rejected_mask_coverage": 0.0,
+                        "subgroups": {
+                            "good": {
+                                "image_count": 1,
+                                "map_images": 1,
+                                "mask_images": 0,
+                                "map_coverage": 1.0,
+                                "mask_coverage": 0.0,
+                                "false_positive_pixel_rate": None,
+                                "predicted_mask_area": {
+                                    "mean_pixels": None,
+                                    "mean_ratio": None,
+                                },
+                            },
+                            "defect": {
+                                "image_count": 1,
+                                "map_images": 1,
+                                "mask_images": 1,
+                                "map_coverage": 1.0,
+                                "mask_coverage": 1.0,
+                                "ranking": {"auroc": 1.0, "average_precision": 1.0},
+                                "thresholded": {
+                                    "precision": 1.0,
+                                    "recall": 1.0,
+                                    "f1": 1.0,
+                                    "specificity": 1.0,
+                                    "dice": 1.0,
+                                    "iou": 1.0,
+                                },
+                            },
+                        },
+                    }
+                },
+            },
+            "performance": {
+                "inference": {
+                    "device": "cpu",
+                    "mean_seconds": 0.1,
+                    "median_seconds": 0.1,
+                    "p95_seconds": 0.2,
+                    "images_per_second": 10.0,
+                }
+            },
+            "output_files": {"summary": "final_summary.json"},
+        }
+
+        report = _markdown_report(summary, Path("reports"))
+
+        self.assertIn("mask coverage **0/1 (0.00%)**", report)
+        self.assertIn("conditional on available GOOD masks", report)
+        self.assertIn("interpret with GOOD mask coverage", report)
+        self.assertIn("DEFECT: map coverage **1/1 (100.00%)**", report)
+        self.assertIn("mask coverage **1/1 (100.00%)**", report)
+
+    def test_markdown_report_describes_actual_orchestration(self) -> None:
+        def summary(orchestration: str, detector: str) -> dict:
+            return {
+                "dataset_name": "tiny",
+                "dataset_root": "datasets/tiny",
+                "processed_root": "datasets/tiny_processed",
+                "categories": ["bottle"],
+                "classification_enabled": True,
+                "configuration": {
+                    "orchestration": orchestration,
+                    "detector": detector,
+                    "decision_authority": "exact_knn" if orchestration == "exact_first" else detector,
+                    "classification_confidence_threshold": 0.5,
+                    "k": 1,
+                },
+                "classification": {
+                    "total_test_images": 2,
+                    "top1_accuracy_all": 1.0,
+                    "top1_accuracy_accepted": 1.0,
+                    "unknown_rejected_predictions": 0,
+                    "rejection_rate": 0.0,
+                    "macro_precision": 1.0,
+                    "macro_recall": 1.0,
+                    "macro_f1": 1.0,
+                    "good_test": {"accuracy": 1.0},
+                    "defect_test": {"accuracy": 1.0},
+                },
+                "anomaly": {
+                    "anomaly_evaluated_images": 2,
+                    "anomaly_skipped_images": 0,
+                    "image": {"ranking": {"auroc": 1.0, "average_precision": 1.0}},
+                    "pixel": {"ranking": {"auroc": 1.0, "average_precision": 1.0}},
+                    "detectors": {},
+                },
+                "performance": {
+                    "inference": {
+                        "device": "cpu",
+                        "mean_seconds": 0.1,
+                        "median_seconds": 0.1,
+                        "p95_seconds": 0.2,
+                        "images_per_second": 10.0,
+                    }
+                },
+                "output_files": {"summary": "final_summary.json"},
+            }
+
+        cases = (
+            (
+                "exact_first",
+                "exact_knn",
+                "Exact kNN image decision → DEFECT: PatchCore heatmap + PaDiM binary mask",
+            ),
+            (
+                "independent",
+                "patchcore",
+                "independent PatchCore heatmap and mask evaluation",
+            ),
+            (
+                "independent",
+                "padim",
+                "independent PaDiM anomaly map and binary mask evaluation",
+            ),
+            (
+                "independent",
+                "exact_knn",
+                "independent Exact kNN anomaly decision",
+            ),
+        )
+        for orchestration, detector, description in cases:
+            report = _markdown_report(summary(orchestration, detector), Path("reports"))
+            self.assertIn(description, report)
+            self.assertNotIn("classification → Exact kNN decision → optional localization", report)
+
     def test_unavailable_decision_does_not_break_category_report(self) -> None:
         report, _ = _classification_report(
             [
@@ -183,6 +519,80 @@ class ExactFirstTests(TestCase):
 
         self.assertEqual(report["accepted_known_predictions"], 0)
         self.assertEqual(report["top1_accuracy_all"], 0.0)
+
+    def test_independent_localization_uses_predicted_category_for_rejected_route(self) -> None:
+        encoder = Mock()
+        encoder.config = DINOv2Config(image_size=(2, 2))
+        encoder.patch_grid = (1, 2)
+        encoder.padded_size = (2, 2)
+        encoder.metadata.return_value = {}
+        features = DINOv2Features(
+            global_embedding=torch.ones((1, 2)),
+            patch_embeddings=torch.tensor([[[1.0, 0.0], [0.0, 1.0]]]),
+        )
+        encoder.forward.return_value = features
+
+        detector = Mock()
+        detector.predict.return_value = AnomalyResult(
+            image_score=0.8,
+            anomaly_map=np.ones((2, 2), dtype=np.float32),
+            patch_scores=np.array([0.8, 0.2], dtype=np.float32),
+            metadata={},
+        )
+        route = Mock()
+        route.rejected = True
+        route.category = None
+        route.predicted_category = "bottle"
+        route.to_dict.return_value = {
+            "category": None,
+            "predicted_category": "bottle",
+            "status": "unknown_product_category",
+            "rejected": True,
+        }
+        image_thresholds = {
+            "threshold_type": "image_level",
+            "categories": {"bottle": {"threshold": 0.5}},
+        }
+        pixel_thresholds = {
+            "threshold_type": "pixel_level",
+            "categories": {"bottle": {"threshold": 0.5}},
+        }
+
+        with patch(
+            "mvtec_system.production.pipeline.image_tensor",
+            return_value=torch.zeros((3, 2, 2)),
+        ), patch(
+            "mvtec_system.production.pipeline.route_product", return_value=route
+        ):
+            result = _infer_with_detector(
+                {"image_path": "rejected.png"},
+                encoder,
+                encoder,
+                None,
+                None,
+                {"bottle": 0},
+                {},
+                {"bottle": detector},
+                image_thresholds,
+                pixel_thresholds,
+                ProductionConfig(image_size=2, detector="patchcore"),
+            )
+
+        self.assertIsNone(result["category"])
+        self.assertTrue(result["rejected"])
+        self.assertEqual(result["status"], "unknown_product_category")
+        self.assertEqual(result["localization_category"], "bottle")
+        self.assertEqual(result["anomaly_decision"], "DEFECT")
+        self.assertTrue(result["anomaly_decision_is_defect"])
+        self.assertEqual(result["anomaly_decision_source"], "patchcore")
+        self.assertEqual(result["anomaly_decision_status"], "available")
+        self.assertEqual(result["decision"], "DEFECT")
+        self.assertEqual(result["decision"], result["anomaly_decision"])
+        self.assertEqual(result["decision_is_defect"], result["anomaly_decision_is_defect"])
+        self.assertEqual(result["decision_source"], result["anomaly_decision_source"])
+        self.assertEqual(result["decision_status"], result["anomaly_decision_status"])
+        self.assertIsNotNone(result["anomaly_map"])
+        detector.predict.assert_called_once_with(features)
 
 
 if __name__ == "__main__":

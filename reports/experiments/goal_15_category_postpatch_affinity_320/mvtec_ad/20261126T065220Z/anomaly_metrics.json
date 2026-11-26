@@ -1,0 +1,485 @@
+{
+  "test_images": 1725,
+  "anomaly_evaluated_images": 1725,
+  "anomaly_skipped_images": 0,
+  "image": {
+    "ranking": {
+      "auroc": 0.9229496532683332,
+      "average_precision": 0.973433579983695
+    },
+    "thresholded": {
+      "accuracy": 0.8771014492753623,
+      "precision": 0.9887850467289719,
+      "recall": 0.8410174880763116,
+      "f1": 0.9089347079037801
+    }
+  },
+  "detectors": {
+    "patchcore": {
+      "map_key": "heatmap",
+      "map_images": 1725,
+      "mask_images": 1725,
+      "map_sample_count": 1725,
+      "mask_sample_count": 1725,
+      "map_coverage": 1.0,
+      "mask_coverage": 1.0,
+      "ranking": {
+        "auroc": 0.9528287550261305,
+        "average_precision": 0.5495973613063432
+      },
+      "thresholded": {
+        "precision": 0.1292514978481222,
+        "recall": 0.974699886885953,
+        "f1": 0.2282372613043131,
+        "specificity": 0.7829197523198478,
+        "dice": 0.2282372613043131,
+        "iou": 0.12881931441471325,
+        "evaluated_pixels": 176640000
+      }
+    }
+  },
+  "per_category": [
+    {
+      "true_category": "bottle",
+      "image_count": 83,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 83,
+          "mask_images": 83,
+          "map_sample_count": 83,
+          "mask_sample_count": 83,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "ranking": {
+            "auroc": 0.9882728108976,
+            "average_precision": 0.8348945914387882
+          },
+          "thresholded": {
+            "precision": 0.15429135766481136,
+            "recall": 0.9998676850170585,
+            "f1": 0.26733047509289737,
+            "specificity": 0.6637945201442367,
+            "dice": 0.26733047509289737,
+            "iou": 0.15428820744523125,
+            "evaluated_pixels": 8499200
+          }
+        }
+      }
+    },
+    {
+      "true_category": "cable",
+      "image_count": 150,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 150,
+          "mask_images": 150,
+          "map_sample_count": 150,
+          "mask_sample_count": 150,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "ranking": {
+            "auroc": 0.9703365311993452,
+            "average_precision": 0.6535931361190211
+          },
+          "thresholded": {
+            "precision": 0.15290137926159758,
+            "recall": 0.9672474958974254,
+            "f1": 0.26406039320272845,
+            "specificity": 0.8417550062090203,
+            "dice": 0.26406039320272845,
+            "iou": 0.15211381327367007,
+            "evaluated_pixels": 15360000
+          }
+        }
+      }
+    },
+    {
+      "true_category": "capsule",
+      "image_count": 132,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 132,
+          "mask_images": 132,
+          "map_sample_count": 132,
+          "mask_sample_count": 132,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "ranking": {
+            "auroc": 0.98381971488979,
+            "average_precision": 0.45321384721993313
+          },
+          "thresholded": {
+            "precision": 0.07504813835107645,
+            "recall": 0.9777458606332505,
+            "f1": 0.13939670380299893,
+            "specificity": 0.888489679731033,
+            "dice": 0.13939670380299893,
+            "iou": 0.07492016384573769,
+            "evaluated_pixels": 13516800
+          }
+        }
+      }
+    },
+    {
+      "true_category": "carpet",
+      "image_count": 117,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 117,
+          "mask_images": 117,
+          "map_sample_count": 117,
+          "mask_sample_count": 117,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "ranking": {
+            "auroc": 0.9933535921646249,
+            "average_precision": 0.7329849048619494
+          },
+          "thresholded": {
+            "precision": 0.06013103037522335,
+            "recall": 0.9994060582062958,
+            "f1": 0.11343692767496995,
+            "specificity": 0.7456687507242005,
+            "dice": 0.11343692767496995,
+            "iou": 0.06012888163615356,
+            "evaluated_pixels": 11980800
+          }
+        }
+      }
+    },
+    {
+      "true_category": "grid",
+      "image_count": 78,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 78,
+          "mask_images": 78,
+          "map_sample_count": 78,
+          "mask_sample_count": 78,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "ranking": {
+            "auroc": 0.989175001501513,
+            "average_precision": 0.3603389311054506
+          },
+          "thresholded": {
+            "precision": 0.018330204804301517,
+            "recall": 0.9990741917330768,
+            "f1": 0.035999912348494534,
+            "specificity": 0.6284167913392056,
+            "dice": 0.035999912348494534,
+            "iou": 0.018329893453081354,
+            "evaluated_pixels": 7987200
+          }
+        }
+      }
+    },
+    {
+      "true_category": "hazelnut",
+      "image_count": 110,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 110,
+          "mask_images": 110,
+          "map_sample_count": 110,
+          "mask_sample_count": 110,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "ranking": {
+            "auroc": 0.9957767092512548,
+            "average_precision": 0.7894921836234644
+          },
+          "thresholded": {
+            "precision": 0.31823316148345254,
+            "recall": 0.9957869144560457,
+            "f1": 0.4823250782140873,
+            "specificity": 0.953515739950195,
+            "dice": 0.4823250782140873,
+            "iou": 0.3178052633606905,
+            "evaluated_pixels": 11264000
+          }
+        }
+      }
+    },
+    {
+      "true_category": "leather",
+      "image_count": 124,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 124,
+          "mask_images": 124,
+          "map_sample_count": 124,
+          "mask_sample_count": 124,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "ranking": {
+            "auroc": 0.989920613372835,
+            "average_precision": 0.40494985085897073
+          },
+          "thresholded": {
+            "precision": 0.016708064726295838,
+            "recall": 0.9999392651078044,
+            "f1": 0.03286695292164334,
+            "specificity": 0.6159701631553811,
+            "dice": 0.03286695292164334,
+            "iou": 0.016708047770565542,
+            "evaluated_pixels": 12697600
+          }
+        }
+      }
+    },
+    {
+      "true_category": "metal_nut",
+      "image_count": 115,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 115,
+          "mask_images": 115,
+          "map_sample_count": 115,
+          "mask_sample_count": 115,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "ranking": {
+            "auroc": 0.9875298830847229,
+            "average_precision": 0.9077960164905375
+          },
+          "thresholded": {
+            "precision": 0.45783684953122,
+            "recall": 0.9934731316504202,
+            "f1": 0.6268111080148581,
+            "specificity": 0.8438349243921611,
+            "dice": 0.6268111080148581,
+            "iou": 0.45646386427486496,
+            "evaluated_pixels": 11776000
+          }
+        }
+      }
+    },
+    {
+      "true_category": "pill",
+      "image_count": 167,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 167,
+          "mask_images": 167,
+          "map_sample_count": 167,
+          "mask_sample_count": 167,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "ranking": {
+            "auroc": 0.9885655031504239,
+            "average_precision": 0.8102778295871021
+          },
+          "thresholded": {
+            "precision": 0.1993310220294109,
+            "recall": 0.9893987272901378,
+            "f1": 0.3318127768203543,
+            "specificity": 0.8618794676528846,
+            "dice": 0.3318127768203543,
+            "iou": 0.19890619722401606,
+            "evaluated_pixels": 17100800
+          }
+        }
+      }
+    },
+    {
+      "true_category": "screw",
+      "image_count": 160,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 160,
+          "mask_images": 160,
+          "map_sample_count": 160,
+          "mask_sample_count": 160,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "ranking": {
+            "auroc": 0.8150748068934938,
+            "average_precision": 0.10308105991788022
+          },
+          "thresholded": {
+            "precision": 0.04174646715718799,
+            "recall": 0.515253740099736,
+            "f1": 0.07723524357243232,
+            "specificity": 0.9703956264824306,
+            "dice": 0.07723524357243232,
+            "iou": 0.04016884713236205,
+            "evaluated_pixels": 16384000
+          }
+        }
+      }
+    },
+    {
+      "true_category": "tile",
+      "image_count": 117,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 117,
+          "mask_images": 117,
+          "map_sample_count": 117,
+          "mask_sample_count": 117,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "ranking": {
+            "auroc": 0.9677347746512759,
+            "average_precision": 0.6657104811705636
+          },
+          "thresholded": {
+            "precision": 0.12543940927682473,
+            "recall": 0.9999490030088225,
+            "f1": 0.22291505914766604,
+            "specificity": 0.4722046815596843,
+            "dice": 0.22291505914766604,
+            "iou": 0.12543860680106292,
+            "evaluated_pixels": 11980800
+          }
+        }
+      }
+    },
+    {
+      "true_category": "toothbrush",
+      "image_count": 42,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 42,
+          "mask_images": 42,
+          "map_sample_count": 42,
+          "mask_sample_count": 42,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "ranking": {
+            "auroc": 0.989626739209202,
+            "average_precision": 0.5159415525938603
+          },
+          "thresholded": {
+            "precision": 0.0641931948485534,
+            "recall": 1.0,
+            "f1": 0.12064199462897113,
+            "specificity": 0.7733768756058197,
+            "dice": 0.12064199462897113,
+            "iou": 0.0641931948485534,
+            "evaluated_pixels": 4300800
+          }
+        }
+      }
+    },
+    {
+      "true_category": "transistor",
+      "image_count": 100,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 100,
+          "mask_images": 100,
+          "map_sample_count": 100,
+          "mask_sample_count": 100,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "ranking": {
+            "auroc": 0.970221117803971,
+            "average_precision": 0.6755550472725459
+          },
+          "thresholded": {
+            "precision": 0.3430804710240024,
+            "recall": 0.9483208715694486,
+            "f1": 0.5038718182630281,
+            "specificity": 0.9086065572509368,
+            "dice": 0.5038718182630281,
+            "iou": 0.3367838560985089,
+            "evaluated_pixels": 10240000
+          }
+        }
+      }
+    },
+    {
+      "true_category": "wood",
+      "image_count": 79,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 79,
+          "mask_images": 79,
+          "map_sample_count": 79,
+          "mask_sample_count": 79,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "ranking": {
+            "auroc": 0.9115895048852904,
+            "average_precision": 0.6761034299006916
+          },
+          "thresholded": {
+            "precision": 0.14298875656975585,
+            "recall": 0.859898217200653,
+            "f1": 0.24520365718145123,
+            "specificity": 0.7929559209841112,
+            "dice": 0.24520365718145123,
+            "iou": 0.13973339879863542,
+            "evaluated_pixels": 8089600
+          }
+        }
+      }
+    },
+    {
+      "true_category": "zipper",
+      "image_count": 151,
+      "sources": {
+        "patchcore": {
+          "map_key": "heatmap",
+          "map_images": 151,
+          "mask_images": 151,
+          "map_sample_count": 151,
+          "mask_sample_count": 151,
+          "map_coverage": 1.0,
+          "mask_coverage": 1.0,
+          "ranking": {
+            "auroc": 0.9131662528853792,
+            "average_precision": 0.35882636517823546
+          },
+          "thresholded": {
+            "precision": 0.051294953777096954,
+            "recall": 0.9359977248080307,
+            "f1": 0.09725983200503618,
+            "specificity": 0.6341953637947206,
+            "dice": 0.09725983200503618,
+            "iou": 0.05111566657444613,
+            "evaluated_pixels": 15462400
+          }
+        }
+      }
+    }
+  ],
+  "pixel": {
+    "map_key": "heatmap",
+    "map_images": 1725,
+    "mask_images": 1725,
+    "map_sample_count": 1725,
+    "mask_sample_count": 1725,
+    "map_coverage": 1.0,
+    "mask_coverage": 1.0,
+    "ranking": {
+      "auroc": 0.9528287550261305,
+      "average_precision": 0.5495973613063432
+    },
+    "thresholded": {
+      "precision": 0.1292514978481222,
+      "recall": 0.974699886885953,
+      "f1": 0.2282372613043131,
+      "specificity": 0.7829197523198478,
+      "dice": 0.2282372613043131,
+      "iou": 0.12881931441471325,
+      "evaluated_pixels": 176640000
+    }
+  }
+}

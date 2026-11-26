@@ -1,0 +1,18 @@
+{
+  "protocol": "Exact SHA-256 audit on effective 320px processed image files used by both benchmark runs",
+  "source_processed_root": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/datasets/mvtec_ad_processed_320",
+  "classification_manifest": "/Users/trantrungdung/Documents/523H0130_523H0038_DACNTT/industrial-vision-anomaly-detection/artifacts/production_highres/mvtec_ad/classification_split.csv",
+  "files_by_split": {
+    "train": 2540,
+    "validation": 1089,
+    "test": 1725
+  },
+  "cross_split_exact_hash_overlap_count": 0,
+  "cross_split_exact_hash_overlaps": [],
+  "within_split_duplicate_hash_groups": {
+    "train": 0,
+    "validation": 0,
+    "test": 0
+  },
+  "interpretation": "Exact byte-identical overlap only. Near duplicates, acquisition/session leakage, and repeated use of the official test set for method selection are not ruled out; treat metrics as exploratory/development results."
+}

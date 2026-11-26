@@ -123,6 +123,10 @@ def infer_exact_first(
             "decision": None,
             "decision_source": None,
             "decision_status": "unavailable",
+            "anomaly_decision": None,
+            "anomaly_decision_is_defect": None,
+            "anomaly_decision_source": None,
+            "anomaly_decision_status": "unavailable",
             "primary_error": _error_message(error),
             "anomaly_score": None,
             "threshold": None,
@@ -158,6 +162,10 @@ def infer_exact_first(
     result["padim_heatmap"] = None
     result["padim_binary_mask"] = None
     result["localization_status"] = {"patchcore": "not_run", "padim": "not_run"}
+    result["anomaly_decision"] = None
+    result["anomaly_decision_is_defect"] = None
+    result["anomaly_decision_source"] = None
+    result["anomaly_decision_status"] = "unavailable"
 
     if result.get("decision") is None and result.get("is_defect") is not None:
         result["decision"] = "DEFECT" if bool(result["is_defect"]) else "GOOD"
@@ -175,6 +183,10 @@ def infer_exact_first(
     result["decision_source"] = "exact_knn"
     result["decision_status"] = "available"
     result["decision_is_defect"] = decision == "DEFECT"
+    result["anomaly_decision"] = decision
+    result["anomaly_decision_is_defect"] = decision == "DEFECT"
+    result["anomaly_decision_source"] = "exact_knn"
+    result["anomaly_decision_status"] = "available"
     result["image_score"] = result.get("anomaly_score")
     result["image_threshold"] = result.get("threshold")
     result["label"] = decision
@@ -235,6 +247,183 @@ def _write_csv(path: Path, rows: list[dict[str, Any]], fields: list[str]) -> Non
         writer = csv.DictWriter(handle, fieldnames=fields, extrasaction="ignore")
         writer.writeheader()
         writer.writerows(rows)
+
+
+_ERROR_ANALYSIS_FIELDS = [
+    "image_path",
+    "true_category",
+    "predicted_category",
+    "routed_category",
+    "localization_category",
+    "confidence",
+    "routing_status",
+    "defect_type",
+    "is_defect",
+    "decision",
+    "anomaly_decision",
+    "anomaly_decision_source",
+    "anomaly_decision_status",
+    "global_distance",
+    "rejection_reason",
+]
+
+
+def _error_analysis_rows(inference_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Serialize rejected or misrouted rows without conflating route and anomaly fields."""
+
+    return [
+        {
+            "image_path": item["image_path"],
+            "true_category": item["true_category"],
+            "predicted_category": item.get("predicted_category"),
+            "routed_category": item.get("category"),
+            "localization_category": item.get("localization_category"),
+            "confidence": item.get("confidence"),
+            "routing_status": item.get("status"),
+            "defect_type": item["defect_type"],
+            "is_defect": item["ground_truth_is_defect"],
+            # Keep the legacy field for existing consumers; the explicit fields
+            # identify the anomaly verdict and its provenance unambiguously.
+            "decision": item.get("decision"),
+            "anomaly_decision": item.get("anomaly_decision"),
+            "anomaly_decision_source": item.get("anomaly_decision_source"),
+            "anomaly_decision_status": item.get("anomaly_decision_status"),
+            "global_distance": item.get("nearest_global_distance"),
+            "rejection_reason": item.get("reason", "") if item.get("rejected") else "",
+        }
+        for item in inference_rows
+        if item.get("rejected") or item.get("category") != item["true_category"]
+    ]
+
+
+_LOCALIZATION_SOURCES = ("exact_knn", "patchcore", "padim")
+_LOCALIZATION_METRICS = (
+    "map_images",
+    "mask_images",
+    "map_coverage",
+    "mask_coverage",
+    "rejected_images",
+    "rejected_map_images",
+    "rejected_mask_images",
+    "rejected_map_coverage",
+    "rejected_mask_coverage",
+    "pixel_auroc",
+    "pixel_average_precision",
+    "precision",
+    "recall",
+    "f1",
+    "specificity",
+    "dice",
+    "iou",
+    "evaluated_pixels",
+)
+_LOCALIZATION_SUBGROUP_METRICS = (
+    "good_image_count",
+    "good_map_images",
+    "good_mask_images",
+    "good_map_coverage",
+    "good_mask_coverage",
+    "good_false_positive_pixel_rate",
+    "good_predicted_mask_area_mean_pixels",
+    "good_predicted_mask_area_mean_ratio",
+    "defect_image_count",
+    "defect_map_images",
+    "defect_mask_images",
+    "defect_map_coverage",
+    "defect_mask_coverage",
+    "defect_pixel_auroc",
+    "defect_pixel_average_precision",
+    "defect_precision",
+    "defect_recall",
+    "defect_f1",
+    "defect_specificity",
+    "defect_dice",
+    "defect_iou",
+)
+_LOCALIZATION_CSV_FIELDS = [
+    "true_category",
+    "image_count",
+    *(
+        f"{source}_{metric}"
+        for source in _LOCALIZATION_SOURCES
+        for metric in _LOCALIZATION_METRICS
+    ),
+    *(
+        f"{source}_{metric}"
+        for source in _LOCALIZATION_SOURCES
+        for metric in _LOCALIZATION_SUBGROUP_METRICS
+    ),
+]
+
+
+def _localization_metric_rows(anomaly_report: dict[str, Any]) -> list[dict[str, Any]]:
+    """Flatten per-category, per-detector localization metrics for CSV output."""
+
+    rows: list[dict[str, Any]] = []
+    for category_report in anomaly_report.get("per_category", []):
+        row: dict[str, Any] = {
+            "true_category": category_report["true_category"],
+            "image_count": category_report["image_count"],
+        }
+        for source in _LOCALIZATION_SOURCES:
+            metrics = category_report.get("sources", {}).get(source)
+            ranking = metrics.get("ranking", {}) if metrics else {}
+            thresholded = metrics.get("thresholded", {}) if metrics else {}
+            values = {
+                "map_images": metrics.get("map_images") if metrics else None,
+                "mask_images": metrics.get("mask_images") if metrics else None,
+                "map_coverage": metrics.get("map_coverage") if metrics else None,
+                "mask_coverage": metrics.get("mask_coverage") if metrics else None,
+                "rejected_images": metrics.get("rejected_images") if metrics else None,
+                "rejected_map_images": metrics.get("rejected_map_images") if metrics else None,
+                "rejected_mask_images": metrics.get("rejected_mask_images") if metrics else None,
+                "rejected_map_coverage": metrics.get("rejected_map_coverage") if metrics else None,
+                "rejected_mask_coverage": metrics.get("rejected_mask_coverage") if metrics else None,
+                "pixel_auroc": ranking.get("auroc"),
+                "pixel_average_precision": ranking.get("average_precision"),
+                "precision": thresholded.get("precision"),
+                "recall": thresholded.get("recall"),
+                "f1": thresholded.get("f1"),
+                "specificity": thresholded.get("specificity"),
+                "dice": thresholded.get("dice"),
+                "iou": thresholded.get("iou"),
+                "evaluated_pixels": thresholded.get("evaluated_pixels"),
+            }
+            row.update({f"{source}_{metric}": value for metric, value in values.items()})
+            subgroups = metrics.get("subgroups", {}) if metrics else {}
+            good = subgroups.get("good", {})
+            good_area = good.get("predicted_mask_area", {})
+            defect = subgroups.get("defect", {})
+            defect_ranking = defect.get("ranking", {})
+            defect_thresholded = defect.get("thresholded", {})
+            subgroup_values = {
+                "good_image_count": good.get("image_count"),
+                "good_map_images": good.get("map_images"),
+                "good_mask_images": good.get("mask_images"),
+                "good_map_coverage": good.get("map_coverage"),
+                "good_mask_coverage": good.get("mask_coverage"),
+                "good_false_positive_pixel_rate": good.get("false_positive_pixel_rate"),
+                "good_predicted_mask_area_mean_pixels": good_area.get("mean_pixels"),
+                "good_predicted_mask_area_mean_ratio": good_area.get("mean_ratio"),
+                "defect_image_count": defect.get("image_count"),
+                "defect_map_images": defect.get("map_images"),
+                "defect_mask_images": defect.get("mask_images"),
+                "defect_map_coverage": defect.get("map_coverage"),
+                "defect_mask_coverage": defect.get("mask_coverage"),
+                "defect_pixel_auroc": defect_ranking.get("auroc"),
+                "defect_pixel_average_precision": defect_ranking.get("average_precision"),
+                "defect_precision": defect_thresholded.get("precision"),
+                "defect_recall": defect_thresholded.get("recall"),
+                "defect_f1": defect_thresholded.get("f1"),
+                "defect_specificity": defect_thresholded.get("specificity"),
+                "defect_dice": defect_thresholded.get("dice"),
+                "defect_iou": defect_thresholded.get("iou"),
+            }
+            row.update(
+                {f"{source}_{metric}": value for metric, value in subgroup_values.items()}
+            )
+        rows.append(row)
+    return rows
 
 
 def _plot_confusion(matrix: np.ndarray, labels: list[str], path: Path, title: str) -> None:
@@ -497,11 +686,24 @@ def _infer_with_detector(
             "anomaly_map": None,
             "binary_mask": None,
             "anomaly_detector": config.detector,
+            "anomaly_decision": None,
+            "anomaly_decision_is_defect": None,
+            "anomaly_decision_source": None,
+            "anomaly_decision_status": "not_run",
+            # Legacy anomaly-decision aliases retained for existing consumers.
+            "decision": None,
+            "decision_is_defect": None,
+            "decision_source": None,
+            "decision_status": "not_run",
+            # Classification may reject the route while localization still uses
+            # the classifier candidate; this field must never affect routing.
+            "localization_category": route.predicted_category,
         }
     )
-    if route.rejected or route.category not in detectors:
+    localization_category = result["localization_category"]
+    if localization_category not in detectors:
         return result
-    detector_result = detectors[route.category].predict(features)
+    detector_result = detectors[localization_category].predict(features)
     patch_scores = detector_result.patch_scores
     if config.heatmap_refiner == "dino_affinity":
         patch_scores = propagate_scores(
@@ -522,19 +724,28 @@ def _infer_with_detector(
     result["anomaly_score"] = float(np.max(patch_scores))
     result["patch_scores"] = patch_scores
     result["anomaly_map"] = anomaly_map
-    decision = classify_image_score(route.category, result["anomaly_score"], image_thresholds)
-    pixel_threshold = float(pixel_thresholds["categories"][route.category]["threshold"])
+    anomaly_decision = classify_image_score(
+        localization_category, result["anomaly_score"], image_thresholds
+    )
+    pixel_threshold = float(
+        pixel_thresholds["categories"][localization_category]["threshold"]
+    )
     result.update(
         {
-            "threshold": decision["threshold"],
-            "label": decision["label"],
-            "is_defect": decision["is_defect"],
-            "decision": decision["label"],
+            "threshold": anomaly_decision["threshold"],
+            "label": anomaly_decision["label"],
+            "is_defect": anomaly_decision["is_defect"],
+            "anomaly_decision": anomaly_decision["label"],
+            "anomaly_decision_is_defect": anomaly_decision["is_defect"],
+            "anomaly_decision_source": config.detector,
+            "anomaly_decision_status": "available",
+            # Legacy aliases for consumers that have not migrated yet.
+            "decision": anomaly_decision["label"],
             "decision_source": config.detector,
             "decision_status": "available",
-            "decision_is_defect": decision["is_defect"],
+            "decision_is_defect": anomaly_decision["is_defect"],
             "image_score": result["anomaly_score"],
-            "image_threshold": decision["threshold"],
+            "image_threshold": anomaly_decision["threshold"],
             "binary_mask": postprocess_mask(
                 anomaly_map, pixel_threshold, config.mask_postprocess
             ),
@@ -601,8 +812,13 @@ def _anomaly_report(rows: list[dict[str, Any]]) -> dict[str, Any]:
             "f1": float(f1_score(labels, predictions, zero_division=0)),
         }
 
-    def pixel_report(map_key: str, mask_key: str | None) -> dict[str, Any]:
-        map_rows = [row for row in rows if row.get(map_key) is not None]
+    def pixel_report(
+        map_key: str,
+        mask_key: str | None,
+        scoped_rows: list[dict[str, Any]] | None = None,
+    ) -> dict[str, Any]:
+        scoped_rows = rows if scoped_rows is None else scoped_rows
+        map_rows = [row for row in scoped_rows if row.get(map_key) is not None]
         score_chunks: list[np.ndarray] = []
         label_chunks: list[np.ndarray] = []
         prediction_chunks: list[np.ndarray] = []
@@ -624,12 +840,24 @@ def _anomaly_report(rows: list[dict[str, Any]]) -> dict[str, Any]:
         pixel_predictions = (
             np.concatenate(prediction_chunks) if prediction_chunks else np.empty(0, dtype=np.int64)
         )
+        rejected_rows = [row for row in scoped_rows if row.get("rejected")]
+        rejected_map_rows = [row for row in map_rows if row.get("rejected")]
+        rejected_mask_rows = [row for row in mask_rows if row.get("rejected")]
         result: dict[str, Any] = {
             "map_key": map_key,
             "map_images": len(map_rows),
             "mask_images": len(mask_rows),
-            "map_coverage": len(map_rows) / len(rows) if rows else 0.0,
-            "mask_coverage": len(mask_rows) / len(rows) if rows else 0.0,
+            "map_coverage": len(map_rows) / len(scoped_rows) if scoped_rows else 0.0,
+            "mask_coverage": len(mask_rows) / len(scoped_rows) if scoped_rows else 0.0,
+            "rejected_images": len(rejected_rows),
+            "rejected_map_images": len(rejected_map_rows),
+            "rejected_mask_images": len(rejected_mask_rows),
+            "rejected_map_coverage": (
+                len(rejected_map_rows) / len(rejected_rows) if rejected_rows else 0.0
+            ),
+            "rejected_mask_coverage": (
+                len(rejected_mask_rows) / len(rejected_rows) if rejected_rows else 0.0
+            ),
             "ranking": _safe_ranking(pixel_scores, pixel_labels),
         }
         if mask_rows:
@@ -655,17 +883,108 @@ def _anomaly_report(rows: list[dict[str, Any]]) -> dict[str, Any]:
             }
         return result
 
+    def subgroup_reports(
+        scoped_rows: list[dict[str, Any]],
+        map_key: str,
+        mask_key: str | None,
+    ) -> dict[str, Any]:
+        """Evaluate GOOD/DEFECT groups after inference without changing routing."""
+
+        good_rows = [row for row in scoped_rows if not row.get("ground_truth_is_defect")]
+        defect_rows = [row for row in scoped_rows if row.get("ground_truth_is_defect")]
+        good_map_rows = [row for row in good_rows if row.get(map_key) is not None]
+        good_mask_rows = [
+            row for row in good_map_rows
+            if mask_key is not None and row.get(mask_key) is not None
+        ]
+        predicted_areas = [
+            int(np.asarray(row[mask_key], dtype=bool).sum())
+            for row in good_mask_rows
+        ]
+        predicted_sizes = [
+            int(np.asarray(row[mask_key], dtype=bool).size)
+            for row in good_mask_rows
+        ]
+        predicted_pixels = sum(predicted_areas)
+        total_pixels = sum(predicted_sizes)
+        predicted_area_ratios = [
+            area / size for area, size in zip(predicted_areas, predicted_sizes) if size
+        ]
+        good_report = {
+            "image_count": len(good_rows),
+            "map_images": len(good_map_rows),
+            "mask_images": len(good_mask_rows),
+            "map_coverage": len(good_map_rows) / len(good_rows) if good_rows else 0.0,
+            "mask_coverage": len(good_mask_rows) / len(good_rows) if good_rows else 0.0,
+            "false_positive_pixel_rate": (
+                float(predicted_pixels / total_pixels) if total_pixels else None
+            ),
+            "predicted_mask_area": {
+                "sample_count": len(predicted_areas),
+                "total_pixels": predicted_pixels,
+                "mean_pixels": float(np.mean(predicted_areas)) if predicted_areas else None,
+                "mean_ratio": (
+                    float(np.mean(predicted_area_ratios)) if predicted_area_ratios
+                    else None
+                ),
+            },
+        }
+        return {
+            "good": good_report,
+            "defect": {
+                **pixel_report(map_key, mask_key, defect_rows),
+                "image_count": len(defect_rows),
+            },
+        }
+
+    def detector_report(
+        map_key: str,
+        mask_key: str | None,
+        scoped_rows: list[dict[str, Any]],
+    ) -> dict[str, Any]:
+        result = pixel_report(map_key, mask_key, scoped_rows)
+        result["subgroups"] = subgroup_reports(scoped_rows, map_key, mask_key)
+        return result
+
     detector_reports: dict[str, Any] = {}
+    detector_specs: dict[str, tuple[str, str | None]] = {}
     if any(row.get("anomaly_detector") for row in rows):
         detector = next(
             (row.get("anomaly_detector") for row in rows if row.get("anomaly_detector")),
             "unknown",
         )
-        detector_reports[detector] = pixel_report("heatmap", "binary_mask")
+        detector_specs[detector] = ("heatmap", "binary_mask")
+        detector_reports[detector] = detector_report("heatmap", "binary_mask", rows)
     else:
-        detector_reports["patchcore"] = pixel_report("patchcore_heatmap", None)
-        detector_reports["padim"] = pixel_report("padim_heatmap", "padim_binary_mask")
+        detector_specs = {
+            "patchcore": ("patchcore_heatmap", None),
+            "padim": ("padim_heatmap", "padim_binary_mask"),
+        }
+        detector_reports["patchcore"] = detector_report(
+            "patchcore_heatmap", None, rows
+        )
+        detector_reports["padim"] = detector_report(
+            "padim_heatmap", "padim_binary_mask", rows
+        )
     report["detectors"] = detector_reports
+    # Ground-truth categories are used only to group completed predictions for evaluation.
+    per_category = []
+    categories = sorted(
+        {row.get("true_category") for row in rows if row.get("true_category") is not None}
+    )
+    for category in categories:
+        category_rows = [row for row in rows if row.get("true_category") == category]
+        per_category.append(
+            {
+                "true_category": category,
+                "image_count": len(category_rows),
+                "sources": {
+                    detector: detector_report(map_key, mask_key, category_rows)
+                    for detector, (map_key, mask_key) in detector_specs.items()
+                },
+            }
+        )
+    report["per_category"] = per_category
     # Backward-compatible headline: independent runs have one detector; exact-first
     # keeps PatchCore as the continuous heatmap headline and exposes PaDiM beside it.
     report["pixel"] = next(iter(detector_reports.values()))
@@ -772,9 +1091,39 @@ def _load_mask(item: dict[str, Any], image_size: int) -> np.ndarray:
         return np.asarray(mask.convert("L").resize((image_size, image_size))) > 0
 
 
+def _pipeline_description(summary: dict[str, Any]) -> str:
+    """Describe the actual orchestration and detector used by a production run."""
+
+    configuration = summary.get("configuration", {})
+    orchestration = configuration.get("orchestration", "exact_first")
+    detector = configuration.get("detector", "exact_knn")
+    prefix = "raw validation → preprocessing → train/validation split → product classification/routing"
+    if orchestration == "exact_first":
+        return (
+            f"`{prefix} → Exact kNN image decision → DEFECT: "
+            "PatchCore heatmap + PaDiM binary mask → evaluation`"
+        )
+    independent_descriptions = {
+        "exact_knn": "independent Exact kNN anomaly decision",
+        "patchcore": "independent PatchCore heatmap and mask evaluation",
+        "padim": "independent PaDiM anomaly map and binary mask evaluation",
+    }
+    detector_description = independent_descriptions.get(
+        detector, f"independent {detector} detector evaluation"
+    )
+    return f"`{prefix} → {detector_description} → evaluation`"
+
+
 def _markdown_report(summary: dict[str, Any], report_dir: Path) -> str:
     classification = summary["classification"]
     anomaly = summary["anomaly"]
+    configuration = summary["configuration"]
+
+    def metric_text(value: Any, percent: bool = False) -> str:
+        if value is None:
+            return "n/a"
+        return f"{float(value):.2%}" if percent else f"{float(value):.4f}"
+
     lines = [
         f"# Production run report: `{summary['dataset_name']}`",
         "",
@@ -782,15 +1131,17 @@ def _markdown_report(summary: dict[str, Any], report_dir: Path) -> str:
         "",
         "## Pipeline",
         "",
-        "`raw validation → preprocessing → train/validation split → classification → Exact kNN decision → optional localization → evaluation`",
+        _pipeline_description(summary),
         "",
         f"- Dataset root: `{summary['dataset_root']}`",
         f"- Processed root: `{summary['processed_root']}`",
         f"- Categories: **{len(summary['categories'])}**",
         f"- Classification: **{'enabled' if summary['classification_enabled'] else 'disabled (one category)'}**",
-        f"- Image decision authority: **{summary['configuration']['decision_authority']}**",
-        f"- Product confidence threshold: **{summary['configuration']['classification_confidence_threshold']:.2f}**",
-        f"- kNN neighbors: **{summary['configuration']['k']}**",
+        f"- Orchestration: **{configuration['orchestration']}**",
+        f"- Configured detector: **{configuration['detector']}**",
+        f"- Image decision authority: **{configuration['decision_authority']}**",
+        f"- Product confidence threshold: **{configuration['classification_confidence_threshold']:.2f}**",
+        f"- kNN neighbors: **{configuration['k']}**",
         "",
         "## Product classification",
         "",
@@ -808,16 +1159,74 @@ def _markdown_report(summary: dict[str, Any], report_dir: Path) -> str:
         f"- Images without completed anomaly inference: **{anomaly['anomaly_skipped_images']}**",
         f"- Image AUROC / AP: **{anomaly['image']['ranking']['auroc']} / {anomaly['image']['ranking']['average_precision']}**",
         f"- Pixel AUROC / AP: **{anomaly['pixel']['ranking']['auroc']} / {anomaly['pixel']['ranking']['average_precision']}**",
-        "",
-        "## Inference latency",
-        "",
-        f"- Device: **{summary['performance']['inference']['device']}**",
-        f"- Mean / median / p95: **{summary['performance']['inference']['mean_seconds']:.4f} / {summary['performance']['inference']['median_seconds']:.4f} / {summary['performance']['inference']['p95_seconds']:.4f} s/image**",
-        f"- Throughput: **{summary['performance']['inference']['images_per_second']:.2f} images/s**",
-        "",
-        "## Generated files",
-        "",
     ]
+
+    lines.extend(["", "## Localization coverage", ""])
+    lines.append(
+        f"- Classifier-rejected rows: **{classification['unknown_rejected_predictions']}**"
+    )
+    for detector_name, detector_report in anomaly.get("detectors", {}).items():
+        rejected_images = detector_report.get("rejected_images", 0)
+        rejected_map_images = detector_report.get("rejected_map_images", 0)
+        rejected_mask_images = detector_report.get("rejected_mask_images", 0)
+        lines.append(
+            f"- `{detector_name}` rejected localization: maps **{rejected_map_images}/{rejected_images} "
+            f"({metric_text(detector_report.get('rejected_map_coverage'), True)})**; "
+            f"masks **{rejected_mask_images}/{rejected_images} "
+            f"({metric_text(detector_report.get('rejected_mask_coverage'), True)})**"
+        )
+
+    lines.extend(["", "## GOOD-vs-DEFECT localization", ""])
+    for detector_name, detector_report in anomaly.get("detectors", {}).items():
+        subgroups = detector_report.get("subgroups", {})
+        good = subgroups.get("good", {})
+        good_area = good.get("predicted_mask_area", {})
+        defect = subgroups.get("defect", {})
+        defect_ranking = defect.get("ranking", {})
+        defect_thresholded = defect.get("thresholded", {})
+        lines.append(
+            f"- `{detector_name}` GOOD: map coverage "
+            f"**{good.get('map_images', 0)}/{good.get('image_count', 0)} "
+            f"({metric_text(good.get('map_coverage'), True)})**; "
+            f"mask coverage **{good.get('mask_images', 0)}/{good.get('image_count', 0)} "
+            f"({metric_text(good.get('mask_coverage'), True)})**; "
+            f"false-positive pixel rate "
+            f"**{metric_text(good.get('false_positive_pixel_rate'), True)}** "
+            f"(conditional on available GOOD masks; interpret with GOOD mask coverage); "
+            f"mean predicted-mask area **{metric_text(good_area.get('mean_pixels'))} px "
+            f"({metric_text(good_area.get('mean_ratio'), True)})**."
+        )
+        lines.append(
+            f"- `{detector_name}` DEFECT: map coverage "
+            f"**{defect.get('map_images', 0)}/{defect.get('image_count', 0)} "
+            f"({metric_text(defect.get('map_coverage'), True)})**; "
+            f"mask coverage **{defect.get('mask_images', 0)}/{defect.get('image_count', 0)} "
+            f"({metric_text(defect.get('mask_coverage'), True)})**; "
+            f"Pixel AUROC/AP "
+            f"**{metric_text(defect_ranking.get('auroc'))} / "
+            f"{metric_text(defect_ranking.get('average_precision'))}**; "
+            f"precision/recall/F1/specificity/Dice/IoU "
+            f"**{metric_text(defect_thresholded.get('precision'))} / "
+            f"{metric_text(defect_thresholded.get('recall'))} / "
+            f"{metric_text(defect_thresholded.get('f1'))} / "
+            f"{metric_text(defect_thresholded.get('specificity'))} / "
+            f"{metric_text(defect_thresholded.get('dice'))} / "
+            f"{metric_text(defect_thresholded.get('iou'))}**."
+        )
+
+    lines.extend(
+        [
+            "",
+            "## Inference latency",
+            "",
+            f"- Device: **{summary['performance']['inference']['device']}**",
+            f"- Mean / median / p95: **{summary['performance']['inference']['mean_seconds']:.4f} / {summary['performance']['inference']['median_seconds']:.4f} / {summary['performance']['inference']['p95_seconds']:.4f} s/image**",
+            f"- Throughput: **{summary['performance']['inference']['images_per_second']:.2f} images/s**",
+            "",
+            "## Generated files",
+            "",
+        ]
+    )
     for name in summary["output_files"].values():
         lines.append(f"- `{report_dir / name}`")
     return "\n".join(lines) + "\n"
@@ -1210,31 +1619,20 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
     _write_json(report_dir / "classification_test_summary.json", classification_report)
     _write_json(report_dir / "anomaly_metrics.json", anomaly_report)
     _write_csv(
+        report_dir / "localization_metrics.csv",
+        _localization_metric_rows(anomaly_report),
+        _LOCALIZATION_CSV_FIELDS,
+    )
+    _write_csv(
         report_dir / "per_category_metrics.csv",
         per_category,
         ["category", "support", "correct", "incorrect", "rejected", "accuracy", "rejection_rate"],
     )
-    error_rows = [
-        {
-            "image_path": item["image_path"],
-            "true_category": item["true_category"],
-            "predicted_category": item.get("predicted_category"),
-            "routed_category": item.get("category"),
-            "confidence": item.get("confidence"),
-            "routing_status": item.get("status"),
-            "defect_type": item["defect_type"],
-            "is_defect": item["ground_truth_is_defect"],
-            "decision": item.get("decision"),
-            "global_distance": item.get("nearest_global_distance"),
-            "rejection_reason": item.get("reason", "") if item.get("rejected") else "",
-        }
-        for item in inference_rows
-        if item.get("rejected") or item.get("category") != item["true_category"]
-    ]
+    error_rows = _error_analysis_rows(inference_rows)
     _write_csv(
         report_dir / "error_analysis.csv",
         error_rows,
-        ["image_path", "true_category", "predicted_category", "routed_category", "confidence", "routing_status", "defect_type", "is_defect", "decision", "global_distance", "rejection_reason"],
+        _ERROR_ANALYSIS_FIELDS,
     )
     true_ids = [mapping[item["true_category"]] for item in inference_rows]
     pred_ids = [
@@ -1270,7 +1668,7 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
         examples = [
             item
             for item in inference_rows
-            if item.get("category") == category
+            if item.get("localization_category", item.get("category")) == category
             and item.get("anomaly_evaluated")
             and item.get("heatmap") is not None
         ]
@@ -1340,6 +1738,7 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
             "classification_summary": "classification_test_summary.json",
             "classification_validation": "classification_validation_summary.json",
             "anomaly_metrics": "anomaly_metrics.json",
+            "localization_metrics": "localization_metrics.csv",
             "per_category": "per_category_metrics.csv",
             "errors": "error_analysis.csv",
             "confusion_matrix": "confusion_matrix.png",

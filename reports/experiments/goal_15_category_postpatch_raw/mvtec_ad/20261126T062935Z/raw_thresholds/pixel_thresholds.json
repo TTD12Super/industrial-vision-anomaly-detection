@@ -1,0 +1,149 @@
+{
+  "artifact_version": "v1",
+  "threshold_type": "pixel_level",
+  "calibration_split": "known_normal_validation",
+  "target_acceptance_rate": 0.99,
+  "categories": {
+    "bottle": {
+      "threshold": 0.28091394901275635,
+      "target_acceptance_rate": 0.99,
+      "observed_acceptance_rate": 0.9900000095367432,
+      "sample_count": 6451200,
+      "quantile": 0.99,
+      "quantile_interpolation": "linear",
+      "decision_rule": "score >= threshold -> DEFECT; otherwise GOOD"
+    },
+    "cable": {
+      "threshold": 0.4176168739795685,
+      "target_acceptance_rate": 0.99,
+      "observed_acceptance_rate": 0.9900000095367432,
+      "sample_count": 6860800,
+      "quantile": 0.99,
+      "quantile_interpolation": "linear",
+      "decision_rule": "score >= threshold -> DEFECT; otherwise GOOD"
+    },
+    "capsule": {
+      "threshold": 0.2827345132827759,
+      "target_acceptance_rate": 0.99,
+      "observed_acceptance_rate": 0.9900000095367432,
+      "sample_count": 6758400,
+      "quantile": 0.99,
+      "quantile_interpolation": "linear",
+      "decision_rule": "score >= threshold -> DEFECT; otherwise GOOD"
+    },
+    "carpet": {
+      "threshold": 0.37176868319511414,
+      "target_acceptance_rate": 0.99,
+      "observed_acceptance_rate": 0.9900000095367432,
+      "sample_count": 8601600,
+      "quantile": 0.99,
+      "quantile_interpolation": "linear",
+      "decision_rule": "score >= threshold -> DEFECT; otherwise GOOD"
+    },
+    "grid": {
+      "threshold": 0.39272695779800415,
+      "target_acceptance_rate": 0.99,
+      "observed_acceptance_rate": 0.9900002479553223,
+      "sample_count": 8089600,
+      "quantile": 0.99,
+      "quantile_interpolation": "linear",
+      "decision_rule": "score >= threshold -> DEFECT; otherwise GOOD"
+    },
+    "hazelnut": {
+      "threshold": 0.47067612409591675,
+      "target_acceptance_rate": 0.99,
+      "observed_acceptance_rate": 0.9900000095367432,
+      "sample_count": 11980800,
+      "quantile": 0.99,
+      "quantile_interpolation": "linear",
+      "decision_rule": "score >= threshold -> DEFECT; otherwise GOOD"
+    },
+    "leather": {
+      "threshold": 0.3727823495864868,
+      "target_acceptance_rate": 0.99,
+      "observed_acceptance_rate": 0.9900000095367432,
+      "sample_count": 7577600,
+      "quantile": 0.99,
+      "quantile_interpolation": "linear",
+      "decision_rule": "score >= threshold -> DEFECT; otherwise GOOD"
+    },
+    "metal_nut": {
+      "threshold": 0.3845030963420868,
+      "target_acceptance_rate": 0.99,
+      "observed_acceptance_rate": 0.9900000095367432,
+      "sample_count": 6758400,
+      "quantile": 0.99,
+      "quantile_interpolation": "linear",
+      "decision_rule": "score >= threshold -> DEFECT; otherwise GOOD"
+    },
+    "pill": {
+      "threshold": 0.3333968222141266,
+      "target_acceptance_rate": 0.99,
+      "observed_acceptance_rate": 0.9900000095367432,
+      "sample_count": 8192000,
+      "quantile": 0.99,
+      "quantile_interpolation": "linear",
+      "decision_rule": "score >= threshold -> DEFECT; otherwise GOOD"
+    },
+    "screw": {
+      "threshold": 0.37157726287841797,
+      "target_acceptance_rate": 0.99,
+      "observed_acceptance_rate": 0.9900000095367432,
+      "sample_count": 9830400,
+      "quantile": 0.99,
+      "quantile_interpolation": "linear",
+      "decision_rule": "score >= threshold -> DEFECT; otherwise GOOD"
+    },
+    "tile": {
+      "threshold": 0.38867419958114624,
+      "target_acceptance_rate": 0.99,
+      "observed_acceptance_rate": 0.9900000095367432,
+      "sample_count": 7065600,
+      "quantile": 0.99,
+      "quantile_interpolation": "linear",
+      "decision_rule": "score >= threshold -> DEFECT; otherwise GOOD"
+    },
+    "toothbrush": {
+      "threshold": 0.3123399317264557,
+      "target_acceptance_rate": 0.99,
+      "observed_acceptance_rate": 0.9900000095367432,
+      "sample_count": 1843200,
+      "quantile": 0.99,
+      "quantile_interpolation": "linear",
+      "decision_rule": "score >= threshold -> DEFECT; otherwise GOOD"
+    },
+    "transistor": {
+      "threshold": 0.36429688334465027,
+      "target_acceptance_rate": 0.99,
+      "observed_acceptance_rate": 0.9900000095367432,
+      "sample_count": 6553600,
+      "quantile": 0.99,
+      "quantile_interpolation": "linear",
+      "decision_rule": "score >= threshold -> DEFECT; otherwise GOOD"
+    },
+    "wood": {
+      "threshold": 0.4899691641330719,
+      "target_acceptance_rate": 0.99,
+      "observed_acceptance_rate": 0.9900001287460327,
+      "sample_count": 7577600,
+      "quantile": 0.99,
+      "quantile_interpolation": "linear",
+      "decision_rule": "score >= threshold -> DEFECT; otherwise GOOD"
+    },
+    "zipper": {
+      "threshold": 0.3295932412147522,
+      "target_acceptance_rate": 0.99,
+      "observed_acceptance_rate": 0.9900000095367432,
+      "sample_count": 7372800,
+      "quantile": 0.99,
+      "quantile_interpolation": "linear",
+      "decision_rule": "score >= threshold -> DEFECT; otherwise GOOD"
+    }
+  },
+  "protocol": {
+    "strategy": "normal_only_quantile",
+    "score_aggregation": "all_pixels_in_normal_validation_maps",
+    "test_labels_used": false,
+    "threshold_rule": "score >= threshold -> DEFECT; otherwise GOOD"
+  }
+}

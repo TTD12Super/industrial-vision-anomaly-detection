@@ -86,6 +86,15 @@ def infer_image(
             "patch_scores": None,
             "anomaly_map": None,
             "binary_mask": None,
+            "anomaly_decision": None,
+            "anomaly_decision_is_defect": None,
+            "anomaly_decision_source": None,
+            "anomaly_decision_status": "not_run",
+            # Legacy anomaly-decision aliases retained for existing consumers.
+            "decision": None,
+            "decision_is_defect": None,
+            "decision_source": None,
+            "decision_status": "not_run",
         }
     )
     if route.rejected or route.bank_status != "compatible" or route.bank_path is None:
@@ -116,10 +125,19 @@ def infer_image(
     result["anomaly_map"] = anomaly_map
 
     if image_thresholds is not None:
-        decision = classify_image_score(route.category, image_score, image_thresholds)
-        result["threshold"] = decision["threshold"]
-        result["label"] = decision["label"]
-        result["is_defect"] = decision["is_defect"]
+        anomaly_decision = classify_image_score(route.category, image_score, image_thresholds)
+        result["threshold"] = anomaly_decision["threshold"]
+        result["label"] = anomaly_decision["label"]
+        result["is_defect"] = anomaly_decision["is_defect"]
+        result["anomaly_decision"] = anomaly_decision["label"]
+        result["anomaly_decision_is_defect"] = anomaly_decision["is_defect"]
+        result["anomaly_decision_source"] = "exact_knn"
+        result["anomaly_decision_status"] = "available"
+        # Legacy aliases for consumers that have not migrated yet.
+        result["decision"] = anomaly_decision["label"]
+        result["decision_is_defect"] = anomaly_decision["is_defect"]
+        result["decision_source"] = "exact_knn"
+        result["decision_status"] = "available"
     if pixel_thresholds is not None:
         result["binary_mask"] = binary_anomaly_masks(
             route.category,

@@ -14,10 +14,12 @@ fac2c931624430c83e1a96f2122691cd5ad319c5f984b43c0bccf5ac7029d432
 
 The split has 2,540 train, 1,089 validation and 1,725 official-test images across 15 categories. The exact SHA-256 audit reports zero cross-split exact duplicates. No perceptual near-duplicate or acquisition-session audit was done. The official test has been inspected in earlier project experiments, so all results remain exploratory rather than unbiased final estimates.
 
-## Threshold calibration
+## Threshold calibration — follow-up source audit
+
+This section clarifies the initial static QA note using the current production code and saved run artifacts; the QA agent did not rerun model inference during this follow-up.
 
 - Raw PatchCore, open5 and Exact kNN have method-specific threshold artifacts with known-normal validation calibration at q=.99 and no test-label selection.
-- DINO affinity's `final_summary.json` references the shared raw PatchCore threshold. A separate q=.99 `affinity_thresholds/pixel_thresholds.json` exists, but the run summary does not reference it and the file has no manifest digest. Its use for the reported predictions is unverified. Treat thresholded precision, recall, F1/Dice and IoU as provisional; use threshold-free AP/AUROC for method ranking.
+- DINO affinity calibrates the configured refined maps on known-normal validation data through `_calibrate_detector_thresholds` → `_score_detector_paths` → `_make_refined_anomaly_map`; inference uses the resulting in-memory thresholds. The q=.99 sidecar's per-category pixel counts match the validation split at 320×320. The summary's detector-scoped artifact path was later overwritten by the raw PatchCore run, and the sidecar lacks a manifest digest, so artifact lineage is weaker. The reported threshold-dependent metrics can be compared as per-method q=.99 operating points; AP/AUROC remain threshold-free.
 
 ## Metric check
 

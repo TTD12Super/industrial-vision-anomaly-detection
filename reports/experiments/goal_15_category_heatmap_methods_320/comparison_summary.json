@@ -40,17 +40,20 @@
       "artifact": "artifacts/production_highres/mvtec_ad/thresholds/patchcore/pixel_thresholds.json"
     },
     "dino_affinity": {
-      "referenced_artifact": "artifacts/production_highres/mvtec_ad/thresholds/patchcore/pixel_thresholds.json",
+      "production_output_path": "artifacts/production_highres/mvtec_ad/thresholds/patchcore/pixel_thresholds.json",
+      "production_output_path_current_sha256": "2644c0e92226ff1fa02afb6f5ac09c3689bd8cded1b8aa6e7f259228dd305cdb",
       "separate_calibration_artifact_found": "reports/experiments/goal_15_category_postpatch_affinity_320/mvtec_ad/20261126T065220Z/affinity_thresholds/pixel_thresholds.json",
       "separate_calibration_artifact_sha256": "645ec51272a82827d0c08ec6da69932ee7c57549eaca82c755564cb9be3dd1eb",
       "separate_calibration_split": "known_normal_validation",
       "separate_calibration_quantile": 0.99,
       "separate_calibration_manifest_digest": null,
-      "reported_metric_threshold_lineage": "unverified; final_summary.json points to the shared PatchCore threshold, not the separate affinity artifact",
+      "separate_calibration_validation_pixel_counts_match_manifest": true,
+      "calibration_implementation": "_calibrate_detector_thresholds -> _score_detector_paths -> _make_refined_anomaly_map; inference uses the same in-memory pixel_thresholds",
+      "reported_metric_threshold_lineage": "calibrated per-method at q=.99; report-specific snapshot preserved, but its manifest digest is absent and the shared production path was later overwritten",
       "artifact_calibration_split": "known_normal_validation",
       "artifact_quantile": 0.99,
       "test_labels_used": false,
-      "limitation": "A separate affinity-calibrated q=.99 artifact exists, but it has no manifest digest and the run summary does not reference it. The threshold used for saved predictions is therefore unverified; thresholded precision/recall/F1/IoU are not a fair calibrated operating-point comparison. Pixel AP/AUROC are threshold-free."
+      "limitation": "The source calibrates the configured refined map on known-normal validation data and applies that threshold at inference. The per-run copy has q=.99 counts matching the 320px validation split, but no manifest digest; the detector-scoped output path was later overwritten by the raw PatchCore run. Thresholded metrics are comparable as per-method q=.99 operating points, with weaker DINO-affinity artifact traceability. Pixel AP/AUROC are threshold-free."
     },
     "open5": {
       "calibration_split": "known_normal_validation",

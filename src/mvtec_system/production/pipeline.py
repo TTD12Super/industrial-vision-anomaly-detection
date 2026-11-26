@@ -331,6 +331,12 @@ _LOCALIZATION_SUBGROUP_METRICS = (
     "defect_mask_images",
     "defect_map_coverage",
     "defect_mask_coverage",
+    "defect_rejected_images",
+    "defect_rejected_map_images",
+    "defect_rejected_mask_images",
+    "defect_rejected_map_coverage",
+    "defect_rejected_mask_coverage",
+    "defect_evaluated_pixels",
     "defect_pixel_auroc",
     "defect_pixel_average_precision",
     "defect_precision",
@@ -410,6 +416,12 @@ def _localization_metric_rows(anomaly_report: dict[str, Any]) -> list[dict[str, 
                 "defect_mask_images": defect.get("mask_images"),
                 "defect_map_coverage": defect.get("map_coverage"),
                 "defect_mask_coverage": defect.get("mask_coverage"),
+                "defect_rejected_images": defect.get("rejected_images"),
+                "defect_rejected_map_images": defect.get("rejected_map_images"),
+                "defect_rejected_mask_images": defect.get("rejected_mask_images"),
+                "defect_rejected_map_coverage": defect.get("rejected_map_coverage"),
+                "defect_rejected_mask_coverage": defect.get("rejected_mask_coverage"),
+                "defect_evaluated_pixels": defect_thresholded.get("evaluated_pixels"),
                 "defect_pixel_auroc": defect_ranking.get("auroc"),
                 "defect_pixel_average_precision": defect_ranking.get("average_precision"),
                 "defect_precision": defect_thresholded.get("precision"),
@@ -853,10 +865,10 @@ def _anomaly_report(rows: list[dict[str, Any]]) -> dict[str, Any]:
             "rejected_map_images": len(rejected_map_rows),
             "rejected_mask_images": len(rejected_mask_rows),
             "rejected_map_coverage": (
-                len(rejected_map_rows) / len(rejected_rows) if rejected_rows else 0.0
+                len(rejected_map_rows) / len(rejected_rows) if rejected_rows else None
             ),
             "rejected_mask_coverage": (
-                len(rejected_mask_rows) / len(rejected_rows) if rejected_rows else 0.0
+                len(rejected_mask_rows) / len(rejected_rows) if rejected_rows else None
             ),
             "ranking": _safe_ranking(pixel_scores, pixel_labels),
         }

@@ -50,8 +50,8 @@
       "validation": 0
     }
   },
+  "git_commit_at_report_refresh": "60b65da",
   "git_head_before_local_commit": "411e75940a4ff55e8936891db4b4abf166f38291",
-  "git_status_line_count_at_capture": 13,
   "hashes": {
     "artifacts/production_highres/mvtec_ad/classification_split.csv": "fac2c931624430c83e1a96f2122691cd5ad319c5f984b43c0bccf5ac7029d432",
     "artifacts/production_highres/mvtec_ad/classifier/classifier.pt": "9877b5e2c4adb3c3ad048a204380815b427a3a66ec9a1a9c4fc11c042fd7cdce",
@@ -76,12 +76,13 @@
     "reports/experiments/goal_15_category_postpatch_qa/mvtec_ad/20261126T072127Z/qa_leakage_audit.json": "84af0de1fc200e207f0bbe7e53dd9d064b07dd0027bfaa96c952c4fb01bb5e2d",
     "reports/experiments/goal_15_category_postpatch_raw/mvtec_ad/20261126T062935Z/qa_leakage_audit.json": "84af0de1fc200e207f0bbe7e53dd9d064b07dd0027bfaa96c952c4fb01bb5e2d",
     "src/mvtec_system/anomaly/pipeline.py": "af19a0623f6f9395f06adb7d96b613d976d5451e4cea419b73895fb1e95578fd",
-    "src/mvtec_system/production/pipeline.py": "4d885b24d09d7b18de5bb8adde165d2b1bdf16e0380f99a378130746c24a922a",
+    "src/mvtec_system/production/pipeline.py": "caef4444de59c47378322c3cc867764b750c6749fe1c9dd87b64a456c0f40018",
     "tests/unit/anomaly/test_pipeline.py": "afe3c12b238e7b4f8aeff7a32fb0353a79e4bcc85a097a1d3d2020c77f7b4fe0",
-    "tests/unit/production/test_exact_first.py": "de4a42c14db9d23778149b192e30a54d95c52f2ec0d899315b2bf8b20cab5d9b"
+    "tests/unit/production/test_exact_first.py": "bb3285869ff47055227a2fcc8ad8685ed09f81485fed8468640582596fc9a17e"
   },
   "report_refresh_note": "Predictions, anomaly scores, masks, and thresholds came from the completed run. After an output-schema-only source follow-up, JSON/CSV/Markdown serialization was refreshed from saved run metrics; defect subgroup counts were derived from validated split counts; error-analysis fields were added from the saved three error rows. No prediction, score, or threshold was changed.",
   "run_id": "20261126T072127Z",
   "run_protocol": "MVTec AD 15 categories; independent PatchCore; raw maps/masks; CPU; 320x320; validation_fraction=0.30; seed=42; thresholds reused from raw baseline",
+  "working_tree_dirty_at_report_refresh": true,
   "working_tree_dirty_during_run": true
 }

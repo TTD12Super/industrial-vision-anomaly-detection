@@ -265,6 +265,13 @@ class ExactFirstTests(TestCase):
         self.assertEqual(bottle["sources"]["padim"]["rejected_mask_images"], 1)
         self.assertEqual(bottle["sources"]["padim"]["rejected_map_coverage"], 1.0)
         self.assertEqual(bottle["sources"]["padim"]["rejected_mask_coverage"], 1.0)
+        defect_subgroup = bottle["sources"]["padim"]["subgroups"]["defect"]
+        self.assertEqual(defect_subgroup["rejected_images"], 1)
+        self.assertEqual(defect_subgroup["rejected_map_images"], 1)
+        self.assertEqual(defect_subgroup["rejected_mask_images"], 1)
+        self.assertEqual(defect_subgroup["rejected_map_coverage"], 1.0)
+        self.assertEqual(defect_subgroup["rejected_mask_coverage"], 1.0)
+        self.assertEqual(defect_subgroup["thresholded"]["evaluated_pixels"], 4)
         self.assertNotIn("map_sample_count", bottle["sources"]["padim"])
         self.assertNotIn("mask_sample_count", bottle["sources"]["padim"])
         self.assertEqual(
@@ -285,6 +292,12 @@ class ExactFirstTests(TestCase):
         self.assertIn("thresholded", bottle["sources"]["padim"]["subgroups"]["defect"])
         self.assertEqual(per_category["cable"]["sources"]["patchcore"]["map_images"], 0)
         self.assertEqual(per_category["cable"]["sources"]["patchcore"]["map_coverage"], 0.0)
+        self.assertIsNone(
+            per_category["cable"]["sources"]["patchcore"]["rejected_map_coverage"]
+        )
+        self.assertIsNone(
+            per_category["cable"]["sources"]["patchcore"]["rejected_mask_coverage"]
+        )
 
         csv_rows = _localization_metric_rows(report)
         self.assertEqual(len(csv_rows), 2)
@@ -304,6 +317,14 @@ class ExactFirstTests(TestCase):
         self.assertEqual(csv_rows[0]["padim_defect_mask_images"], 1)
         self.assertEqual(csv_rows[0]["padim_defect_map_coverage"], 1.0)
         self.assertEqual(csv_rows[0]["padim_defect_mask_coverage"], 1.0)
+        self.assertEqual(csv_rows[0]["padim_defect_rejected_images"], 1)
+        self.assertEqual(csv_rows[0]["padim_defect_rejected_map_images"], 1)
+        self.assertEqual(csv_rows[0]["padim_defect_rejected_mask_images"], 1)
+        self.assertEqual(csv_rows[0]["padim_defect_rejected_map_coverage"], 1.0)
+        self.assertEqual(csv_rows[0]["padim_defect_rejected_mask_coverage"], 1.0)
+        self.assertEqual(csv_rows[0]["padim_defect_evaluated_pixels"], 4)
+        self.assertIsNone(csv_rows[1]["patchcore_defect_rejected_map_coverage"])
+        self.assertIsNone(csv_rows[1]["patchcore_defect_rejected_mask_coverage"])
         self.assertNotIn("patchcore_map_sample_count", csv_rows[0])
         self.assertNotIn("padim_mask_sample_count", csv_rows[0])
 

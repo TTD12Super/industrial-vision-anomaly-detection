@@ -97,9 +97,9 @@
             "average_precision": 0.8397905793797884
           },
           "rejected_images": 0,
-          "rejected_map_coverage": 0.0,
+          "rejected_map_coverage": null,
           "rejected_map_images": 0,
-          "rejected_mask_coverage": 0.0,
+          "rejected_mask_coverage": null,
           "rejected_mask_images": 0,
           "subgroups": {
             "defect": {
@@ -114,9 +114,9 @@
                 "average_precision": 0.8398239649266683
               },
               "rejected_images": 0,
-              "rejected_map_coverage": 0.0,
+              "rejected_map_coverage": null,
               "rejected_map_images": 0,
-              "rejected_mask_coverage": 0.0,
+              "rejected_mask_coverage": null,
               "rejected_mask_images": 0,
               "thresholded": {
                 "dice": 0.3801472451990519,
@@ -243,9 +243,9 @@
             "average_precision": 0.4870439713448498
           },
           "rejected_images": 0,
-          "rejected_map_coverage": 0.0,
+          "rejected_map_coverage": null,
           "rejected_map_images": 0,
-          "rejected_mask_coverage": 0.0,
+          "rejected_mask_coverage": null,
           "rejected_mask_images": 0,
           "subgroups": {
             "defect": {
@@ -260,9 +260,9 @@
                 "average_precision": 0.4875482681535461
               },
               "rejected_images": 0,
-              "rejected_map_coverage": 0.0,
+              "rejected_map_coverage": null,
               "rejected_map_images": 0,
-              "rejected_mask_coverage": 0.0,
+              "rejected_mask_coverage": null,
               "rejected_mask_images": 0,
               "thresholded": {
                 "dice": 0.2250235822430142,
@@ -316,9 +316,9 @@
             "average_precision": 0.8104370085327227
           },
           "rejected_images": 0,
-          "rejected_map_coverage": 0.0,
+          "rejected_map_coverage": null,
           "rejected_map_images": 0,
-          "rejected_mask_coverage": 0.0,
+          "rejected_mask_coverage": null,
           "rejected_mask_images": 0,
           "subgroups": {
             "defect": {
@@ -333,9 +333,9 @@
                 "average_precision": 0.8104468421772881
               },
               "rejected_images": 0,
-              "rejected_map_coverage": 0.0,
+              "rejected_map_coverage": null,
               "rejected_map_images": 0,
-              "rejected_mask_coverage": 0.0,
+              "rejected_mask_coverage": null,
               "rejected_mask_images": 0,
               "thresholded": {
                 "dice": 0.2252896622481514,
@@ -389,9 +389,9 @@
             "average_precision": 0.3745589811700263
           },
           "rejected_images": 0,
-          "rejected_map_coverage": 0.0,
+          "rejected_map_coverage": null,
           "rejected_map_images": 0,
-          "rejected_mask_coverage": 0.0,
+          "rejected_mask_coverage": null,
           "rejected_mask_images": 0,
           "subgroups": {
             "defect": {
@@ -406,9 +406,9 @@
                 "average_precision": 0.3745605704963979
               },
               "rejected_images": 0,
-              "rejected_map_coverage": 0.0,
+              "rejected_map_coverage": null,
               "rejected_map_images": 0,
-              "rejected_mask_coverage": 0.0,
+              "rejected_mask_coverage": null,
               "rejected_mask_images": 0,
               "thresholded": {
                 "dice": 0.06469460113001516,
@@ -462,9 +462,9 @@
             "average_precision": 0.7385002433166112
           },
           "rejected_images": 0,
-          "rejected_map_coverage": 0.0,
+          "rejected_map_coverage": null,
           "rejected_map_images": 0,
-          "rejected_mask_coverage": 0.0,
+          "rejected_mask_coverage": null,
           "rejected_mask_images": 0,
           "subgroups": {
             "defect": {
@@ -479,9 +479,9 @@
                 "average_precision": 0.7387234827725715
               },
               "rejected_images": 0,
-              "rejected_map_coverage": 0.0,
+              "rejected_map_coverage": null,
               "rejected_map_images": 0,
-              "rejected_mask_coverage": 0.0,
+              "rejected_mask_coverage": null,
               "rejected_mask_images": 0,
               "thresholded": {
                 "dice": 0.49226133604662226,
@@ -535,9 +535,9 @@
             "average_precision": 0.4417197072832896
           },
           "rejected_images": 0,
-          "rejected_map_coverage": 0.0,
+          "rejected_map_coverage": null,
           "rejected_map_images": 0,
-          "rejected_mask_coverage": 0.0,
+          "rejected_mask_coverage": null,
           "rejected_mask_images": 0,
           "subgroups": {
             "defect": {
@@ -552,9 +552,9 @@
                 "average_precision": 0.4417197072832896
               },
               "rejected_images": 0,
-              "rejected_map_coverage": 0.0,
+              "rejected_map_coverage": null,
               "rejected_map_images": 0,
-              "rejected_mask_coverage": 0.0,
+              "rejected_mask_coverage": null,
               "rejected_mask_images": 0,
               "thresholded": {
                 "dice": 0.05239565738172552,
@@ -608,9 +608,9 @@
             "average_precision": 0.8694588923729328
           },
           "rejected_images": 0,
-          "rejected_map_coverage": 0.0,
+          "rejected_map_coverage": null,
           "rejected_map_images": 0,
-          "rejected_mask_coverage": 0.0,
+          "rejected_mask_coverage": null,
           "rejected_mask_images": 0,
           "subgroups": {
             "defect": {
@@ -625,9 +625,9 @@
                 "average_precision": 0.870569391318319
               },
               "rejected_images": 0,
-              "rejected_map_coverage": 0.0,
+              "rejected_map_coverage": null,
               "rejected_map_images": 0,
-              "rejected_mask_coverage": 0.0,
+              "rejected_mask_coverage": null,
               "rejected_mask_images": 0,
               "thresholded": {
                 "dice": 0.7301284497364262,
@@ -681,9 +681,9 @@
             "average_precision": 0.7321272629454558
           },
           "rejected_images": 0,
-          "rejected_map_coverage": 0.0,
+          "rejected_map_coverage": null,
           "rejected_map_images": 0,
-          "rejected_mask_coverage": 0.0,
+          "rejected_mask_coverage": null,
           "rejected_mask_images": 0,
           "subgroups": {
             "defect": {
@@ -698,9 +698,9 @@
                 "average_precision": 0.7332748322227239
               },
               "rejected_images": 0,
-              "rejected_map_coverage": 0.0,
+              "rejected_map_coverage": null,
               "rejected_map_images": 0,
-              "rejected_mask_coverage": 0.0,
+              "rejected_mask_coverage": null,
               "rejected_mask_images": 0,
               "thresholded": {
                 "dice": 0.5008687152826548,
@@ -754,9 +754,9 @@
             "average_precision": 0.10234718763493408
           },
           "rejected_images": 0,
-          "rejected_map_coverage": 0.0,
+          "rejected_map_coverage": null,
           "rejected_map_images": 0,
-          "rejected_mask_coverage": 0.0,
+          "rejected_mask_coverage": null,
           "rejected_mask_images": 0,
           "subgroups": {
             "defect": {
@@ -771,9 +771,9 @@
                 "average_precision": 0.10821338361190876
               },
               "rejected_images": 0,
-              "rejected_map_coverage": 0.0,
+              "rejected_map_coverage": null,
               "rejected_map_images": 0,
-              "rejected_mask_coverage": 0.0,
+              "rejected_mask_coverage": null,
               "rejected_mask_images": 0,
               "thresholded": {
                 "dice": 0.11461281944175432,
@@ -827,9 +827,9 @@
             "average_precision": 0.691454700591623
           },
           "rejected_images": 0,
-          "rejected_map_coverage": 0.0,
+          "rejected_map_coverage": null,
           "rejected_map_images": 0,
-          "rejected_mask_coverage": 0.0,
+          "rejected_mask_coverage": null,
           "rejected_mask_images": 0,
           "subgroups": {
             "defect": {
@@ -844,9 +844,9 @@
                 "average_precision": 0.6914602387568513
               },
               "rejected_images": 0,
-              "rejected_map_coverage": 0.0,
+              "rejected_map_coverage": null,
               "rejected_map_images": 0,
-              "rejected_mask_coverage": 0.0,
+              "rejected_mask_coverage": null,
               "rejected_mask_images": 0,
               "thresholded": {
                 "dice": 0.2872711427039248,
@@ -900,9 +900,9 @@
             "average_precision": 0.5080123032473819
           },
           "rejected_images": 0,
-          "rejected_map_coverage": 0.0,
+          "rejected_map_coverage": null,
           "rejected_map_images": 0,
-          "rejected_mask_coverage": 0.0,
+          "rejected_mask_coverage": null,
           "rejected_mask_images": 0,
           "subgroups": {
             "defect": {
@@ -917,9 +917,9 @@
                 "average_precision": 0.50943089106246
               },
               "rejected_images": 0,
-              "rejected_map_coverage": 0.0,
+              "rejected_map_coverage": null,
               "rejected_map_images": 0,
-              "rejected_mask_coverage": 0.0,
+              "rejected_mask_coverage": null,
               "rejected_mask_images": 0,
               "thresholded": {
                 "dice": 0.18262330593201512,
@@ -1046,9 +1046,9 @@
             "average_precision": 0.6890415140214573
           },
           "rejected_images": 0,
-          "rejected_map_coverage": 0.0,
+          "rejected_map_coverage": null,
           "rejected_map_images": 0,
-          "rejected_mask_coverage": 0.0,
+          "rejected_mask_coverage": null,
           "rejected_mask_images": 0,
           "subgroups": {
             "defect": {
@@ -1063,9 +1063,9 @@
                 "average_precision": 0.6923775994712306
               },
               "rejected_images": 0,
-              "rejected_map_coverage": 0.0,
+              "rejected_map_coverage": null,
               "rejected_map_images": 0,
-              "rejected_mask_coverage": 0.0,
+              "rejected_mask_coverage": null,
               "rejected_mask_images": 0,
               "thresholded": {
                 "dice": 0.3608446899310629,
@@ -1119,9 +1119,9 @@
             "average_precision": 0.4654957428052666
           },
           "rejected_images": 0,
-          "rejected_map_coverage": 0.0,
+          "rejected_map_coverage": null,
           "rejected_map_images": 0,
-          "rejected_mask_coverage": 0.0,
+          "rejected_mask_coverage": null,
           "rejected_mask_images": 0,
           "subgroups": {
             "defect": {
@@ -1136,9 +1136,9 @@
                 "average_precision": 0.4658897469288436
               },
               "rejected_images": 0,
-              "rejected_map_coverage": 0.0,
+              "rejected_map_coverage": null,
               "rejected_map_images": 0,
-              "rejected_mask_coverage": 0.0,
+              "rejected_mask_coverage": null,
               "rejected_mask_images": 0,
               "thresholded": {
                 "dice": 0.19786869820390973,

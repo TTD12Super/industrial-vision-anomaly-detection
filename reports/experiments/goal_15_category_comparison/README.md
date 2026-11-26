@@ -60,6 +60,8 @@ The 99.83% all-image accuracy exceeds the >90% project target for this closed-se
 
 The raw heatmap has better overall Pixel AP, AUROC, precision, F1, specificity, and IoU. DINO affinity raises recall by about 2.14 percentage points, while lowering precision by about 7.18 points and mask F1 by about 10.38 points. Since the goal includes showing the user a tight defect region, the higher recall alone does not justify choosing affinity.
 
+The latency row is from the original paired raw/affinity runs. A later full raw rerun for subgroup QA measured **0.3939 s/image**; latency is run-specific, so keep that value with its own run report rather than replacing one side of the paired comparison.
+
 Both methods still produce broad masks at the selected validation thresholds: raw PatchCore precision is about 20%, despite recall around 95%. This remains a heatmap-localization weakness.
 
 ![Overall metric comparison](overall_metrics.png)
@@ -74,7 +76,7 @@ The weakest raw categories are screw (0.102), grid (0.375), leather (0.442), zip
 
 ### GOOD and DEFECT localization audit
 
-A same-configuration raw PatchCore rerun produced explicit subgroup metrics for all 1,725 test images. The prediction scores, masks and validation thresholds match the raw baseline; this run adds coverage and subgroup reporting.
+A full same-configuration raw PatchCore inference rerun produced subgroup metrics for all 1,725 test images. Its classification and localization scores match the earlier raw run; its measured latency is recorded separately because it differs slightly.
 
 | Subgroup metric | Result |
 |---|---:|
@@ -92,7 +94,7 @@ The GOOD false-positive pixel area is calculated only over GOOD images with pred
 
 ![DEFECT localization precision and recall by category](defect_precision_recall_by_category.png)
 
-The schema-refresh rerun is recorded at [`20261126T072127Z`](../goal_15_category_postpatch_qa/mvtec_ad/20261126T072127Z/final_report.md). It reused the raw PatchCore configuration, cached banks, split and thresholds. Its saved JSON is the source for the subgroup CSV and Markdown refresh; the only additional count is `defect_image_count`, derived from validated category split counts. The three saved error rows were extended with audit columns: localization category comes from the classifier's predicted candidate, while anomaly decision/source/status preserve the saved detector decision and run configuration. No prediction, score or threshold was changed during that report refresh. See the [run provenance and artifact hashes](../goal_15_category_postpatch_qa/mvtec_ad/20261126T072127Z/benchmark_provenance.json).
+The rerun is recorded at [`20261126T072127Z`](../goal_15_category_postpatch_qa/mvtec_ad/20261126T072127Z/final_report.md). It reused the raw PatchCore configuration, cached banks, split and thresholds. After inference, saved metrics were serialized with the completed report schema; `defect_image_count` was derived from validated split counts, and the three saved error rows received explicit localization/anomaly-decision audit fields. No prediction, score or threshold changed during serialization. See the [run provenance and artifact hashes](../goal_15_category_postpatch_qa/mvtec_ad/20261126T072127Z/benchmark_provenance.json).
 
 ## Decision
 

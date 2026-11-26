@@ -1,0 +1,1 @@
+"""MongoDB integration (PyMongo). Metadata only — never image binaries."""

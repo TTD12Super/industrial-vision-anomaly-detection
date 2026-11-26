@@ -7,3 +7,9 @@
 # Notebook model outputs and downloaded backbone weights
 artifacts/dinov2_knn/
 .ipynb_checkpoints/
+
+# Prediction artifacts (input/heatmap/overlay/result.json)
+artifacts/predictions/
+
+# Local environment
+.env

@@ -1,0 +1,1 @@
+"""Backend API tests (mock AI where noted; never the real DINOv2 pipeline)."""

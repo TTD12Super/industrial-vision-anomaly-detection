@@ -1,6 +1,6 @@
 # 15-category heatmap methods (320px)
 
-**Decision:** retain raw PatchCore as the Pixel AP baseline. No tested screw-branch transfer improved Pixel AP; open5 raised Pixel AUROC by only 0.0032 percentage points (micro) and 0.0048 points (macro).
+**Decision:** retain raw PatchCore as the Pixel AP baseline. No tested screw-branch transfer improved Pixel AP; open5 raised Pixel AUROC by only 0.0032 percentage points (micro) and 0.0048 percentage points (macro).
 
 ## Protocol
 
@@ -26,7 +26,7 @@ The official MVTec test split had already informed prior method and resolution c
 [Vector version](pixel_ap_by_category.svg)
 
 - **DINO affinity / relation propagation:** threshold-free Pixel AP and AUROC decrease. Do not compare its reported precision, recall, Dice or IoU with PatchCore because it reuses PatchCore's threshold rather than its own validation calibration.
-- **open5 morphology:** Pixel AP changes by -0.029 percentage points; Pixel AUROC rises by 0.0032 points micro / 0.0048 points macro. These near-zero shifts do not justify replacing the simpler raw map.
+- **open5 morphology:** Pixel AP changes by -0.029 percentage points (micro) / -0.036 percentage points (macro); Pixel AUROC rises by 0.0032 percentage points (micro) / 0.0048 percentage points (macro). These near-zero shifts do not justify replacing the simpler raw map.
 - **Exact patch kNN:** Pixel AP is lower by over 11 percentage points; 3 UNKNOWN/rejected test images have no map. Do not replace PatchCore for localization.
 - **Product classification:** unchanged. Top-1 is 100.00% on the 1,089-image normal validation split and 99.826% on the 1,725-image official test split (the 3 UNKNOWN/rejects count as incorrect). The validation score was also used to choose among three classifier regularization values, so it is a model-selection score; the test score is exploratory because the official test was previously inspected. Both exceed 90% numerically, but neither establishes performance on an untouched camera/product holdout.
 

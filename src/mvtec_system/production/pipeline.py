@@ -719,6 +719,15 @@ def _make_refined_anomaly_map(
     return scores, anomaly_map
 
 
+def _threshold_artifact_dir(
+    artifact_dir: Path, threshold_name: str, heatmap_refiner: str
+) -> Path:
+    root = artifact_dir / "thresholds" / threshold_name
+    if heatmap_refiner != "none":
+        root = root / "refiners" / heatmap_refiner
+    return root
+
+
 def _score_detector_paths(
     paths: list[Path],
     encoder: SharedDINOv2,
@@ -1653,10 +1662,12 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
             rows, processed_root, detectors, localization_encoder, config
         )
     threshold_name = "exact_first" if exact_first else config.detector
-    threshold_root = artifact_dir / "thresholds" / threshold_name
+    threshold_root = _threshold_artifact_dir(
+        artifact_dir, threshold_name, config.heatmap_refiner
+    )
     _write_json(threshold_root / "image_thresholds.json", image_thresholds)
     _write_json(threshold_root / "pixel_thresholds.json", pixel_thresholds)
-    if exact_first or config.detector == "exact_knn":
+    if config.heatmap_refiner == "none" and (exact_first or config.detector == "exact_knn"):
         # Keep the historical CLI paths valid for the baseline model.
         _write_json(artifact_dir / "image_thresholds.json", image_thresholds)
         _write_json(artifact_dir / "pixel_thresholds.json", pixel_thresholds)

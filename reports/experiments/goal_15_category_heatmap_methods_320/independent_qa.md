@@ -20,6 +20,7 @@ This section clarifies the initial static QA note using the current production c
 
 - Raw PatchCore, open5 and Exact kNN have method-specific threshold artifacts with known-normal validation calibration at q=.99 and no test-label selection.
 - DINO affinity calibrates the configured refined maps on known-normal validation data through `_calibrate_detector_thresholds` → `_score_detector_paths` → `_make_refined_anomaly_map`; inference uses the resulting in-memory thresholds. The q=.99 sidecar's per-category pixel counts match the validation split at 320×320. The summary's detector-scoped artifact path was later overwritten by the raw PatchCore run, and the sidecar lacks a manifest digest, so artifact lineage is weaker. The reported threshold-dependent metrics can be compared as per-method q=.99 operating points; AP/AUROC remain threshold-free.
+- The production writer now stores non-`none` refiner thresholds under `thresholds/<detector>/refiners/<refiner>`; the legacy raw threshold path is preserved. This prevents future refiner runs from overwriting the raw detector's thresholds.
 
 ## Metric check
 

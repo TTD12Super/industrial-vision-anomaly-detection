@@ -28,6 +28,7 @@ from mvtec_system.production.pipeline import (
     _markdown_report,
     _load_or_fit_detector,
     _make_refined_anomaly_map,
+    _threshold_artifact_dir,
     _validate_category_train_paths,
     infer_exact_first,
     ProductionConfig,
@@ -48,6 +49,20 @@ def _exact(decision: str) -> dict:
 
 
 class ExactFirstTests(TestCase):
+    def test_threshold_artifacts_are_scoped_by_refiner(self) -> None:
+        artifact_dir = Path("artifacts/production/mvtec_ad")
+        baseline = artifact_dir / "thresholds" / "patchcore"
+
+        self.assertEqual(_threshold_artifact_dir(artifact_dir, "patchcore", "none"), baseline)
+        self.assertEqual(
+            _threshold_artifact_dir(artifact_dir, "patchcore", "dino_affinity"),
+            baseline / "refiners" / "dino_affinity",
+        )
+        self.assertEqual(
+            _threshold_artifact_dir(artifact_dir, "exact_first", "heatmap_open5"),
+            artifact_dir / "thresholds" / "exact_first" / "refiners" / "heatmap_open5",
+        )
+
     def test_threshold_calibration_requires_validation_rows(self) -> None:
         encoder = Mock()
         config = ProductionConfig()

@@ -28,7 +28,30 @@ The official MVTec test split had already informed prior method and resolution c
 - **DINO affinity / relation propagation:** threshold-free Pixel AP and AUROC decrease. Its saved production summary points to PatchCore's threshold; a separate affinity-calibrated file exists, but the report does not prove that file was applied. Do not compare threshold-dependent precision, recall, Dice or IoU until the threshold lineage is verified.
 - **open5 morphology:** Pixel AP changes by -0.029 percentage points (micro) / -0.036 percentage points (macro); Pixel AUROC rises by 0.0032 percentage points (micro) / 0.0048 percentage points (macro). These near-zero shifts do not justify replacing the simpler raw map.
 - **Exact patch kNN:** Pixel AP is lower by over 11 percentage points; 3 UNKNOWN/rejected test images have no map. Do not replace PatchCore for localization.
-- **Product classification:** unchanged. Top-1 is 100.00% on the 1,089-image normal validation split and 99.826% on the 1,725-image official test split (the 3 UNKNOWN/rejects count as incorrect). The validation score was also used to choose among three classifier regularization values, so it is a model-selection score; the test score is exploratory because the official test was previously inspected. Both exceed 90% numerically, but neither establishes performance on an untouched camera/product holdout.
+## Product classification
+
+The unchanged classifier uses frozen DINOv2 global embeddings and multinomial logistic regression (`C=0.1`). The three candidate values of `C` tied at 100% validation macro-F1, so validation is model-selection evidence, not an independent estimate.
+
+| Category | Test images | Correct | Rejected | Top-1 accuracy |
+|---|---:|---:|---:|---:|
+| bottle | 83 | 83 | 0 | 100.00% |
+| cable | 150 | 149 | 1 | 99.33% |
+| capsule | 132 | 132 | 0 | 100.00% |
+| carpet | 117 | 117 | 0 | 100.00% |
+| grid | 78 | 78 | 0 | 100.00% |
+| hazelnut | 110 | 110 | 0 | 100.00% |
+| leather | 124 | 124 | 0 | 100.00% |
+| metal_nut | 115 | 115 | 0 | 100.00% |
+| pill | 167 | 167 | 0 | 100.00% |
+| screw | 160 | 160 | 0 | 100.00% |
+| tile | 117 | 117 | 0 | 100.00% |
+| toothbrush | 42 | 42 | 0 | 100.00% |
+| transistor | 100 | 98 | 2 | 98.00% |
+| wood | 79 | 79 | 0 | 100.00% |
+| zipper | 151 | 151 | 0 | 100.00% |
+| **All categories** | **1,725** | **1,722** | **3** | **99.826%** |
+
+All three rejected predictions are counted as incorrect. Aggregate accuracy is 100% on the 467 GOOD images and 99.76% on the 1,258 DEFECT images. The 1,089-image validation score is 100%, but it was used for model selection. The official test had been inspected in earlier work, so the test score is exploratory and does not establish performance on an untouched camera/product holdout. See the [full classification report](../goal_15_category_postpatch_raw/mvtec_ad/20261126T062935Z/classification_test_summary.json) and [confusion matrix including UNKNOWN](../goal_15_category_postpatch_raw/mvtec_ad/20261126T062935Z/confusion_matrix_with_unknown.png).
 
 ## Screw-method transfer boundary
 

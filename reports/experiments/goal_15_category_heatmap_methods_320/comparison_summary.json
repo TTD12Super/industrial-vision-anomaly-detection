@@ -1,6 +1,19 @@
 {
   "status": "EXPLORATORY_NO_METHOD_BEATS_RAW_PATCHCORE",
   "decision": "Keep raw PatchCore as the 15-category heatmap baseline. Do not promote DINO affinity, open5, or Exact kNN for localization based on these results.",
+  "next_research_candidate": {
+    "name": "Dinomaly ViT-Small",
+    "status": "not_integrated_or_benchmarked",
+    "paper_mvtec_pixel_ap": 0.6829,
+    "interpretation": "Published result under a different protocol; not a result or forecast for this project.",
+    "blockers": [
+      "The official runner falls back to CPU when CUDA is unavailable.",
+      "The current Mac Torch/Anomalib environment has cloud-offloaded package files that block imports.",
+      "The project needs an adapted loader and a same-resolution PatchCore control before a fair benchmark."
+    ],
+    "paper": "https://openaccess.thecvf.com/content/CVPR2025/papers/Guo_Dinomaly_The_Less_Is_More_Philosophy_in_Multi-Class_Unsupervised_Anomaly_CVPR_2025_paper.pdf",
+    "implementation": "https://github.com/guojiajeremy/Dinomaly"
+  },
   "dataset": {
     "name": "MVTec AD",
     "category_count": 15,
@@ -28,7 +41,11 @@
     "seed": 42,
     "validation_fraction": 0.3,
     "classification_manifest_sha256": "fac2c931624430c83e1a96f2122691cd5ad319c5f984b43c0bccf5ac7029d432",
+    "classification_manifest_split_scope": ["train", "validation"],
     "exact_hash_cross_split_overlap_count": 0,
+    "decoded_pixel_hash_cross_split_overlap_count": 0,
+    "decoded_pixel_hash_audit": "reports/experiments/goal_15_category_heatmap_methods_320/decoded_pixel_split_audit.json",
+    "test_image_inventory_sha256": "a88785e62f357832c19188baddb3df95ca252e1257dc6050c26f728c23ac32be",
     "near_duplicate_or_session_audit": false,
     "test_exposure": "The official test split was inspected in earlier project experiments and informed method/resolution choices. Results are exploratory, not an unbiased final estimate."
   },
@@ -174,14 +191,14 @@
     }
   },
   "qa": {
-    "independent_review": "QA independently verified all four runs share the same split manifest; threshold provenance, method deltas, and coverage were reviewed. DINO-affinity threshold calibration is not separately preserved; see report caveat.",
+    "independent_review": "QA independently verified the shared train/validation manifest, per-method threshold calibration source path, method deltas, and coverage. A decoded-pixel audit also found zero cross-split identical images; see its test inventory fingerprint and limitations.",
     "focused_tests": "24 focused production/unit tests passed before this comparison report was generated.",
     "limitations": [
       "Exact kNN maps cover 1722/1725 images; 3 rejected images have no heatmap.",
       "No perceptual near-duplicate or acquisition-session audit.",
       "No paired bootstrap confidence intervals; per-image maps were not retained.",
       "Exact kNN source-tree hash was not captured during its run.",
-      "DINO-affinity report reuses raw PatchCore threshold artifact; its thresholded metrics are not calibrated specifically for affinity maps, while AP/AUROC remain threshold-free."
+      "DINO-affinity calibration used its refined maps at q=.99 on known-normal validation, but its historical production path was overwritten and the saved sidecar lacks a manifest digest, weakening artifact lineage."
     ]
   }
 }

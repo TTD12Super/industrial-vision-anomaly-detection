@@ -6,13 +6,13 @@ QA reviewed saved reports for raw PatchCore, DINO affinity, `heatmap_open5`, and
 
 ## Split identity and exact-hash audit
 
-All four reports use classification manifest SHA-256:
+All four reports use the same train/validation manifest SHA-256:
 
 ```text
 fac2c931624430c83e1a96f2122691cd5ad319c5f984b43c0bccf5ac7029d432
 ```
 
-The split has 2,540 train, 1,089 validation and 1,725 official-test images across 15 categories. The exact SHA-256 audit reports zero cross-split exact duplicates. No perceptual near-duplicate or acquisition-session audit was done. The official test has been inspected in earlier project experiments, so all results remain exploratory rather than unbiased final estimates.
+The manifest contains 2,540 train and 1,089 validation rows. The 1,725 official-test files are discovered from the test folders; their sorted inventory fingerprint, including decoded-pixel hashes, is `a88785e62f357832c19188baddb3df95ca252e1257dc6050c26f728c23ac32be`. Both the exact file SHA-256 audit and a decoded-pixel SHA-256 audit report zero cross-split identical images; the latter covers all 5,354 files and is recorded in [`decoded_pixel_split_audit.json`](decoded_pixel_split_audit.json). It catches identical pixel arrays even if PNG encodings differ. No reliable perceptual near-duplicate or acquisition-session audit has been completed. A coarse low-resolution difference hash produced many candidates among visually similar, distinct MVTec objects, so it was discarded as duplicate evidence. The official test has been inspected in earlier project experiments, so all results remain exploratory rather than unbiased final estimates.
 
 ## Threshold calibration — follow-up source audit
 

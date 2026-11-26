@@ -1,0 +1,24 @@
+{
+  "protocol": "SHA-256 over decoded RGBA pixels and dimensions",
+  "audit_date": "2026-11-26",
+  "decoder": "Pillow 12.3.0",
+  "python_version": "3.13.7",
+  "processed_root": "datasets/mvtec_ad_processed_320",
+  "manifest_sha256": "fac2c931624430c83e1a96f2122691cd5ad319c5f984b43c0bccf5ac7029d432",
+  "test_image_inventory_sha256": "a88785e62f357832c19188baddb3df95ca252e1257dc6050c26f728c23ac32be",
+  "image_count": 5354,
+  "files_by_split": {
+    "test": 1725,
+    "train": 2540,
+    "validation": 1089
+  },
+  "unique_decoded_pixel_hashes": 5354,
+  "decoded_pixel_hash_failures": 0,
+  "cross_split_identical_pixel_pair_count": 0,
+  "cross_split_identical_pixel_pairs": [],
+  "implementation": "scripts/audit_decoded_pixel_split_duplicates.py",
+  "limitations": [
+    "Does not detect perceptual near-duplicates or acquisition-session leakage.",
+    "The official MVTec test split was previously inspected; this audit does not make its benchmark results an untouched-holdout estimate."
+  ]
+}

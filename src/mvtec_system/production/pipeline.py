@@ -34,7 +34,12 @@ from ..anomaly.feature_bank import FeatureBankResult, load_or_build_feature_bank
 from ..anomaly.knn import nearest_neighbor_scores
 from ..anomaly.maps import make_anomaly_maps, plot_anomaly_examples
 from ..anomaly.multi_layer import MultiLayerConfig
-from ..anomaly.refinement import postprocess_mask, propagate_scores, refine_heatmap
+from ..anomaly.refinement import (
+    MASK_POSTPROCESS_METHODS,
+    postprocess_mask,
+    propagate_scores,
+    refine_heatmap,
+)
 from ..anomaly.thresholds import (
     calibrate_category_image_thresholds,
     calibrate_category_pixel_thresholds,
@@ -1405,6 +1410,10 @@ def run_production(config: ProductionConfig | None = None) -> dict[str, Any]:
         raise ValueError("orchestration must be one of: exact_first, independent")
     if config.heatmap_refiner not in HEATMAP_REFINERS:
         raise ValueError(f"heatmap_refiner must be one of: {', '.join(HEATMAP_REFINERS)}")
+    if config.mask_postprocess not in MASK_POSTPROCESS_METHODS:
+        raise ValueError(
+            f"mask_postprocess must be one of: {', '.join(MASK_POSTPROCESS_METHODS)}"
+        )
     if (
         config.orchestration == "independent"
         and config.detector == "exact_knn"

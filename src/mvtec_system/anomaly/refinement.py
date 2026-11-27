@@ -5,6 +5,16 @@ from __future__ import annotations
 import cv2
 import numpy as np
 
+MASK_POSTPROCESS_METHODS = (
+    "raw",
+    "open3",
+    "open5",
+    "open3_close5",
+    "components",
+    "border2",
+    "border5",
+)
+
 
 def propagate_scores(
     scores: np.ndarray,
@@ -68,6 +78,12 @@ def postprocess_mask(heatmap: np.ndarray, threshold: float, method: str) -> np.n
     elif method == "open3_close5":
         mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8))
         mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, np.ones((5, 5), np.uint8))
+    elif method in {"border2", "border5"}:
+        border = int(method.removeprefix("border"))
+        mask[:border, :] = 0
+        mask[-border:, :] = 0
+        mask[:, :border] = 0
+        mask[:, -border:] = 0
     elif method == "components":
         count, labels, stats, _ = cv2.connectedComponentsWithStats(mask, connectivity=8)
         minimum_area = max(9, int(mask.shape[0] * mask.shape[1] * 0.0005))

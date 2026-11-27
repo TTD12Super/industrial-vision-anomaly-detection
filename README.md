@@ -138,8 +138,10 @@ test image receives a localization result. `dino_affinity` propagates each
 detector's patch scores over frozen DINOv2 cosine affinity. The continuous-map
 refiners `heatmap_open3`, `heatmap_open5`, `heatmap_open7`, and `heatmap_open9`
 apply morphology before pixel thresholding. `--mask-postprocess open3` instead
-changes an already-thresholded binary mask; these options are distinct. Pixel
-thresholds are calibrated from normal validation images only. For example, to
+changes an already-thresholded binary mask; these options are distinct. The
+mask cleanup can be switched among `raw`, `open3`, `open5`, `open3_close5`,
+`components`, `border2`, and `border5`. Pixel thresholds are calibrated from
+normal validation images only. For example, to
 evaluate the continuous-map opening without an additional binary-mask operation:
 
 ```bash
@@ -202,6 +204,20 @@ AP is `61.279%`; open5 is `61.243%`, DINO affinity `59.618%`, and Exact kNN
 `53.464%`. See the [combined method table, category plots, and independent QA](reports/experiments/goal_15_category_heatmap_methods_320/README.md). The Exact
 kNN test used the same split but omitted maps for three rejected images; all
 test metrics remain exploratory because of prior MVTec test exposure.
+
+The later same-resolution transfer benchmark keeps the exact-first workflow
+roles: Exact kNN makes the GOOD/DEFECT decision, raw PatchCore supplies the
+continuous heatmap, and raw PaDiM supplies the binary mask. On the 15-category
+320px public MVTec test split, PatchCore raw leads continuous localization with
+macro Pixel AP `61.28%`. PaDiM raw has the strongest balanced binary mask among
+these outputs (macro Dice `42.66%`, precision `35.45%`, recall `71.01%`); a
+PatchCore border5 mask has lower Dice (`32.23%`) but higher recall (`93.47%`).
+Use `--heatmap-refiner` to switch continuous-map methods and
+`--mask-postprocess` to switch binary-mask cleanup. The complete options and
+per-category results are in
+[the consolidated benchmark report](reports/experiments/goal_15_category_screw_heatmap_transfers_320_rerun4/HEATMAP_METHODS_CONSOLIDATED.md).
+These test-selected comparisons are exploratory because the public MVTec test
+split has been inspected in prior work.
 
 ## Reproduction and reports
 

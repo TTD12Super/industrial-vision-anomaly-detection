@@ -1,0 +1,436 @@
+{
+  "protocol": {
+    "dataset": "MVTec AD processed 320x320",
+    "categories": [
+      "bottle",
+      "cable",
+      "capsule",
+      "carpet",
+      "grid",
+      "hazelnut",
+      "leather",
+      "metal_nut",
+      "pill",
+      "screw",
+      "tile",
+      "toothbrush",
+      "transistor",
+      "wood",
+      "zipper"
+    ],
+    "official_test_images": 1725,
+    "train_good": 2540,
+    "validation_good": 1089,
+    "seed": 42,
+    "normal_manifest_sha256": "fac2c931624430c83e1a96f2122691cd5ad319c5f984b43c0bccf5ac7029d432",
+    "defect_split_counts_by_type": {
+      "bottle/broken_large": 20,
+      "bottle/broken_small": 22,
+      "bottle/contamination": 21,
+      "cable/bent_wire": 13,
+      "cable/cable_swap": 12,
+      "cable/combined": 11,
+      "cable/cut_inner_insulation": 14,
+      "cable/cut_outer_insulation": 10,
+      "cable/missing_cable": 12,
+      "cable/missing_wire": 10,
+      "cable/poke_insulation": 10,
+      "capsule/crack": 23,
+      "capsule/faulty_imprint": 22,
+      "capsule/poke": 21,
+      "capsule/scratch": 23,
+      "capsule/squeeze": 20,
+      "carpet/color": 19,
+      "carpet/cut": 17,
+      "carpet/hole": 17,
+      "carpet/metal_contamination": 17,
+      "carpet/thread": 19,
+      "grid/bent": 12,
+      "grid/broken": 12,
+      "grid/glue": 11,
+      "grid/metal_contamination": 11,
+      "grid/thread": 11,
+      "hazelnut/crack": 18,
+      "hazelnut/cut": 17,
+      "hazelnut/hole": 18,
+      "hazelnut/print": 17,
+      "leather/color": 19,
+      "leather/cut": 19,
+      "leather/fold": 17,
+      "leather/glue": 19,
+      "leather/poke": 18,
+      "metal_nut/bent": 25,
+      "metal_nut/color": 22,
+      "metal_nut/flip": 23,
+      "metal_nut/scratch": 23,
+      "pill/color": 25,
+      "pill/combined": 17,
+      "pill/contamination": 21,
+      "pill/crack": 26,
+      "pill/faulty_imprint": 19,
+      "pill/pill_type": 9,
+      "pill/scratch": 24,
+      "screw/manipulated_front": 24,
+      "screw/scratch_head": 24,
+      "screw/scratch_neck": 25,
+      "screw/thread_side": 23,
+      "screw/thread_top": 23,
+      "tile/crack": 17,
+      "tile/glue_strip": 18,
+      "tile/gray_stroke": 16,
+      "tile/oil": 18,
+      "tile/rough": 15,
+      "toothbrush/defective": 30,
+      "transistor/bent_lead": 10,
+      "transistor/cut_lead": 10,
+      "transistor/damaged_case": 10,
+      "transistor/misplaced": 10,
+      "wood/color": 8,
+      "wood/combined": 11,
+      "wood/hole": 10,
+      "wood/liquid": 10,
+      "wood/scratch": 21,
+      "zipper/broken_teeth": 19,
+      "zipper/combined": 16,
+      "zipper/fabric_border": 17,
+      "zipper/fabric_interior": 16,
+      "zipper/rough": 17,
+      "zipper/split_teeth": 18,
+      "zipper/squeezed_teeth": 16
+    },
+    "exact_knn_bank": "rebuilt in memory from the same 2,540 GOOD train split with the frozen DINOv2 layer-11 patch embeddings; no bank files downloaded",
+    "defect_split": "70/15/15 by category and defect type where group size permits; image-disjoint train/validation/test",
+    "supervised_evaluation": "custom internal split carved from official test defects; do not call these official MVTec test results",
+    "thresholds": "q=.99 per category/method on validation GOOD maps only",
+    "prior_test_exposure": "Official MVTec test was previously inspected; all results remain exploratory, not an untouched-holdout estimate."
+  },
+  "unsupervised_score_maps": {
+    "patchcore_raw": {
+      "pixel_ap_micro": 0.5537590635433803,
+      "pixel_auroc_micro": 0.9626459924713564,
+      "pixel_ap_macro_15": 0.612792682554609,
+      "pixel_auroc_macro_15": 0.9758541209674799,
+      "precision": 0.20105896941633103,
+      "recall": 0.9532673047332054,
+      "good_fp_pixel_area": 0.014636984577323368,
+      "map_coverage": 1.0
+    },
+    "patchcore_open3": {
+      "pixel_ap_micro": null,
+      "pixel_auroc_micro": null,
+      "pixel_ap_macro_15": 0.6127136075336079,
+      "pixel_auroc_macro_15": 0.9758705873140844,
+      "precision": 0.2007609342725507,
+      "recall": 0.9535425713225286,
+      "good_fp_pixel_area": 0.01465409273984944,
+      "map_coverage": 1.0
+    },
+    "patchcore_open5": {
+      "pixel_ap_micro": 0.5534663360264126,
+      "pixel_auroc_micro": 0.9626782293433396,
+      "pixel_ap_macro_15": 0.6124329613203231,
+      "pixel_auroc_macro_15": 0.9759018224721928,
+      "precision": 0.2000906232466509,
+      "recall": 0.9541550217931177,
+      "good_fp_pixel_area": 0.01467641825419516,
+      "map_coverage": 1.0
+    },
+    "patchcore_open7": {
+      "pixel_ap_micro": null,
+      "pixel_auroc_micro": null,
+      "pixel_ap_macro_15": 0.6118305560617034,
+      "pixel_auroc_macro_15": 0.9759411352051502,
+      "precision": 0.1991865916556381,
+      "recall": 0.9549093513155301,
+      "good_fp_pixel_area": 0.014690325982291832,
+      "map_coverage": 1.0
+    },
+    "patchcore_open9": {
+      "pixel_ap_micro": null,
+      "pixel_auroc_micro": null,
+      "pixel_ap_macro_15": 0.6109167500050955,
+      "pixel_auroc_macro_15": 0.9759732643570252,
+      "precision": 0.19796880463008287,
+      "recall": 0.9559028584913905,
+      "good_fp_pixel_area": 0.014723261631698615,
+      "map_coverage": 1.0
+    },
+    "exact_knn_k1": {
+      "pixel_ap_micro": null,
+      "pixel_auroc_micro": null,
+      "pixel_ap_macro_15": 0.535798494045613,
+      "pixel_auroc_macro_15": 0.9627027220898366,
+      "precision": 0.202180207056484,
+      "recall": 0.9000288711487002,
+      "good_fp_pixel_area": 0.014640635805873709,
+      "map_coverage": 1.0
+    },
+    "exact_knn_k3": {
+      "pixel_ap_micro": null,
+      "pixel_auroc_micro": null,
+      "pixel_ap_macro_15": 0.5336910736248726,
+      "pixel_auroc_macro_15": 0.9616149257738852,
+      "precision": 0.20809721969531086,
+      "recall": 0.8947597096043627,
+      "good_fp_pixel_area": 0.014467939493703594,
+      "map_coverage": 1.0
+    },
+    "exact_knn_k5": {
+      "pixel_ap_micro": null,
+      "pixel_auroc_micro": null,
+      "pixel_ap_macro_15": 0.5317679375836052,
+      "pixel_auroc_macro_15": 0.9607618408167008,
+      "precision": 0.21258328457112494,
+      "recall": 0.8906538855223572,
+      "good_fp_pixel_area": 0.014275555586706835,
+      "map_coverage": 1.0
+    },
+    "padim_320": {
+      "pixel_ap_micro": null,
+      "pixel_auroc_micro": null,
+      "pixel_ap_macro_15": 0.48554270618341167,
+      "pixel_auroc_macro_15": 0.9565961827400696,
+      "precision": 0.3741434204112815,
+      "recall": 0.6440601326586826,
+      "good_fp_pixel_area": 0.01186380885844426,
+      "map_coverage": 1.0
+    }
+  },
+  "supervised_refiner": {
+    "split_test": "official-good test images plus 15% held-out defect images per defect type",
+    "methods": {
+      "patchcore_raw": {
+        "macro_pixel_ap": 0.5942658041408885,
+        "macro_pixel_auroc": 0.9889534224785616
+      },
+      "supervised_default": {
+        "macro_pixel_ap": 0.7388411970567819,
+        "macro_pixel_auroc": 0.9974151399682755
+      },
+      "supervised_spatial": {
+        "macro_pixel_ap": 0.7269961581859788,
+        "macro_pixel_auroc": 0.9971455761888744
+      },
+      "spatial_decoder": {
+        "macro_pixel_ap": 0.7385276703368782,
+        "macro_pixel_auroc": 0.9971410440468518
+      }
+    },
+    "decoder_training": {
+      "bottle": {
+        "best_epoch": 12,
+        "train_images": 93,
+        "validation_images": 41
+      },
+      "cable": {
+        "best_epoch": 11,
+        "train_images": 108,
+        "validation_images": 48
+      },
+      "capsule": {
+        "best_epoch": 12,
+        "train_images": 127,
+        "validation_images": 47
+      },
+      "carpet": {
+        "best_epoch": 12,
+        "train_images": 107,
+        "validation_images": 47
+      },
+      "grid": {
+        "best_epoch": 12,
+        "train_images": 85,
+        "validation_images": 42
+      },
+      "hazelnut": {
+        "best_epoch": 12,
+        "train_images": 94,
+        "validation_images": 44
+      },
+      "leather": {
+        "best_epoch": 12,
+        "train_images": 110,
+        "validation_images": 47
+      },
+      "metal_nut": {
+        "best_epoch": 12,
+        "train_images": 115,
+        "validation_images": 45
+      },
+      "pill": {
+        "best_epoch": 12,
+        "train_images": 144,
+        "validation_images": 54
+      },
+      "screw": {
+        "best_epoch": 12,
+        "train_images": 131,
+        "validation_images": 50
+      },
+      "tile": {
+        "best_epoch": 12,
+        "train_images": 106,
+        "validation_images": 45
+      },
+      "toothbrush": {
+        "best_epoch": 11,
+        "train_images": 64,
+        "validation_images": 22
+      },
+      "transistor": {
+        "best_epoch": 11,
+        "train_images": 72,
+        "validation_images": 40
+      },
+      "wood": {
+        "best_epoch": 12,
+        "train_images": 88,
+        "validation_images": 42
+      },
+      "zipper": {
+        "best_epoch": 12,
+        "train_images": 131,
+        "validation_images": 50
+      }
+    },
+    "validation_thresholds": {
+      "bottle": {
+        "supervised_default": 0.14761145412921906,
+        "supervised_spatial": 0.08741854131221771,
+        "spatial_decoder": 0.07701102644205093
+      },
+      "cable": {
+        "supervised_default": 0.5413151383399963,
+        "supervised_spatial": 0.5068149566650391,
+        "spatial_decoder": 0.2666242718696594
+      },
+      "capsule": {
+        "supervised_default": 0.47929438948631287,
+        "supervised_spatial": 0.40153875946998596,
+        "spatial_decoder": 0.03637125715613365
+      },
+      "carpet": {
+        "supervised_default": 0.06927939504384995,
+        "supervised_spatial": 0.048796653747558594,
+        "spatial_decoder": 0.04275554418563843
+      },
+      "grid": {
+        "supervised_default": 0.11404123902320862,
+        "supervised_spatial": 0.0838559940457344,
+        "spatial_decoder": 0.05511698126792908
+      },
+      "hazelnut": {
+        "supervised_default": 0.38018909096717834,
+        "supervised_spatial": 0.40513041615486145,
+        "spatial_decoder": 0.15987569093704224
+      },
+      "leather": {
+        "supervised_default": 0.042644109576940536,
+        "supervised_spatial": 0.02401292882859707,
+        "spatial_decoder": 0.0353398434817791
+      },
+      "metal_nut": {
+        "supervised_default": 0.3050403296947479,
+        "supervised_spatial": 0.25269630551338196,
+        "spatial_decoder": 0.05542392656207085
+      },
+      "pill": {
+        "supervised_default": 0.4635724723339081,
+        "supervised_spatial": 0.38032054901123047,
+        "spatial_decoder": 0.0636420026421547
+      },
+      "screw": {
+        "supervised_default": 0.6347448229789734,
+        "supervised_spatial": 0.6995744109153748,
+        "spatial_decoder": 0.13420110940933228
+      },
+      "tile": {
+        "supervised_default": 0.12027260661125183,
+        "supervised_spatial": 0.10776147991418839,
+        "spatial_decoder": 0.05563339963555336
+      },
+      "toothbrush": {
+        "supervised_default": 0.3874516487121582,
+        "supervised_spatial": 0.3261258006095886,
+        "spatial_decoder": 0.13364435732364655
+      },
+      "transistor": {
+        "supervised_default": 0.47582367062568665,
+        "supervised_spatial": 0.47584226727485657,
+        "spatial_decoder": 0.2822500765323639
+      },
+      "wood": {
+        "supervised_default": 0.3919869363307953,
+        "supervised_spatial": 0.4328364431858063,
+        "spatial_decoder": 0.29975900053977966
+      },
+      "zipper": {
+        "supervised_default": 0.20412202179431915,
+        "supervised_spatial": 0.14224165678024292,
+        "spatial_decoder": 0.030804047361016273
+      }
+    }
+  },
+  "pixel_metric_scope": "Per-category and macro metrics are recomputed for the added methods. Micro ranking metrics are omitted for new methods to avoid writing all maps to disk; the existing full-test micro baselines are copied from goal_15_category_heatmap_methods_320.",
+  "binary_mask_postprocess": {
+    "protocol": "thresholded raw PatchCore q=.99 outputs; these operators do not change continuous Pixel AP/AUROC",
+    "overall": {
+      "raw": {
+        "precision": 0.20105896941633103,
+        "recall": 0.9532673047332054,
+        "dice": 0.3320775870048558,
+        "iou": 0.1990965433509182,
+        "good_fp_pixel_area": 0.01289685659796574,
+        "good_image_fp_rate": 0.8779443254817987
+      },
+      "open3": {
+        "precision": 0.20131796994459428,
+        "recall": 0.9532248471615875,
+        "dice": 0.332428192853532,
+        "iou": 0.19934865259108675,
+        "good_fp_pixel_area": 0.01275750301124197,
+        "good_image_fp_rate": 0.854389721627409
+      },
+      "open5": {
+        "precision": 0.2019283485953411,
+        "recall": 0.9531130422229935,
+        "dice": 0.3332530663761139,
+        "iou": 0.19994221057395084,
+        "good_fp_pixel_area": 0.012436052930942184,
+        "good_image_fp_rate": 0.7944325481798715
+      },
+      "open3_close5": {
+        "precision": 0.20108070699479824,
+        "recall": 0.9533840630551549,
+        "dice": 0.33211432069669616,
+        "iou": 0.1991229523808996,
+        "good_fp_pixel_area": 0.012776155982334047,
+        "good_image_fp_rate": 0.854389721627409
+      },
+      "components": {
+        "precision": 0.20140716478644,
+        "recall": 0.9532342232086531,
+        "dice": 0.33255035592864995,
+        "iou": 0.1994365209834308,
+        "good_fp_pixel_area": 0.012685735077623127,
+        "good_image_fp_rate": 0.7901498929336188
+      },
+      "border2": {
+        "precision": 0.20412488563937223,
+        "recall": 0.9513195636352314,
+        "dice": 0.33612692891545193,
+        "iou": 0.20201476588376854,
+        "good_fp_pixel_area": 0.012312299250535333,
+        "good_image_fp_rate": 0.8779443254817987
+      },
+      "border5": {
+        "precision": 0.20878331292771035,
+        "recall": 0.9482534193382209,
+        "dice": 0.34221815930898186,
+        "iou": 0.20643135960901468,
+        "good_fp_pixel_area": 0.011470280714668095,
+        "good_image_fp_rate": 0.8758029978586723
+      }
+    }
+  }
+}

@@ -6,6 +6,7 @@ import argparse
 import json
 from pathlib import Path
 
+from mvtec_system.anomaly.refinement import MASK_POSTPROCESS_METHODS
 from mvtec_system.production import ProductionConfig, run_production
 from mvtec_system.production.pipeline import HEATMAP_REFINERS
 
@@ -43,7 +44,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--affinity-eta", type=float, default=1.0)
     parser.add_argument(
         "--mask-postprocess",
-        choices=("raw", "open3", "open5", "open3_close5", "components"),
+        choices=MASK_POSTPROCESS_METHODS,
         default="raw",
     )
     parser.add_argument("--device", default=None, help="cpu, mps, or cuda; auto-detect when omitted")
